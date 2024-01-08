@@ -17,8 +17,8 @@ class UIFunctions(MainWindow):
         if status == False:
             self.showMaximized()
             GLOBAL_STATE = True
-            self.ui.appMargins.setContentsMargins(0, 0, 0, 0)
-            self.ui.maximizeRestoreAppBtn.setToolTip("Restore")
+            self.ui.styleSheet.setContentsMargins(0, 0, 0, 0)
+            self.ui.maximizeRestoreAppBtn.setToolTip("Сделать окном")
             self.ui.maximizeRestoreAppBtn.setIcon(QIcon(u":/icons/images/icons/icon_restore.png"))
             self.ui.frame_size_grip.hide()
             self.left_grip.hide()
@@ -28,9 +28,9 @@ class UIFunctions(MainWindow):
         else:
             GLOBAL_STATE = False
             self.showNormal()
-            self.resize(self.width()+1, self.height()+1)
-            self.ui.appMargins.setContentsMargins(10, 10, 10, 10)
-            self.ui.maximizeRestoreAppBtn.setToolTip("Maximize")
+            self.resize(self.width() + 1, self.height() + 1)
+            self.ui.styleSheet.setContentsMargins(10, 10, 10, 10)
+            self.ui.maximizeRestoreAppBtn.setToolTip("На весь экран")
             self.ui.maximizeRestoreAppBtn.setIcon(QIcon(u":/icons/images/icons/icon_maximize.png"))
             self.ui.frame_size_grip.show()
             self.left_grip.show()
@@ -78,7 +78,6 @@ class UIFunctions(MainWindow):
         if enable:
             # GET WIDTH
             width = self.ui.extraLeftBox.width()
-            widthRightBox = self.ui.extraRightBox.width()
             maxExtend = Settings.LEFT_BOX_WIDTH
             color = Settings.BTN_LEFT_BOX_COLOR
             standard = 0
@@ -91,44 +90,15 @@ class UIFunctions(MainWindow):
                 widthExtended = maxExtend
                 # SELECT BTN
                 self.ui.toggleLeftBox.setStyleSheet(style + color)
-                if widthRightBox != 0:
-                    style = self.ui.settingsTopBtn.styleSheet()
-                    self.ui.settingsTopBtn.setStyleSheet(style.replace(Settings.BTN_RIGHT_BOX_COLOR, ''))
             else:
                 widthExtended = standard
                 # RESET BTN
                 self.ui.toggleLeftBox.setStyleSheet(style.replace(color, ''))
-                
-        UIFunctions.start_box_animation(self, width, widthRightBox, "left")
+
+        UIFunctions.start_box_animation(self, width, width, "left")
 
     # TOGGLE RIGHT BOX
     # ///////////////////////////////////////////////////////////////
-    def toggleRightBox(self, enable):
-        if enable:
-            # GET WIDTH
-            width = self.ui.extraRightBox.width()
-            widthLeftBox = self.ui.extraLeftBox.width()
-            maxExtend = Settings.RIGHT_BOX_WIDTH
-            color = Settings.BTN_RIGHT_BOX_COLOR
-            standard = 0
-
-            # GET BTN STYLE
-            style = self.ui.settingsTopBtn.styleSheet()
-
-            # SET MAX WIDTH
-            if width == 0:
-                widthExtended = maxExtend
-                # SELECT BTN
-                self.ui.settingsTopBtn.setStyleSheet(style + color)
-                if widthLeftBox != 0:
-                    style = self.ui.toggleLeftBox.styleSheet()
-                    self.ui.toggleLeftBox.setStyleSheet(style.replace(Settings.BTN_LEFT_BOX_COLOR, ''))
-            else:
-                widthExtended = standard
-                # RESET BTN
-                self.ui.settingsTopBtn.setStyleSheet(style.replace(color, ''))
-
-            UIFunctions.start_box_animation(self, widthLeftBox, width, "right")
 
     def start_box_animation(self, left_box_width, right_box_width, direction):
         right_width = 0
@@ -152,17 +122,9 @@ class UIFunctions(MainWindow):
         self.left_box.setEndValue(left_width)
         self.left_box.setEasingCurve(QEasingCurve.InOutQuart)
 
-        # ANIMATION RIGHT BOX        
-        self.right_box = QPropertyAnimation(self.ui.extraRightBox, b"minimumWidth")
-        self.right_box.setDuration(Settings.TIME_ANIMATION)
-        self.right_box.setStartValue(right_box_width)
-        self.right_box.setEndValue(right_width)
-        self.right_box.setEasingCurve(QEasingCurve.InOutQuart)
-
         # GROUP ANIMATION
         self.group = QParallelAnimationGroup()
         self.group.addAnimation(self.left_box)
-        self.group.addAnimation(self.right_box)
         self.group.start()
 
     # SELECT/DESELECT MENU
@@ -220,6 +182,7 @@ class UIFunctions(MainWindow):
                     self.move(self.pos() + event.globalPos() - self.dragPos)
                     self.dragPos = event.globalPos()
                     event.accept()
+
             self.ui.titleRightInfo.mouseMoveEvent = moveWindow
 
             # CUSTOM GRIPS

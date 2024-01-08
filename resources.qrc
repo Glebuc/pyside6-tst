@@ -1,6 +1,7 @@
 <RCC>
-  <qresource prefix="images"/>
   <qresource prefix="icons">
+    <file>images/icons/aramid.jpg</file>
+    <file>images/icons/aramid.svg</file>
     <file>images/icons/cil-3d.png</file>
     <file>images/icons/cil-4k.png</file>
     <file>images/icons/cil-account-logout.png</file>

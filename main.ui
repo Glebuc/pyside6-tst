@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>940</width>
-    <height>573</height>
+    <width>979</width>
+    <height>615</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -65,8 +65,7 @@ Left Menu */
 	background-color: rgb(33, 37, 43);
 }
 #topLogo {
-	background-color: rgb(33, 37, 43);
-	background-image: url(:/images/images/images/PyDracula.png);
+	border-image: url(:/icons/images/icons/aramid.svg);
 	background-position: centered;
 	background-repeat: no-repeat;
 }
@@ -87,7 +86,7 @@ Left Menu */
 	background-color: rgb(40, 44, 52);
 }
 #topMenu .QPushButton:pressed {	
-	background-color: rgb(189, 147, 249);
+	background-color: rgb(0, 0, 0);
 	color: rgb(255, 255, 255);
 }
 #bottomMenu .QPushButton {	
@@ -103,7 +102,7 @@ Left Menu */
 	background-color: rgb(40, 44, 52);
 }
 #bottomMenu .QPushButton:pressed {	
-	background-color: rgb(189, 147, 249);
+	background-color: rgb(0, 0, 0);
 	color: rgb(255, 255, 255);
 }
 #leftMenuFrame{
@@ -125,7 +124,7 @@ Left Menu */
 	background-color: rgb(40, 44, 52);
 }
 #toggleButton:pressed {
-	background-color: rgb(189, 147, 249);
+	background-color: rgb(0, 0, 0);
 }
 
 /* Title Menu */
@@ -175,7 +174,7 @@ background-position: left center;
 	background-color: rgb(40, 44, 52);
 }
 #extraTopMenu .QPushButton:pressed {	
-	background-color: rgb(189, 147, 249);
+	background-color: rgb(0, 0, 0);
 	color: rgb(255, 255, 255);
 }
 
@@ -216,7 +215,7 @@ Content App */
 	background-color: rgb(40, 44, 52);
 }
 #contentSettings .QPushButton:pressed {	
-	background-color: rgb(189, 147, 249);
+	background-color: rgb(0, 0, 0);
 	color: rgb(255, 255, 255);
 }
 
@@ -423,6 +422,15 @@ QComboBox{
 	padding: 5px;
 	padding-left: 10px;
 }
+
+QSpinBox{
+	background-color: rgb(27, 29, 35);
+	border-radius: 5px;
+	border: 2px solid rgb(33, 37, 43);
+	padding: 5px;
+	padding-left: 10px;
+}
+
 QComboBox:hover{
 	border: 2px solid rgb(64, 71, 88);
 }
@@ -529,12 +537,23 @@ Button */
 	border: 2px solid rgb(43, 50, 61);
 }
 
+#extraLeftBox QPushButton {
+border: 2px solid rgb(52, 59, 72);
+border-radius: 5px;	
+background-color: rgb(52, 59, 72);
+padding: 5px;
+}
+#extraLeftBox QPushButton:hover {
+background-color: rgb(57, 65, 80);
+border: 2px solid rgb(61, 70, 86);
+}
+#extraLeftBox QPushButton::icon { padding-right: 10px; }
+#topLogoInfo {
+background-color: rgb(120, 120, 120);
+}
 </string>
    </property>
-   <layout class="QVBoxLayout" name="appMargins">
-    <property name="spacing">
-     <number>0</number>
-    </property>
+   <layout class="QGridLayout" name="gridLayout_3">
     <property name="leftMargin">
      <number>10</number>
     </property>
@@ -547,7 +566,7 @@ Button */
     <property name="bottomMargin">
      <number>10</number>
     </property>
-    <item>
+    <item row="0" column="0">
      <widget class="QFrame" name="bgApp">
       <property name="styleSheet">
        <string notr="true"/>
@@ -630,88 +649,36 @@ Button */
             <property name="frameShadow">
              <enum>QFrame::Raised</enum>
             </property>
-            <widget class="QFrame" name="topLogo">
-             <property name="geometry">
-              <rect>
-               <x>10</x>
-               <y>5</y>
-               <width>30</width>
-               <height>30</height>
-              </rect>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>30</width>
-               <height>30</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>30</width>
-               <height>30</height>
-              </size>
-             </property>
-             <property name="frameShape">
-              <enum>QFrame::NoFrame</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Raised</enum>
-             </property>
-            </widget>
-            <widget class="QLabel" name="titleLeftApp">
-             <property name="geometry">
-              <rect>
-               <x>70</x>
-               <y>8</y>
-               <width>160</width>
-               <height>20</height>
-              </rect>
-             </property>
-             <property name="font">
-              <font>
-               <family>Segoe UI Semibold</family>
-               <pointsize>12</pointsize>
-               <italic>false</italic>
-               <fontweight></fontweight>
-              </font>
-             </property>
-             <property name="text">
-              <string>PyDracula</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-             </property>
-            </widget>
-            <widget class="QLabel" name="titleLeftDescription">
-             <property name="geometry">
-              <rect>
-               <x>70</x>
-               <y>27</y>
-               <width>160</width>
-               <height>16</height>
-              </rect>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>16</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Segoe UI</family>
-               <pointsize>8</pointsize>
-               <italic>false</italic>
-               <bold>false</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>Modern GUI / Flat Style</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-             </property>
-            </widget>
+            <layout class="QHBoxLayout" name="horizontalLayout_6">
+             <item>
+              <widget class="QFrame" name="topLogo">
+               <property name="minimumSize">
+                <size>
+                 <width>30</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>30</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="autoFillBackground">
+                <bool>false</bool>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </widget>
           </item>
           <item>
@@ -800,7 +767,7 @@ Button */
                    <string notr="true">background-image: url(:/icons/images/icons/cil-chevron-right.png);</string>
                   </property>
                   <property name="text">
-                   <string>Hide</string>
+                   <string>Меню</string>
                   </property>
                  </widget>
                 </item>
@@ -863,8 +830,8 @@ Button */
                    <enum>Qt::LeftToRight</enum>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">#btn_report{
-background-image: url(:/icons/images/icons/cil-window-restore.png);
+                   <string notr="true">#btn_report {
+	background-image: url(:/icons/images/icons/cil-featured-playlist.png);
 }
 QToolTip {
 background-image: none;
@@ -872,10 +839,6 @@ background-image: none;
                   </property>
                   <property name="text">
                    <string>Отчеты</string>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="resources.qrc">
-                    <normaloff>:/icons/images/icons/cil-notes.png</normaloff>:/icons/images/icons/cil-notes.png</iconset>
                   </property>
                   <property name="iconSize">
                    <size>
@@ -925,7 +888,7 @@ background-image: none;
 }</string>
                   </property>
                   <property name="text">
-                   <string>Widgets</string>
+                   <string>Графики</string>
                   </property>
                  </widget>
                 </item>
@@ -961,10 +924,16 @@ background-image: none;
                    <enum>Qt::LeftToRight</enum>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">background-image: url(:/icons/images/icons/cil-briefcase.png);</string>
+                   <string notr="true">#btn_result {
+	
+	background-image: url(:/icons/images/icons/cil-task.png);
+}
+QToolTip {
+background-image: none;
+}</string>
                   </property>
                   <property name="text">
-                   <string>New</string>
+                   <string>Результаты</string>
                   </property>
                  </widget>
                 </item>
@@ -1027,10 +996,16 @@ background-image: none;
                    <enum>Qt::LeftToRight</enum>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">background-image: url(:/icons/images/icons/icon_settings.png);</string>
+                   <string notr="true">#toggleLeftBox {
+background-image: url(:/icons/images/icons/icon_settings.png);
+}
+
+QToolTip {
+background-image: none;
+}</string>
                   </property>
                   <property name="text">
-                   <string>Left Box</string>
+                   <string/>
                   </property>
                  </widget>
                 </item>
@@ -1047,7 +1022,7 @@ background-image: none;
         <widget class="QFrame" name="extraLeftBox">
          <property name="minimumSize">
           <size>
-           <width>300</width>
+           <width>0</width>
            <height>0</height>
           </size>
          </property>
@@ -1182,7 +1157,7 @@ background-image: none;
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="toolTip">
-                  <string>Close left box</string>
+                  <string>Закрыть</string>
                  </property>
                  <property name="text">
                   <string/>
@@ -1237,6 +1212,42 @@ background-image: none;
                 <enum>QFrame::Raised</enum>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_10">
+                <item>
+                 <widget class="QLabel" name="label_6">
+                  <property name="text">
+                   <string>Масштаб</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="comboBox_3">
+                  <item>
+                   <property name="text">
+                    <string>50%</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>75%</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>100%</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>125%</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>150%</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
                 <item>
                  <widget class="QLabel" name="label_2">
                   <property name="sizePolicy">
@@ -1335,7 +1346,8 @@ background-image: none;
                    <cursorShape>PointingHandCursor</cursorShape>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">background-color: rgb(52, 59, 72);</string>
+                   <string notr="true">background-color: rgb(52, 59, 72);
+</string>
                   </property>
                   <property name="text">
                    <string>Проверка соединение с БД</string>
@@ -1348,22 +1360,51 @@ background-image: none;
                 </item>
                 <item>
                  <widget class="QPushButton" name="pushButton_2">
+                  <property name="styleSheet">
+                   <string notr="true">background-color: rgb(52, 59, 72);</string>
+                  </property>
                   <property name="text">
                    <string>Настройка соединения с БД</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="resources.qrc">
+                    <normaloff>:/icons/images/icons/cil-settings.png</normaloff>:/icons/images/icons/cil-settings.png</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_5">
+                  <property name="text">
+                   <string>Дополнительно</string>
                   </property>
                  </widget>
                 </item>
                 <item>
                  <widget class="QPushButton" name="pushButton_3">
+                  <property name="styleSheet">
+                   <string notr="true">background-color: rgb(52, 59, 72);</string>
+                  </property>
                   <property name="text">
-                   <string>PushButton</string>
+                   <string>Руководство пользователя</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="resources.qrc">
+                    <normaloff>:/icons/images/icons/cil-user.png</normaloff>:/icons/images/icons/cil-user.png</iconset>
                   </property>
                  </widget>
                 </item>
                 <item>
                  <widget class="QPushButton" name="pushButton_4">
+                  <property name="styleSheet">
+                   <string notr="true">background-color: rgb(52, 59, 72);
+</string>
+                  </property>
                   <property name="text">
-                   <string>PushButton</string>
+                   <string>Горячие клавиши в приложение</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="resources.qrc">
+                    <normaloff>:/icons/images/icons/cil-keyboard.png</normaloff>:/icons/images/icons/cil-keyboard.png</iconset>
                   </property>
                  </widget>
                 </item>
@@ -1378,6 +1419,15 @@ background-image: none;
                <property name="frameShadow">
                 <enum>QFrame::Raised</enum>
                </property>
+               <layout class="QVBoxLayout" name="verticalLayout_7">
+                <item>
+                 <widget class="QLabel" name="label_7">
+                  <property name="text">
+                   <string>Версия приложения Aramid TsT Graph v0.0.1</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </widget>
              </item>
             </layout>
@@ -1421,7 +1471,7 @@ background-image: none;
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>50</height>
+              <height>40</height>
              </size>
             </property>
             <property name="frameShape">
@@ -1740,7 +1790,7 @@ background-image: none;
                       <string notr="true">background: transparent;</string>
                      </property>
                      <property name="currentIndex">
-                      <number>1</number>
+                      <number>0</number>
                      </property>
                      <widget class="QWidget" name="home">
                       <property name="styleSheet">
@@ -2013,7 +2063,7 @@ background-repeat: no-repeat;</string>
                                 <rect>
                                  <x>0</x>
                                  <y>0</y>
-                                 <width>218</width>
+                                 <width>274</width>
                                  <height>218</height>
                                 </rect>
                                </property>
@@ -2543,7 +2593,7 @@ background-repeat: no-repeat;</string>
                <property name="minimumSize">
                 <size>
                  <width>0</width>
-                 <height>22</height>
+                 <height>15</height>
                 </size>
                </property>
                <property name="maximumSize">
@@ -2579,7 +2629,7 @@ background-repeat: no-repeat;</string>
                   <property name="maximumSize">
                    <size>
                     <width>16777215</width>
-                    <height>16</height>
+                    <height>10</height>
                    </size>
                   </property>
                   <property name="font">

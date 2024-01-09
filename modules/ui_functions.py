@@ -101,19 +101,13 @@ class UIFunctions(MainWindow):
     # ///////////////////////////////////////////////////////////////
 
     def start_box_animation(self, left_box_width, right_box_width, direction):
-        right_width = 0
         left_width = 0 
 
         # Check values
         if left_box_width == 0 and direction == "left":
-            left_width = 240
+            left_width = Settings.LEFT_BOX_WIDTH
         else:
             left_width = 0
-        # Check values
-        if right_box_width == 0 and direction == "right":
-            right_width = 240
-        else:
-            right_width = 0       
 
         # ANIMATION LEFT BOX        
         self.left_box = QPropertyAnimation(self.ui.extraLeftBox, b"minimumWidth")

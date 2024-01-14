@@ -12,7 +12,7 @@ import platform
 
 # IMPORT / GUI AND MODULES AND WIDGETS
 # ///////////////////////////////////////////////////////////////
-from modules import *
+from ui_modules import *
 from widgets import *
 os.environ["QT_FONT_DPI"] = "96" # FIX Problem for High DPI and Scale above 100%
 
@@ -76,7 +76,7 @@ class MainWindow(QMainWindow):
 
         # SET CUSTOM THEME
         # ///////////////////////////////////////////////////////////////
-        useCustomTheme = False
+        useCustomTheme = True
         themeFile = "themes\\theme_light.qss"
 
         # SET THEME AND HACKS
@@ -100,7 +100,7 @@ class MainWindow(QMainWindow):
         # GET BUTTON CLICKED
         btn = self.sender()
         btnName = btn.objectName()
-
+        print(btn)
         # SHOW HOME PAGE
         if btnName == "btn_report":
             widgets.stackedWidget.setCurrentWidget(widgets.home)
@@ -119,11 +119,8 @@ class MainWindow(QMainWindow):
             UIFunctions.resetStyle(self, btnName) # RESET ANOTHERS BUTTONS SELECTED
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet())) # SELECT MENU
 
-        if btnName == "btn_save":
-            print("Save BTN clicked!")
-
-        # PRINT BTN NAME
-        print(f'Button "{btnName}" pressed!')
+        # # PRINT BTN NAME
+        # print(f'Button "{btnName}" pressed!')
 
 
     # RESIZE EVENTS
@@ -145,6 +142,6 @@ class MainWindow(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    app.setWindowIcon(QIcon("icon.ico"))
+    app.setWindowIcon(QIcon(u":/icons/images/icons/aramid.svg"))
     window = MainWindow()
     sys.exit(app.exec())

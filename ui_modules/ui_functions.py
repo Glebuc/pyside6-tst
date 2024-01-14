@@ -2,7 +2,7 @@
 # MAIN FILE
 # ///////////////////////////////////////////////////////////////
 from main import *
-
+from PySide6.QtWidgets import QPushButton
 # GLOBALS
 # ///////////////////////////////////////////////////////////////
 GLOBAL_STATE = False
@@ -126,6 +126,7 @@ class UIFunctions(MainWindow):
     # SELECT
     def selectMenu(getStyle):
         select = getStyle + Settings.MENU_SELECTED_STYLESHEET
+        print(getStyle)
         return select
 
     # DESELECT
@@ -135,7 +136,7 @@ class UIFunctions(MainWindow):
 
     # START SELECTION
     def selectStandardMenu(self, widget):
-        for w in self.ui.topMenu.findChildren(QPushButton):
+        for w in self.ui.topMenu.findChildren('QPushButton'):
             if w.objectName() == widget:
                 w.setStyleSheet(UIFunctions.selectMenu(w.styleSheet()))
 
@@ -186,11 +187,13 @@ class UIFunctions(MainWindow):
             self.bottom_grip = CustomGrip(self, Qt.BottomEdge, True)
 
         else:
-            self.ui.appMargins.setContentsMargins(0, 0, 0, 0)
+            self.ui.styleSheet.setContentsMargins(0, 0, 0, 0)
             self.ui.minimizeAppBtn.hide()
             self.ui.maximizeRestoreAppBtn.hide()
             self.ui.closeAppBtn.hide()
             self.ui.frame_size_grip.hide()
+            self.ui.contentTopBg.hide()
+            self.ui.topLogoInfo.hide()
 
         # DROP SHADOW
         self.shadow = QGraphicsDropShadowEffect(self)

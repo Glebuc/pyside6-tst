@@ -79,7 +79,7 @@ class UIFunctions(MainWindow):
             # GET WIDTH
             width = self.ui.extraLeftBox.width()
             maxExtend = Settings.LEFT_BOX_WIDTH
-            color = Settings.BTN_LEFT_BOX_COLOR
+            # color = Settings.BTN_LEFT_BOX_COLOR
             standard = 0
 
             # GET BTN STYLE
@@ -89,11 +89,11 @@ class UIFunctions(MainWindow):
             if width == 0:
                 widthExtended = maxExtend
                 # SELECT BTN
-                self.ui.toggleLeftBox.setStyleSheet(style + color)
+                # self.ui.toggleLeftBox.setStyleSheet(style + color)
             else:
                 widthExtended = standard
                 # RESET BTN
-                self.ui.toggleLeftBox.setStyleSheet(style.replace(color, ''))
+                # self.ui.toggleLeftBox.setStyleSheet(style.replace(color, ''))
 
         UIFunctions.start_box_animation(self, width, width, "left")
 
@@ -123,15 +123,15 @@ class UIFunctions(MainWindow):
     # SELECT/DESELECT MENU
     # ///////////////////////////////////////////////////////////////
     # SELECT
-    def selectMenu(getStyle):
-        select = getStyle + Settings.MENU_SELECTED_STYLESHEET
-        print(getStyle)
-        return select
-
-    # DESELECT
-    def deselectMenu(getStyle):
-        deselect = getStyle.replace(Settings.MENU_SELECTED_STYLESHEET, "")
-        return deselect
+    # def selectMenu(getStyle):
+    #     select = getStyle + Settings.MENU_SELECTED_STYLESHEET
+    #     print(getStyle)
+    #     return select
+    #
+    # # DESELECT
+    # def deselectMenu(getStyle):
+    #     deselect = getStyle.replace(Settings.MENU_SELECTED_STYLESHEET, "")
+    #     return deselect
 
     # START SELECTION
     def selectStandardMenu(self, widget):
@@ -140,10 +140,10 @@ class UIFunctions(MainWindow):
                 w.setStyleSheet(UIFunctions.selectMenu(w.styleSheet()))
 
     # RESET SELECTION
-    def resetStyle(self, widget):
-        for w in self.ui.topMenu.findChildren(QPushButton):
-            if w.objectName() != widget:
-                w.setStyleSheet(UIFunctions.deselectMenu(w.styleSheet()))
+    # def resetStyle(self, widget):
+    #     for w in self.ui.topMenu.findChildren(QPushButton):
+    #         if w.objectName() != widget:
+    #             w.setStyleSheet(UIFunctions.deselectMenu(w.styleSheet()))
 
     # IMPORT THEMES FILES QSS/CSS
     # ///////////////////////////////////////////////////////////////
@@ -173,7 +173,7 @@ class UIFunctions(MainWindow):
                     UIFunctions.maximize_restore(self)
                 # MOVE WINDOW
                 if event.buttons() == Qt.LeftButton:
-                    self.move(self.pos() + event.globalPos() - self.dragPos)
+                    self.move(self.pos() + event.globalPosition() - self.dragPos)
                     self.dragPos = event.globalPos()
                     event.accept()
 

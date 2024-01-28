@@ -2,7 +2,7 @@ import sys
 import os
 from cx_Freeze import setup, Executable
 
-# ADD FILES
+
 files = ['icon.ico','themes/']
 
 # TARGET
@@ -12,12 +12,11 @@ target = Executable(
     icon="icon.ico"
 )
 
-# SETUP CX FREEZE
 setup(
-    name = "PyDracula",
+    name = "Aramid TsT Graph",
     version = "1.0",
-    description = "Modern GUI for Python applications",
-    author = "Wanderson M. Pimenta",
+    description = "Application for view data functional testing in operating system Aramid",
+    author = "Deryugin Gleb",
     options = {'build_exe' : {'include_files' : files}},
     executables = [target]
     

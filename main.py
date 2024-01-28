@@ -77,21 +77,12 @@ class MainWindow(QMainWindow):
 
         # SET CUSTOM THEME
         # ///////////////////////////////////////////////////////////////
-        useCustomTheme = True
-        themeFile = "themes\\theme_light.qss"
-
-        # SET THEME AND HACKS
+        useCustomTheme = False
+        themeFile = "themes/theme_light.qss"
         if useCustomTheme:
-            # LOAD AND APPLY STYLE
-            UIFunctions.theme(self, themeFile, True)
-
-            # SET HACKS
+            UIFunctions.theme(self, themeFile, False)
             AppFunctions.setThemeHack(self)
-
-        # SET HOME PAGE AND SELECT MENU
-        # ///////////////////////////////////////////////////////////////
         widgets.stackedWidget.setCurrentWidget(widgets.home)
-        widgets.btn_report.setStyleSheet(UIFunctions.selectMenu(widgets.btn_report.styleSheet()))
 
     # BUTTONS CLICK
     # Post here your functions for clicked buttons
@@ -104,20 +95,20 @@ class MainWindow(QMainWindow):
         # SHOW HOME PAGE
         if btnName == "btn_report":
             widgets.stackedWidget.setCurrentWidget(widgets.home)
-            UIFunctions.resetStyle(self, btnName)
-            btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
+            # UIFunctions.resetStyle(self, btnName)
+            # btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
 
         # SHOW WIDGETS PAGE
         if btnName == "btn_bar":
             widgets.stackedWidget.setCurrentWidget(widgets.widgets)
-            UIFunctions.resetStyle(self, btnName)
-            btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
+            # UIFunctions.resetStyle(self, btnName)
+            # btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
 
         # SHOW NEW PAGE
         if btnName == "btn_result":
-            widgets.stackedWidget.setCurrentWidget(widgets.new_page)  # SET PAGE
-            UIFunctions.resetStyle(self, btnName)  # RESET ANOTHERS BUTTONS SELECTED
-            btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))  # SELECT MENU
+            widgets.stackedWidget.setCurrentWidget(widgets.result_page)  # SET PAGE
+            # UIFunctions.resetStyle(self, btnName)  # RESET ANOTHERS BUTTONS SELECTED
+            # btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))  # SELECT MENU
 
         # # PRINT BTN NAME
         # print(f'Button "{btnName}" pressed!')
@@ -130,7 +121,7 @@ class MainWindow(QMainWindow):
 
     def mousePressEvent(self, event):
         # SET DRAG POS WINDOW
-        self.dragPos = event.globalPos()
+        self.dragPos = event.globalPosition()
 
         # PRINT MOUSE EVENTS
         if event.buttons() == Qt.LeftButton:

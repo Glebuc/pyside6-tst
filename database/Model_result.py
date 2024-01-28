@@ -1,9 +1,6 @@
 from PySide6.QtSql import QSqlDatabase, QSqlQuery
 from config_db import db_params
 
-
-
-
 USERS_SQL = """
     CREATE TABLE IF NOT EXISTS users (
 	user_id serial4 NOT NULL,
@@ -80,6 +77,7 @@ def init_db():
     check(q.exec, REPORT_SQL)
     check(q.exec, SETTING_SQL)
 
+
 def execute_postgresql_query(query_string):
     # Имя соединения с базой данных
     # Открываем соединение с базой данных
@@ -111,4 +109,3 @@ def execute_postgresql_query(query_string):
 
 
 print(execute_postgresql_query(LIST_TEST_SQL))
-

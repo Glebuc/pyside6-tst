@@ -11,7 +11,7 @@ GLOBAL_TITLE_BAR = True
 class UIFunctions(MainWindow):
     # MAXIMIZE/RESTORE
     # ///////////////////////////////////////////////////////////////
-    def maximize_restore(self):
+    def maximize_restore(self) -> None:
         global GLOBAL_STATE
         status = GLOBAL_STATE
         if status == False:
@@ -40,7 +40,7 @@ class UIFunctions(MainWindow):
 
     # RETURN STATUS
     # ///////////////////////////////////////////////////////////////
-    def returStatus(self):
+    def returStatus(self) -> GLOBAL_STATE:
         return GLOBAL_STATE
 
     # SET STATUS
@@ -51,7 +51,7 @@ class UIFunctions(MainWindow):
 
     # TOGGLE MENU
     # ///////////////////////////////////////////////////////////////
-    def toggleMenu(self, enable):
+    def toggleMenu(self, enable) -> None:
         if enable:
             # GET WIDTH
             width = self.ui.leftMenuBg.width()
@@ -108,7 +108,6 @@ class UIFunctions(MainWindow):
             left_width = Settings.LEFT_BOX_WIDTH
         else:
             left_width = 0
-
         # ANIMATION LEFT BOX        
         self.left_box = QPropertyAnimation(self.ui.extraLeftBox, b"minimumWidth")
         self.left_box.setDuration(Settings.TIME_ANIMATION)

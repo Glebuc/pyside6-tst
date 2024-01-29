@@ -77,10 +77,10 @@ class MainWindow(QMainWindow):
 
         # SET CUSTOM THEME
         # ///////////////////////////////////////////////////////////////
-        useCustomTheme = False
+        useCustomTheme = True
         themeFile = "themes/theme_light.qss"
         if useCustomTheme:
-            UIFunctions.theme(self, themeFile, False)
+            UIFunctions.theme(self, themeFile, True)
             AppFunctions.setThemeHack(self)
         widgets.stackedWidget.setCurrentWidget(widgets.home)
 
@@ -121,7 +121,8 @@ class MainWindow(QMainWindow):
 
     def mousePressEvent(self, event):
         # SET DRAG POS WINDOW
-        self.dragPos = event.globalPosition()
+        p = event.globalPosition()
+        self.dragPos = p.toPoint()
 
         # PRINT MOUSE EVENTS
         if event.buttons() == Qt.LeftButton:

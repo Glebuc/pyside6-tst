@@ -120,33 +120,12 @@ class UIFunctions(MainWindow):
         self.group.addAnimation(self.left_box)
         self.group.start()
 
-    # SELECT/DESELECT MENU
-    # ///////////////////////////////////////////////////////////////
-    # SELECT
-    # def selectMenu(getStyle):
-    #     select = getStyle + Settings.MENU_SELECTED_STYLESHEET
-    #     print(getStyle)
-    #     return select
-    #
-    # # DESELECT
-    # def deselectMenu(getStyle):
-    #     deselect = getStyle.replace(Settings.MENU_SELECTED_STYLESHEET, "")
-    #     return deselect
-
     # START SELECTION
     def selectStandardMenu(self, widget):
         for w in self.ui.topMenu.findChildren('QPushButton'):
             if w.objectName() == widget:
                 w.setStyleSheet(UIFunctions.selectMenu(w.styleSheet()))
 
-    # RESET SELECTION
-    # def resetStyle(self, widget):
-    #     for w in self.ui.topMenu.findChildren(QPushButton):
-    #         if w.objectName() != widget:
-    #             w.setStyleSheet(UIFunctions.deselectMenu(w.styleSheet()))
-
-    # IMPORT THEMES FILES QSS/CSS
-    # ///////////////////////////////////////////////////////////////
     def theme(self, file, useCustomTheme):
         if useCustomTheme:
             str = open(file, 'r').read()
@@ -173,7 +152,8 @@ class UIFunctions(MainWindow):
                     UIFunctions.maximize_restore(self)
                 # MOVE WINDOW
                 if event.buttons() == Qt.LeftButton:
-                    self.move(self.pos() + event.globalPosition() - self.dragPos)
+                    new_pos = self.pos() + event.globalPos() - self.dragPos
+                    self.move(new_pos)
                     self.dragPos = event.globalPos()
                     event.accept()
 
@@ -222,5 +202,4 @@ class UIFunctions(MainWindow):
             self.top_grip.setGeometry(0, 0, self.width(), 10)
             self.bottom_grip.setGeometry(0, self.height() - 10, self.width(), 10)
 
-    # ///////////////////////////////////////////////////////////////
-    # END - GUI DEFINITIONS
+

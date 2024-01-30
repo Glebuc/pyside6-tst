@@ -158,6 +158,7 @@ class UIFunctions(MainWindow):
                     event.accept()
 
             self.ui.titleRightInfo.mouseMoveEvent = moveWindow
+            self.ui.topLogoInfo.mouseMoveEvent = moveWindow
 
             # CUSTOM GRIPS
             self.left_grip = CustomGrip(self, Qt.LeftEdge, True)

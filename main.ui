@@ -446,7 +446,7 @@ QComboBox::drop-down {
 	background-repeat: no-reperat;
  }
 QComboBox QAbstractItemView {
-	color: rgb(255, 121, 198);	
+	color: rgb(255, 255, 255);	
 	background-color: rgb(33, 37, 43);
 	padding: 10px;
 	selection-background-color: rgb(39, 44, 54);
@@ -1810,7 +1810,7 @@ background-image: none;
                    <item>
                     <widget class="QStackedWidget" name="stackedWidget">
                      <property name="currentIndex">
-                      <number>1</number>
+                      <number>2</number>
                      </property>
                      <widget class="QWidget" name="home">
                       <property name="styleSheet">
@@ -2425,8 +2425,14 @@ background-repeat: no-repeat;</string>
                           <enum>QFrame::Raised</enum>
                          </property>
                          <layout class="QHBoxLayout" name="horizontalLayout_7">
+                          <property name="leftMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
                           <item>
-                           <widget class="QComboBox" name="comboBox_4"/>
+                           <widget class="QComboBox" name="list_test"/>
                           </item>
                           <item>
                            <spacer name="horizontalSpacer">
@@ -2473,6 +2479,9 @@ background-repeat: no-repeat;</string>
                           <enum>QFrame::Plain</enum>
                          </property>
                          <layout class="QHBoxLayout" name="horizontalLayout_8">
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
                           <item>
                            <spacer name="horizontalSpacer_2">
                             <property name="orientation">

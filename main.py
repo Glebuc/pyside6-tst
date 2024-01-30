@@ -12,11 +12,10 @@ import platform
 
 from PySide6.QtWidgets import QHeaderView, QMainWindow, QApplication
 
-# IMPORT / GUI AND MODULES AND WIDGETS
-# ///////////////////////////////////////////////////////////////
+
 from ui_modules import *
 from widgets import *
-from database import Model_result
+from pages import Model_result
 
 os.environ["QT_FONT_DPI"] = "96"  # FIX Problem for High DPI and Scale above 100%
 
@@ -50,22 +49,23 @@ class MainWindow(QMainWindow):
 
         Model_result.init_db()
 
+        for i in Model_result.result:
+            widgets.comboBox_4.addItem(i)
+
         self.model = Model_result.DatabaseModel('tests')
         widgets.tableView.setModel(self.model.get_model())
+        widgets.tableView.verticalHeader().setVisible(False)
         header = widgets.tableView.horizontalHeader()
         for i in range(widgets.tableView.model().columnCount()):
             header.setSectionResizeMode(i, QHeaderView.Stretch)
-        # widgets.tableView.hideColumn(0)
+
         # TOGGLE MENU
-        # ///////////////////////////////////////////////////////////////
         widgets.toggleButton.clicked.connect(lambda: UIFunctions.toggleMenu(self, True))
 
         # SET UI DEFINITIONS
-        # ///////////////////////////////////////////////////////////////
         UIFunctions.uiDefinitions(self)
 
         # QTableWidget PARAMETERS
-        # ///////////////////////////////////////////////////////////////
         widgets.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
         # BUTTONS CLICK

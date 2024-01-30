@@ -54,7 +54,7 @@ Left Menu */
     color: #f8f8f2;
 }
 #topMenu QPushButton:hover {
-	background-color: rgb(90, 90, 90);
+	background-color: rgb(110,110,110);
 }
 #topMenu QPushButton:pressed {
 	background-color: rgb(40,40,40);
@@ -209,17 +209,17 @@ QTableWidget {
     outline: none;
 }
 QTableWidget::item{
-	border-color: #9faeda;
+	border-color: #fff;
 	padding-left: 5px;
 	padding-right: 5px;
-	gridline-color: #9faeda;
+	gridline-color: rgb(140, 140, 140);
 }
 QTableWidget::item:selected{
-	background-color: rgb(189, 147, 249);
+	background-color: rgb(200, 200, 200);
     color: #f8f8f2;
 }
 QHeaderView::section{
-	background-color: #6272a4;
+	background-color: rgb(255, 255, 255);
 	max-width: 30px;
 	border: none;
 	border-style: none;
@@ -229,16 +229,16 @@ QTableWidget::horizontalHeader {
 }
 QHeaderView::section:horizontal
 {
-    border: 1px solid #6272a4;
-	background-color: #6272a4;
+    border: 1px solid #fff;
+	background-color: rgb(100, 100, 100);
 	padding: 3px;
-	border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
     color: #f8f8f2;
 }
 QHeaderView::section:vertical
 {
-    border: 1px solid #6272a4;
+    background-color: rgb(100, 100, 100);
+    border: 1px solid rgb(255, 255, 255);
+    color: #fff;
 }
 
 /* /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -413,7 +413,7 @@ QComboBox::drop-down {
 	subcontrol-position: top right;
 	width: 25px;
 	border-left-width: 3px;
-	border-left-color: rbg(200,200,200);
+	border-left-color: rbg(100,100,100);
 	border-left-style: solid;
 	border-top-right-radius: 3px;
 	border-bottom-right-radius: 3px;
@@ -421,15 +421,19 @@ QComboBox::drop-down {
 	background-position: center;
 	background-repeat: no-reperat;
  }
-QComboBox QAbstractItemView {
-	color: rgb(255, 255, 255);
-	background-color: rbg(140,140,140);
-	padding: 10px;
-	selection-background-color: rbga(140,140,140, 50);
-}
+ QComboBox QAbstractItemView {
+    background-color: #e0e0e0;
+    selection-background-color: #c0c0c0;
+    padding: 5px;
+  }
+ QComboBox::item {
+      background-color: rgb(255, 255, 255);
+      padding: 5px;
+  }
+ QComboBox::item:selected {
+     color: #fff;
+  }
 
-/* /////////////////////////////////////////////////////////////////////////////////////////////////
-Sliders */
 QSlider::groove:horizontal {
     border-radius: 5px;
     height: 10px;
@@ -499,18 +503,18 @@ CommandLinkButton */
 /* /////////////////////////////////////////////////////////////////////////////////////////////////
 Button */
 #pagesContainer QPushButton {
-	border: 2px solid #6272a4;
+	border: 2px solid rgb(90, 90, 90);
 	border-radius: 5px;
 	background-color: rgb(120, 120, 120);
     color: #ffffff;
 }
 #pagesContainer QPushButton:hover {
 	background-color: rgb(90,90,90);
-	border: 2px solid #7082b6;
+	border: 2px solid rgb(90, 90, 90);
 }
 #pagesContainer QPushButton:pressed {
-	background-color: #546391;
-	border: 2px solid #ff79c6;
+	background-color: rgb(70,70,70);
+	border: 2px solid rgb(50,50,50);
 }
 
 #stackedWidget QPushButton {

@@ -2,7 +2,9 @@ from PySide6.QtSql import QSqlDatabase, QSqlQuery, QSqlTableModel, QSqlQueryMode
 from PySide6.QtWidgets import QTableView, QVBoxLayout, QWidget, QHeaderView
 from ui_modules import *
 from PySide6.QtUiTools import QUiLoader
-from .config_db import db_params
+from database import db_params
+
+
 
 USERS_SQL = """
     CREATE TABLE IF NOT EXISTS users (
@@ -114,7 +116,6 @@ def execute_postgresql_query(query_string):
 
 result = execute_postgresql_query(LIST_TEST_SQL)
 new_result = execute_postgresql_query(ALL_RESULT_SQL)
-print(new_result)
 
 
 

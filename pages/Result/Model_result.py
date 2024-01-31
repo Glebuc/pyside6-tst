@@ -54,7 +54,9 @@ LIST_TEST_SQL = """
     SELECT test_name FROM tests GROUP BY test_name;
 """
 ALL_RESULT_SQL = """
-    SELECT * FROM tests;
+    SELECT t.test_name, t.test_param, t.time_test, t.test_result, t.start_test, u.user_name
+    FROM tests as t
+    INNER JOIN users as u ON t.id_user_fk = u.user_id
 """
 
 
@@ -119,8 +121,11 @@ new_result = execute_postgresql_query(ALL_RESULT_SQL)
 
 
 
-class DatabaseModel:
+class DatabaseModel(QSqlQueryModel):
     def __init__(self, table_name):
+        super().__init__()
+
+
         db = QSqlDatabase.addDatabase("QPSQL")
         db.setHostName(db_params['host'])
         db.setDatabaseName(db_params['database'])
@@ -128,18 +133,33 @@ class DatabaseModel:
         db.setUserName(db_params['user'])
         db.setPassword(db_params['password'])
 
-        # Проверка, установлено ли соединение
         if not db.open():
             print("Ошибка установки соединения:", db.lastError().text())
             return
 
-        self.model = QSqlQueryModel()
-        self.model.setQuery(QSqlQuery(ALL_RESULT_SQL))
-        if self.model.lastError().isValid():
-            print("Ошибка выполнения запроса:", self.model.lastError().text())
+        self.setQuery(QSqlQuery(ALL_RESULT_SQL))
+        if self.lastError().isValid():
+            print("Ошибка выполнения запроса:", self.lastError().text())
 
-    def get_model(self):
-        return self.model
+    def filter_data(self, combo_box, table_view):
+        selected_option = combo_box.currentText()
+        query = QSqlQuery()
+
+        if selected_option == "-":
+            self.setQuery(QSqlQuery(ALL_RESULT_SQL))
+        else:
+            query.prepare(f"""
+                SELECT t.test_name, t.test_param, t.time_test, t.test_result, t.start_test, u.user_name
+                FROM tests as t
+                INNER JOIN users as u ON t.id_user_fk = u.user_id
+                WHERE t.test_name = :selected_option
+            """)
+            query.bindValue(":selected_option", selected_option)
+            query.exec_()
+
+            self.setQuery(query)
+
+        table_view.setModel(self)
 
     def close_connection(self):
         QSqlDatabase.database().close()

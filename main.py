@@ -15,7 +15,7 @@ from PySide6.QtWidgets import QHeaderView, QMainWindow, QApplication
 
 from ui_modules import *
 from widgets import *
-from pages import Model_result
+from pages import Model_result,  Save_data
 
 os.environ["QT_FONT_DPI"] = "96"  # FIX Problem for High DPI and Scale above 100%
 
@@ -49,16 +49,23 @@ class MainWindow(QMainWindow):
 
         Model_result.init_db()
 
-        for i in Model_result.result:
-            widgets.comboBox_4.addItem(i)
+
 
         self.model = Model_result.DatabaseModel('tests')
-        widgets.tableView.setModel(self.model.get_model())
+        widgets.tableView.setModel(self.model)
         widgets.tableView.verticalHeader().setVisible(False)
         header = widgets.tableView.horizontalHeader()
         for i in range(widgets.tableView.model().columnCount()):
             header.setSectionResizeMode(i, QHeaderView.Stretch)
 
+
+        widgets.list_test.addItem("-")
+        for i in Model_result.result:
+            widgets.list_test.addItem(i)
+
+        widgets.list_test.currentIndexChanged.connect(lambda: self.model.filter_data(combo_box=widgets.list_test, table_view=widgets.tableView))
+
+        widgets.pushButton_8.clicked.connect(lambda: Save_data.save_data_to_csv(widgets.tableView))
         # TOGGLE MENU
         widgets.toggleButton.clicked.connect(lambda: UIFunctions.toggleMenu(self, True))
 

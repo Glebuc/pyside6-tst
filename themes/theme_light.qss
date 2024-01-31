@@ -206,7 +206,6 @@ QTableWidget {
 	padding: 10px;
 	border-radius: 5px;
 	gridline-color: rgba(99, 99, 99, 80);
-    outline: none;
 }
 QTableWidget::item{
 	border-color: #fff;
@@ -538,4 +537,8 @@ padding: 5;
 }
 #stackedWidget QPushButton {
 	background-color: rgb(100, 100, 100);
+}
+
+TableView {
+border-left: 1px solid rgb(99, 99, 99);
 }

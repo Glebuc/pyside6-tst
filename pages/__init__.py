@@ -1,1 +1,1 @@
-from .Result import Model_result, Save_data
+from .Result import Model_result, Save_data, View_result, Dialog_result

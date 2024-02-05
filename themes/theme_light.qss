@@ -20,6 +20,7 @@ QToolTip {
 	text-align: left;
 	padding-left: 8px;
 	margin: 0px;
+	background-image: none;
 }
 
 /* /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -541,4 +542,14 @@ padding: 5;
 
 TableView {
 border-left: 1px solid rgb(99, 99, 99);
+}
+
+#btn_report {
+	background-image: url(:/icons/images/icons/cil-file.png);
+}
+#btn_bar {
+background-image: url(:/icons/images/icons/cil-chart-pie.png);
+}
+#btn_result {
+	background-image: url(:/icons/images/icons/cil-task.png);
 }

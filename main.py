@@ -9,13 +9,15 @@ import sys
 import os
 import platform
 
+from PySide6.QtWidgets import QDialog, QFormLayout, QCheckBox, QVBoxLayout, QPushButton, QTableView, \
+    QMainWindow, QWidget, QHeaderView
+from PySide6.QtGui import QTransform
 
-from PySide6.QtWidgets import QHeaderView, QMainWindow, QApplication
 
-
+from Application import Application
 from ui_modules import *
 from widgets import *
-from pages import Model_result,  Save_data
+from pages import Model_result, Save_data, View_result, Dialog_result
 
 os.environ["QT_FONT_DPI"] = "96"  # FIX Problem for High DPI and Scale above 100%
 
@@ -35,6 +37,7 @@ class MainWindow(QMainWindow):
         global widgets
         widgets = self.ui
 
+
         # USE CUSTOM TITLE BAR | USE AS "False" FOR MAC OR LINUX
         # ///////////////////////////////////////////////////////////////
         Settings.ENABLE_CUSTOM_TITLE_BAR = True
@@ -47,25 +50,20 @@ class MainWindow(QMainWindow):
         self.setWindowTitle(title)
         widgets.titleRightInfo.setText(description)
 
-        Model_result.init_db()
-
-
-
+        self.tableView = View_result.CustomTableView()
+        widgets.verticalLayout_20.replaceWidget(widgets.tableView, self.tableView)
         self.model = Model_result.DatabaseModel('tests')
-        widgets.tableView.setModel(self.model)
-        widgets.tableView.verticalHeader().setVisible(False)
-        header = widgets.tableView.horizontalHeader()
-        for i in range(widgets.tableView.model().columnCount()):
-            header.setSectionResizeMode(i, QHeaderView.Stretch)
 
+        # widgets.pushButton_7.clicked.connect(self.show_column_selection_dialog)
 
-        widgets.list_test.addItem("-")
+        widgets.list_test.addItem("Все тесты")
         for i in Model_result.result:
             widgets.list_test.addItem(i)
 
-        widgets.list_test.currentIndexChanged.connect(lambda: self.model.filter_data(combo_box=widgets.list_test, table_view=widgets.tableView))
+        widgets.list_test.currentIndexChanged.connect(
+            lambda: self.model.filter_data(combo_box=widgets.list_test, table_view=self.tableView))
 
-        widgets.pushButton_8.clicked.connect(lambda: Save_data.save_data_to_csv(widgets.tableView))
+        widgets.pushButton_8.clicked.connect(lambda: Save_data.save_data_to_csv(self.tableView))
         # TOGGLE MENU
         widgets.toggleButton.clicked.connect(lambda: UIFunctions.toggleMenu(self, True))
 
@@ -83,6 +81,7 @@ class MainWindow(QMainWindow):
         widgets.btn_bar.clicked.connect(self.button_click)
         widgets.btn_result.clicked.connect(self.button_click)
 
+
         # EXTRA LEFT BOX
         def openCloseLeftBox():
             UIFunctions.toggleLeftBox(self, True)
@@ -96,7 +95,7 @@ class MainWindow(QMainWindow):
 
         # SET CUSTOM THEME
         # ///////////////////////////////////////////////////////////////
-        useCustomTheme = True
+        useCustomTheme = False
         themeFile = "themes/theme_light.qss"
         if useCustomTheme:
             UIFunctions.theme(self, themeFile, True)
@@ -110,30 +109,26 @@ class MainWindow(QMainWindow):
         # GET BUTTON CLICKED
         btn = self.sender()
         btnName = btn.objectName()
-        print(btn)
+
         # SHOW HOME PAGE
         if btnName == "btn_report":
             widgets.stackedWidget.setCurrentWidget(widgets.home)
-            # UIFunctions.resetStyle(self, btnName)
-            # btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
+            UIFunctions.resetStyle(self, btnName)
+            UIFunctions.addStyle(btn, UIFunctions.selectMenu())
 
         # SHOW WIDGETS PAGE
         if btnName == "btn_bar":
             widgets.stackedWidget.setCurrentWidget(widgets.widgets)
-            # UIFunctions.resetStyle(self, btnName)
-            # btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
+            UIFunctions.resetStyle(self, btnName)
+            UIFunctions.addStyle(btn, UIFunctions.selectMenu())
+
 
         # SHOW NEW PAGE
         if btnName == "btn_result":
-            widgets.stackedWidget.setCurrentWidget(widgets.result_page)  # SET PAGE
-            # UIFunctions.resetStyle(self, btnName)  # RESET ANOTHERS BUTTONS SELECTED
-            # btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))  # SELECT MENU
+            widgets.stackedWidget.setCurrentWidget(widgets.result_page)
+            UIFunctions.resetStyle(self, btnName)
+            UIFunctions.addStyle(btn, UIFunctions.selectMenu())
 
-        # # PRINT BTN NAME
-        # print(f'Button "{btnName}" pressed!')
-
-    # RESIZE EVENTS
-    # ///////////////////////////////////////////////////////////////
     def resizeEvent(self, event):
         # Update Size Grips
         UIFunctions.resize_grips(self)
@@ -150,8 +145,10 @@ class MainWindow(QMainWindow):
             print('Mouse click: RIGHT CLICK')
 
 
+
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
+    app = Application(sys.argv)
     app.setWindowIcon(QIcon(u":/icons/images/icons/aramid.svg"))
     window = MainWindow()
-    sys.exit(app.exec())
+    result = app.exec()
+    sys.exit(result)

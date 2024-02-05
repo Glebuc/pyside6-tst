@@ -4,8 +4,6 @@ from ui_modules import *
 from PySide6.QtUiTools import QUiLoader
 from database import db_params
 
-
-
 USERS_SQL = """
     CREATE TABLE IF NOT EXISTS users (
 	user_id serial4 NOT NULL,
@@ -76,11 +74,10 @@ def connection_to_db(*args):
             result = func(*args, **kwargs)
             db.close()
             return result
+
         return wrapper
+
     return decorator
-
-
-
 
 
 def init_db():
@@ -90,9 +87,11 @@ def init_db():
     db.setPort(db_params['port'])
     db.setUserName(db_params['user'])
     db.setPassword(db_params['password'])
+
     def check(func, *args):
         if not func(*args):
             raise ValueError(func.__self__.lastError())
+
     check(db.open)
     q = QSqlQuery()
     check(q.exec, USERS_SQL)
@@ -100,6 +99,7 @@ def init_db():
     check(q.exec, REPORT_SQL)
     check(q.exec, SETTING_SQL)
     db.close()
+
 
 @connection_to_db()
 def execute_postgresql_query(query_string):
@@ -120,11 +120,12 @@ result = execute_postgresql_query(LIST_TEST_SQL)
 new_result = execute_postgresql_query(ALL_RESULT_SQL)
 
 
-
 class DatabaseModel(QSqlQueryModel):
     def __init__(self, table_name):
         super().__init__()
 
+        self.displayed_columns = []
+        self.visible_columns = []
 
         db = QSqlDatabase.addDatabase("QPSQL")
         db.setHostName(db_params['host'])
@@ -145,7 +146,7 @@ class DatabaseModel(QSqlQueryModel):
         selected_option = combo_box.currentText()
         query = QSqlQuery()
 
-        if selected_option == "-":
+        if selected_option == "Все тесты":
             self.setQuery(QSqlQuery(ALL_RESULT_SQL))
         else:
             query.prepare(f"""

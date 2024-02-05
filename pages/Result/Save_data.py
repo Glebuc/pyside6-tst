@@ -5,7 +5,7 @@ import csv
 
 
 def save_data_to_csv(table_view):
-    model = table_view.model()
+    model = table_view.model
 
     if not isinstance(model, QSqlQueryModel):
         print("Модель для QTableView не является QSqlQueryModel.")

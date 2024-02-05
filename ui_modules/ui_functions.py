@@ -1,12 +1,13 @@
-
 # MAIN FILE
 # ///////////////////////////////////////////////////////////////
 from main import *
 from PySide6.QtWidgets import QPushButton
+
 # GLOBALS
 # ///////////////////////////////////////////////////////////////
 GLOBAL_STATE = False
 GLOBAL_TITLE_BAR = True
+
 
 class UIFunctions(MainWindow):
     # MAXIMIZE/RESTORE
@@ -101,7 +102,7 @@ class UIFunctions(MainWindow):
     # ///////////////////////////////////////////////////////////////
 
     def start_box_animation(self, left_box_width, right_box_width, direction):
-        left_width = 0 
+        left_width = 0
 
         # Check values
         if left_box_width == 0 and direction == "left":
@@ -138,10 +139,11 @@ class UIFunctions(MainWindow):
             # IF DOUBLE CLICK CHANGE STATUS
             if event.type() == QEvent.MouseButtonDblClick:
                 QTimer.singleShot(250, lambda: UIFunctions.maximize_restore(self))
+
         self.ui.titleRightInfo.mouseDoubleClickEvent = dobleClickMaximizeRestore
 
         if Settings.ENABLE_CUSTOM_TITLE_BAR:
-            #STANDARD TITLE BAR
+            # STANDARD TITLE BAR
             self.setWindowFlags(Qt.FramelessWindowHint)
             self.setAttribute(Qt.WA_TranslucentBackground)
 
@@ -204,3 +206,19 @@ class UIFunctions(MainWindow):
             self.bottom_grip.setGeometry(0, self.height() - 10, self.width(), 10)
 
 
+    def setStyle(self, widget, style):
+        widget.setStyleSheet(style)
+
+    def resetStyle(self, selectedBtnName):
+        for btn in self.ui.topMenu.findChildren(QPushButton):
+            if btn != selectedBtnName:
+                btn.setStyleSheet("")
+
+    @staticmethod
+    def selectMenu():
+        return "background-color: rgb(70, 70, 70)"
+
+    @staticmethod
+    def addStyle(widget, new_style):
+        current_style = widget.styleSheet()
+        widget.setStyleSheet(current_style + new_style)

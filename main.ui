@@ -54,6 +54,7 @@ QToolTip {
 	text-align: left;
 	padding-left: 8px;
 	margin: 0px;
+	background-image: none;
 }
 
 /* /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -551,6 +552,16 @@ QTableView {
 }
 #pagesContainer  {
 	background-color: rgb(94, 92, 100);
+}
+
+#btn_report {
+	background-image: url(:/icons/images/icons/cil-file.png);
+}
+#btn_bar {
+background-image: url(:/icons/images/icons/cil-chart-pie.png);
+}
+#btn_result {
+	background-image: url(:/icons/images/icons/cil-task.png);
 }</string>
    </property>
    <layout class="QGridLayout" name="gridLayout_3">
@@ -826,14 +837,6 @@ QTableView {
                   <property name="layoutDirection">
                    <enum>Qt::LeftToRight</enum>
                   </property>
-                  <property name="styleSheet">
-                   <string notr="true">#btn_report {
-	background-image: url(:/icons/images/icons/cil-file.png);
-}
-QToolTip {
-background-image: none;
-}</string>
-                  </property>
                   <property name="text">
                    <string>Отчеты</string>
                   </property>
@@ -876,14 +879,6 @@ background-image: none;
                   <property name="layoutDirection">
                    <enum>Qt::LeftToRight</enum>
                   </property>
-                  <property name="styleSheet">
-                   <string notr="true">#btn_bar {
-background-image: url(:/icons/images/icons/cil-chart-pie.png);
-}
-QToolTip {
-background-image: none;
-}</string>
-                  </property>
                   <property name="text">
                    <string>Графики</string>
                   </property>
@@ -921,13 +916,7 @@ background-image: none;
                    <enum>Qt::LeftToRight</enum>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">#btn_result {
-	
-	background-image: url(:/icons/images/icons/cil-task.png);
-}
-QToolTip {
-background-image: none;
-}</string>
+                   <string notr="true"/>
                   </property>
                   <property name="text">
                    <string>Результаты</string>

@@ -1,0 +1,35 @@
+from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QApplication, QDialog, QFormLayout, QCheckBox, QVBoxLayout, QPushButton, QTableView, \
+    QMainWindow, QWidget, QHeaderView
+
+
+class ColumnSelectionDialog(QDialog):
+    def __init__(self, column_names, parent=None):
+        super().__init__(parent)
+        self.setWindowTitle("Выбор отображаемых столбцов")
+        self.column_names = column_names
+        self.checkbox_dict = {}
+        self.setMinimumSize(250, 200)
+
+        layout = QVBoxLayout(self)
+
+        for column_name in column_names:
+            checkbox = QCheckBox(column_name)
+            checkbox.setChecked(True)  # Устанавливаем все флажки в состояние "включено" при инициализации
+            self.checkbox_dict[column_name] = checkbox
+            layout.addWidget(checkbox)
+
+        # Добавляем кнопку "OK"
+        button = QPushButton("Принять")
+        button.clicked.connect(self.accept)
+        layout.addWidget(button)
+
+    def get_selected_columns(self):
+        selected_columns = {}
+        for column_name, checkbox in self.checkbox_dict.items():
+            selected_columns[column_name] = checkbox.isChecked()
+        return selected_columns
+
+    def restore_checkbox_states(self, checkbox_states):
+        for column_name, checked in checkbox_states.items():
+            self.checkbox_dict[column_name].setChecked(checked)

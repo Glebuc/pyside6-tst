@@ -9,15 +9,16 @@ import sys
 import os
 import platform
 
-from PySide6.QtWidgets import QDialog, QFormLayout, QCheckBox, QVBoxLayout, QPushButton, QTableView, \
-    QMainWindow, QWidget, QHeaderView
+from PySide6.QtWidgets import QDialog, QFormLayout, QCheckBox, QVBoxLayout, QPushButton, \
+    QTableView,QMainWindow, QWidget, QHeaderView
 from PySide6.QtGui import QTransform
+from PySide6 import QtCore
 
 
 from Application import Application
 from ui_modules import *
 from widgets import *
-from pages import Model_result, Save_data, View_result, Dialog_result
+from pages import Model_result, Save_data, View_result, Dialog_change_view
 
 os.environ["QT_FONT_DPI"] = "96"  # FIX Problem for High DPI and Scale above 100%
 
@@ -54,7 +55,7 @@ class MainWindow(QMainWindow):
         widgets.verticalLayout_20.replaceWidget(widgets.tableView, self.tableView)
         self.model = Model_result.DatabaseModel('tests')
 
-        # widgets.pushButton_7.clicked.connect(self.show_column_selection_dialog)
+        widgets.pushButton_7.clicked.connect(self.open_column_selection_dialog)
 
         widgets.list_test.addItem("Все тесты")
         for i in Model_result.result:
@@ -96,15 +97,46 @@ class MainWindow(QMainWindow):
         # SET CUSTOM THEME
         # ///////////////////////////////////////////////////////////////
         useCustomTheme = False
-        themeFile = "themes/theme_light.qss"
+        themeFile_light = "themes/theme_light.qss"
+        themeFile_dark = "themes/theme_dark.qss"
         if useCustomTheme:
-            UIFunctions.theme(self, themeFile, True)
+            UIFunctions.theme(self, themeFile_light, True)
+            AppFunctions.setThemeHack(self)
+        else:
+            UIFunctions.theme(self, themeFile_dark, True)
             AppFunctions.setThemeHack(self)
         widgets.stackedWidget.setCurrentWidget(widgets.home)
 
-    # BUTTONS CLICK
-    # Post here your functions for clicked buttons
-    # ///////////////////////////////////////////////////////////////
+        record = self.model.record()
+        column_names = [record.fieldName(i) for i in range(record.count())]
+
+        self.column_selection_dialog = Dialog_change_view.ColumnSelectionDialog(column_names)
+
+        # Создаем словарь для хранения состояний флажков
+        self.checkbox_dict = {}
+
+    def open_column_selection_dialog(self):
+        visible_columns = [self.model.headerData(i, QtCore.Qt.Horizontal) for i in range(self.model.columnCount())]
+
+        if self.column_selection_dialog.exec() == QDialog.Accepted:
+            selected_columns = self.column_selection_dialog.get_selected_columns()
+            for column_index in range(self.model.columnCount()):
+                column_name = self.model.headerData(column_index, QtCore.Qt.Horizontal)
+                if selected_columns.get(column_name, False):
+                    self.tableView.showColumn(column_index)
+                else:
+                    self.tableView.hideColumn(column_index)
+
+    def update_table_columns(self, selected_columns):
+        for column_index in range(self.model.columnCount()):
+            column_name = self.model.headerData(column_index, QtCore.Qt.Horizontal)
+            if column_name in selected_columns:
+                self.tableView.showColumn(column_index)
+            else:
+                self.tableView.hideColumn(column_index)
+
+
+
     def button_click(self) -> None:
         # GET BUTTON CLICKED
         btn = self.sender()

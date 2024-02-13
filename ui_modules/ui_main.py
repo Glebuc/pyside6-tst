@@ -14,6 +14,7 @@ from PySide6.QtWidgets import *
 
 from . resources_rc import *
 
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
@@ -1312,6 +1313,7 @@ class Ui_MainWindow(object):
 
         self.tableView = QTableView(self.result_page)
         self.tableView.setObjectName(u"tableView")
+        self.tableView.setSortingEnabled(True)
 
         self.verticalLayout_20.addWidget(self.tableView)
 
@@ -1536,7 +1538,7 @@ class Ui_MainWindow(object):
 
         self.btn_extension_search.setText(QCoreApplication.translate("MainWindow", u"\u0420\u0430\u0441\u0448\u0438\u0440\u0435\u043d\u043d\u043d\u044b\u0439 \u043f\u043e\u0438\u0441\u043a", None))
 #if QT_CONFIG(tooltip)
-        self.pushButton_7.setToolTip(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0430 \u043e\u0442\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u044f", None))
+        self.pushButton_7.setToolTip("")
 #endif // QT_CONFIG(tooltip)
         self.pushButton_7.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0430 \u043e\u0442\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u044f", None))
         self.pushButton_8.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c..", None))

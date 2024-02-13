@@ -1,8 +1,36 @@
-
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>450</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>450</width>
+    <height>300</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>450</width>
+    <height>300</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
 
 QWidget{
 	color: rgb(221, 221, 221);
-	font: 10pt "Segoe UI";
+	font: 10pt &quot;Segoe UI&quot;;
 }
 QFrame {
 border: none;
@@ -45,8 +73,8 @@ Left Menu */
 #topLogoInfo {
 background-color: rgb(119, 118, 123);
 }
-#titleLeftApp { font: 63 12pt "Segoe UI Semibold"; }
-#titleLeftDescription { font: 8pt "Segoe UI"; color: rgb(189, 147, 249); }
+#titleLeftApp { font: 63 12pt &quot;Segoe UI Semibold&quot;; }
+#titleLeftDescription { font: 8pt &quot;Segoe UI&quot;; color: rgb(189, 147, 249); }
 
 /* MENUS */
 #topMenu .QPushButton {
@@ -214,7 +242,6 @@ QTableWidget::item:selected{
 }
 QHeaderView::section{
 	background-color: rgb(33, 37, 43);
-	max-width: 30px;
 	border: 1px solid rgb(44, 49, 58);
 	border-style: none;
     border-bottom: 1px solid rgb(44, 49, 60);
@@ -357,6 +384,7 @@ QCheckBox::indicator {
     border: 3px solid rgb(52, 59, 72);
 	width: 15px;
 	height: 15px;
+	border-radius: 10px;
     background:rgb(100, 100, 100);
 }
 QCheckBox::indicator:hover {
@@ -529,7 +557,177 @@ QTableView {
 }
 QDialog {
 	color: rgb(221, 221, 221);
-	font: 10pt "Segoe UI";
+	font: 10pt &quot;Segoe UI&quot;;
 	background-color: rgb(40, 44, 52);
 	border: 1px solid rgb(44, 49, 58);
-}
+}</string>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>false</bool>
+  </property>
+  <property name="modal">
+   <bool>false</bool>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QFrame" name="frame">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Горячие клавиши</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QTableWidget" name="tableWidget">
+        <property name="sortingEnabled">
+         <bool>false</bool>
+        </property>
+        <property name="rowCount">
+         <number>5</number>
+        </property>
+        <attribute name="horizontalHeaderMinimumSectionSize">
+         <number>100</number>
+        </attribute>
+        <attribute name="horizontalHeaderDefaultSectionSize">
+         <number>150</number>
+        </attribute>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>true</bool>
+        </attribute>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row/>
+        <column>
+         <property name="text">
+          <string>Сочетание клавиш</string>
+         </property>
+         <property name="background">
+          <color alpha="0">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Значение</string>
+         </property>
+         <property name="background">
+          <color alpha="0">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </property>
+        </column>
+        <item row="0" column="0">
+         <property name="text">
+          <string>Ctrl+Q</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item row="0" column="1">
+         <property name="text">
+          <string>Открыть вкладку &quot;ergergergregerg&quot;</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item row="1" column="0">
+         <property name="text">
+          <string>Ctrl+W</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item row="1" column="1">
+         <property name="text">
+          <string>Открыть вкладку &quot;&quot;</string>
+         </property>
+        </item>
+        <item row="2" column="0">
+         <property name="text">
+          <string>Ctrl+E</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item row="2" column="1">
+         <property name="text">
+          <string>Открыть вкладку &quot;&quot;</string>
+         </property>
+        </item>
+        <item row="3" column="0">
+         <property name="text">
+          <string>Ctrl+R</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item row="3" column="1">
+         <property name="text">
+          <string>Открыть вкладку &quot;&quot;</string>
+         </property>
+        </item>
+        <item row="4" column="0">
+         <property name="text">
+          <string>Ctrl+Space</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item row="4" column="1">
+         <property name="text">
+          <string>Развернуть/Свернуть меню</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

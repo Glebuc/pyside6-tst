@@ -14,6 +14,7 @@ from PySide6.QtWidgets import QDialog, QFormLayout, QCheckBox, QVBoxLayout, QPus
 from PySide6.QtGui import QTransform
 from PySide6 import QtCore
 
+import doctest
 
 from Application import Application
 from ui_modules import *
@@ -31,8 +32,6 @@ class MainWindow(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
 
-        # SET AS GLOBAL WIDGETS
-        # ///////////////////////////////////////////////////////////////
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         global widgets
@@ -96,7 +95,7 @@ class MainWindow(QMainWindow):
 
         # SET CUSTOM THEME
         # ///////////////////////////////////////////////////////////////
-        useCustomTheme = False
+        useCustomTheme = True
         themeFile_light = "themes/theme_light.qss"
         themeFile_dark = "themes/theme_dark.qss"
         if useCustomTheme:
@@ -169,12 +168,6 @@ class MainWindow(QMainWindow):
         # SET DRAG POS WINDOW
         p = event.globalPosition()
         self.dragPos = p.toPoint()
-
-        # PRINT MOUSE EVENTS
-        if event.buttons() == Qt.LeftButton:
-            print('Mouse click: LEFT CLICK')
-        if event.buttons() == Qt.RightButton:
-            print('Mouse click: RIGHT CLICK')
 
 
 

@@ -15,7 +15,8 @@ class Application(QApplication):
 
     def set_translation(self):
         trans = QTranslator(parent=self)
-        ok = trans.load('')
+        # 'translations/en.qm'
+        ok = trans.load('translations/en.qm')
         if ok:
             print("Английский перевод загружен")
         else:

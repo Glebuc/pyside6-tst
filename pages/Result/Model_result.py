@@ -1,8 +1,9 @@
 from PySide6.QtSql import QSqlDatabase, QSqlQuery, QSqlTableModel, QSqlQueryModel
-from PySide6.QtWidgets import QTableView, QVBoxLayout, QWidget, QHeaderView
+from PySide6.QtWidgets import QTableView, QVBoxLayout, QWidget, QHeaderView, QComboBox
 from ui_modules import *
 from PySide6.QtUiTools import QUiLoader
 from database import db_params
+
 
 USERS_SQL = """
     CREATE TABLE IF NOT EXISTS users (
@@ -103,6 +104,24 @@ def init_db():
 
 @connection_to_db()
 def execute_postgresql_query(query_string):
+    """
+        Выполняет SQL-запрос к базе данных PostgreSQL.
+
+        Параметры:
+        query_string (str): Строка с SQL-запросом для выполнения.
+
+        Возвращает:
+        list: Список результатов запроса, если запрос успешно выполнен и есть результаты.
+              В противном случае возвращает None.
+
+        Пример использования:
+        >>> execute_postgresql_query(LIST_TEST_SQL)
+        []
+
+        >>> execute_postgresql_query("INVALID QUERY")
+        Ошибка выполнения запроса: Invalid query string
+        None
+    """
     query = QSqlQuery()
     query.prepare(query_string)
     list_query_data = []
@@ -142,7 +161,7 @@ class DatabaseModel(QSqlQueryModel):
         if self.lastError().isValid():
             print("Ошибка выполнения запроса:", self.lastError().text())
 
-    def filter_data(self, combo_box, table_view):
+    def filter_data(self, combo_box: QComboBox, table_view: QTableView) -> None:
         selected_option = combo_box.currentText()
         query = QSqlQuery()
 
@@ -164,3 +183,10 @@ class DatabaseModel(QSqlQueryModel):
 
     def close_connection(self):
         QSqlDatabase.database().close()
+
+
+
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()

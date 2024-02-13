@@ -19,10 +19,14 @@ class ColumnSelectionDialog(QDialog):
             self.checkbox_dict[column_name] = checkbox
             layout.addWidget(checkbox)
 
-        # Добавляем кнопку "OK"
         button = QPushButton("Принять")
         button.clicked.connect(self.accept)
         layout.addWidget(button)
+
+        with open('themes/theme_light.qss', 'r') as f:
+            dialog_stylesheet = f.read()
+        self.setStyleSheet(dialog_stylesheet)
+        self.setMaximumSize(300, 300)
 
     def get_selected_columns(self):
         selected_columns = {}

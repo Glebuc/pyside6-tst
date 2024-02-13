@@ -1799,7 +1799,7 @@ background-image: none;
                    <item>
                     <widget class="QStackedWidget" name="stackedWidget">
                      <property name="currentIndex">
-                      <number>1</number>
+                      <number>2</number>
                      </property>
                      <widget class="QWidget" name="home">
                       <property name="styleSheet">
@@ -2451,7 +2451,11 @@ background-repeat: no-repeat;</string>
                         </widget>
                        </item>
                        <item>
-                        <widget class="QTableView" name="tableView"/>
+                        <widget class="QTableView" name="tableView">
+                         <property name="sortingEnabled">
+                          <bool>true</bool>
+                         </property>
+                        </widget>
                        </item>
                        <item>
                         <widget class="QFrame" name="frame_2">

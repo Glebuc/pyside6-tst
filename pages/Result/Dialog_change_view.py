@@ -23,7 +23,7 @@ class ColumnSelectionDialog(QDialog):
         button.clicked.connect(self.accept)
         layout.addWidget(button)
 
-        with open('themes/theme_light.qss', 'r') as f:
+        with open('themes/theme_dark.qss', 'r') as f:
             dialog_stylesheet = f.read()
         self.setStyleSheet(dialog_stylesheet)
         self.setMaximumSize(300, 300)

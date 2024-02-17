@@ -51,10 +51,10 @@ class MainWindow(QMainWindow):
         widgets.titleRightInfo.setText(description)
 
         self.tableView = View_result.CustomTableView()
-        widgets.verticalLayout_20.replaceWidget(widgets.tableView, self.tableView)
+        widgets.verticalLayout_20.replaceWidget(widgets.resultView, self.tableView)
         self.model = Model_result.DatabaseModel('tests')
 
-        widgets.pushButton_7.clicked.connect(self.open_column_selection_dialog)
+        widgets.btn_change_view.clicked.connect(self.open_column_selection_dialog)
 
         widgets.list_test.addItem("Все тесты")
         for i in Model_result.result:
@@ -63,7 +63,7 @@ class MainWindow(QMainWindow):
         widgets.list_test.currentIndexChanged.connect(
             lambda: self.model.filter_data(combo_box=widgets.list_test, table_view=self.tableView))
 
-        widgets.pushButton_8.clicked.connect(lambda: Save_data.save_data_to_csv(self.tableView))
+        widgets.btn_save_view.clicked.connect(lambda: Save_data.save_data_to_csv(self.tableView))
         # TOGGLE MENU
         widgets.toggleButton.clicked.connect(lambda: UIFunctions.toggleMenu(self, True))
 
@@ -71,7 +71,7 @@ class MainWindow(QMainWindow):
         UIFunctions.uiDefinitions(self)
 
         # QTableWidget PARAMETERS
-        widgets.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        widgets.resultView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
         # BUTTONS CLICK
         # ///////////////////////////////////////////////////////////////
@@ -104,7 +104,7 @@ class MainWindow(QMainWindow):
         else:
             UIFunctions.theme(self, themeFile_dark, True)
             AppFunctions.setThemeHack(self)
-        widgets.stackedWidget.setCurrentWidget(widgets.home)
+        widgets.stackedWidget.setCurrentWidget(widgets.report_page)
 
         record = self.model.record()
         column_names = [record.fieldName(i) for i in range(record.count())]
@@ -143,13 +143,13 @@ class MainWindow(QMainWindow):
 
         # SHOW HOME PAGE
         if btnName == "btn_report":
-            widgets.stackedWidget.setCurrentWidget(widgets.home)
+            widgets.stackedWidget.setCurrentWidget(widgets.report_page)
             UIFunctions.resetStyle(self, btnName)
             UIFunctions.addStyle(btn, UIFunctions.selectMenu())
 
         # SHOW WIDGETS PAGE
         if btnName == "btn_bar":
-            widgets.stackedWidget.setCurrentWidget(widgets.widgets)
+            widgets.stackedWidget.setCurrentWidget(widgets.chart_page)
             UIFunctions.resetStyle(self, btnName)
             UIFunctions.addStyle(btn, UIFunctions.selectMenu())
 

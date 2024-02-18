@@ -1,5 +1,6 @@
 from PySide6.QtSql import QSqlDatabase, QSqlQuery, QSqlTableModel, QSqlQueryModel
-from PySide6.QtWidgets import QTableView, QVBoxLayout, QWidget, QHeaderView, QComboBox
+from PySide6.QtWidgets import QTableView, QVBoxLayout, QWidget, QHeaderView, QComboBox, QMessageBox
+from PySide6.QtCore import Qt, Slot
 from ui_modules import *
 from PySide6.QtUiTools import QUiLoader
 from database import db_params
@@ -81,25 +82,25 @@ def connection_to_db(*args):
     return decorator
 
 
-def init_db():
-    db = QSqlDatabase.addDatabase('QPSQL')
-    db.setHostName(db_params['host'])
-    db.setDatabaseName(db_params['database'])
-    db.setPort(db_params['port'])
-    db.setUserName(db_params['user'])
-    db.setPassword(db_params['password'])
-
-    def check(func, *args):
-        if not func(*args):
-            raise ValueError(func.__self__.lastError())
-
-    check(db.open)
-    q = QSqlQuery()
-    check(q.exec, USERS_SQL)
-    check(q.exec, TESTS_SQL)
-    check(q.exec, REPORT_SQL)
-    check(q.exec, SETTING_SQL)
-    db.close()
+# def init_db():
+#     db = QSqlDatabase.addDatabase('QPSQL')
+#     db.setHostName(db_params['host'])
+#     db.setDatabaseName(db_params['database'])
+#     db.setPort(db_params['port'])
+#     db.setUserName(db_params['user'])
+#     db.setPassword(db_params['password'])
+#
+#     def check(func, *args):
+#         if not func(*args):
+#             raise ValueError(func.__self__.lastError())
+#
+#     check(db.open)
+#     q = QSqlQuery()
+#     check(q.exec, USERS_SQL)
+#     check(q.exec, TESTS_SQL)
+#     check(q.exec, REPORT_SQL)
+#     check(q.exec, SETTING_SQL)
+#     db.close()
 
 
 @connection_to_db()
@@ -146,20 +147,29 @@ class DatabaseModel(QSqlQueryModel):
         self.displayed_columns = []
         self.visible_columns = []
 
-        db = QSqlDatabase.addDatabase("QPSQL")
-        db.setHostName(db_params['host'])
-        db.setDatabaseName(db_params['database'])
-        db.setPort(db_params['port'])
-        db.setUserName(db_params['user'])
-        db.setPassword(db_params['password'])
-
-        if not db.open():
-            print("Ошибка установки соединения:", db.lastError().text())
-            return
+        # db = QSqlDatabase.addDatabase("QPSQL")
+        # db.setHostName(db_params['host'])
+        # db.setDatabaseName(db_params['database'])
+        # db.setPort(db_params['port'])
+        # db.setUserName(db_params['user'])
+        # db.setPassword(db_params['password'])
+        #
+        # if not db.open():
+        #     print("Ошибка установки соединения:", db.lastError().text())
+        #     return
 
         self.setQuery(QSqlQuery(ALL_RESULT_SQL))
         if self.lastError().isValid():
             print("Ошибка выполнения запроса:", self.lastError().text())
+
+        # self.setHeaderData(self.record().indexOf("test_name"), Qt.Horizontal, self.tr("Название теста"))
+        # self.setHeaderData(self.record().indexOf("test_param"), Qt.Horizontal, self.tr("Параметры теста"))
+        # self.setHeaderData(self.record().indexOf("test_note"), Qt.Horizontal, self.tr("Заметка"))
+        # self.setHeaderData(self.record().indexOf("test_id"), Qt.Horizontal, self.tr("ID Теста"))
+        # self.setHeaderData(self.record().indexOf("start_test"), Qt.Horizontal, self.tr("Дата выполнения"))
+        # self.setHeaderData(self.record().indexOf("time_test"), Qt.Horizontal, self.tr("Время выполнения"))
+        # self.setHeaderData(self.record().indexOf("user_name"), Qt.Horizontal, self.tr("Пользователь"))
+        # self.setHeaderData(self.record().indexOf("test_result"), Qt.Horizontal, self.tr("Результат"))
 
     def filter_data(self, combo_box: QComboBox, table_view: QTableView) -> None:
         selected_option = combo_box.currentText()
@@ -184,9 +194,11 @@ class DatabaseModel(QSqlQueryModel):
     def close_connection(self):
         QSqlDatabase.database().close()
 
-
-
-
-if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
+    def check_connection_database(self):
+        try:
+            self.open()
+            # В случае успешного соединения, показываем сообщение
+            QMessageBox.information(None, "Success", "Соединение с PostgreSQL успешно установлено!")
+        except Exception:
+            # В случае ошибки, показываем сообщение с ошибкой
+            QMessageBox.critical(None, "Error", f"Ошибка соединения с PostgreSQL:\n{str(self.lastError().text())}")

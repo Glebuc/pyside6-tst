@@ -8,6 +8,7 @@ class ColumnSelectionDialog(QDialog):
         super().__init__(parent)
         self.setWindowTitle("Выбор отображаемых столбцов")
         self.column_names = column_names
+        print(column_names)
         self.checkbox_dict = {}
         self.setMinimumSize(250, 200)
 

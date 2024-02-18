@@ -1,5 +1,5 @@
 import os
-from cryptography.fernet import Fernet
+
 
 
 def create_config_if_not_exists(file_path='config.ini'):

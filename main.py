@@ -19,7 +19,9 @@ import doctest
 from Application import Application
 from ui_modules import *
 from widgets import *
-from pages import Model_result, Save_data, View_result, Dialog_change_view
+from pages import Model_result, Save_data, View_result, Dialog_change_view, DialogsSetting, DialogsResult
+
+
 
 os.environ["QT_FONT_DPI"] = "96"  # FIX Problem for High DPI and Scale above 100%
 
@@ -81,6 +83,10 @@ class MainWindow(QMainWindow):
         widgets.btn_bar.clicked.connect(self.button_click)
         widgets.btn_result.clicked.connect(self.button_click)
 
+        widgets.btn_config_DB.clicked.connect(self.open_dialog_config_db)
+        widgets.btn_hot_keys.clicked.connect(self.open_dialog_keyword)
+        widgets.btn_extension_search.clicked.connect(self.open_dialog_extension_search)
+
 
         # EXTRA LEFT BOX
         def openCloseLeftBox():
@@ -89,13 +95,10 @@ class MainWindow(QMainWindow):
         widgets.toggleLeftBox.clicked.connect(openCloseLeftBox)
         widgets.extraCloseColumnBtn.clicked.connect(openCloseLeftBox)
 
-        # SHOW APP
-        # ///////////////////////////////////////////////////////////////
         self.show()
 
         # SET CUSTOM THEME
-        # ///////////////////////////////////////////////////////////////
-        useCustomTheme = True
+        useCustomTheme = False
         themeFile_light = "themes/theme_light.qss"
         themeFile_dark = "themes/theme_dark.qss"
         if useCustomTheme:
@@ -111,7 +114,7 @@ class MainWindow(QMainWindow):
 
         self.column_selection_dialog = Dialog_change_view.ColumnSelectionDialog(column_names)
 
-        # Создаем словарь для хранения состояний флажков
+        # словарь для хранения состояний флажков
         self.checkbox_dict = {}
 
     def open_column_selection_dialog(self):
@@ -134,27 +137,34 @@ class MainWindow(QMainWindow):
             else:
                 self.tableView.hideColumn(column_index)
 
+    def open_dialog_config_db(self):
+        dialog = DialogsSetting.DialogConfigDB(self)
+        dialog.exec()
 
+    def open_dialog_keyword(self):
+        dialog = DialogsSetting.DialogKey(self)
+        dialog.exec()
+
+    def open_dialog_extension_search(self):
+        dialog = DialogsResult.DialogExtensionSearch(self)
+        dialog.exec()
 
     def button_click(self) -> None:
         # GET BUTTON CLICKED
         btn = self.sender()
         btnName = btn.objectName()
 
-        # SHOW HOME PAGE
         if btnName == "btn_report":
             widgets.stackedWidget.setCurrentWidget(widgets.report_page)
             UIFunctions.resetStyle(self, btnName)
             UIFunctions.addStyle(btn, UIFunctions.selectMenu())
 
-        # SHOW WIDGETS PAGE
         if btnName == "btn_bar":
             widgets.stackedWidget.setCurrentWidget(widgets.chart_page)
             UIFunctions.resetStyle(self, btnName)
             UIFunctions.addStyle(btn, UIFunctions.selectMenu())
 
 
-        # SHOW NEW PAGE
         if btnName == "btn_result":
             widgets.stackedWidget.setCurrentWidget(widgets.result_page)
             UIFunctions.resetStyle(self, btnName)

@@ -8,7 +8,7 @@ from pages.Result import Model_result
 class CustomTableView(QTableView):
     def __init__(self, parent=None):
         super(CustomTableView, self).__init__(parent)
-        Model_result.init_db()
+        #Model_result.init_db()
 
         self.setSelectionMode(QTableView.SingleSelection)
         self.verticalHeader().setVisible(False)
@@ -19,3 +19,7 @@ class CustomTableView(QTableView):
         header = self.horizontalHeader()
         for i in range(self.model.columnCount()):
             header.setSectionResizeMode(i, QHeaderView.Stretch)
+        # header.setDefaultAlignment(Qt.AlignLeft | Qt.AlignVCenter)
+        # header.setStyleSheet("QHeaderView::section {"
+        #                      "    word-wrap: break-word;"
+        #                      "}")

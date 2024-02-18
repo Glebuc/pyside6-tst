@@ -26,6 +26,7 @@ QToolTip {
 QPushButton {
 	background-color: rgb(90,90,90);
 	border: 2px solid rgb(110,110,110);
+	color: #ffffff;
 }
 QPushButton:hover {
 	background-color: rgb(110,110,110);
@@ -570,4 +571,10 @@ background-image: url(:/icons/images/icons/cil-chart-pie.png);
 }
 #label_version_application {
     color: rgb(130,130,130);
+}
+QDialog {
+	color: rgb(255, 255, 255);
+	font: 10pt "Segoe UI";
+	background-color: rgb(255, 255, 255);
+	border: 1px solid rgb(44, 49, 58);
 }

@@ -59,7 +59,6 @@ QToolTip {
 
 QPushButton {
 	background-color: rgb(50, 54, 62);
-	border-radius: 5px;
 	border: 2px solid rgb(30, 34, 42);
 }
 QPushButton:hover {
@@ -557,6 +556,12 @@ Button */
 #result_page {
 	background-color: rgb(94, 92, 100);
 }
+#chart_page{
+	background-color: rgb(94, 92, 100);
+}
+#report_page{
+	background-color: rgb(94, 92, 100);
+}
 #result_page QPushButton {
 	background-color: rgb(35, 40, 49);
 	padding: 5px;
@@ -794,6 +799,9 @@ background-image: url(:/icons/images/icons/cil-chart-pie.png);
                   <property name="text">
                    <string>Меню</string>
                   </property>
+                  <property name="shortcut">
+                   <string>Ctrl+Space</string>
+                  </property>
                  </widget>
                 </item>
                </layout>
@@ -863,6 +871,9 @@ background-image: url(:/icons/images/icons/cil-chart-pie.png);
                     <height>20</height>
                    </size>
                   </property>
+                  <property name="shortcut">
+                   <string>Ctrl+Q</string>
+                  </property>
                  </widget>
                 </item>
                 <item>
@@ -898,6 +909,9 @@ background-image: url(:/icons/images/icons/cil-chart-pie.png);
                   </property>
                   <property name="text">
                    <string>Графики</string>
+                  </property>
+                  <property name="shortcut">
+                   <string>Ctrl+W</string>
                   </property>
                  </widget>
                 </item>
@@ -937,6 +951,9 @@ background-image: url(:/icons/images/icons/cil-chart-pie.png);
                   </property>
                   <property name="text">
                    <string>Результаты</string>
+                  </property>
+                  <property name="shortcut">
+                   <string>Ctrl+E</string>
                   </property>
                  </widget>
                 </item>
@@ -1009,6 +1026,9 @@ background-image: none;
                   </property>
                   <property name="text">
                    <string>Настройки</string>
+                  </property>
+                  <property name="shortcut">
+                   <string>Ctrl+R</string>
                   </property>
                  </widget>
                 </item>
@@ -1347,34 +1367,6 @@ background-image: none;
                  <widget class="QLabel" name="label_config">
                   <property name="text">
                    <string>Конфигурация БД</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="btn_check_connect_to_DB">
-                  <property name="minimumSize">
-                   <size>
-                    <width>150</width>
-                    <height>30</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Segoe UI</family>
-                    <pointsize>10</pointsize>
-                    <italic>false</italic>
-                    <bold>false</bold>
-                   </font>
-                  </property>
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="text">
-                   <string>Проверка соединение с БД</string>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="resources.qrc">
-                    <normaloff>:/icons/images/icons/cil-transfer.png</normaloff>:/icons/images/icons/cil-transfer.png</iconset>
                   </property>
                  </widget>
                 </item>
@@ -1832,7 +1824,7 @@ background-image: none;
                     <number>10</number>
                    </property>
                    <property name="topMargin">
-                    <number>5</number>
+                    <number>10</number>
                    </property>
                    <property name="rightMargin">
                     <number>10</number>

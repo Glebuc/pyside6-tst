@@ -8,7 +8,7 @@
     <x>0</x>
     <y>0</y>
     <width>940</width>
-    <height>592</height>
+    <height>619</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -57,9 +57,15 @@ QToolTip {
 	background-image: none;
 }
 
+QGraphicsView {
+	background-color: rgb(35, 40, 49);
+}
 QPushButton {
 	background-color: rgb(50, 54, 62);
 	border: 2px solid rgb(30, 34, 42);
+	padding:5px;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 QPushButton:hover {
 	background-color: rgb(30, 34, 42);
@@ -183,7 +189,7 @@ Extra Tab */
 
 /* Extra Top Menus */
 #extraTopMenu .QPushButton {
-background-position: left center;
+	background-position: left center;
     background-repeat: no-repeat;
 	border: none;
 	border-left: 22px solid transparent;
@@ -232,13 +238,7 @@ Content App */
 	text-align: left;
 	padding-left: 44px;
 }
-#contentSettings .QPushButton:hover {
-	background-color: rgb(40, 44, 52);
-}
-#contentSettings .QPushButton:pressed {	
-	background-color: rgb(35, 40, 49);
-	color: rgb(255, 255, 255);
-}
+
 
 /* /////////////////////////////////////////////////////////////////////////////////////////////////
 QTableWidget */
@@ -581,6 +581,27 @@ background-image: url(:/icons/images/icons/cil-chart-pie.png);
 }
 #btn_result {
 	background-image: url(:/icons/images/icons/cil-task.png);
+}
+#save_chart_btn{
+	background-image: url(:/icons/images/icons/cil-save.png);
+}
+#zoom_in_chart_btn{
+	background-image: url(:/icons/images/icons/cil-zoom-in.png);
+}
+#zoom_out_chart_btn{
+	background-image: url(:/icons/images/icons/cil-zoom-out.png);
+}
+#up_chart_btn {
+	background-image: url(:/icons/images/icons/cil-caret-top.png);
+}
+#down_chart_btn {
+	background-image: url(:/icons/images/icons/cil-caret-bottom.png);
+}
+#left_chart_btn {
+	background-image: url(:/icons/images/icons/cil-caret-left.png);
+}
+#right_chart_btn {
+	background-image: url(:/icons/images/icons/cil-caret-right.png);
 }
 #list_test {
 	color:#ffffff;
@@ -1243,6 +1264,12 @@ background-image: none;
                <layout class="QVBoxLayout" name="verticalLayout_10">
                 <item>
                  <widget class="QLabel" name="label_scale">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
                   <property name="text">
                    <string>Масштаб</string>
                   </property>
@@ -1341,6 +1368,12 @@ background-image: none;
                 </item>
                 <item>
                  <widget class="QLabel" name="label_language">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
                   <property name="text">
                    <string>Язык приложения</string>
                   </property>
@@ -1365,6 +1398,12 @@ background-image: none;
                 </item>
                 <item>
                  <widget class="QLabel" name="label_config">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
                   <property name="text">
                    <string>Конфигурация БД</string>
                   </property>
@@ -1386,6 +1425,12 @@ background-image: none;
                 </item>
                 <item>
                  <widget class="QLabel" name="label_extra">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
                   <property name="text">
                    <string>Дополнительно</string>
                   </property>
@@ -1464,6 +1509,12 @@ background-image: none;
                 </item>
                 <item>
                  <widget class="QLabel" name="label_version_application">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
                   <property name="text">
                    <string>Версия приложения Aramid TsT Graph v0.0.1</string>
                   </property>
@@ -1835,7 +1886,7 @@ background-image: none;
                    <item>
                     <widget class="QStackedWidget" name="stackedWidget">
                      <property name="currentIndex">
-                      <number>2</number>
+                      <number>1</number>
                      </property>
                      <widget class="QWidget" name="report_page">
                       <property name="styleSheet">
@@ -1861,21 +1912,53 @@ background-repeat: no-repeat;</string>
                        <string notr="true">b</string>
                       </property>
                       <layout class="QVBoxLayout" name="verticalLayout">
-                       <property name="spacing">
-                        <number>10</number>
-                       </property>
-                       <property name="leftMargin">
-                        <number>10</number>
-                       </property>
-                       <property name="topMargin">
-                        <number>10</number>
-                       </property>
-                       <property name="rightMargin">
-                        <number>10</number>
-                       </property>
-                       <property name="bottomMargin">
-                        <number>10</number>
-                       </property>
+                       <item>
+                        <widget class="QFrame" name="frame_3">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="frameShape">
+                          <enum>QFrame::StyledPanel</enum>
+                         </property>
+                         <property name="frameShadow">
+                          <enum>QFrame::Raised</enum>
+                         </property>
+                         <layout class="QHBoxLayout" name="horizontalLayout_9">
+                          <property name="leftMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <item>
+                           <widget class="QComboBox" name="list_test_chart"/>
+                          </item>
+                          <item>
+                           <spacer name="horizontalSpacer_3">
+                            <property name="orientation">
+                             <enum>Qt::Horizontal</enum>
+                            </property>
+                            <property name="sizeHint" stdset="0">
+                             <size>
+                              <width>40</width>
+                              <height>20</height>
+                             </size>
+                            </property>
+                           </spacer>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="change_view_chart_btn">
+                            <property name="text">
+                             <string>Отображение графика...</string>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
                        <item>
                         <widget class="QFrame" name="frame_chart">
                          <property name="minimumSize">
@@ -1906,6 +1989,152 @@ background-repeat: no-repeat;</string>
                           <property name="bottomMargin">
                            <number>0</number>
                           </property>
+                          <item>
+                           <widget class="QFrame" name="frame_chart_2">
+                            <property name="minimumSize">
+                             <size>
+                              <width>400</width>
+                              <height>0</height>
+                             </size>
+                            </property>
+                            <property name="frameShape">
+                             <enum>QFrame::StyledPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                             <enum>QFrame::Raised</enum>
+                            </property>
+                            <layout class="QHBoxLayout" name="horizontalLayout_10">
+                             <property name="leftMargin">
+                              <number>0</number>
+                             </property>
+                             <property name="topMargin">
+                              <number>0</number>
+                             </property>
+                             <property name="rightMargin">
+                              <number>0</number>
+                             </property>
+                             <property name="bottomMargin">
+                              <number>0</number>
+                             </property>
+                             <item>
+                              <widget class="QFrame" name="frame_5">
+                               <property name="minimumSize">
+                                <size>
+                                 <width>50</width>
+                                 <height>0</height>
+                                </size>
+                               </property>
+                               <property name="frameShape">
+                                <enum>QFrame::StyledPanel</enum>
+                               </property>
+                               <property name="frameShadow">
+                                <enum>QFrame::Raised</enum>
+                               </property>
+                               <layout class="QVBoxLayout" name="verticalLayout_13">
+                                <property name="leftMargin">
+                                 <number>0</number>
+                                </property>
+                                <property name="topMargin">
+                                 <number>0</number>
+                                </property>
+                                <property name="rightMargin">
+                                 <number>5</number>
+                                </property>
+                                <property name="bottomMargin">
+                                 <number>0</number>
+                                </property>
+                                <item>
+                                 <widget class="QPushButton" name="up_chart_btn">
+                                  <property name="toolTip">
+                                   <string>Сместить наверх</string>
+                                  </property>
+                                  <property name="text">
+                                   <string/>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QPushButton" name="down_chart_btn">
+                                  <property name="toolTip">
+                                   <string>Сместить вниз</string>
+                                  </property>
+                                  <property name="text">
+                                   <string/>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QPushButton" name="right_chart_btn">
+                                  <property name="toolTip">
+                                   <string>Сместить вправо</string>
+                                  </property>
+                                  <property name="text">
+                                   <string/>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QPushButton" name="left_chart_btn">
+                                  <property name="toolTip">
+                                   <string>Сместить влево</string>
+                                  </property>
+                                  <property name="text">
+                                   <string/>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QPushButton" name="zoom_out_chart_btn">
+                                  <property name="toolTip">
+                                   <string>Уменьшить масштаб</string>
+                                  </property>
+                                  <property name="text">
+                                   <string/>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QPushButton" name="zoom_in_chart_btn">
+                                  <property name="toolTip">
+                                   <string>Увеличить масштаб</string>
+                                  </property>
+                                  <property name="text">
+                                   <string/>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <spacer name="verticalSpacer">
+                                  <property name="orientation">
+                                   <enum>Qt::Vertical</enum>
+                                  </property>
+                                  <property name="sizeHint" stdset="0">
+                                   <size>
+                                    <width>20</width>
+                                    <height>40</height>
+                                   </size>
+                                  </property>
+                                 </spacer>
+                                </item>
+                                <item>
+                                 <widget class="QPushButton" name="save_chart_btn">
+                                  <property name="toolTip">
+                                   <string>Сохранить график</string>
+                                  </property>
+                                  <property name="text">
+                                   <string/>
+                                  </property>
+                                 </widget>
+                                </item>
+                               </layout>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QGraphicsView" name="graphicsView"/>
+                             </item>
+                            </layout>
+                           </widget>
+                          </item>
                          </layout>
                         </widget>
                        </item>
@@ -1935,9 +2164,12 @@ background-repeat: no-repeat;</string>
                            <number>0</number>
                           </property>
                           <item>
-                           <widget class="QComboBox" name="list_test">
+                           <widget class="QComboBox" name="list_test_result">
                             <property name="cursor">
                              <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
+                            <property name="frame">
+                             <bool>false</bool>
                             </property>
                            </widget>
                           </item>

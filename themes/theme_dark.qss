@@ -28,6 +28,9 @@ QToolTip {
 QPushButton {
 	background-color: rgb(50, 54, 62);
 	border: 2px solid rgb(30, 34, 42);
+	padding:5px;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 QPushButton:hover {
 	background-color: rgb(30, 34, 42);
@@ -151,7 +154,7 @@ Extra Tab */
 
 /* Extra Top Menus */
 #extraTopMenu .QPushButton {
-background-position: left center;
+	background-position: left center;
     background-repeat: no-repeat;
 	border: none;
 	border-left: 22px solid transparent;
@@ -200,13 +203,7 @@ Content App */
 	text-align: left;
 	padding-left: 44px;
 }
-#contentSettings .QPushButton:hover {
-	background-color: rgb(40, 44, 52);
-}
-#contentSettings .QPushButton:pressed {
-	background-color: rgb(35, 40, 49);
-	color: rgb(255, 255, 255);
-}
+
 
 /* /////////////////////////////////////////////////////////////////////////////////////////////////
 QTableWidget */
@@ -532,7 +529,7 @@ Button */
 	padding: 5px;
 }
 QTableView {
-	background-color: rgb(40, 44, 52);
+	background-color: rgb(35, 40, 49);
 }
 #pagesContainer  {
 	background-color: rgb(94, 92, 100);
@@ -547,11 +544,32 @@ background-image: url(:/icons/images/icons/cil-chart-pie.png);
 #btn_result {
 	background-image: url(:/icons/images/icons/cil-task.png);
 }
+#save_chart_btn{
+	background-image: url(:/icons/images/icons/cil-save.png);
+}
+#zoom_in_chart_btn{
+	background-image: url(:/icons/images/icons/cil-zoom-in.png);
+}
+#zoom_out_chart_btn{
+	background-image: url(:/icons/images/icons/cil-zoom-out.png);
+}
+#up_chart_btn {
+	background-image: url(:/icons/images/icons/cil-caret-top.png);
+}
+#down_chart_btn {
+	background-image: url(:/icons/images/icons/cil-caret-bottom.png);
+}
+#left_chart_btn {
+	background-image: url(:/icons/images/icons/cil-caret-left.png);
+}
+#right_chart_btn {
+	background-image: url(:/icons/images/icons/cil-caret-right.png);
+}
 #list_test {
 	color:#ffffff;
 }
 QDialog {
-	color: rgb(221, 221, 221);
+	color: rgb(255, 255, 255);
 	font: 10pt "Segoe UI";
 	background-color: rgb(40, 44, 52);
 	border: 1px solid rgb(44, 49, 58);

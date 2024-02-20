@@ -127,9 +127,9 @@ class UIFunctions(MainWindow):
             if w.objectName() == widget:
                 w.setStyleSheet(UIFunctions.selectMenu(w.styleSheet()))
 
-    def theme(self, file, useCustomTheme):
+    def theme(self, _file, useCustomTheme):
         if useCustomTheme:
-            str = open(file, 'r').read()
+            str = open(_file, 'r').read()
             self.ui.styleSheet.setStyleSheet(str)
 
     # START - GUI DEFINITIONS

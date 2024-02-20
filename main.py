@@ -58,12 +58,13 @@ class MainWindow(QMainWindow):
 
         widgets.btn_change_view.clicked.connect(self.open_column_selection_dialog)
 
-        widgets.list_test.addItem("Все тесты")
+        widgets.list_test_result.addItem("Все тесты")
         for i in Model_result.result:
-            widgets.list_test.addItem(i)
+            widgets.list_test_result.addItem(i)
+            widgets.list_test_chart.addItem(i)
 
-        widgets.list_test.currentIndexChanged.connect(
-            lambda: self.model.filter_data(combo_box=widgets.list_test, table_view=self.tableView))
+        widgets.list_test_result.currentIndexChanged.connect(
+            lambda: self.model.filter_data(combo_box=widgets.list_test_result, table_view=self.tableView))
 
         widgets.btn_save_view.clicked.connect(lambda: Save_data.save_data_to_csv(self.tableView))
         # TOGGLE MENU
@@ -99,8 +100,8 @@ class MainWindow(QMainWindow):
 
         # SET CUSTOM THEME
         useCustomTheme = False
-        themeFile_light = "themes/theme_light.qss"
-        themeFile_dark = "themes/theme_dark.qss"
+        themeFile_light = ":C:\\Users\\Admin\\Desktop\\ДИПЛОМ\\themes\\theme_light.qss"
+        themeFile_dark = "C:\\Users\\Admin\\Desktop\\ДИПЛОМ\\themes\\theme_dark.qss"
         if useCustomTheme:
             UIFunctions.theme(self, themeFile_light, True)
             AppFunctions.setThemeHack(self)

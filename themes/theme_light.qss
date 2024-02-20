@@ -566,6 +566,27 @@ background-image: url(:/icons/images/icons/cil-chart-pie.png);
 #btn_result {
 	background-image: url(:/icons/images/icons/cil-task.png);
 }
+#save_chart_btn{
+	background-image: url(:/icons/images/icons/cil-save.png);
+}
+#zoom_in_chart_btn{
+	background-image: url(:/icons/images/icons/cil-zoom-in.png);
+}
+#zoom_out_chart_btn{
+	background-image: url(:/icons/images/icons/cil-zoom-out.png);
+}
+#up_chart_btn {
+	background-image: url(:/icons/images/icons/cil-caret-top.png);
+}
+#down_chart_btn {
+	background-image: url(:/icons/images/icons/cil-caret-bottom.png);
+}
+#left_chart_btn {
+	background-image: url(:/icons/images/icons/cil-caret-left.png);
+}
+#right_chart_btn {
+	background-image: url(:/icons/images/icons/cil-caret-right.png);
+}
 #list_test {
 	color:#ffffff;
 }

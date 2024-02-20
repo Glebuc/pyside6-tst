@@ -24,7 +24,7 @@ class ColumnSelectionDialog(QDialog):
         button.clicked.connect(self.accept)
         layout.addWidget(button)
 
-        with open('themes/theme_dark.qss', 'r') as f:
+        with open('C:\\Users\\Admin\\Desktop\\ДИПЛОМ\\themes\\theme_dark.qss', 'r') as f: # придумать что-то с путями для файлов приложения
             dialog_stylesheet = f.read()
         self.setStyleSheet(dialog_stylesheet)
         self.setMaximumSize(300, 300)

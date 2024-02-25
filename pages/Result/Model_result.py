@@ -47,22 +47,29 @@ CREATE TABLE IF NOT EXISTS settings (
 	"scale" int4 NOT NULL DEFAULT 100,
 	user_id_fk int4 NOT NULL,
 	CONSTRAINT settings_pk PRIMARY KEY (setting_id),
-	CONSTRAINT settings_fk FOREIGN KEY (user_id_fk) REFERENCES users(user_id)
-);"""
-
+	CONSTRAINT settings_fk FOREIGN KEY (user_id_fk) REFERENCES users(user_id));"""
+LIST_USER_SQL = """
+    SELECT user_name FROM users GROUP BY user_name;
+"""
 LIST_TEST_SQL = """
     SELECT test_name FROM tests GROUP BY test_name;
+"""
+MAX_DATE_SQL = """
+    SELECT MAX(start_test) FROM tests;
+"""
+MIN_DATE_SQL = """
+    SELECT MIN(start_test) FROM tests;
 """
 ALL_RESULT_SQL = """
     SELECT t.test_name, t.test_param, t.time_test, t.test_result, t.start_test, u.user_name
     FROM tests as t
-    INNER JOIN users as u ON t.id_user_fk = u.user_id
+    INNER JOIN users as u ON t.id_user_fk=u.user_id;
 """
 
 
-def connection_to_db(*args):
+def connection_to_db():
     def decorator(func):
-        def wrapper(*args, **kwargs):
+        def wrapper(query_string, *args, **kwargs):
             db = QSqlDatabase.addDatabase("QPSQL")
             db.setHostName(db_params['host'])
             db.setDatabaseName(db_params['database'])
@@ -73,7 +80,7 @@ def connection_to_db(*args):
             if not db.open():
                 print("Ошибка установки соединения:", db.lastError().text())
                 return None
-            result = func(*args, **kwargs)
+            result = func(query_string, *args, **kwargs)
             db.close()
             return result
 
@@ -105,24 +112,6 @@ def connection_to_db(*args):
 
 @connection_to_db()
 def execute_postgresql_query(query_string):
-    """
-        Выполняет SQL-запрос к базе данных PostgreSQL.
-
-        Параметры:
-        query_string (str): Строка с SQL-запросом для выполнения.
-
-        Возвращает:
-        list: Список результатов запроса, если запрос успешно выполнен и есть результаты.
-              В противном случае возвращает None.
-
-        Пример использования:
-        >>> execute_postgresql_query(LIST_TEST_SQL)
-        []
-
-        >>> execute_postgresql_query("INVALID QUERY")
-        Ошибка выполнения запроса: Invalid query string
-        None
-    """
     query = QSqlQuery()
     query.prepare(query_string)
     list_query_data = []
@@ -136,8 +125,13 @@ def execute_postgresql_query(query_string):
     return list_query_data
 
 
+users = execute_postgresql_query(LIST_USER_SQL)
 result = execute_postgresql_query(LIST_TEST_SQL)
-new_result = execute_postgresql_query(ALL_RESULT_SQL)
+max_date = execute_postgresql_query(MAX_DATE_SQL)
+min_date = execute_postgresql_query(MIN_DATE_SQL)
+
+print(*max_date)
+print(min_date)
 
 
 class DatabaseModel(QSqlQueryModel):
@@ -158,7 +152,7 @@ class DatabaseModel(QSqlQueryModel):
         #     print("Ошибка установки соединения:", db.lastError().text())
         #     return
 
-        self.setQuery(QSqlQuery(ALL_RESULT_SQL))
+        self.setQuery(ALL_RESULT_SQL)
         if self.lastError().isValid():
             print("Ошибка выполнения запроса:", self.lastError().text())
 

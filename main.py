@@ -13,6 +13,7 @@ from PySide6.QtWidgets import QDialog, QFormLayout, QCheckBox, QVBoxLayout, QPus
     QTableView,QMainWindow, QWidget, QHeaderView
 from PySide6.QtGui import QTransform
 from PySide6 import QtCore
+from PySide6.QtCore import Qt
 
 import doctest
 
@@ -38,7 +39,6 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         global widgets
         widgets = self.ui
-
 
         # USE CUSTOM TITLE BAR | USE AS "False" FOR MAC OR LINUX
         # ///////////////////////////////////////////////////////////////
@@ -148,10 +148,29 @@ class MainWindow(QMainWindow):
 
     def open_dialog_extension_search(self):
         dialog = DialogsResult.DialogExtensionSearch(self)
-        dialog.exec()
+        if dialog.exec() == QDialog.Accepted:
+            test_data,user_data,np_data,N_data, start_date, end_date = dialog.get_filter_parameters()
+            self.apply_filter(test_data, start_date, end_date)
+            # dialog.filter_query_model(self.model, test_data, user_data, np_data, N_data, start_date, end_date)
+            # self.tableView.reset()
+
+    def apply_filter(self, test_data, start_date, end_date):
+        filters = []
+        if test_data:
+            filters.append(f"test_name = '{test_data}'")
+        if start_date and end_date:
+            filters.append(f"start_test BETWEEN '{start_date}' AND '{end_date}'")
+        where_clause = " AND ".join(filters)
+        if where_clause:
+            where_clause = "WHERE " + where_clause
+        query = f""" SELECT t.test_name, t.test_param, t.time_test, t.test_result, t.start_test, u.user_name
+                    FROM tests as t
+                    INNER JOIN users as u ON t.id_user_fk = u.user_id {where_clause}"""
+        print(query)
+        self.model.setQuery(query)
+        self.tableView.setModel(self.model)
 
     def button_click(self) -> None:
-        # GET BUTTON CLICKED
         btn = self.sender()
         btnName = btn.objectName()
 
@@ -186,5 +205,6 @@ if __name__ == "__main__":
     app = Application(sys.argv)
     app.setWindowIcon(QIcon(u":/icons/images/icons/aramid.svg"))
     window = MainWindow()
+    # window.setWindowFlags(Qt.Window | Qt.CustomizeWindowHint | Qt.WindowTitleHint | Qt.WindowMinMaxButtonsHint)
     result = app.exec()
     sys.exit(result)

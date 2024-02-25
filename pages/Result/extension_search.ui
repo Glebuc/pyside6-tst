@@ -169,13 +169,20 @@
           </property>
           <property name="minimumDateTime">
            <datetime>
-            <hour>15</hour>
+            <hour>9</hour>
             <minute>0</minute>
             <second>0</second>
-            <year>2024</year>
+            <year>2023</year>
             <month>9</month>
             <day>13</day>
            </datetime>
+          </property>
+          <property name="minimumDate">
+           <date>
+            <year>2023</year>
+            <month>9</month>
+            <day>13</day>
+           </date>
           </property>
          </widget>
         </item>
@@ -199,13 +206,20 @@
           </property>
           <property name="minimumDateTime">
            <datetime>
-            <hour>15</hour>
+            <hour>9</hour>
             <minute>0</minute>
             <second>0</second>
-            <year>2024</year>
+            <year>2023</year>
             <month>9</month>
             <day>13</day>
            </datetime>
+          </property>
+          <property name="minimumDate">
+           <date>
+            <year>2023</year>
+            <month>9</month>
+            <day>13</day>
+           </date>
           </property>
          </widget>
         </item>

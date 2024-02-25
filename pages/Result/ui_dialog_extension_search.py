@@ -106,7 +106,8 @@ class Ui_Dialog(object):
         sizePolicy2.setHeightForWidth(self.from_dateEdit.sizePolicy().hasHeightForWidth())
         self.from_dateEdit.setSizePolicy(sizePolicy2)
         self.from_dateEdit.setCursor(QCursor(Qt.IBeamCursor))
-        self.from_dateEdit.setMinimumDateTime(QDateTime(QDate(2024, 9, 13), QTime(15, 0, 0)))
+        self.from_dateEdit.setMinimumDateTime(QDateTime(QDate(2023, 9, 13), QTime(9, 0, 0)))
+        self.from_dateEdit.setMinimumDate(QDate(2023, 9, 13))
 
         self.gridLayout.addWidget(self.from_dateEdit, 8, 1, 1, 3)
 
@@ -121,7 +122,8 @@ class Ui_Dialog(object):
         sizePolicy2.setHeightForWidth(self.before_dateEdit.sizePolicy().hasHeightForWidth())
         self.before_dateEdit.setSizePolicy(sizePolicy2)
         self.before_dateEdit.setCursor(QCursor(Qt.IBeamCursor))
-        self.before_dateEdit.setMinimumDateTime(QDateTime(QDate(2024, 9, 13), QTime(15, 0, 0)))
+        self.before_dateEdit.setMinimumDateTime(QDateTime(QDate(2023, 9, 13), QTime(9, 0, 0)))
+        self.before_dateEdit.setMinimumDate(QDate(2023, 9, 13))
 
         self.gridLayout.addWidget(self.before_dateEdit, 8, 5, 1, 5)
 

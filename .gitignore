@@ -1,7 +1,7 @@
 __pycache__/
 .git/
-.pyc
+*.pyc
 .idea
 /venv/
-.csv
-.txt
+*.csv
+*.txt

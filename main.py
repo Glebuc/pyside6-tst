@@ -17,6 +17,8 @@ from PySide6.QtCore import Qt
 
 import doctest
 
+from datetime import datetime
+from loger import Logger
 from Application import Application
 from ui_modules import *
 from widgets import *
@@ -39,10 +41,11 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         global widgets
         widgets = self.ui
+        self.log = Logger()
 
         # USE CUSTOM TITLE BAR | USE AS "False" FOR MAC OR LINUX
         # ///////////////////////////////////////////////////////////////
-        Settings.ENABLE_CUSTOM_TITLE_BAR = True
+        Settings.ENABLE_CUSTOM_TITLE_BAR = False
 
         # APP NAME
         # ///////////////////////////////////////////////////////////////
@@ -99,15 +102,17 @@ class MainWindow(QMainWindow):
         self.show()
 
         # SET CUSTOM THEME
-        useCustomTheme = False
-        themeFile_light = ":C:\\Users\\Admin\\Desktop\\ДИПЛОМ\\themes\\theme_light.qss"
-        themeFile_dark = "C:\\Users\\Admin\\Desktop\\ДИПЛОМ\\themes\\theme_dark.qss"
+        useCustomTheme = True
+        themeFile_light = "themes\\theme_light.qss"
+        themeFile_dark = "themes\\theme_dark.qss"
         if useCustomTheme:
             UIFunctions.theme(self, themeFile_light, True)
             AppFunctions.setThemeHack(self)
+            self.log.log_info("Установлена светлая тема".strip())
         else:
             UIFunctions.theme(self, themeFile_dark, True)
             AppFunctions.setThemeHack(self)
+            self.log.log_info("Установлена темная тема")
         widgets.stackedWidget.setCurrentWidget(widgets.report_page)
 
         record = self.model.record()
@@ -140,10 +145,15 @@ class MainWindow(QMainWindow):
 
     def open_dialog_config_db(self):
         dialog = DialogsSetting.DialogConfigDB(self)
+        if not dialog.isVisible():
+            self.log.log_info("Открыто диалоговое окно с кофигом БД")
         dialog.exec()
+
 
     def open_dialog_keyword(self):
         dialog = DialogsSetting.DialogKey(self)
+        if not dialog.isVisible():
+            self.log.log_info("Открыто диалоговое окно с горячими клавишами")
         dialog.exec()
 
     def open_dialog_extension_search(self):
@@ -151,8 +161,6 @@ class MainWindow(QMainWindow):
         if dialog.exec() == QDialog.Accepted:
             test_data,user_data,np_data,N_data, start_date, end_date = dialog.get_filter_parameters()
             self.apply_filter(test_data, start_date, end_date)
-            # dialog.filter_query_model(self.model, test_data, user_data, np_data, N_data, start_date, end_date)
-            # self.tableView.reset()
 
     def apply_filter(self, test_data, start_date, end_date):
         filters = []

@@ -26,7 +26,61 @@
    <string>Расширенный поиск</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">/* Цвета и шрифты */
+    QDateEdit QCalendarWidget {
+        background-color: #2c3e50; /* Цвет фона */
+        color: #ecf0f1; /* Цвет текста */
+        font-family: Arial, sans-serif; /* Шрифт */
+    }
+    
+    /* Кнопки вверх/вниз для переключения месяцев/годов */
+    QDateEdit QCalendarWidget QAbstractItemView {
+        background-color: #34495e; /* Цвет фона */
+        color: #ecf0f1; /* Цвет текста */
+    }
+
+    /* Кнопки переключения месяцев/годов */
+    QDateEdit QCalendarWidget QToolButton {
+        background-color: #2c3e50; /* Цвет фона */
+        color: #ecf0f1; /* Цвет текста */
+    }
+
+    /* Кнопки всплывающего окна */
+    QDateEdit QCalendarWidget QToolButton:hover {
+        background-color: #4a69bd; /* Цвет фона при наведении */
+    }
+
+    /* Фон выделенной даты */
+    QDateEdit QCalendarWidget QTableView:selected {
+        background-color: #4a69bd; /* Цвет фона */
+        color: #ecf0f1; /* Цвет текста */
+    }
+
+    /* Фон для выходных дней */
+    QDateEdit QCalendarWidget QTableView:!disabled {
+        alternate-background-color: #34495e; /* Цвет фона */
+    }
+    
+    /* Границы ячеек */
+    QDateEdit QCalendarWidget QTableView {
+        border: 1px solid #34495e; /* Цвет границ */
+    }
+
+QDateEdit QCalendarWidget QHeaderView {
+        background-color: #ffffff; /* Цвет фона */
+        color: #ecf0f1; /* Цвет текста */
+    }
+
+    /* Переключатели месяцев и годов */
+    QDateEdit QCalendarWidget QToolButton {
+        background-color: #2c3e50; /* Цвет фона */
+        color: #ecf0f1; /* Цвет текста */
+    }
+
+    /* Переключатели месяцев и годов при наведении */
+    QDateEdit QCalendarWidget QToolButton:hover {
+        background-color: #4a69bd; /* Цвет фона при наведении */
+    }</string>
   </property>
   <property name="sizeGripEnabled">
    <bool>false</bool>
@@ -169,7 +223,7 @@
           </property>
           <property name="minimumDateTime">
            <datetime>
-            <hour>9</hour>
+            <hour>6</hour>
             <minute>0</minute>
             <second>0</second>
             <year>2023</year>
@@ -183,6 +237,9 @@
             <month>9</month>
             <day>13</day>
            </date>
+          </property>
+          <property name="calendarPopup">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -206,7 +263,7 @@
           </property>
           <property name="minimumDateTime">
            <datetime>
-            <hour>9</hour>
+            <hour>6</hour>
             <minute>0</minute>
             <second>0</second>
             <year>2023</year>
@@ -220,6 +277,9 @@
             <month>9</month>
             <day>13</day>
            </date>
+          </property>
+          <property name="calendarPopup">
+           <bool>true</bool>
           </property>
          </widget>
         </item>

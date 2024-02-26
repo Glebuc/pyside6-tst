@@ -2,13 +2,15 @@ from PySide6.QtWidgets import QTableView, QFileDialog
 from PySide6.QtSql import QSqlQueryModel
 from PySide6.QtCore import Qt, QDateTime, QTime
 import csv
+from loger import Logger
 
+log = Logger()
 
 def save_data_to_csv(table_view):
     model = table_view.model
 
     if not isinstance(model, QSqlQueryModel):
-        print("Модель для QTableView не является QSqlQueryModel.")
+        log.log_error("Модель для QTableView не является QSqlQueryModel.")
         return
 
     file_dialog = QFileDialog()
@@ -34,6 +36,6 @@ def save_data_to_csv(table_view):
                             for i in range(model.record().count())]
                     csv_writer.writerow(data)
 
-            print(f"Данные сохранены в файл {file_path}")
+            log.log_info(f"Данные сохранены в файл {file_path}")
         except Exception as e:
-            print(f"Ошибка: {e}")
+            log.log_error(f"Ошибка: {e}")

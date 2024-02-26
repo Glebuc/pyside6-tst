@@ -127,13 +127,11 @@ class UIFunctions(MainWindow):
             if w.objectName() == widget:
                 w.setStyleSheet(UIFunctions.selectMenu(w.styleSheet()))
 
-    def theme(self, _file, useCustomTheme):
+    def theme(self, file, useCustomTheme):
         if useCustomTheme:
-            str = open(_file, 'r').read()
+            str = open(file, 'r').read()
             self.ui.styleSheet.setStyleSheet(str)
 
-    # START - GUI DEFINITIONS
-    # ///////////////////////////////////////////////////////////////
     def uiDefinitions(self):
         def dobleClickMaximizeRestore(event):
             # IF DOUBLE CLICK CHANGE STATUS

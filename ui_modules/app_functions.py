@@ -1,11 +1,6 @@
-# MAIN FILE
-# ///////////////////////////////////////////////////////////////
 from main import *
 from ui_modules import Settings
 
-
-# WITH ACCESS TO MAIN WINDOW WIDGETS
-# ///////////////////////////////////////////////////////////////
 class AppFunctions(MainWindow):
     def setThemeHack(self) -> None:
         Settings.BTN_LEFT_BOX_COLOR = "background-color: #495474;"

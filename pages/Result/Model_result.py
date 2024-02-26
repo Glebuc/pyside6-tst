@@ -89,25 +89,25 @@ def connection_to_db():
     return decorator
 
 
-# def init_db():
-#     db = QSqlDatabase.addDatabase('QPSQL')
-#     db.setHostName(db_params['host'])
-#     db.setDatabaseName(db_params['database'])
-#     db.setPort(db_params['port'])
-#     db.setUserName(db_params['user'])
-#     db.setPassword(db_params['password'])
-#
-#     def check(func, *args):
-#         if not func(*args):
-#             raise ValueError(func.__self__.lastError())
-#
-#     check(db.open)
-#     q = QSqlQuery()
-#     check(q.exec, USERS_SQL)
-#     check(q.exec, TESTS_SQL)
-#     check(q.exec, REPORT_SQL)
-#     check(q.exec, SETTING_SQL)
-#     db.close()
+def init_db():
+    db = QSqlDatabase.addDatabase('QPSQL')
+    db.setHostName(db_params['host'])
+    db.setDatabaseName(db_params['database'])
+    db.setPort(db_params['port'])
+    db.setUserName(db_params['user'])
+    db.setPassword(db_params['password'])
+
+    def check(func, *args):
+        if not func(*args):
+            raise ValueError(func.__self__.lastError())
+
+    check(db.open)
+    q = QSqlQuery()
+    check(q.exec, USERS_SQL)
+    check(q.exec, TESTS_SQL)
+    check(q.exec, REPORT_SQL)
+    check(q.exec, SETTING_SQL)
+    db.close()
 
 
 @connection_to_db()
@@ -140,17 +140,6 @@ class DatabaseModel(QSqlQueryModel):
 
         self.displayed_columns = []
         self.visible_columns = []
-
-        # db = QSqlDatabase.addDatabase("QPSQL")
-        # db.setHostName(db_params['host'])
-        # db.setDatabaseName(db_params['database'])
-        # db.setPort(db_params['port'])
-        # db.setUserName(db_params['user'])
-        # db.setPassword(db_params['password'])
-        #
-        # if not db.open():
-        #     print("Ошибка установки соединения:", db.lastError().text())
-        #     return
 
         self.setQuery(ALL_RESULT_SQL)
         if self.lastError().isValid():

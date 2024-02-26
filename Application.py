@@ -2,9 +2,12 @@ from PySide6.QtWidgets import QApplication
 from PySide6.QtCore import QTranslator
 from PySide6.QtSql import QSqlDatabase
 from database import db_params
+from loger import Logger
+
+
+log = Logger()
 
 class Application(QApplication):
-
     def __init__(self, argv):
         super().__init__(argv)
         db = QSqlDatabase.addDatabase("QPSQL")
@@ -13,9 +16,12 @@ class Application(QApplication):
         db.setPort(db_params['port'])
         db.setUserName(db_params['user'])
         db.setPassword(db_params['password'])
+        print(db.open())
         if not db.open():
-            print("Ошибка установки соединения:", db.lastError().text())
+            log.log_error(f"Ошибка установки соединения: {db.lastError().text()}")
             return
+        else:
+            log.log_info("Соединение с БД установлено")
 
 
         self.setup()
@@ -29,7 +35,7 @@ class Application(QApplication):
         # 'translations/en.qm'
         ok = trans.load('')
         if ok:
-            print("Английский перевод загружен")
+            log.log_info("Английский перевод загружен")
         else:
-            print("Русский перевод загружен")
+            log.log_info("Русский перевод загружен")
         QApplication.installTranslator(trans)

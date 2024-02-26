@@ -1,6 +1,7 @@
 import os
+from loger import Logger
 
-
+log = Logger()
 
 def create_config_if_not_exists(file_path='config.ini'):
     if not os.path.exists(file_path):
@@ -18,9 +19,9 @@ scale = 100
 """
         with open(file_path, 'w') as file:
             file.write(config_content)
-        print(f"Config file '{file_path}' created with default values.")
+        log.log_info(f"Config file '{file_path}' created with default values.")
     else:
-        print(f"Config file '{file_path}' already exists.")
+        log.log_info(f"Config file '{file_path}' already exists.")
 
 
 def read_config(file_path='config.ini'):

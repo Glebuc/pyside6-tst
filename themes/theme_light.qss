@@ -590,6 +590,9 @@ background-image: url(:/icons/images/icons/cil-chart-pie.png);
 #right_chart_btn {
 	background-image: url(:/icons/images/icons/cil-caret-right.png);
 }
+#reset_chart_btn{
+	background-image: url(:/icons/images/icons/cil-loop-circular.png);
+}
 #list_test_result, #list_test_chart {
 	color:#ffffff;
 }
@@ -601,4 +604,7 @@ QDialog {
 	font: 10pt "Segoe UI";
 	background-color: rgb(255, 255, 255);
 	border: 1px solid rgb(44, 49, 58);
+}
+QListView {
+    background-color: rgba(100, 100, 100, 190);
 }

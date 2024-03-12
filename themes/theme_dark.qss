@@ -402,7 +402,6 @@ QComboBox{
 	border-radius: 5px;
 	border: 2px solid rgb(33, 37, 43);
 	padding: 5px;
-	padding-left: 10px;
 }
 QComboBox:hover{
 	border: 2px solid rgb(64, 71, 88);
@@ -563,6 +562,9 @@ background-image: url(:/icons/images/icons/cil-chart-pie.png);
 }
 #right_chart_btn {
 	background-image: url(:/icons/images/icons/cil-caret-right.png);
+}
+#reset_chart_btn{
+	background-image: url(:/icons/images/icons/cil-loop-circular.png);
 }
 #list_test {
 	color:#ffffff;

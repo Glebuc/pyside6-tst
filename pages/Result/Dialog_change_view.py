@@ -8,7 +8,6 @@ class ColumnSelectionDialog(QDialog):
         super().__init__(parent)
         self.setWindowTitle("Выбор отображаемых столбцов")
         self.column_names = column_names
-        print(column_names)
         self.checkbox_dict = {}
         self.setMinimumSize(250, 200)
 
@@ -24,7 +23,7 @@ class ColumnSelectionDialog(QDialog):
         button.clicked.connect(self.accept)
         layout.addWidget(button)
 
-        with open('C:\\Users\\Admin\\Desktop\\ДИПЛОМ\\themes\\theme_dark.qss', 'r') as f: # придумать что-то с путями для файлов приложения
+        with open('C:\\Users\\Admin\\Desktop\\ДИПЛОМ\\themes\\theme_light.qss', 'r') as f: # придумать что-то с путями для файлов приложения
             dialog_stylesheet = f.read()
         self.setStyleSheet(dialog_stylesheet)
         self.setMaximumSize(300, 300)

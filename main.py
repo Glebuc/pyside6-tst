@@ -1,6 +1,7 @@
 # from PySide6.QtCore import *
 # from PySide6.QtGui import *
 # from PySide6.QtWidgets import *
+#from PySide6.QtCharts import *
 #
 # from . resources_rc import *
 
@@ -10,7 +11,7 @@ import os
 import platform
 
 from PySide6.QtWidgets import QDialog, QFormLayout, QCheckBox, QVBoxLayout, QPushButton, \
-    QTableView,QMainWindow, QWidget, QHeaderView
+    QTableView,QMainWindow, QWidget, QHeaderView, QMessageBox, QGraphicsScene
 from PySide6.QtGui import QTransform
 from PySide6 import QtCore
 from PySide6.QtCore import Qt
@@ -22,7 +23,7 @@ from loger import Logger
 from Application import Application
 from ui_modules import *
 from widgets import *
-from pages import Model_result, Save_data, View_result, Dialog_change_view, DialogsSetting, DialogsResult
+from pages import Model_result, Save_data, View_result, Dialog_change_view, DialogsSetting, DialogsResult, Chart_view
 
 
 
@@ -60,6 +61,22 @@ class MainWindow(QMainWindow):
         self.model = Model_result.DatabaseModel('tests')
 
         widgets.btn_change_view.clicked.connect(self.open_column_selection_dialog)
+
+        self.scene = QGraphicsScene()
+        self.view = Chart_view.ChartView(self.scene)
+        self.chart = Chart_view.CustomChart()
+        self.chart.update_chart()
+        self.scene.addItem(self.chart)
+        widgets.up_chart_btn.clicked.connect(self.chart.scroll_up)
+        widgets.down_chart_btn.clicked.connect(self.chart.scroll_down)
+        widgets.left_chart_btn.clicked.connect(self.chart.scroll_left)
+        widgets.right_chart_btn.clicked.connect(self.chart.scroll_right)
+        widgets.zoom_in_chart_btn.clicked.connect(self.chart.zoom_in)
+        widgets.zoom_out_chart_btn.clicked.connect(self.chart.zoom_out)
+        widgets.reset_chart_btn.clicked.connect(self.chart.reset)
+
+
+        widgets.graphicsView.setChart(self.chart)
 
         widgets.list_test_result.addItem("Все тесты")
         for i in Model_result.result:
@@ -102,7 +119,7 @@ class MainWindow(QMainWindow):
         self.show()
 
         # SET CUSTOM THEME
-        useCustomTheme = True
+        useCustomTheme = False
         themeFile_light = "themes\\theme_light.qss"
         themeFile_dark = "themes\\theme_dark.qss"
         if useCustomTheme:
@@ -123,9 +140,19 @@ class MainWindow(QMainWindow):
         # словарь для хранения состояний флажков
         self.checkbox_dict = {}
 
-    def open_column_selection_dialog(self):
-        visible_columns = [self.model.headerData(i, QtCore.Qt.Horizontal) for i in range(self.model.columnCount())]
 
+    def open_column_selection_dialog(self):
+        """
+           Открывает диалоговое окно для выбора отображаемых столбцов в таблице.
+
+           Функция извлекает список всех видимых столбцов из модели данных таблицы и отображает диалоговое окно выбора столбцов.
+           После нажатия на кнопку "Подтвердить" диалогового окна функция проверяет, какие столбцы были выбраны пользователем, и соответственно
+           скрывает или отображает столбцы в таблице.
+
+           Returns:
+               None
+           """
+        visible_columns = [self.model.headerData(i, QtCore.Qt.Horizontal) for i in range(self.model.columnCount())]
         if self.column_selection_dialog.exec() == QDialog.Accepted:
             selected_columns = self.column_selection_dialog.get_selected_columns()
             for column_index in range(self.model.columnCount()):
@@ -134,14 +161,6 @@ class MainWindow(QMainWindow):
                     self.tableView.showColumn(column_index)
                 else:
                     self.tableView.hideColumn(column_index)
-
-    def update_table_columns(self, selected_columns):
-        for column_index in range(self.model.columnCount()):
-            column_name = self.model.headerData(column_index, QtCore.Qt.Horizontal)
-            if column_name in selected_columns:
-                self.tableView.showColumn(column_index)
-            else:
-                self.tableView.hideColumn(column_index)
 
     def open_dialog_config_db(self):
         dialog = DialogsSetting.DialogConfigDB(self)
@@ -160,12 +179,15 @@ class MainWindow(QMainWindow):
         dialog = DialogsResult.DialogExtensionSearch(self)
         if dialog.exec() == QDialog.Accepted:
             test_data,user_data,np_data,N_data, start_date, end_date = dialog.get_filter_parameters()
-            self.apply_filter(test_data, start_date, end_date)
+            self.apply_filter(test_data, start_date, end_date, user_data)
 
-    def apply_filter(self, test_data, start_date, end_date):
+    def apply_filter(self, test_data, start_date, end_date, user_data):
+        #Перенести эту функцию в модель данных страницы результатов
         filters = []
         if test_data:
             filters.append(f"test_name = '{test_data}'")
+        if user_data:
+            filters.append(f"user_name = '{user_data}'")
         if start_date and end_date:
             filters.append(f"start_test BETWEEN '{start_date}' AND '{end_date}'")
         where_clause = " AND ".join(filters)
@@ -176,6 +198,14 @@ class MainWindow(QMainWindow):
                     INNER JOIN users as u ON t.id_user_fk = u.user_id {where_clause}"""
         print(query)
         self.model.setQuery(query)
+        if self.model.rowCount() == 0:
+            # Если строк нет, выводим предупреждение
+            QMessageBox.warning(None, "Предупреждение", "Нет данных, удовлетворяющих условиям запроса.")
+            # Оставляем модель предыдущей
+            self.model.setQuery(Model_result.ALL_RESULT_SQL)
+        else:
+            # Если нет ни одного условия, выводим предупреждение
+            QMessageBox.information(None, "Данные были изменены", "Данные в таблице  отфильтрованы")
         self.tableView.setModel(self.model)
 
     def button_click(self) -> None:

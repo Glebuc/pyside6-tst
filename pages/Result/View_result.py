@@ -19,7 +19,5 @@ class CustomTableView(QTableView):
         header = self.horizontalHeader()
         for i in range(self.model.columnCount()):
             header.setSectionResizeMode(i, QHeaderView.Stretch)
-        # header.setDefaultAlignment(Qt.AlignLeft | Qt.AlignVCenter)
-        # header.setStyleSheet("QHeaderView::section {"
-        #                      "    word-wrap: break-word;"
-        #                      "}")
+
+

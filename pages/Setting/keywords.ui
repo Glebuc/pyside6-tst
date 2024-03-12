@@ -132,7 +132,7 @@
         </item>
         <item row="0" column="1">
          <property name="text">
-          <string>Открыть вкладку &quot;ergergergregerg&quot;</string>
+          <string>Открыть вкладку &quot;Отчетов&quot;</string>
          </property>
          <property name="textAlignment">
           <set>AlignCenter</set>
@@ -148,7 +148,10 @@
         </item>
         <item row="1" column="1">
          <property name="text">
-          <string>Открыть вкладку &quot;&quot;</string>
+          <string>Открыть вкладку &quot;Графиков&quot;</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
          </property>
         </item>
         <item row="2" column="0">
@@ -161,7 +164,10 @@
         </item>
         <item row="2" column="1">
          <property name="text">
-          <string>Открыть вкладку &quot;&quot;</string>
+          <string>Открыть вкладку &quot;Результатов&quot;</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
          </property>
         </item>
         <item row="3" column="0">
@@ -174,7 +180,10 @@
         </item>
         <item row="3" column="1">
          <property name="text">
-          <string>Открыть вкладку &quot;&quot;</string>
+          <string>Открыть вкладку &quot;Настройки&quot;</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
          </property>
         </item>
         <item row="4" column="0">
@@ -188,6 +197,9 @@
         <item row="4" column="1">
          <property name="text">
           <string>Развернуть/Свернуть меню</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
          </property>
         </item>
        </widget>

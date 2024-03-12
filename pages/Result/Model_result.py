@@ -4,6 +4,7 @@ from PySide6.QtCore import Qt, Slot
 from ui_modules import *
 from PySide6.QtUiTools import QUiLoader
 from database import db_params
+from ..BaseModel import BaseModel
 
 
 USERS_SQL = """
@@ -19,7 +20,7 @@ USERS_SQL = """
 TESTS_SQL = """
     CREATE TABLE IF NOT EXISTS tests (
 	test_name varchar NOT NULL,
-	test_param varchar NULL,
+	test_param jsonb NULL,
 	test_note text NULL,
 	test_id serial4 NOT NULL,
 	id_user_fk int4 NULL,
@@ -134,30 +135,35 @@ print(*max_date)
 print(min_date)
 
 
-class DatabaseModel(QSqlQueryModel):
+class DatabaseModel(BaseModel):
     def __init__(self, table_name):
-        super().__init__()
+        super().__init__(table_name)
 
         self.displayed_columns = []
         self.visible_columns = []
 
-        self.setQuery(ALL_RESULT_SQL)
-        if self.lastError().isValid():
-            print("Ошибка выполнения запроса:", self.lastError().text())
-
-        # self.setHeaderData(self.record().indexOf("test_name"), Qt.Horizontal, self.tr("Название теста"))
-        # self.setHeaderData(self.record().indexOf("test_param"), Qt.Horizontal, self.tr("Параметры теста"))
-        # self.setHeaderData(self.record().indexOf("test_note"), Qt.Horizontal, self.tr("Заметка"))
-        # self.setHeaderData(self.record().indexOf("test_id"), Qt.Horizontal, self.tr("ID Теста"))
-        # self.setHeaderData(self.record().indexOf("start_test"), Qt.Horizontal, self.tr("Дата выполнения"))
-        # self.setHeaderData(self.record().indexOf("time_test"), Qt.Horizontal, self.tr("Время выполнения"))
-        # self.setHeaderData(self.record().indexOf("user_name"), Qt.Horizontal, self.tr("Пользователь"))
-        # self.setHeaderData(self.record().indexOf("test_result"), Qt.Horizontal, self.tr("Результат"))
+        # index_test_name = self.record().indexOf("test_name")
+        # index_test_param = self.record().indexOf("test_param")
+        # index_test_note = self.record().indexOf("test_note")
+        # index_test_id = self.record().indexOf("test_id")
+        # index_start_test = self.record().indexOf("start_test")
+        # index_time_test = self.record().indexOf("time_test")
+        # index_user_name = self.record().indexOf("user_name")
+        # index_test_result = self.record().indexOf("test_result")
+        #
+        # # Используем индексы полей для установки новых заголовков столбцов
+        # self.setHeaderData(index_test_name, Qt.Horizontal, self.tr("Название теста"))
+        # self.setHeaderData(index_test_param, Qt.Horizontal, self.tr("Параметры теста"))
+        # self.setHeaderData(index_test_note, Qt.Horizontal, self.tr("Заметка"))
+        # self.setHeaderData(index_test_id, Qt.Horizontal, self.tr("ID Теста"))
+        # self.setHeaderData(index_start_test, Qt.Horizontal, self.tr("Дата выполнения"))
+        # self.setHeaderData(index_time_test, Qt.Horizontal, self.tr("Время выполнения"))
+        # self.setHeaderData(index_user_name, Qt.Horizontal, self.tr("Пользователь"))
+        # self.setHeaderData(index_test_result, Qt.Horizontal, self.tr("Результат"))
 
     def filter_data(self, combo_box: QComboBox, table_view: QTableView) -> None:
         selected_option = combo_box.currentText()
         query = QSqlQuery()
-
         if selected_option == "Все тесты":
             self.setQuery(QSqlQuery(ALL_RESULT_SQL))
         else:
@@ -169,13 +175,13 @@ class DatabaseModel(QSqlQueryModel):
             """)
             query.bindValue(":selected_option", selected_option)
             query.exec_()
-
             self.setQuery(query)
-
         table_view.setModel(self)
+
 
     def close_connection(self):
         QSqlDatabase.database().close()
+
 
     def check_connection_database(self):
         try:

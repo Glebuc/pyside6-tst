@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1145</width>
-    <height>721</height>
+    <width>940</width>
+    <height>560</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -602,6 +602,10 @@ background-image: url(:/icons/images/icons/cil-chart-pie.png);
 }
 #right_chart_btn {
 	background-image: url(:/icons/images/icons/cil-caret-right.png);
+}
+#reset_chart_btn{
+	
+	background-image: url(:/icons/images/icons/cil-loop-circular.png);
 }
 #list_test {
 	color:#ffffff;
@@ -1885,8 +1889,11 @@ background-image: none;
                    </property>
                    <item>
                     <widget class="QStackedWidget" name="stackedWidget">
+                     <property name="lineWidth">
+                      <number>0</number>
+                     </property>
                      <property name="currentIndex">
-                      <number>2</number>
+                      <number>1</number>
                      </property>
                      <widget class="QWidget" name="report_page">
                       <property name="styleSheet">
@@ -1896,12 +1903,26 @@ background-repeat: no-repeat;</string>
                       </property>
                       <layout class="QVBoxLayout" name="verticalLayout_11">
                        <item>
-                        <widget class="QLabel" name="label_8">
+                        <widget class="QLabel" name="label">
                          <property name="text">
-                          <string>Страница отчетов</string>
+                          <string>Список отчетов</string>
                          </property>
-                         <property name="alignment">
-                          <set>Qt::AlignCenter</set>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QListView" name="listView"/>
+                       </item>
+                       <item>
+                        <widget class="QPushButton" name="pushButton_2">
+                         <property name="text">
+                          <string>Показать отчет...</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QPushButton" name="pushButton">
+                         <property name="text">
+                          <string>Сохранить отчет...</string>
                          </property>
                         </widget>
                        </item>
@@ -1952,7 +1973,7 @@ background-repeat: no-repeat;</string>
                           <item>
                            <widget class="QPushButton" name="change_view_chart_btn">
                             <property name="text">
-                             <string>Отображение графика...</string>
+                             <string>Настройки отображения графика...</string>
                             </property>
                            </widget>
                           </item>
@@ -2104,6 +2125,13 @@ background-repeat: no-repeat;</string>
                                  </widget>
                                 </item>
                                 <item>
+                                 <widget class="QPushButton" name="reset_chart_btn">
+                                  <property name="text">
+                                   <string/>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
                                  <spacer name="verticalSpacer">
                                   <property name="orientation">
                                    <enum>Qt::Vertical</enum>
@@ -2130,7 +2158,7 @@ background-repeat: no-repeat;</string>
                               </widget>
                              </item>
                              <item>
-                              <widget class="QGraphicsView" name="graphicsView"/>
+                              <widget class="QChartView" name="graphicsView"/>
                              </item>
                             </layout>
                            </widget>
@@ -2392,6 +2420,13 @@ background-repeat: no-repeat;</string>
    </layout>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QChartView</class>
+   <extends>QGraphicsView</extends>
+   <header>qchartview</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="resources.qrc"/>
  </resources>

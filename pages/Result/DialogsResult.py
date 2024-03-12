@@ -1,6 +1,7 @@
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QDialog, QVBoxLayout
 from PySide6.QtSql import QSqlQueryModel
 from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QMessageBox
 from .Model_result import users
 from .ui_dialog_extension_search import Ui_Dialog as ExtensionSearch
 
@@ -30,20 +31,22 @@ class DialogExtensionSearch(QDialog, ExtensionSearch):
     FROM tests as t
     INNER JOIN users as u ON t.id_user_fk = u.user_id WHERE """
         conditions = []
-
         if test_data:
             conditions.append(f"test_name = '{test_data}'")
         if user_data:
             conditions.append(f"user_name = '{user_data}'")
-        # if np_data:
-        #     conditions.append(f"np_column = '{np_data}'")
-        # if N_data:
-        #     conditions.append(f"N_column = '{N_data}'")
+        if np_data:
+            conditions.append(f"np_column = '{np_data}'")
+        if N_data:
+            conditions.append(f"N_column = '{N_data}'")
         if start_date and end_date:
             conditions.append(f"start_test BETWEEN '{start_date}' AND '{end_date}'")
 
         if conditions:
             sql_query += " AND ".join(conditions)
-        print(sql_query)
-
-        model.setQuery(sql_query)
+            model.setQuery(sql_query)
+            if model.rowCount() == 0:
+                QMessageBox.warning(None, "Предупреждение", "Нет данных, удовлетворяющих условиям запроса.")
+                model.revert()
+        else:
+            QMessageBox.warning(None, "Предупреждение", "Не указано ни одного условия.")

@@ -72,21 +72,25 @@ class Ui_Dialog(object):
         __qtablewidgetitem8.setTextAlignment(Qt.AlignCenter);
         self.tableWidget.setItem(1, 0, __qtablewidgetitem8)
         __qtablewidgetitem9 = QTableWidgetItem()
+        __qtablewidgetitem9.setTextAlignment(Qt.AlignCenter);
         self.tableWidget.setItem(1, 1, __qtablewidgetitem9)
         __qtablewidgetitem10 = QTableWidgetItem()
         __qtablewidgetitem10.setTextAlignment(Qt.AlignCenter);
         self.tableWidget.setItem(2, 0, __qtablewidgetitem10)
         __qtablewidgetitem11 = QTableWidgetItem()
+        __qtablewidgetitem11.setTextAlignment(Qt.AlignCenter);
         self.tableWidget.setItem(2, 1, __qtablewidgetitem11)
         __qtablewidgetitem12 = QTableWidgetItem()
         __qtablewidgetitem12.setTextAlignment(Qt.AlignCenter);
         self.tableWidget.setItem(3, 0, __qtablewidgetitem12)
         __qtablewidgetitem13 = QTableWidgetItem()
+        __qtablewidgetitem13.setTextAlignment(Qt.AlignCenter);
         self.tableWidget.setItem(3, 1, __qtablewidgetitem13)
         __qtablewidgetitem14 = QTableWidgetItem()
         __qtablewidgetitem14.setTextAlignment(Qt.AlignCenter);
         self.tableWidget.setItem(4, 0, __qtablewidgetitem14)
         __qtablewidgetitem15 = QTableWidgetItem()
+        __qtablewidgetitem15.setTextAlignment(Qt.AlignCenter);
         self.tableWidget.setItem(4, 1, __qtablewidgetitem15)
         self.tableWidget.setObjectName(u"tableWidget")
         self.tableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)
@@ -121,19 +125,19 @@ class Ui_Dialog(object):
         ___qtablewidgetitem2 = self.tableWidget.item(0, 0)
         ___qtablewidgetitem2.setText(QCoreApplication.translate("Dialog", u"Ctrl+Q", None));
         ___qtablewidgetitem3 = self.tableWidget.item(0, 1)
-        ___qtablewidgetitem3.setText(QCoreApplication.translate("Dialog", u"\u041e\u0442\u043a\u0440\u044b\u0442\u044c \u0432\u043a\u043b\u0430\u0434\u043a\u0443 \"ergergergregerg\"", None));
+        ___qtablewidgetitem3.setText(QCoreApplication.translate("Dialog", u"\u041e\u0442\u043a\u0440\u044b\u0442\u044c \u0432\u043a\u043b\u0430\u0434\u043a\u0443 \"\u041e\u0442\u0447\u0435\u0442\u043e\u0432\"", None));
         ___qtablewidgetitem4 = self.tableWidget.item(1, 0)
         ___qtablewidgetitem4.setText(QCoreApplication.translate("Dialog", u"Ctrl+W", None));
         ___qtablewidgetitem5 = self.tableWidget.item(1, 1)
-        ___qtablewidgetitem5.setText(QCoreApplication.translate("Dialog", u"\u041e\u0442\u043a\u0440\u044b\u0442\u044c \u0432\u043a\u043b\u0430\u0434\u043a\u0443 \"\"", None));
+        ___qtablewidgetitem5.setText(QCoreApplication.translate("Dialog", u"\u041e\u0442\u043a\u0440\u044b\u0442\u044c \u0432\u043a\u043b\u0430\u0434\u043a\u0443 \"\u0413\u0440\u0430\u0444\u0438\u043a\u043e\u0432\"", None));
         ___qtablewidgetitem6 = self.tableWidget.item(2, 0)
         ___qtablewidgetitem6.setText(QCoreApplication.translate("Dialog", u"Ctrl+E", None));
         ___qtablewidgetitem7 = self.tableWidget.item(2, 1)
-        ___qtablewidgetitem7.setText(QCoreApplication.translate("Dialog", u"\u041e\u0442\u043a\u0440\u044b\u0442\u044c \u0432\u043a\u043b\u0430\u0434\u043a\u0443 \"\"", None));
+        ___qtablewidgetitem7.setText(QCoreApplication.translate("Dialog", u"\u041e\u0442\u043a\u0440\u044b\u0442\u044c \u0432\u043a\u043b\u0430\u0434\u043a\u0443 \"\u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u043e\u0432\"", None));
         ___qtablewidgetitem8 = self.tableWidget.item(3, 0)
         ___qtablewidgetitem8.setText(QCoreApplication.translate("Dialog", u"Ctrl+R", None));
         ___qtablewidgetitem9 = self.tableWidget.item(3, 1)
-        ___qtablewidgetitem9.setText(QCoreApplication.translate("Dialog", u"\u041e\u0442\u043a\u0440\u044b\u0442\u044c \u0432\u043a\u043b\u0430\u0434\u043a\u0443 \"\"", None));
+        ___qtablewidgetitem9.setText(QCoreApplication.translate("Dialog", u"\u041e\u0442\u043a\u0440\u044b\u0442\u044c \u0432\u043a\u043b\u0430\u0434\u043a\u0443 \"\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438\"", None));
         ___qtablewidgetitem10 = self.tableWidget.item(4, 0)
         ___qtablewidgetitem10.setText(QCoreApplication.translate("Dialog", u"Ctrl+Space", None));
         ___qtablewidgetitem11 = self.tableWidget.item(4, 1)

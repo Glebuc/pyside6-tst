@@ -1,5 +1,6 @@
 import logging
 from datetime import datetime
+import sys
 
 class Logger:
     filename = f"log-{datetime.now().strftime('%Y-%m-%d')}.txt"
@@ -12,9 +13,16 @@ class Logger:
 
         file_handler = logging.FileHandler(Logger.filename, mode='w', encoding='utf-8')
         file_handler.setLevel(logging.DEBUG)
+
+        console_handler = logging.StreamHandler(sys.stdout)
+        console_handler.setLevel(logging.DEBUG)
+
         file_handler.setFormatter(formatter)
 
         self.logger.addHandler(file_handler)
+        self.logger.addHandler(console_handler)
+
+
 
     def log_info(self, message):
         self.logger.info(message)

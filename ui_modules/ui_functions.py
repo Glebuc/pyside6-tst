@@ -138,7 +138,7 @@ class UIFunctions(MainWindow):
             if event.type() == QEvent.MouseButtonDblClick:
                 QTimer.singleShot(250, lambda: UIFunctions.maximize_restore(self))
 
-        self.ui.titleRightInfo.mouseDoubleClickEvent = dobleClickMaximizeRestore
+        # self.ui.titleRightInfo.mouseDoubleClickEvent = dobleClickMaximizeRestore
 
         if Settings.ENABLE_CUSTOM_TITLE_BAR:
             # STANDARD TITLE BAR
@@ -157,8 +157,6 @@ class UIFunctions(MainWindow):
                     self.dragPos = event.globalPos()
                     event.accept()
 
-            self.ui.titleRightInfo.mouseMoveEvent = moveWindow
-            self.ui.topLogoInfo.mouseMoveEvent = moveWindow
 
             # CUSTOM GRIPS
             self.left_grip = CustomGrip(self, Qt.LeftEdge, True)
@@ -168,11 +166,7 @@ class UIFunctions(MainWindow):
 
         else:
             self.ui.styleSheet.setContentsMargins(0, 0, 0, 0)
-            self.ui.minimizeAppBtn.hide()
-            self.ui.maximizeRestoreAppBtn.hide()
-            self.ui.closeAppBtn.hide()
             self.ui.frame_size_grip.hide()
-            self.ui.contentTopBg.hide()
             self.ui.topLogoInfo.hide()
 
         # DROP SHADOW
@@ -187,14 +181,6 @@ class UIFunctions(MainWindow):
         self.sizegrip = QSizeGrip(self.ui.frame_size_grip)
         self.sizegrip.setStyleSheet("width: 20px; height: 20px; margin 0px; padding: 0px;")
 
-        # MINIMIZE
-        self.ui.minimizeAppBtn.clicked.connect(lambda: self.showMinimized())
-
-        # MAXIMIZE/RESTORE
-        self.ui.maximizeRestoreAppBtn.clicked.connect(lambda: UIFunctions.maximize_restore(self))
-
-        # CLOSE APPLICATION
-        self.ui.closeAppBtn.clicked.connect(lambda: self.close())
 
     def resize_grips(self):
         if Settings.ENABLE_CUSTOM_TITLE_BAR:

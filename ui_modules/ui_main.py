@@ -451,13 +451,12 @@ class Ui_MainWindow(object):
 "	border-radius: 5px;\n"
 "	border: 2px solid rgb(33, 37, 43);\n"
 "	padding: 5px;\n"
-"	padding-left: 10px;\n"
 "}\n"
 "QComboBox:hover{\n"
-"	border: 2px solid rgb(64, 71,"
-                        " 88);\n"
+"	border: 2px solid rgb(64, 71, 88);\n"
 "}\n"
-"QComboBox::drop-down {\n"
+"QComboBox"
+                        "::drop-down {\n"
 "	subcontrol-origin: padding;\n"
 "	subcontrol-position: top right;\n"
 "	width: 25px; \n"
@@ -488,9 +487,9 @@ class Ui_MainWindow(object):
 "QSlider::groove:horizontal:hover {\n"
 "	background-color: rgb(55, 62, 76);\n"
 "}\n"
-"QSlider::handle:horizont"
-                        "al {\n"
-"    background-color: rgb(189, 147, 249);\n"
+"QSlider::handle:horizontal {\n"
+"    background-c"
+                        "olor: rgb(189, 147, 249);\n"
 "    border: none;\n"
 "    height: 10px;\n"
 "    width: 10px;\n"
@@ -528,8 +527,8 @@ class Ui_MainWindow(object):
 "    background-color: rgb(35, 40, 49);\n"
 "}\n"
 "\n"
-"/* /////////////////////////////////////////////////////////////"
-                        "////////////////////////////////////\n"
+"/* //////////////////////////////////////////////////////////////////////////////////////"
+                        "///////////\n"
 "CommandLinkButton */\n"
 "QCommandLinkButton {	\n"
 "	color: rgb(255, 121, 198);\n"
@@ -566,9 +565,9 @@ class Ui_MainWindow(object):
 "	padding: 5px;\n"
 "}\n"
 "\n"
-""
-                        "#result_page {\n"
-"	background-color: rgb(94, 92, 100);\n"
+"#result_page {\n"
+"	ba"
+                        "ckground-color: rgb(94, 92, 100);\n"
 "}\n"
 "#chart_page{\n"
 "	background-color: rgb(94, 92, 100);\n"
@@ -606,8 +605,8 @@ class Ui_MainWindow(object):
 "	background-image: url(:/icons/images/icons/cil-zoom-out.png);\n"
 "}\n"
 "#up_chart_btn {\n"
-"	background-image: url(:/icons"
-                        "/images/icons/cil-caret-top.png);\n"
+"	background-image: url(:/icons/images/icons/cil-care"
+                        "t-top.png);\n"
 "}\n"
 "#down_chart_btn {\n"
 "	background-image: url(:/icons/images/icons/cil-caret-bottom.png);\n"
@@ -1008,95 +1007,6 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.contentTopBg = QFrame(self.contentBox)
-        self.contentTopBg.setObjectName(u"contentTopBg")
-        self.contentTopBg.setMinimumSize(QSize(0, 40))
-        self.contentTopBg.setMaximumSize(QSize(16777215, 40))
-        self.contentTopBg.setFrameShape(QFrame.NoFrame)
-        self.contentTopBg.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout = QHBoxLayout(self.contentTopBg)
-        self.horizontalLayout.setSpacing(0)
-        self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.horizontalLayout.setContentsMargins(0, 0, 10, 0)
-        self.leftBox = QFrame(self.contentTopBg)
-        self.leftBox.setObjectName(u"leftBox")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
-        sizePolicy3.setHorizontalStretch(0)
-        sizePolicy3.setVerticalStretch(0)
-        sizePolicy3.setHeightForWidth(self.leftBox.sizePolicy().hasHeightForWidth())
-        self.leftBox.setSizePolicy(sizePolicy3)
-        self.leftBox.setFrameShape(QFrame.NoFrame)
-        self.leftBox.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_3 = QHBoxLayout(self.leftBox)
-        self.horizontalLayout_3.setSpacing(0)
-        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.titleRightInfo = QLabel(self.leftBox)
-        self.titleRightInfo.setObjectName(u"titleRightInfo")
-        sizePolicy4 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
-        sizePolicy4.setHorizontalStretch(0)
-        sizePolicy4.setVerticalStretch(0)
-        sizePolicy4.setHeightForWidth(self.titleRightInfo.sizePolicy().hasHeightForWidth())
-        self.titleRightInfo.setSizePolicy(sizePolicy4)
-        self.titleRightInfo.setMaximumSize(QSize(16777215, 45))
-        self.titleRightInfo.setFont(font)
-        self.titleRightInfo.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
-
-        self.horizontalLayout_3.addWidget(self.titleRightInfo)
-
-
-        self.horizontalLayout.addWidget(self.leftBox)
-
-        self.rightButtons = QFrame(self.contentTopBg)
-        self.rightButtons.setObjectName(u"rightButtons")
-        self.rightButtons.setMinimumSize(QSize(0, 28))
-        self.rightButtons.setFrameShape(QFrame.NoFrame)
-        self.rightButtons.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_2 = QHBoxLayout(self.rightButtons)
-        self.horizontalLayout_2.setSpacing(5)
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.minimizeAppBtn = QPushButton(self.rightButtons)
-        self.minimizeAppBtn.setObjectName(u"minimizeAppBtn")
-        self.minimizeAppBtn.setMinimumSize(QSize(28, 28))
-        self.minimizeAppBtn.setMaximumSize(QSize(28, 28))
-        self.minimizeAppBtn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon4 = QIcon()
-        icon4.addFile(u":/icons/images/icons/icon_minimize.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.minimizeAppBtn.setIcon(icon4)
-        self.minimizeAppBtn.setIconSize(QSize(20, 20))
-
-        self.horizontalLayout_2.addWidget(self.minimizeAppBtn)
-
-        self.maximizeRestoreAppBtn = QPushButton(self.rightButtons)
-        self.maximizeRestoreAppBtn.setObjectName(u"maximizeRestoreAppBtn")
-        self.maximizeRestoreAppBtn.setMinimumSize(QSize(28, 28))
-        self.maximizeRestoreAppBtn.setMaximumSize(QSize(28, 28))
-        self.maximizeRestoreAppBtn.setFont(font1)
-        self.maximizeRestoreAppBtn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon5 = QIcon()
-        icon5.addFile(u":/icons/images/icons/icon_maximize.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.maximizeRestoreAppBtn.setIcon(icon5)
-        self.maximizeRestoreAppBtn.setIconSize(QSize(20, 20))
-
-        self.horizontalLayout_2.addWidget(self.maximizeRestoreAppBtn)
-
-        self.closeAppBtn = QPushButton(self.rightButtons)
-        self.closeAppBtn.setObjectName(u"closeAppBtn")
-        self.closeAppBtn.setMinimumSize(QSize(28, 28))
-        self.closeAppBtn.setMaximumSize(QSize(28, 28))
-        self.closeAppBtn.setCursor(QCursor(Qt.PointingHandCursor))
-        self.closeAppBtn.setIcon(icon)
-        self.closeAppBtn.setIconSize(QSize(20, 20))
-
-        self.horizontalLayout_2.addWidget(self.closeAppBtn)
-
-
-        self.horizontalLayout.addWidget(self.rightButtons, 0, Qt.AlignRight)
-
-
-        self.verticalLayout_2.addWidget(self.contentTopBg)
-
         self.contentBottom = QFrame(self.contentBox)
         self.contentBottom.setObjectName(u"contentBottom")
         self.contentBottom.setFrameShape(QFrame.NoFrame)
@@ -1294,9 +1204,9 @@ class Ui_MainWindow(object):
         self.btn_extension_search = QPushButton(self.frame)
         self.btn_extension_search.setObjectName(u"btn_extension_search")
         self.btn_extension_search.setCursor(QCursor(Qt.PointingHandCursor))
-        icon6 = QIcon()
-        icon6.addFile(u":/icons/images/icons/cil-magnifying-glass.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_extension_search.setIcon(icon6)
+        icon4 = QIcon()
+        icon4.addFile(u":/icons/images/icons/cil-magnifying-glass.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_extension_search.setIcon(icon4)
 
         self.horizontalLayout_7.addWidget(self.btn_extension_search)
 
@@ -1324,18 +1234,18 @@ class Ui_MainWindow(object):
         self.btn_change_view = QPushButton(self.frame_2)
         self.btn_change_view.setObjectName(u"btn_change_view")
         self.btn_change_view.setCursor(QCursor(Qt.PointingHandCursor))
-        icon7 = QIcon()
-        icon7.addFile(u":/icons/images/icons/cil-equalizer.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_change_view.setIcon(icon7)
+        icon5 = QIcon()
+        icon5.addFile(u":/icons/images/icons/cil-equalizer.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_change_view.setIcon(icon5)
 
         self.horizontalLayout_8.addWidget(self.btn_change_view)
 
         self.btn_save_view = QPushButton(self.frame_2)
         self.btn_save_view.setObjectName(u"btn_save_view")
         self.btn_save_view.setCursor(QCursor(Qt.PointingHandCursor))
-        icon8 = QIcon()
-        icon8.addFile(u":/icons/images/icons/cil-save.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_save_view.setIcon(icon8)
+        icon6 = QIcon()
+        icon6.addFile(u":/icons/images/icons/cil-save.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_save_view.setIcon(icon6)
 
         self.horizontalLayout_8.addWidget(self.btn_save_view)
 
@@ -1407,7 +1317,7 @@ class Ui_MainWindow(object):
 
         self.comboBox_scale.setCurrentIndex(2)
         self.comboBox_theme.setCurrentIndex(1)
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1474,19 +1384,6 @@ class Ui_MainWindow(object):
         self.btn_hot_keys.setText(QCoreApplication.translate("MainWindow", u"\u0413\u043e\u0440\u044f\u0447\u0438\u0435 \u043a\u043b\u0430\u0432\u0438\u0448\u0438 \u0432 \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u0435", None))
         self.btn_save_settings.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c \u043d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438", None))
         self.label_version_application.setText(QCoreApplication.translate("MainWindow", u"\u0412\u0435\u0440\u0441\u0438\u044f \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u044f Aramid TsT Graph v0.0.1", None))
-        self.titleRightInfo.setText(QCoreApplication.translate("MainWindow", u"Aramid TsT Graph", None))
-#if QT_CONFIG(tooltip)
-        self.minimizeAppBtn.setToolTip(QCoreApplication.translate("MainWindow", u"\u0421\u043a\u0440\u044b\u0442\u044c", None))
-#endif // QT_CONFIG(tooltip)
-        self.minimizeAppBtn.setText("")
-#if QT_CONFIG(tooltip)
-        self.maximizeRestoreAppBtn.setToolTip(QCoreApplication.translate("MainWindow", u"\u0420\u0430\u0437\u0432\u0435\u0440\u043d\u0443\u0442\u044c", None))
-#endif // QT_CONFIG(tooltip)
-        self.maximizeRestoreAppBtn.setText("")
-#if QT_CONFIG(tooltip)
-        self.closeAppBtn.setToolTip(QCoreApplication.translate("MainWindow", u"\u0417\u0430\u043a\u0440\u044b\u0442\u044c", None))
-#endif // QT_CONFIG(tooltip)
-        self.closeAppBtn.setText("")
         self.label.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043f\u0438\u0441\u043e\u043a \u043e\u0442\u0447\u0435\u0442\u043e\u0432", None))
         self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043a\u0430\u0437\u0430\u0442\u044c \u043e\u0442\u0447\u0435\u0442...", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c \u043e\u0442\u0447\u0435\u0442...", None))

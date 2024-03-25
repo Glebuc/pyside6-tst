@@ -23,14 +23,13 @@ from loger import Logger
 from Application import Application
 from ui_modules import *
 from widgets import *
-from pages import Model_result, Save_data, View_result, Dialog_change_view, DialogsSetting, DialogsResult, Chart_view
+from pages import BaseModel, Model_result, Save_data, View_result, Dialog_change_view, DialogsSetting, DialogsResult,\
+                            Chart_view
 
 
 
 os.environ["QT_FONT_DPI"] = "96"  # FIX Problem for High DPI and Scale above 100%
 
-# SET AS GLOBAL WIDGETS
-# ///////////////////////////////////////////////////////////////
 widgets = None
 
 
@@ -44,17 +43,12 @@ class MainWindow(QMainWindow):
         widgets = self.ui
         self.log = Logger()
 
-        # USE CUSTOM TITLE BAR | USE AS "False" FOR MAC OR LINUX
-        # ///////////////////////////////////////////////////////////////
+
         Settings.ENABLE_CUSTOM_TITLE_BAR = False
 
-        # APP NAME
-        # ///////////////////////////////////////////////////////////////
+
         title = "Aramid TsT Graph"
-        description = "Aramid TsT Graph"
-        # APPLY TEXTS
         self.setWindowTitle(title)
-        widgets.titleRightInfo.setText(description)
 
         self.tableView = View_result.CustomTableView()
         widgets.verticalLayout_20.replaceWidget(widgets.resultView, self.tableView)
@@ -79,7 +73,7 @@ class MainWindow(QMainWindow):
         widgets.graphicsView.setChart(self.chart)
 
         widgets.list_test_result.addItem("Все тесты")
-        for i in Model_result.result:
+        for i in self.model.execute_sql(BaseModel.LIST_TEST_SQL):
             widgets.list_test_result.addItem(i)
             widgets.list_test_chart.addItem(i)
 
@@ -87,19 +81,14 @@ class MainWindow(QMainWindow):
             lambda: self.model.filter_data(combo_box=widgets.list_test_result, table_view=self.tableView))
 
         widgets.btn_save_view.clicked.connect(lambda: Save_data.save_data_to_csv(self.tableView))
-        # TOGGLE MENU
         widgets.toggleButton.clicked.connect(lambda: UIFunctions.toggleMenu(self, True))
 
-        # SET UI DEFINITIONS
         UIFunctions.uiDefinitions(self)
 
-        # QTableWidget PARAMETERS
         widgets.resultView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
-        # BUTTONS CLICK
-        # ///////////////////////////////////////////////////////////////
 
-        # LEFT MENUS
+
         widgets.btn_report.clicked.connect(self.button_click)
         widgets.btn_bar.clicked.connect(self.button_click)
         widgets.btn_result.clicked.connect(self.button_click)
@@ -109,7 +98,6 @@ class MainWindow(QMainWindow):
         widgets.btn_extension_search.clicked.connect(self.open_dialog_extension_search)
 
 
-        # EXTRA LEFT BOX
         def openCloseLeftBox():
             UIFunctions.toggleLeftBox(self, True)
 
@@ -118,8 +106,8 @@ class MainWindow(QMainWindow):
 
         self.show()
 
-        # SET CUSTOM THEME
-        useCustomTheme = False
+
+        useCustomTheme = True
         themeFile_light = "themes\\theme_light.qss"
         themeFile_dark = "themes\\theme_dark.qss"
         if useCustomTheme:
@@ -162,14 +150,26 @@ class MainWindow(QMainWindow):
                 else:
                     self.tableView.hideColumn(column_index)
 
-    def open_dialog_config_db(self):
+    def open_dialog_config_db(self) -> None:
+        """
+            Открывает диалоговое окно для настройки подключения к базе данных.
+
+            Returns:
+                None
+        """
         dialog = DialogsSetting.DialogConfigDB(self)
         if not dialog.isVisible():
             self.log.log_info("Открыто диалоговое окно с кофигом БД")
         dialog.exec()
 
 
-    def open_dialog_keyword(self):
+    def open_dialog_keyword(self) -> None:
+        """
+            Открывает диалоговое окно для отображения горячих клавиш в приложение.
+
+            Returns:
+                    None
+        """
         dialog = DialogsSetting.DialogKey(self)
         if not dialog.isVisible():
             self.log.log_info("Открыто диалоговое окно с горячими клавишами")
@@ -202,13 +202,22 @@ class MainWindow(QMainWindow):
             # Если строк нет, выводим предупреждение
             QMessageBox.warning(None, "Предупреждение", "Нет данных, удовлетворяющих условиям запроса.")
             # Оставляем модель предыдущей
-            self.model.setQuery(Model_result.ALL_RESULT_SQL)
+            self.model.setQuery(self.model.ALL_RESULT_SQL)
         else:
             # Если нет ни одного условия, выводим предупреждение
             QMessageBox.information(None, "Данные были изменены", "Данные в таблице  отфильтрованы")
         self.tableView.setModel(self.model)
 
     def button_click(self) -> None:
+        """
+        Обрабатывает событие нажатия на кнопки в боковом меню.
+
+        В зависимости от названия кнопки устанавливает соответствующую страницу в stackedWidget,
+        сбрасывает стиль всех кнопок и устанавливает стиль нажатой кнопки.
+
+        Returns:
+            None
+        """
         btn = self.sender()
         btnName = btn.objectName()
 
@@ -227,16 +236,6 @@ class MainWindow(QMainWindow):
             widgets.stackedWidget.setCurrentWidget(widgets.result_page)
             UIFunctions.resetStyle(self, btnName)
             UIFunctions.addStyle(btn, UIFunctions.selectMenu())
-
-    def resizeEvent(self, event):
-        # Update Size Grips
-        UIFunctions.resize_grips(self)
-
-    def mousePressEvent(self, event):
-        # SET DRAG POS WINDOW
-        p = event.globalPosition()
-        self.dragPos = p.toPoint()
-
 
 
 if __name__ == "__main__":

@@ -100,6 +100,8 @@ class Ui_Dialog(object):
         self.tableWidget.horizontalHeader().setDefaultSectionSize(150)
         self.tableWidget.horizontalHeader().setStretchLastSection(True)
         self.tableWidget.verticalHeader().setVisible(False)
+        self.tableWidget.verticalHeader().setDefaultSectionSize(40)
+        self.tableWidget.verticalHeader().setStretchLastSection(True)
 
         self.verticalLayout_2.addWidget(self.tableWidget)
 

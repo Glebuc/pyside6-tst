@@ -2,8 +2,8 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QDialog, Q
 from PySide6.QtSql import QSqlQueryModel
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QMessageBox
-from .Model_result import users
 from .ui_dialog_extension_search import Ui_Dialog as ExtensionSearch
+from pages.BaseModel import BaseModel
 
 
 
@@ -11,10 +11,20 @@ class DialogExtensionSearch(QDialog, ExtensionSearch):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
+        model = BaseModel('tests')
+        users = model.execute_sql(model.LIST_USER_SQL)
+        tests = model.execute_sql(model.LIST_TEST_SQL)
+        min_date = model.execute_sql(model.MIN_DATE_SQL)
+        max_date = model.execute_sql(model.MAX_DATE_SQL)
+        np_param = model.execute_sql(model.NP_PARAM_SQL)
+        n_param = model.execute_sql(model.N_PARAM_SQL)
         self.setWindowTitle("Расширенный поиск")
-        self.N_comboBox.addItems(["1","4","7","9"])
-        self.np_comboBox.addItems(["1","7","9"])
-        self.test_comboBox.addItems(["HPC","HPCG","IMB"])
+        self.N_comboBox.addItems(n_param)
+        self.np_comboBox.addItems(np_param)
+        self.test_comboBox.addItems(tests)
+        self.user_comboBox.addItems(users)
+        # self.before_dateEdit.setDate(*min_date)
+        # self.from_dateEdit.setDate(*max_date)
         self.accept_btn.clicked.connect(self.accept)
 
     def get_filter_parameters(self):

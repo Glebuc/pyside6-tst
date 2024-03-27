@@ -274,8 +274,6 @@ QHeaderView::section:horizontal
     border: 1px solid rgb(33, 37, 43);
 	background-color: rgb(33, 37, 43);
 	padding: 3px;
-	border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
 }
 QHeaderView::section:vertical
 {
@@ -1266,54 +1264,6 @@ background-image: none;
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_10">
                 <item>
-                 <widget class="QLabel" name="label_scale">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="text">
-                   <string>Масштаб</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QComboBox" name="comboBox_scale">
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="currentIndex">
-                   <number>2</number>
-                  </property>
-                  <item>
-                   <property name="text">
-                    <string>50%</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>75%</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>100%</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>125%</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>150%</string>
-                   </property>
-                  </item>
-                 </widget>
-                </item>
-                <item>
                  <widget class="QLabel" name="label_theme">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -1389,12 +1339,12 @@ background-image: none;
                   </property>
                   <item>
                    <property name="text">
-                    <string>English</string>
+                    <string>Русский</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>Русский</string>
+                    <string>Английский</string>
                    </property>
                   </item>
                  </widget>

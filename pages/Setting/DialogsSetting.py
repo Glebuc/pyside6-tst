@@ -28,7 +28,7 @@ class DialogConfigDB(QDialog, DialogConfigDB):
         dbname = self.name_db_edit.text()
         password = self.password_db_edit.text()
         user = self.user_db_edit.text()
-        port = self.port_db_edit.text()
+        port = self.port_db_spin.value()
 
         try:
             connection = psycopg2.connect(

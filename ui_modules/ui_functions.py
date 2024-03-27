@@ -2,6 +2,7 @@
 # ///////////////////////////////////////////////////////////////
 from main import *
 from PySide6.QtWidgets import QPushButton
+from PySide6.QtCore import QFile, QTextStream
 
 # GLOBALS
 # ///////////////////////////////////////////////////////////////
@@ -127,10 +128,32 @@ class UIFunctions(MainWindow):
             if w.objectName() == widget:
                 w.setStyleSheet(UIFunctions.selectMenu(w.styleSheet()))
 
-    def theme(self, file, useCustomTheme):
-        if useCustomTheme:
-            str = open(file, 'r').read()
-            self.ui.styleSheet.setStyleSheet(str)
+    def theme(self, file):
+        """
+            Применяет тему стилей к пользовательскому интерфейсу из файла QSS.
+
+            Args:
+                file (str): Путь к файлу QSS, содержащему стили.
+
+            Returns:
+                None
+
+            Raises:
+                FileNotFoundError: Если файл QSS не найден.
+                IOError: Если возникает ошибка при чтении файла QSS.
+            """
+        qss_file = QFile(file)
+        if not qss_file.open(QFile.ReadOnly | QFile.Text):
+            raise FileNotFoundError(f"Файл QSS не найден: {file}")
+
+        try:
+            stream = QTextStream(qss_file)
+            self.ui.styleSheet.setStyleSheet(stream.readAll())
+        except IOError as e:
+            print(f"Ошибка при чтении файла QSS: {e}")
+            raise e
+        finally:
+            qss_file.close()
 
     def uiDefinitions(self):
         def dobleClickMaximizeRestore(event):

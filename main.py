@@ -14,7 +14,7 @@ from PySide6.QtWidgets import QDialog, QFormLayout, QCheckBox, QVBoxLayout, QPus
     QTableView,QMainWindow, QWidget, QHeaderView, QMessageBox, QGraphicsScene
 from PySide6.QtGui import QTransform
 from PySide6 import QtCore
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, QResource
 
 import doctest
 
@@ -26,6 +26,8 @@ from widgets import *
 from pages import BaseModel, Model_result, Save_data, View_result, Dialog_change_view, DialogsSetting, DialogsResult,\
                             Chart_view
 
+from utils import get_translate_path, get_themes_path
+
 
 
 os.environ["QT_FONT_DPI"] = "96"  # FIX Problem for High DPI and Scale above 100%
@@ -34,14 +36,16 @@ widgets = None
 
 
 class MainWindow(QMainWindow):
-    def __init__(self):
+    def __init__(self, app):
         QMainWindow.__init__(self)
+        self.app = app
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         global widgets
         widgets = self.ui
         self.log = Logger()
+        self.ui.retranslateUi(self)
 
 
         Settings.ENABLE_CUSTOM_TITLE_BAR = False
@@ -103,21 +107,10 @@ class MainWindow(QMainWindow):
 
         widgets.toggleLeftBox.clicked.connect(openCloseLeftBox)
         widgets.extraCloseColumnBtn.clicked.connect(openCloseLeftBox)
+        widgets.comboBox_theme.currentTextChanged.connect(self.change_theme)
+        widgets.comboBox_language.currentTextChanged.connect(self.change_translation)
 
         self.show()
-
-
-        useCustomTheme = True
-        themeFile_light = "themes\\theme_light.qss"
-        themeFile_dark = "themes\\theme_dark.qss"
-        if useCustomTheme:
-            UIFunctions.theme(self, themeFile_light, True)
-            AppFunctions.setThemeHack(self)
-            self.log.log_info("Установлена светлая тема".strip())
-        else:
-            UIFunctions.theme(self, themeFile_dark, True)
-            AppFunctions.setThemeHack(self)
-            self.log.log_info("Установлена темная тема")
         widgets.stackedWidget.setCurrentWidget(widgets.report_page)
 
         record = self.model.record()
@@ -128,6 +121,41 @@ class MainWindow(QMainWindow):
         # словарь для хранения состояний флажков
         self.checkbox_dict = {}
 
+    def change_translation(self, text:str) -> None:
+        """
+        Изменяет язык приложения в зависимости от выбранного текста в ComboBox.
+
+        :param text: Текст текущего выбранного элемента в ComboBox. Должен быть "Русский" или "Английский".
+        :return:
+            None
+        """
+        ru_translate = ':/translations/translations/ru.qm'
+        en_translate = ':/translations/translations/en.qm'
+        if text == "Английский" or text == "English":
+            app.setup(en_translate)
+            self.ui.retranslateUi(self)
+        elif text == "Русский" or text == "Russian":
+            app.setup(ru_translate)
+            self.ui.retranslateUi(self)
+
+    def change_theme(self, text: str) -> None:
+        """
+           Изменяет тему интерфейса в зависимости от выбранного текста в ComboBox.
+
+           Args:
+               text (str): Текст текущего выбранного элемента в ComboBox. Должен быть "Светлая" или "Темная".
+
+           Returns:
+               None
+        """
+        themeFile_light = ':/themes/themes/theme_light.qss'
+        themeFile_dark = ':/themes/themes/theme_dark.qss'
+        if text == "Светлая" or text == "Light":
+            UIFunctions.theme(self,themeFile_light)
+            AppFunctions.setThemeHack(self)
+        elif text == "Темная" or text == "Dark":
+            UIFunctions.theme(self,themeFile_dark)
+            AppFunctions.setThemeHack(self)
 
     def open_column_selection_dialog(self):
         """
@@ -241,7 +269,7 @@ class MainWindow(QMainWindow):
 if __name__ == "__main__":
     app = Application(sys.argv)
     app.setWindowIcon(QIcon(u":/icons/images/icons/aramid.svg"))
-    window = MainWindow()
+    window = MainWindow(app)
     # window.setWindowFlags(Qt.Window | Qt.CustomizeWindowHint | Qt.WindowTitleHint | Qt.WindowMinMaxButtonsHint)
     result = app.exec()
     sys.exit(result)

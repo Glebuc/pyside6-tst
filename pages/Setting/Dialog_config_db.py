@@ -83,12 +83,12 @@ class Ui_Dialog(object):
 
         self.verticalLayout_2.addWidget(self.label_4)
 
-        self.spinBox = QSpinBox(self.frame)
-        self.spinBox.setObjectName(u"spinBox")
-        self.spinBox.setMaximum(1000000)
-        self.spinBox.setValue(5432)
+        self.port_db_spin = QSpinBox(self.frame)
+        self.port_db_spin.setObjectName(u"port_db_spin")
+        self.port_db_spin.setMaximum(1000000)
+        self.port_db_spin.setValue(5432)
 
-        self.verticalLayout_2.addWidget(self.spinBox)
+        self.verticalLayout_2.addWidget(self.port_db_spin)
 
         self.label_5 = QLabel(self.frame)
         self.label_5.setObjectName(u"label_5")

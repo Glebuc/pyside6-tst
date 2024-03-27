@@ -8,12 +8,19 @@
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCore import *
-from PySide6.QtGui import *
-from PySide6.QtWidgets import *
-from PySide6.QtCharts import *
-
-from . resources_rc import *
+from PySide6.QtCharts import QChartView
+from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
+from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
+    QFont, QFontDatabase, QGradient, QIcon,
+    QImage, QKeySequence, QLinearGradient, QPainter,
+    QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QGridLayout,
+    QHBoxLayout, QHeaderView, QLabel, QListView,
+    QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
+    QStackedWidget, QTableView, QVBoxLayout, QWidget)
+from .resources_rc import *
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -280,8 +287,6 @@ class Ui_MainWindow(object):
 "    border: 1px solid rgb(33, 37, 43);\n"
 "	background-color: rgb(33, 37, 43);\n"
 "	padding: 3px;\n"
-"	border-top-left-radius: 7px;\n"
-"    border-top-right-radius: 7px;\n"
 "}\n"
 "QHeaderView::section:vertical\n"
 "{\n"
@@ -311,9 +316,9 @@ class Ui_MainWindow(object):
 "	background-color: rgb(27, 29, 35);\n"
 "	border-radius: 5px;\n"
 "	padding: 10px;\n"
-"	s"
-                        "election-color: rgb(255, 255, 255);\n"
-"	selection-background-color: rgb(255, 121, 198);\n"
+"	selection-color: rgb(255, 255, 255);\n"
+"	selection-background-color: rgb"
+                        "(255, 121, 198);\n"
 "}\n"
 "QPlainTextEdit  QScrollBar:vertical {\n"
 "    width: 8px;\n"
@@ -348,11 +353,11 @@ class Ui_MainWindow(object):
 "    width: 20px;\n"
 "	border-top-right-radius: 4px;\n"
 "    border-bottom-right-radius: 4px;\n"
-"    su"
-                        "bcontrol-position: right;\n"
+"    subcontrol-position: right;\n"
 "    subcontrol-origin: margin;\n"
 "}\n"
-"QScrollBar::sub-line:horizontal {\n"
+"Q"
+                        "ScrollBar::sub-line:horizontal {\n"
 "    border: none;\n"
 "    background: rgb(100, 100, 100);\n"
 "    width: 20px;\n"
@@ -386,10 +391,10 @@ class Ui_MainWindow(object):
 "    background: rgb(200, 200, 200);\n"
 "     height: 20px;\n"
 "	border-bottom-left-radius: 4px;\n"
-"    borde"
-                        "r-bottom-right-radius: 4px;\n"
+"    border-bottom-right-radius: 4px;\n"
 "     subcontrol-position: bottom;\n"
-"     subcontrol-origin: margin;\n"
+"  "
+                        "   subcontrol-origin: margin;\n"
 " }\n"
 " QScrollBar::sub-line:vertical {\n"
 "	border: none;\n"
@@ -421,9 +426,9 @@ class Ui_MainWindow(object):
 "    border: 3px solid rgb(58, 66, 81);\n"
 "}\n"
 "QCheckBox::indicator:checked {\n"
-"    backgro"
-                        "und: 3px solid rgb(52, 59, 72);\n"
-"	border: 3px solid rgb(52, 59, 72);	\n"
+"    background: 3px solid rgb(52, 59, 72);\n"
+"	border: 3px solid rgb(52, 59, 72);	"
+                        "\n"
 "	background-image: url(:/icons/images/icons/cil-check-alt.png);\n"
 "}\n"
 "\n"
@@ -455,10 +460,10 @@ class Ui_MainWindow(object):
 "QComboBox:hover{\n"
 "	border: 2px solid rgb(64, 71, 88);\n"
 "}\n"
-"QComboBox"
-                        "::drop-down {\n"
+"QComboBox::drop-down {\n"
 "	subcontrol-origin: padding;\n"
-"	subcontrol-position: top right;\n"
+"	subcontrol-position:"
+                        " top right;\n"
 "	width: 25px; \n"
 "	border-left-width: 3px;\n"
 "	border-left-color: rgba(39, 44, 54, 150);\n"
@@ -488,11 +493,11 @@ class Ui_MainWindow(object):
 "	background-color: rgb(55, 62, 76);\n"
 "}\n"
 "QSlider::handle:horizontal {\n"
-"    background-c"
-                        "olor: rgb(189, 147, 249);\n"
+"    background-color: rgb(189, 147, 249);\n"
 "    border: none;\n"
 "    height: 10px;\n"
-"    width: 10px;\n"
+""
+                        "    width: 10px;\n"
 "    margin: 0px;\n"
 "	border-radius: 5px;\n"
 "}\n"
@@ -527,11 +532,11 @@ class Ui_MainWindow(object):
 "    background-color: rgb(35, 40, 49);\n"
 "}\n"
 "\n"
-"/* //////////////////////////////////////////////////////////////////////////////////////"
-                        "///////////\n"
+"/* /////////////////////////////////////////////////////////////////////////////////////////////////\n"
 "CommandLinkButton */\n"
 "QCommandLinkButton {	\n"
-"	color: rgb(255, 121, 198);\n"
+"	color:"
+                        " rgb(255, 121, 198);\n"
 "	border-radius: 5px;\n"
 "	padding: 5px;\n"
 "}\n"
@@ -566,11 +571,11 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "#result_page {\n"
-"	ba"
-                        "ckground-color: rgb(94, 92, 100);\n"
+"	background-color: rgb(94, 92, 100);\n"
 "}\n"
 "#chart_page{\n"
-"	background-color: rgb(94, 92, 100);\n"
+"	background-c"
+                        "olor: rgb(94, 92, 100);\n"
 "}\n"
 "#report_page{\n"
 "	background-color: rgb(94, 92, 100);\n"
@@ -605,11 +610,11 @@ class Ui_MainWindow(object):
 "	background-image: url(:/icons/images/icons/cil-zoom-out.png);\n"
 "}\n"
 "#up_chart_btn {\n"
-"	background-image: url(:/icons/images/icons/cil-care"
-                        "t-top.png);\n"
+"	background-image: url(:/icons/images/icons/cil-caret-top.png);\n"
 "}\n"
 "#down_chart_btn {\n"
-"	background-image: url(:/icons/images/icons/cil-caret-bottom.png);\n"
+"	background-image: url(:/icons"
+                        "/images/icons/cil-caret-bottom.png);\n"
 "}\n"
 "#left_chart_btn {\n"
 "	background-image: url(:/icons/images/icons/cil-caret-left.png);\n"
@@ -856,29 +861,11 @@ class Ui_MainWindow(object):
         self.extraCenter.setFrameShadow(QFrame.Raised)
         self.verticalLayout_10 = QVBoxLayout(self.extraCenter)
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
-        self.label_scale = QLabel(self.extraCenter)
-        self.label_scale.setObjectName(u"label_scale")
+        self.label_theme = QLabel(self.extraCenter)
+        self.label_theme.setObjectName(u"label_theme")
         sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.label_scale.sizePolicy().hasHeightForWidth())
-        self.label_scale.setSizePolicy(sizePolicy1)
-
-        self.verticalLayout_10.addWidget(self.label_scale)
-
-        self.comboBox_scale = QComboBox(self.extraCenter)
-        self.comboBox_scale.addItem("")
-        self.comboBox_scale.addItem("")
-        self.comboBox_scale.addItem("")
-        self.comboBox_scale.addItem("")
-        self.comboBox_scale.addItem("")
-        self.comboBox_scale.setObjectName(u"comboBox_scale")
-        self.comboBox_scale.setCursor(QCursor(Qt.PointingHandCursor))
-
-        self.verticalLayout_10.addWidget(self.comboBox_scale)
-
-        self.label_theme = QLabel(self.extraCenter)
-        self.label_theme.setObjectName(u"label_theme")
         sizePolicy1.setHeightForWidth(self.label_theme.sizePolicy().hasHeightForWidth())
         self.label_theme.setSizePolicy(sizePolicy1)
 
@@ -1315,7 +1302,6 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.comboBox_scale.setCurrentIndex(2)
         self.comboBox_theme.setCurrentIndex(1)
         self.stackedWidget.setCurrentIndex(2)
 
@@ -1362,20 +1348,13 @@ class Ui_MainWindow(object):
         self.extraCloseColumnBtn.setToolTip(QCoreApplication.translate("MainWindow", u"\u0417\u0430\u043a\u0440\u044b\u0442\u044c", None))
 #endif // QT_CONFIG(tooltip)
         self.extraCloseColumnBtn.setText("")
-        self.label_scale.setText(QCoreApplication.translate("MainWindow", u"\u041c\u0430\u0441\u0448\u0442\u0430\u0431", None))
-        self.comboBox_scale.setItemText(0, QCoreApplication.translate("MainWindow", u"50%", None))
-        self.comboBox_scale.setItemText(1, QCoreApplication.translate("MainWindow", u"75%", None))
-        self.comboBox_scale.setItemText(2, QCoreApplication.translate("MainWindow", u"100%", None))
-        self.comboBox_scale.setItemText(3, QCoreApplication.translate("MainWindow", u"125%", None))
-        self.comboBox_scale.setItemText(4, QCoreApplication.translate("MainWindow", u"150%", None))
-
         self.label_theme.setText(QCoreApplication.translate("MainWindow", u"\u0422\u0435\u043c\u0430 \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u044f", None))
         self.comboBox_theme.setItemText(0, QCoreApplication.translate("MainWindow", u"\u0421\u0432\u0435\u0442\u043b\u0430\u044f", None))
         self.comboBox_theme.setItemText(1, QCoreApplication.translate("MainWindow", u"\u0422\u0435\u043c\u043d\u0430\u044f", None))
 
         self.label_language.setText(QCoreApplication.translate("MainWindow", u"\u042f\u0437\u044b\u043a \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u044f", None))
-        self.comboBox_language.setItemText(0, QCoreApplication.translate("MainWindow", u"English", None))
-        self.comboBox_language.setItemText(1, QCoreApplication.translate("MainWindow", u"\u0420\u0443\u0441\u0441\u043a\u0438\u0439", None))
+        self.comboBox_language.setItemText(0, QCoreApplication.translate("MainWindow", u"\u0420\u0443\u0441\u0441\u043a\u0438\u0439", None))
+        self.comboBox_language.setItemText(1, QCoreApplication.translate("MainWindow", u"\u0410\u043d\u0433\u043b\u0438\u0439\u0441\u043a\u0438\u0439", None))
 
         self.label_config.setText(QCoreApplication.translate("MainWindow", u"\u041a\u043e\u043d\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u044f \u0411\u0414", None))
         self.btn_config_DB.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0430 \u0441\u043e\u0435\u0434\u0438\u043d\u0435\u043d\u0438\u044f \u0441 \u0411\u0414", None))

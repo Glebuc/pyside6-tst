@@ -418,7 +418,6 @@ QComboBox{
 	border-radius: 5px;
 	border: 2px solid #f1f1f1;
 	padding: 5px;
-	padding-left: 10px;
     color: #fffffff;
 }
 QComboBox:hover{
@@ -437,19 +436,12 @@ QComboBox::drop-down {
 	background-position: center;
 	background-repeat: no-reperat;
  }
- QComboBox QAbstractItemView {
-    background-color: #e0e0e0;
-    selection-background-color: #c0c0c0;
-    padding: 5px;
-  }
- QComboBox::item {
-      background-color: rgb(255, 255, 255);
-      padding: 5px;
-  }
- QComboBox::item:selected {
-     color: #fff;
-  }
-
+QComboBox QAbstractItemView {
+	color: rgb(100, 100, 100);
+	background-color: rgb(255, 255, 255);
+	padding: 10px;
+	selection-background-color: rgb(220, 220, 220);
+}
 QSlider::groove:horizontal {
     border-radius: 5px;
     height: 10px;

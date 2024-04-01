@@ -1596,11 +1596,6 @@ background-image: none;
                       <number>2</number>
                      </property>
                      <widget class="QWidget" name="report_page">
-                      <property name="styleSheet">
-                       <string notr="true">background-image: url(:/images/images/images/PyDracula_vertical.png);
-background-position: center;
-background-repeat: no-repeat;</string>
-                      </property>
                       <layout class="QVBoxLayout" name="verticalLayout_11">
                        <item>
                         <widget class="QLabel" name="label">
@@ -1630,7 +1625,7 @@ background-repeat: no-repeat;</string>
                      </widget>
                      <widget class="QWidget" name="chart_page">
                       <property name="styleSheet">
-                       <string notr="true">b</string>
+                       <string notr="true"/>
                       </property>
                       <layout class="QVBoxLayout" name="verticalLayout">
                        <item>

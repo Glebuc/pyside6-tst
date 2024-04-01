@@ -1,4 +1,5 @@
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QDialog, QVBoxLayout, QMessageBox
+
 import psycopg2
 
 from .Dialog_config_db import Ui_Dialog as DialogConfigDB

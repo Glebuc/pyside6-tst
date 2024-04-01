@@ -4,6 +4,7 @@ from PySide6.QtCore import Qt, Slot
 from ui_modules import *
 from PySide6.QtUiTools import QUiLoader
 from database import db_params
+from typing import Optional, Dict, Tuple, Union, List
 
 
 
@@ -31,6 +32,7 @@ class BaseModel(QSqlQueryModel):
     	id_user_fk int4 NULL,
     	start_test timestamp NULL,
     	time_test time NULL,
+    	test_result int4[],
     	CONSTRAINT tests_pk PRIMARY KEY (test_id),
     	CONSTRAINT tests_fk FOREIGN KEY (id_user_fk) REFERENCES users(user_id)
     );
@@ -93,11 +95,54 @@ class BaseModel(QSqlQueryModel):
 
     def __init__(self, table_name):
         super().__init__()
+        self.check_and_create_tables()
         self.setQuery(self.ALL_RESULT_SQL)
         if self.lastError().isValid():
             print("Ошибка выполнения запроса:", self.lastError().text())
 
-    def execute_sql(self, sql_query, params=None):
+    def check_and_create_tables(self):
+
+        existing_tables = self.get_existing_tables()
+        if not existing_tables:
+            return False
+
+        # Создание таблиц при необходимости
+        tables_to_create = {
+            'users': self.USERS_SQL,
+            'tests': self.TESTS_SQL,
+            'report': self.REPORT_SQL,
+            'settings': self.SETTING_SQL
+        }
+
+        query = QSqlQuery()
+        for table_name, sql_query in tables_to_create.items():
+            if table_name not in existing_tables:
+                if not query.exec(sql_query):
+                    print("Ошибка выполнения запроса:", query.lastError().text())
+                    return False
+        return True
+
+    def get_existing_tables(self) -> Union[List[str], None]:
+        """
+            Получает список существующих таблиц в базе данных.
+
+            Returns:
+                list or None: Список имен существующих таблиц в базе данных или None в случае ошибки.
+
+            Description:
+                Этот метод выполняет запрос к информационной схеме PostgreSQL
+                для получения списка таблиц, существующих в базе данных. Затем он возвращает список имен этих таблиц.
+        """
+        query = QSqlQuery()
+        if query.exec("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'"):
+            existing_tables = []
+            while query.next():
+                existing_tables.append(query.value(0))
+            return existing_tables
+        else:
+            print("Ошибка выполнения запроса:", query.lastError().text())
+            return None
+    def execute_sql(self, sql_query: str, params: Optional[Union[Tuple, Dict]] = None) -> List:
         """
         Выполняет SQL-запрос и возвращает список значений из результата запроса.
 

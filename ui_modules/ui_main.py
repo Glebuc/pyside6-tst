@@ -3,24 +3,17 @@
 ################################################################################
 ## Form generated from reading UI file 'main.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.6.1
+## Created by: Qt User Interface Compiler version 6.5.3
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCharts import QChartView
-from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-    QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl, Qt)
-from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-    QFont, QFontDatabase, QGradient, QIcon,
-    QImage, QKeySequence, QLinearGradient, QPainter,
-    QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QGridLayout,
-    QHBoxLayout, QHeaderView, QLabel, QListView,
-    QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
-    QStackedWidget, QTableView, QVBoxLayout, QWidget)
-from .resources_rc import *
+from PySide6.QtCore import *
+from PySide6.QtGui import *
+from PySide6.QtWidgets import *
+from PySide6.QtCharts import *
+
+from . resources_rc import *
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -1024,9 +1017,6 @@ class Ui_MainWindow(object):
         self.stackedWidget.setLineWidth(0)
         self.report_page = QWidget()
         self.report_page.setObjectName(u"report_page")
-        self.report_page.setStyleSheet(u"background-image: url(:/images/images/images/PyDracula_vertical.png);\n"
-"background-position: center;\n"
-"background-repeat: no-repeat;")
         self.verticalLayout_11 = QVBoxLayout(self.report_page)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.label = QLabel(self.report_page)
@@ -1052,7 +1042,7 @@ class Ui_MainWindow(object):
         self.stackedWidget.addWidget(self.report_page)
         self.chart_page = QWidget()
         self.chart_page.setObjectName(u"chart_page")
-        self.chart_page.setStyleSheet(u"b")
+        self.chart_page.setStyleSheet(u"")
         self.verticalLayout = QVBoxLayout(self.chart_page)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.frame_3 = QFrame(self.chart_page)

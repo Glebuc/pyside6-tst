@@ -1,1 +1,1 @@
-from .config_db import global_salt, db_params
+from .config_db import db_params

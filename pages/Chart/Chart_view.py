@@ -13,7 +13,7 @@ class CustomChart(QChart):
         self.addSeries(self.series)
 
         self.axis_x = QValueAxis()
-        self.axis_x.setTickCount(11)
+        self.axis_x.setTickCount(10)
         self.addAxis(self.axis_x, Qt.AlignBottom)
         self.series.attachAxis(self.axis_x)
 

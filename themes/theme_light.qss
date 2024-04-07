@@ -561,6 +561,9 @@ background-image: url(:/icons/images/icons/cil-chart-pie.png);
 #btn_result {
 	background-image: url(:/icons/images/icons/cil-task.png);
 }
+#btn_note {
+	background-image: url(:/icons/images/icons/cil-pen-alt.png);
+}
 #save_chart_btn{
 	background-image: url(:/icons/images/icons/cil-save.png);
 }
@@ -600,3 +603,23 @@ QDialog {
 QListView {
     background-color: rgba(100, 100, 100, 190);
 }
+
+QTreeWidget {
+        background-color: #f0f0f0; /* Цвет фона всего дерева */
+        color: #333; /* Цвет текста */
+        border: 1px solid #ccc; /* Граница */
+    }
+
+    QTreeWidget::item {
+        background-color: #fff; /* Цвет фона элемента */
+        color: #333; /* Цвет текста элемента */
+    }
+
+    QTreeWidget::item:selected {
+        background-color: #0078d7; /* Цвет выделенного элемента */
+        color: #fff; /* Цвет текста выделенного элемента */
+    }
+
+    QTreeWidget::branch {
+        background-color: #fff; /* Цвет фона для индикатора развертывания (треугольника) */
+    }

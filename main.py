@@ -56,7 +56,7 @@ class MainWindow(QMainWindow):
 
         self.tableView = View_result.CustomTableView()
         widgets.verticalLayout_20.replaceWidget(widgets.resultView, self.tableView)
-        self.model = Model_result.DatabaseModel('tests')
+        self.model = Model_result.ResultModel('tests')
 
         widgets.btn_change_view.clicked.connect(self.open_column_selection_dialog)
 
@@ -65,6 +65,8 @@ class MainWindow(QMainWindow):
         self.chart = Chart_view.CustomChart()
         self.chart.update_chart()
         self.scene.addItem(self.chart)
+
+        #Обработчики кнопок перемещения графика
         widgets.up_chart_btn.clicked.connect(self.chart.scroll_up)
         widgets.down_chart_btn.clicked.connect(self.chart.scroll_down)
         widgets.left_chart_btn.clicked.connect(self.chart.scroll_left)
@@ -96,6 +98,7 @@ class MainWindow(QMainWindow):
         widgets.btn_report.clicked.connect(self.button_click)
         widgets.btn_bar.clicked.connect(self.button_click)
         widgets.btn_result.clicked.connect(self.button_click)
+        widgets.btn_note.clicked.connect(self.button_click)
 
         widgets.btn_config_DB.clicked.connect(self.open_dialog_config_db)
         widgets.btn_hot_keys.clicked.connect(self.open_dialog_keyword)
@@ -209,32 +212,7 @@ class MainWindow(QMainWindow):
             test_data,user_data,np_data,N_data, start_date, end_date = dialog.get_filter_parameters()
             self.apply_filter(test_data, start_date, end_date, user_data)
 
-    def apply_filter(self, test_data, start_date, end_date, user_data):
-        #Перенести эту функцию в модель данных страницы результатов
-        filters = []
-        if test_data:
-            filters.append(f"test_name = '{test_data}'")
-        if user_data:
-            filters.append(f"user_name = '{user_data}'")
-        if start_date and end_date:
-            filters.append(f"start_test BETWEEN '{start_date}' AND '{end_date}'")
-        where_clause = " AND ".join(filters)
-        if where_clause:
-            where_clause = "WHERE " + where_clause
-        query = f""" SELECT t.test_name, t.test_param, t.time_test, t.test_result, t.start_test, u.user_name
-                    FROM tests as t
-                    INNER JOIN users as u ON t.id_user_fk = u.user_id {where_clause}"""
-        print(query)
-        self.model.setQuery(query)
-        if self.model.rowCount() == 0:
-            # Если строк нет, выводим предупреждение
-            QMessageBox.warning(None, "Предупреждение", "Нет данных, удовлетворяющих условиям запроса.")
-            # Оставляем модель предыдущей
-            self.model.setQuery(self.model.ALL_RESULT_SQL)
-        else:
-            # Если нет ни одного условия, выводим предупреждение
-            QMessageBox.information(None, "Данные были изменены", "Данные в таблице  отфильтрованы")
-        self.tableView.setModel(self.model)
+
 
     def button_click(self) -> None:
         """
@@ -259,9 +237,13 @@ class MainWindow(QMainWindow):
             UIFunctions.resetStyle(self, btnName)
             UIFunctions.addStyle(btn, UIFunctions.selectMenu())
 
-
         if btnName == "btn_result":
             widgets.stackedWidget.setCurrentWidget(widgets.result_page)
+            UIFunctions.resetStyle(self, btnName)
+            UIFunctions.addStyle(btn, UIFunctions.selectMenu())
+
+        if btnName == "btn_note":
+            widgets.stackedWidget.setCurrentWidget(widgets.note_page)
             UIFunctions.resetStyle(self, btnName)
             UIFunctions.addStyle(btn, UIFunctions.selectMenu())
 

@@ -63,7 +63,7 @@
          <bool>false</bool>
         </property>
         <property name="rowCount">
-         <number>5</number>
+         <number>12</number>
         </property>
         <attribute name="horizontalHeaderMinimumSectionSize">
          <number>100</number>
@@ -103,6 +103,41 @@
           <string/>
          </property>
         </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
         <row/>
         <column>
          <property name="text">
@@ -110,9 +145,9 @@
          </property>
          <property name="background">
           <color alpha="0">
-           <red>0</red>
-           <green>0</green>
-           <blue>0</blue>
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
           </color>
          </property>
         </column>
@@ -122,15 +157,15 @@
          </property>
          <property name="background">
           <color alpha="0">
-           <red>0</red>
-           <green>0</green>
-           <blue>0</blue>
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
           </color>
          </property>
         </column>
         <item row="0" column="0">
          <property name="text">
-          <string>Ctrl+Q</string>
+          <string>'Ctrl'+'Q'</string>
          </property>
          <property name="textAlignment">
           <set>AlignCenter</set>
@@ -146,7 +181,7 @@
         </item>
         <item row="1" column="0">
          <property name="text">
-          <string>Ctrl+W</string>
+          <string>'Ctrl'+'-'</string>
          </property>
          <property name="textAlignment">
           <set>AlignCenter</set>
@@ -154,7 +189,7 @@
         </item>
         <item row="1" column="1">
          <property name="text">
-          <string>Открыть вкладку &quot;Графиков&quot;</string>
+          <string>Уменьшить масштаб графика</string>
          </property>
          <property name="textAlignment">
           <set>AlignCenter</set>
@@ -162,7 +197,7 @@
         </item>
         <item row="2" column="0">
          <property name="text">
-          <string>Ctrl+E</string>
+          <string>'Ctrl'+'='</string>
          </property>
          <property name="textAlignment">
           <set>AlignCenter</set>
@@ -170,7 +205,7 @@
         </item>
         <item row="2" column="1">
          <property name="text">
-          <string>Открыть вкладку &quot;Результатов&quot;</string>
+          <string>Увеличить масштаб графика</string>
          </property>
          <property name="textAlignment">
           <set>AlignCenter</set>
@@ -178,7 +213,7 @@
         </item>
         <item row="3" column="0">
          <property name="text">
-          <string>Ctrl+R</string>
+          <string>'Ctrl'+'Up'</string>
          </property>
          <property name="textAlignment">
           <set>AlignCenter</set>
@@ -186,7 +221,7 @@
         </item>
         <item row="3" column="1">
          <property name="text">
-          <string>Открыть вкладку &quot;Настройки&quot;</string>
+          <string>Сместить график вверх</string>
          </property>
          <property name="textAlignment">
           <set>AlignCenter</set>
@@ -194,13 +229,125 @@
         </item>
         <item row="4" column="0">
          <property name="text">
-          <string>Ctrl+Space</string>
+          <string>'Ctrl'+'Down'</string>
          </property>
          <property name="textAlignment">
           <set>AlignCenter</set>
          </property>
         </item>
         <item row="4" column="1">
+         <property name="text">
+          <string>Сместить график вниз</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item row="5" column="0">
+         <property name="text">
+          <string>'Ctrl'+'Left'</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item row="5" column="1">
+         <property name="text">
+          <string>Сместить график влево</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item row="6" column="0">
+         <property name="text">
+          <string>'Ctrl'+'Right'</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item row="6" column="1">
+         <property name="text">
+          <string>Сместить график вправо</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item row="7" column="0">
+         <property name="text">
+          <string>'Ctrl'+'S'</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item row="7" column="1">
+         <property name="text">
+          <string>Сохранить график/значения таблицы</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item row="8" column="0">
+         <property name="text">
+          <string>'Ctrl'+'W'</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item row="8" column="1">
+         <property name="text">
+          <string>Открыть вкладку &quot;Графиков&quot;</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item row="9" column="0">
+         <property name="text">
+          <string>'Ctrl'+'E'</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item row="9" column="1">
+         <property name="text">
+          <string>Открыть вкладку &quot;Результатов&quot;</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item row="10" column="0">
+         <property name="text">
+          <string>'Ctrl'+'R'</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item row="10" column="1">
+         <property name="text">
+          <string>Открыть вкладку &quot;Настройки&quot;</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item row="11" column="0">
+         <property name="text">
+          <string>Ctrl+'Space'</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item row="11" column="1">
          <property name="text">
           <string>Развернуть/Свернуть меню</string>
          </property>

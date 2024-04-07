@@ -187,23 +187,7 @@ Extra Tab */
 	border-top: 3px solid rgb(40, 44, 52);
 }
 
-/* Extra Top Menus */
-#extraTopMenu .QPushButton {
-	background-position: left center;
-    background-repeat: no-repeat;
-	border: none;
-	border-left: 22px solid transparent;
-	background-color:transparent;
-	text-align: left;
-	padding-left: 44px;
-}
-#extraTopMenu .QPushButton:hover {
-	background-color: rgb(40, 44, 52);
-}
-#extraTopMenu .QPushButton:pressed {	
-	background-color: rgb(35, 40, 49);
-	color: rgb(255, 255, 255);
-}
+
 
 /* /////////////////////////////////////////////////////////////////////////////////////////////////
 Content App */
@@ -396,7 +380,9 @@ QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal
  QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
      background: none;
  }
-
+QScrollArea {
+	background-color: rgb(94, 92, 100);
+}
 /* /////////////////////////////////////////////////////////////////////////////////////////////////
 CheckBox */
 QCheckBox::indicator {
@@ -559,7 +545,22 @@ Button */
 #report_page{
 	background-color: rgb(94, 92, 100);
 }
+#note_page {
+	background-color: rgb(94, 92, 100);
+}
 #result_page QPushButton {
+	background-color: rgb(35, 40, 49);
+	padding: 5px;
+}
+#chart_page QPushButton {
+	background-color: rgb(35, 40, 49);
+	padding: 5px;
+}
+#note_page QPushButton {
+	background-color: rgb(35, 40, 49);
+	padding: 5px;
+}
+#report_page QPushButton {
 	background-color: rgb(35, 40, 49);
 	padding: 5px;
 }
@@ -578,6 +579,10 @@ background-image: url(:/icons/images/icons/cil-chart-pie.png);
 }
 #btn_result {
 	background-image: url(:/icons/images/icons/cil-task.png);
+}
+#btn_note {
+	
+	background-image: url(:/icons/images/icons/cil-pen-alt.png);
 }
 #save_chart_btn{
 	background-image: url(:/icons/images/icons/cil-save.png);
@@ -976,6 +981,22 @@ background-image: url(:/icons/images/icons/cil-chart-pie.png);
                   </property>
                   <property name="shortcut">
                    <string>Ctrl+E</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="btn_note">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>45</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="text">
+                   <string>Заметки</string>
                   </property>
                  </widget>
                 </item>
@@ -1593,7 +1614,7 @@ background-image: none;
                       <number>0</number>
                      </property>
                      <property name="currentIndex">
-                      <number>2</number>
+                      <number>1</number>
                      </property>
                      <widget class="QWidget" name="report_page">
                       <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -1609,6 +1630,9 @@ background-image: none;
                        </item>
                        <item>
                         <widget class="QPushButton" name="pushButton_2">
+                         <property name="cursor">
+                          <cursorShape>PointingHandCursor</cursorShape>
+                         </property>
                          <property name="text">
                           <string>Показать отчет...</string>
                          </property>
@@ -1616,6 +1640,9 @@ background-image: none;
                        </item>
                        <item>
                         <widget class="QPushButton" name="pushButton">
+                         <property name="cursor">
+                          <cursorShape>PointingHandCursor</cursorShape>
+                         </property>
                          <property name="text">
                           <string>Сохранить отчет...</string>
                          </property>
@@ -1643,6 +1670,9 @@ background-image: none;
                           <enum>QFrame::Raised</enum>
                          </property>
                          <layout class="QHBoxLayout" name="horizontalLayout_9">
+                          <property name="spacing">
+                           <number>9</number>
+                          </property>
                           <property name="leftMargin">
                            <number>0</number>
                           </property>
@@ -1650,7 +1680,54 @@ background-image: none;
                            <number>0</number>
                           </property>
                           <item>
-                           <widget class="QComboBox" name="list_test_chart"/>
+                           <widget class="QLabel" name="label_2">
+                            <property name="font">
+                             <font>
+                              <family>Segoe UI</family>
+                              <pointsize>10</pointsize>
+                              <italic>false</italic>
+                              <bold>false</bold>
+                             </font>
+                            </property>
+                            <property name="text">
+                             <string>Тест:</string>
+                            </property>
+                            <property name="wordWrap">
+                             <bool>true</bool>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QComboBox" name="list_test_chart">
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QLabel" name="label_3">
+                            <property name="font">
+                             <font>
+                              <family>Segoe UI</family>
+                              <pointsize>10</pointsize>
+                              <italic>false</italic>
+                              <bold>false</bold>
+                             </font>
+                            </property>
+                            <property name="text">
+                             <string>Параметры теста:</string>
+                            </property>
+                            <property name="wordWrap">
+                             <bool>true</bool>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QComboBox" name="comboBox">
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
+                           </widget>
                           </item>
                           <item>
                            <spacer name="horizontalSpacer_3">
@@ -1667,6 +1744,9 @@ background-image: none;
                           </item>
                           <item>
                            <widget class="QPushButton" name="change_view_chart_btn">
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
                             <property name="text">
                              <string>Настройки отображения графика...</string>
                             </property>
@@ -1761,68 +1841,126 @@ background-image: none;
                                 </property>
                                 <item>
                                  <widget class="QPushButton" name="up_chart_btn">
+                                  <property name="cursor">
+                                   <cursorShape>PointingHandCursor</cursorShape>
+                                  </property>
                                   <property name="toolTip">
                                    <string>Сместить наверх</string>
                                   </property>
                                   <property name="text">
                                    <string/>
                                   </property>
+                                  <property name="shortcut">
+                                   <string>Ctrl+Up</string>
+                                  </property>
                                  </widget>
                                 </item>
                                 <item>
                                  <widget class="QPushButton" name="down_chart_btn">
+                                  <property name="cursor">
+                                   <cursorShape>PointingHandCursor</cursorShape>
+                                  </property>
                                   <property name="toolTip">
                                    <string>Сместить вниз</string>
                                   </property>
                                   <property name="text">
                                    <string/>
                                   </property>
+                                  <property name="shortcut">
+                                   <string>Ctrl+Down</string>
+                                  </property>
                                  </widget>
                                 </item>
                                 <item>
                                  <widget class="QPushButton" name="right_chart_btn">
+                                  <property name="cursor">
+                                   <cursorShape>PointingHandCursor</cursorShape>
+                                  </property>
                                   <property name="toolTip">
                                    <string>Сместить вправо</string>
                                   </property>
                                   <property name="text">
                                    <string/>
                                   </property>
+                                  <property name="shortcut">
+                                   <string>Ctrl+Right</string>
+                                  </property>
                                  </widget>
                                 </item>
                                 <item>
                                  <widget class="QPushButton" name="left_chart_btn">
+                                  <property name="cursor">
+                                   <cursorShape>PointingHandCursor</cursorShape>
+                                  </property>
                                   <property name="toolTip">
                                    <string>Сместить влево</string>
                                   </property>
                                   <property name="text">
                                    <string/>
                                   </property>
+                                  <property name="shortcut">
+                                   <string>Ctrl+Left</string>
+                                  </property>
                                  </widget>
                                 </item>
                                 <item>
+                                 <spacer name="verticalSpacer_2">
+                                  <property name="orientation">
+                                   <enum>Qt::Vertical</enum>
+                                  </property>
+                                  <property name="sizeType">
+                                   <enum>QSizePolicy::Fixed</enum>
+                                  </property>
+                                  <property name="sizeHint" stdset="0">
+                                   <size>
+                                    <width>20</width>
+                                    <height>15</height>
+                                   </size>
+                                  </property>
+                                 </spacer>
+                                </item>
+                                <item>
                                  <widget class="QPushButton" name="zoom_out_chart_btn">
+                                  <property name="cursor">
+                                   <cursorShape>PointingHandCursor</cursorShape>
+                                  </property>
                                   <property name="toolTip">
                                    <string>Уменьшить масштаб</string>
                                   </property>
                                   <property name="text">
                                    <string/>
                                   </property>
+                                  <property name="shortcut">
+                                   <string>Ctrl+-</string>
+                                  </property>
                                  </widget>
                                 </item>
                                 <item>
                                  <widget class="QPushButton" name="zoom_in_chart_btn">
+                                  <property name="cursor">
+                                   <cursorShape>PointingHandCursor</cursorShape>
+                                  </property>
                                   <property name="toolTip">
                                    <string>Увеличить масштаб</string>
                                   </property>
                                   <property name="text">
                                    <string/>
                                   </property>
+                                  <property name="shortcut">
+                                   <string>Ctrl+=</string>
+                                  </property>
                                  </widget>
                                 </item>
                                 <item>
                                  <widget class="QPushButton" name="reset_chart_btn">
+                                  <property name="cursor">
+                                   <cursorShape>PointingHandCursor</cursorShape>
+                                  </property>
                                   <property name="text">
                                    <string/>
+                                  </property>
+                                  <property name="shortcut">
+                                   <string>Ctrl+/</string>
                                   </property>
                                  </widget>
                                 </item>
@@ -1841,11 +1979,17 @@ background-image: none;
                                 </item>
                                 <item>
                                  <widget class="QPushButton" name="save_chart_btn">
+                                  <property name="cursor">
+                                   <cursorShape>PointingHandCursor</cursorShape>
+                                  </property>
                                   <property name="toolTip">
                                    <string>Сохранить график</string>
                                   </property>
                                   <property name="text">
                                    <string/>
+                                  </property>
+                                  <property name="shortcut">
+                                   <string>Ctrl+S</string>
                                   </property>
                                  </widget>
                                 </item>
@@ -1886,6 +2030,13 @@ background-image: none;
                           <property name="rightMargin">
                            <number>0</number>
                           </property>
+                          <item>
+                           <widget class="QLabel" name="label_4">
+                            <property name="text">
+                             <string>Тест: </string>
+                            </property>
+                           </widget>
+                          </item>
                           <item>
                            <widget class="QComboBox" name="list_test_result">
                             <property name="cursor">
@@ -1996,6 +2147,103 @@ background-image: none;
                            </widget>
                           </item>
                          </layout>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                     <widget class="QWidget" name="note_page">
+                      <layout class="QVBoxLayout" name="verticalLayout_14">
+                       <property name="spacing">
+                        <number>0</number>
+                       </property>
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>9</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QFrame" name="frame_4">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>50</height>
+                          </size>
+                         </property>
+                         <property name="frameShape">
+                          <enum>QFrame::StyledPanel</enum>
+                         </property>
+                         <property name="frameShadow">
+                          <enum>QFrame::Raised</enum>
+                         </property>
+                         <layout class="QHBoxLayout" name="horizontalLayout">
+                          <property name="leftMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <item>
+                           <spacer name="horizontalSpacer_4">
+                            <property name="orientation">
+                             <enum>Qt::Horizontal</enum>
+                            </property>
+                            <property name="sizeHint" stdset="0">
+                             <size>
+                              <width>40</width>
+                              <height>20</height>
+                             </size>
+                            </property>
+                           </spacer>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="pushButton_3">
+                            <property name="text">
+                             <string>Добавить раздел...</string>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QScrollArea" name="scrollArea">
+                         <property name="cursor" stdset="0">
+                          <cursorShape>IBeamCursor</cursorShape>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true"/>
+                         </property>
+                         <property name="widgetResizable">
+                          <bool>true</bool>
+                         </property>
+                         <widget class="QWidget" name="scrollAreaWidgetContents">
+                          <property name="geometry">
+                           <rect>
+                            <x>0</x>
+                            <y>0</y>
+                            <width>92</width>
+                            <height>67</height>
+                           </rect>
+                          </property>
+                          <layout class="QVBoxLayout" name="verticalLayout_16">
+                           <item>
+                            <widget class="QTreeWidget" name="treeWidget">
+                             <column>
+                              <property name="text">
+                               <string>Заметки</string>
+                              </property>
+                             </column>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
                         </widget>
                        </item>
                       </layout>

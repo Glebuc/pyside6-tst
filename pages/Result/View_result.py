@@ -13,7 +13,7 @@ class CustomTableView(QTableView):
         self.setSelectionMode(QTableView.SingleSelection)
         self.verticalHeader().setVisible(False)
 
-        self.model = Model_result.DatabaseModel('tests')
+        self.model = Model_result.ResultModel('tests')
         self.setModel(self.model)
 
         header = self.horizontalHeader()

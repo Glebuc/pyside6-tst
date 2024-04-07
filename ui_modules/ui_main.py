@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'main.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.5.3
+## Created by: Qt User Interface Compiler version 6.6.3
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -14,6 +14,7 @@ from PySide6.QtWidgets import *
 from PySide6.QtCharts import *
 
 from . resources_rc import *
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -190,31 +191,14 @@ class Ui_MainWindow(object):
 "	border-top: 3px solid rgb(40, 44, 52);\n"
 "}\n"
 "\n"
-"/* Extra Top Menus */\n"
-"#extraTopMenu .QPushButton {\n"
-"	background-position: left center;\n"
-"    background-repeat: no-repeat;\n"
-"	border: none;\n"
-"	border-left: 22px solid transparent;\n"
-"	background-color:transparent;\n"
-"	text-align: left;\n"
-"	padding-left: 44px;\n"
-"}\n"
-"#extraTopMenu .QPushButton:hover {\n"
-"	background-color: rgb(40, 44, 52);\n"
-"}\n"
-"#extraTopMenu .QPushButton:pressed {	\n"
-"	background-color: rgb(35, 40, 49);\n"
-"	color: rgb(255, 255, 255);\n"
-"}\n"
+"\n"
 "\n"
 "/* /////////////////////////////////////////////////////////////////////////////////////////////////\n"
 "Content App */\n"
 "#contentTopBg{	\n"
 "	background-color: rgb(33, 37, 43);\n"
 "}\n"
-"#contentBott"
-                        "om{\n"
+"#contentBottom{\n"
 "	border-top: 3px solid rgb(44, 49, 58);\n"
 "}\n"
 "\n"
@@ -224,7 +208,8 @@ class Ui_MainWindow(object):
 "#rightButtons .QPushButton:pressed { background-color: rgb(23, 26, 30); border-style: solid; border-radius: 4px; }\n"
 "\n"
 "/* Theme Settings */\n"
-"#extraRightBox { background-color: rgb(44, 49, 58); }\n"
+"#extraRightBox { backgr"
+                        "ound-color: rgb(44, 49, 58); }\n"
 "#themeSettingsTopDetail { background-color: rgb(189, 147, 249); }\n"
 "\n"
 "/* Bottom Bar */\n"
@@ -238,8 +223,7 @@ class Ui_MainWindow(object):
 "    background-repeat: no-repeat;\n"
 "	border: none;\n"
 "	border-left: 22px solid transparent;\n"
-""
-                        "	background-color:transparent;\n"
+"	background-color:transparent;\n"
 "	text-align: left;\n"
 "	padding-left: 44px;\n"
 "}\n"
@@ -256,7 +240,8 @@ class Ui_MainWindow(object):
 "}\n"
 "QTableWidget::item{\n"
 "	border-color: rgb(44, 49, 60);\n"
-"	padding-left: 5px;\n"
+"	padding-"
+                        "left: 5px;\n"
 "	padding-right: 5px;\n"
 "	gridline-color: rgb(44, 49, 60);\n"
 "}\n"
@@ -275,8 +260,7 @@ class Ui_MainWindow(object):
 "	background-color: rgb(33, 37, 43);\n"
 "}\n"
 "QHeaderView::section:horizontal\n"
-""
-                        "{\n"
+"{\n"
 "    border: 1px solid rgb(33, 37, 43);\n"
 "	background-color: rgb(33, 37, 43);\n"
 "	padding: 3px;\n"
@@ -293,7 +277,8 @@ class Ui_MainWindow(object):
 "	border-radius: 5px;\n"
 "	border: 2px solid rgb(33, 37, 43);\n"
 "	padding-left: 10px;\n"
-"	selection-color: rgb(255, 255, 255);\n"
+"	selec"
+                        "tion-color: rgb(255, 255, 255);\n"
 "	selection-background-color: rgb(255, 121, 198);\n"
 "}\n"
 "QLineEdit:hover {\n"
@@ -310,8 +295,7 @@ class Ui_MainWindow(object):
 "	border-radius: 5px;\n"
 "	padding: 10px;\n"
 "	selection-color: rgb(255, 255, 255);\n"
-"	selection-background-color: rgb"
-                        "(255, 121, 198);\n"
+"	selection-background-color: rgb(255, 121, 198);\n"
 "}\n"
 "QPlainTextEdit  QScrollBar:vertical {\n"
 "    width: 8px;\n"
@@ -329,7 +313,8 @@ class Ui_MainWindow(object):
 "/* /////////////////////////////////////////////////////////////////////////////////////////////////\n"
 "ScrollBars */\n"
 "QScrollBar:horizontal {\n"
-"    border: none;\n"
+"    borde"
+                        "r: none;\n"
 "    background: rgb(150, 150, 150);\n"
 "    height: 8px;\n"
 "    margin: 0px 21px 0 21px;\n"
@@ -349,8 +334,7 @@ class Ui_MainWindow(object):
 "    subcontrol-position: right;\n"
 "    subcontrol-origin: margin;\n"
 "}\n"
-"Q"
-                        "ScrollBar::sub-line:horizontal {\n"
+"QScrollBar::sub-line:horizontal {\n"
 "    border: none;\n"
 "    background: rgb(100, 100, 100);\n"
 "    width: 20px;\n"
@@ -366,7 +350,8 @@ class Ui_MainWindow(object):
 "QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal\n"
 "{\n"
 "     background: none;\n"
-"}\n"
+""
+                        "}\n"
 " QScrollBar:vertical {\n"
 "	border: none;\n"
 "    background: rgb(220, 220, 220);\n"
@@ -386,8 +371,7 @@ class Ui_MainWindow(object):
 "	border-bottom-left-radius: 4px;\n"
 "    border-bottom-right-radius: 4px;\n"
 "     subcontrol-position: bottom;\n"
-"  "
-                        "   subcontrol-origin: margin;\n"
+"     subcontrol-origin: margin;\n"
 " }\n"
 " QScrollBar::sub-line:vertical {\n"
 "	border: none;\n"
@@ -402,10 +386,13 @@ class Ui_MainWindow(object):
 "     background: none;\n"
 " }\n"
 "\n"
-" QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {\n"
+" QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {"
+                        "\n"
 "     background: none;\n"
 " }\n"
-"\n"
+"QScrollArea {\n"
+"	background-color: rgb(94, 92, 100);\n"
+"}\n"
 "/* /////////////////////////////////////////////////////////////////////////////////////////////////\n"
 "CheckBox */\n"
 "QCheckBox::indicator {\n"
@@ -420,8 +407,7 @@ class Ui_MainWindow(object):
 "}\n"
 "QCheckBox::indicator:checked {\n"
 "    background: 3px solid rgb(52, 59, 72);\n"
-"	border: 3px solid rgb(52, 59, 72);	"
-                        "\n"
+"	border: 3px solid rgb(52, 59, 72);	\n"
 "	background-image: url(:/icons/images/icons/cil-check-alt.png);\n"
 "}\n"
 "\n"
@@ -435,7 +421,8 @@ class Ui_MainWindow(object):
 "    background: rgb(44, 49, 60);\n"
 "}\n"
 "QRadioButton::indicator:hover {\n"
-"    border: 3px solid rgb(58, 66, 81);\n"
+""
+                        "    border: 3px solid rgb(58, 66, 81);\n"
 "}\n"
 "QRadioButton::indicator:checked {\n"
 "    background: 3px solid rgb(94, 106, 130);\n"
@@ -455,8 +442,7 @@ class Ui_MainWindow(object):
 "}\n"
 "QComboBox::drop-down {\n"
 "	subcontrol-origin: padding;\n"
-"	subcontrol-position:"
-                        " top right;\n"
+"	subcontrol-position: top right;\n"
 "	width: 25px; \n"
 "	border-left-width: 3px;\n"
 "	border-left-color: rgba(39, 44, 54, 150);\n"
@@ -468,7 +454,8 @@ class Ui_MainWindow(object):
 "	background-repeat: no-reperat;\n"
 " }\n"
 "QComboBox QAbstractItemView {\n"
-"	color: rgb(255, 255, 255);	\n"
+"	color: rgb(255, 255, 255"
+                        ");	\n"
 "	background-color: rgb(33, 37, 43);\n"
 "	padding: 10px;\n"
 "	selection-background-color: rgb(39, 44, 54);\n"
@@ -489,8 +476,7 @@ class Ui_MainWindow(object):
 "    background-color: rgb(189, 147, 249);\n"
 "    border: none;\n"
 "    height: 10px;\n"
-""
-                        "    width: 10px;\n"
+"    width: 10px;\n"
 "    margin: 0px;\n"
 "	border-radius: 5px;\n"
 "}\n"
@@ -507,7 +493,8 @@ class Ui_MainWindow(object):
 "    margin: 0px;\n"
 "	background-color: rgb(52, 59, 72);\n"
 "}\n"
-"QSlider::groove:vertical:hover {\n"
+"QSlider::groove"
+                        ":vertical:hover {\n"
 "	background-color: rgb(55, 62, 76);\n"
 "}\n"
 "QSlider::handle:vertical {\n"
@@ -528,8 +515,7 @@ class Ui_MainWindow(object):
 "/* /////////////////////////////////////////////////////////////////////////////////////////////////\n"
 "CommandLinkButton */\n"
 "QCommandLinkButton {	\n"
-"	color:"
-                        " rgb(255, 121, 198);\n"
+"	color: rgb(255, 121, 198);\n"
 "	border-radius: 5px;\n"
 "	padding: 5px;\n"
 "}\n"
@@ -544,7 +530,8 @@ class Ui_MainWindow(object):
 "\n"
 "/* /////////////////////////////////////////////////////////////////////////////////////////////////\n"
 "Button */\n"
-"#pagesContainer QPushButton {\n"
+""
+                        "#pagesContainer QPushButton {\n"
 "	border: 2px solid rgb(52, 59, 72);\n"
 "	border-radius: 5px;	\n"
 "	background-color: rgb(52, 59, 72);\n"
@@ -567,13 +554,28 @@ class Ui_MainWindow(object):
 "	background-color: rgb(94, 92, 100);\n"
 "}\n"
 "#chart_page{\n"
-"	background-c"
-                        "olor: rgb(94, 92, 100);\n"
+"	background-color: rgb(94, 92, 100);\n"
 "}\n"
 "#report_page{\n"
 "	background-color: rgb(94, 92, 100);\n"
 "}\n"
+"#note_page {\n"
+"	background-color: rgb(94, 92, 100);\n"
+"}\n"
 "#result_page QPushButton {\n"
+"	background-color: rgb(35, 40, 49);\n"
+"	padding: 5px;\n"
+"}\n"
+"#chart_page QPushButton {\n"
+"	background-color: rgb(35, 40, 49);\n"
+"	padding: 5px;\n"
+"}\n"
+"#note_page QPushButton {\n"
+"	background-color: rgb(35, 40, 49);\n"
+""
+                        "	padding: 5px;\n"
+"}\n"
+"#report_page QPushButton {\n"
 "	background-color: rgb(35, 40, 49);\n"
 "	padding: 5px;\n"
 "}\n"
@@ -593,6 +595,10 @@ class Ui_MainWindow(object):
 "#btn_result {\n"
 "	background-image: url(:/icons/images/icons/cil-task.png);\n"
 "}\n"
+"#btn_note {\n"
+"	\n"
+"	background-image: url(:/icons/images/icons/cil-pen-alt.png);\n"
+"}\n"
 "#save_chart_btn{\n"
 "	background-image: url(:/icons/images/icons/cil-save.png);\n"
 "}\n"
@@ -606,8 +612,8 @@ class Ui_MainWindow(object):
 "	background-image: url(:/icons/images/icons/cil-caret-top.png);\n"
 "}\n"
 "#down_chart_btn {\n"
-"	background-image: url(:/icons"
-                        "/images/icons/cil-caret-bottom.png);\n"
+"	backgroun"
+                        "d-image: url(:/icons/images/icons/cil-caret-bottom.png);\n"
 "}\n"
 "#left_chart_btn {\n"
 "	background-image: url(:/icons/images/icons/cil-caret-left.png);\n"
@@ -684,7 +690,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
         self.toggleButton = QPushButton(self.toggleBox)
         self.toggleButton.setObjectName(u"toggleButton")
-        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toggleButton.sizePolicy().hasHeightForWidth())
@@ -742,6 +748,13 @@ class Ui_MainWindow(object):
         self.btn_result.setStyleSheet(u"")
 
         self.verticalLayout_8.addWidget(self.btn_result)
+
+        self.btn_note = QPushButton(self.topMenu)
+        self.btn_note.setObjectName(u"btn_note")
+        self.btn_note.setMinimumSize(QSize(0, 45))
+        self.btn_note.setCursor(QCursor(Qt.PointingHandCursor))
+
+        self.verticalLayout_8.addWidget(self.btn_note)
 
 
         self.verticalMenuLayout.addWidget(self.topMenu, 0, Qt.AlignTop)
@@ -856,7 +869,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
         self.label_theme = QLabel(self.extraCenter)
         self.label_theme.setObjectName(u"label_theme")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.label_theme.sizePolicy().hasHeightForWidth())
@@ -917,7 +930,7 @@ class Ui_MainWindow(object):
 
         self.btn_user_guide = QPushButton(self.extraCenter)
         self.btn_user_guide.setObjectName(u"btn_user_guide")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Fixed)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
         sizePolicy2.setHorizontalStretch(0)
         sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.btn_user_guide.sizePolicy().hasHeightForWidth())
@@ -1031,11 +1044,13 @@ class Ui_MainWindow(object):
 
         self.pushButton_2 = QPushButton(self.report_page)
         self.pushButton_2.setObjectName(u"pushButton_2")
+        self.pushButton_2.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.verticalLayout_11.addWidget(self.pushButton_2)
 
         self.pushButton = QPushButton(self.report_page)
         self.pushButton.setObjectName(u"pushButton")
+        self.pushButton.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.verticalLayout_11.addWidget(self.pushButton)
 
@@ -1052,19 +1067,42 @@ class Ui_MainWindow(object):
         self.frame_3.setFrameShape(QFrame.StyledPanel)
         self.frame_3.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_9 = QHBoxLayout(self.frame_3)
+        self.horizontalLayout_9.setSpacing(9)
         self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
         self.horizontalLayout_9.setContentsMargins(0, -1, 0, -1)
+        self.label_2 = QLabel(self.frame_3)
+        self.label_2.setObjectName(u"label_2")
+        self.label_2.setFont(font)
+        self.label_2.setWordWrap(True)
+
+        self.horizontalLayout_9.addWidget(self.label_2)
+
         self.list_test_chart = QComboBox(self.frame_3)
         self.list_test_chart.setObjectName(u"list_test_chart")
+        self.list_test_chart.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.horizontalLayout_9.addWidget(self.list_test_chart)
 
-        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.label_3 = QLabel(self.frame_3)
+        self.label_3.setObjectName(u"label_3")
+        self.label_3.setFont(font)
+        self.label_3.setWordWrap(True)
+
+        self.horizontalLayout_9.addWidget(self.label_3)
+
+        self.comboBox = QComboBox(self.frame_3)
+        self.comboBox.setObjectName(u"comboBox")
+        self.comboBox.setCursor(QCursor(Qt.PointingHandCursor))
+
+        self.horizontalLayout_9.addWidget(self.comboBox)
+
+        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_9.addItem(self.horizontalSpacer_3)
 
         self.change_view_chart_btn = QPushButton(self.frame_3)
         self.change_view_chart_btn.setObjectName(u"change_view_chart_btn")
+        self.change_view_chart_btn.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.horizontalLayout_9.addWidget(self.change_view_chart_btn)
 
@@ -1098,45 +1136,57 @@ class Ui_MainWindow(object):
         self.verticalLayout_13.setContentsMargins(0, 0, 5, 0)
         self.up_chart_btn = QPushButton(self.frame_5)
         self.up_chart_btn.setObjectName(u"up_chart_btn")
+        self.up_chart_btn.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.verticalLayout_13.addWidget(self.up_chart_btn)
 
         self.down_chart_btn = QPushButton(self.frame_5)
         self.down_chart_btn.setObjectName(u"down_chart_btn")
+        self.down_chart_btn.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.verticalLayout_13.addWidget(self.down_chart_btn)
 
         self.right_chart_btn = QPushButton(self.frame_5)
         self.right_chart_btn.setObjectName(u"right_chart_btn")
+        self.right_chart_btn.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.verticalLayout_13.addWidget(self.right_chart_btn)
 
         self.left_chart_btn = QPushButton(self.frame_5)
         self.left_chart_btn.setObjectName(u"left_chart_btn")
+        self.left_chart_btn.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.verticalLayout_13.addWidget(self.left_chart_btn)
 
+        self.verticalSpacer_2 = QSpacerItem(20, 15, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
+
+        self.verticalLayout_13.addItem(self.verticalSpacer_2)
+
         self.zoom_out_chart_btn = QPushButton(self.frame_5)
         self.zoom_out_chart_btn.setObjectName(u"zoom_out_chart_btn")
+        self.zoom_out_chart_btn.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.verticalLayout_13.addWidget(self.zoom_out_chart_btn)
 
         self.zoom_in_chart_btn = QPushButton(self.frame_5)
         self.zoom_in_chart_btn.setObjectName(u"zoom_in_chart_btn")
+        self.zoom_in_chart_btn.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.verticalLayout_13.addWidget(self.zoom_in_chart_btn)
 
         self.reset_chart_btn = QPushButton(self.frame_5)
         self.reset_chart_btn.setObjectName(u"reset_chart_btn")
+        self.reset_chart_btn.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.verticalLayout_13.addWidget(self.reset_chart_btn)
 
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout_13.addItem(self.verticalSpacer)
 
         self.save_chart_btn = QPushButton(self.frame_5)
         self.save_chart_btn.setObjectName(u"save_chart_btn")
+        self.save_chart_btn.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.verticalLayout_13.addWidget(self.save_chart_btn)
 
@@ -1167,6 +1217,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout_7 = QHBoxLayout(self.frame)
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
         self.horizontalLayout_7.setContentsMargins(0, -1, 0, -1)
+        self.label_4 = QLabel(self.frame)
+        self.label_4.setObjectName(u"label_4")
+
+        self.horizontalLayout_7.addWidget(self.label_4)
+
         self.list_test_result = QComboBox(self.frame)
         self.list_test_result.setObjectName(u"list_test_result")
         self.list_test_result.setCursor(QCursor(Qt.PointingHandCursor))
@@ -1174,7 +1229,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_7.addWidget(self.list_test_result)
 
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_7.addItem(self.horizontalSpacer)
 
@@ -1204,7 +1259,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_8 = QHBoxLayout(self.frame_2)
         self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
         self.horizontalLayout_8.setContentsMargins(-1, -1, 0, -1)
-        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_8.addItem(self.horizontalSpacer_2)
 
@@ -1230,6 +1285,52 @@ class Ui_MainWindow(object):
         self.verticalLayout_20.addWidget(self.frame_2)
 
         self.stackedWidget.addWidget(self.result_page)
+        self.note_page = QWidget()
+        self.note_page.setObjectName(u"note_page")
+        self.verticalLayout_14 = QVBoxLayout(self.note_page)
+        self.verticalLayout_14.setSpacing(0)
+        self.verticalLayout_14.setObjectName(u"verticalLayout_14")
+        self.verticalLayout_14.setContentsMargins(0, 9, 0, 0)
+        self.frame_4 = QFrame(self.note_page)
+        self.frame_4.setObjectName(u"frame_4")
+        self.frame_4.setMinimumSize(QSize(0, 50))
+        self.frame_4.setFrameShape(QFrame.StyledPanel)
+        self.frame_4.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout = QHBoxLayout(self.frame_4)
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.horizontalLayout.setContentsMargins(0, -1, 0, -1)
+        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout.addItem(self.horizontalSpacer_4)
+
+        self.pushButton_3 = QPushButton(self.frame_4)
+        self.pushButton_3.setObjectName(u"pushButton_3")
+
+        self.horizontalLayout.addWidget(self.pushButton_3)
+
+
+        self.verticalLayout_14.addWidget(self.frame_4)
+
+        self.scrollArea = QScrollArea(self.note_page)
+        self.scrollArea.setObjectName(u"scrollArea")
+        self.scrollArea.viewport().setProperty("cursor", QCursor(Qt.IBeamCursor))
+        self.scrollArea.setStyleSheet(u"")
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollAreaWidgetContents = QWidget()
+        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 92, 67))
+        self.verticalLayout_16 = QVBoxLayout(self.scrollAreaWidgetContents)
+        self.verticalLayout_16.setObjectName(u"verticalLayout_16")
+        self.treeWidget = QTreeWidget(self.scrollAreaWidgetContents)
+        self.treeWidget.setObjectName(u"treeWidget")
+
+        self.verticalLayout_16.addWidget(self.treeWidget)
+
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+
+        self.verticalLayout_14.addWidget(self.scrollArea)
+
+        self.stackedWidget.addWidget(self.note_page)
 
         self.verticalLayout_15.addWidget(self.stackedWidget)
 
@@ -1293,7 +1394,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.comboBox_theme.setCurrentIndex(1)
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1326,6 +1427,7 @@ class Ui_MainWindow(object):
 #if QT_CONFIG(shortcut)
         self.btn_result.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+E", None))
 #endif // QT_CONFIG(shortcut)
+        self.btn_note.setText(QCoreApplication.translate("MainWindow", u"\u0417\u0430\u043c\u0435\u0442\u043a\u0438", None))
 #if QT_CONFIG(tooltip)
         self.toggleLeftBox.setToolTip(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438", None))
 #endif // QT_CONFIG(tooltip)
@@ -1356,42 +1458,72 @@ class Ui_MainWindow(object):
         self.label.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043f\u0438\u0441\u043e\u043a \u043e\u0442\u0447\u0435\u0442\u043e\u0432", None))
         self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043a\u0430\u0437\u0430\u0442\u044c \u043e\u0442\u0447\u0435\u0442...", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c \u043e\u0442\u0447\u0435\u0442...", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"\u0422\u0435\u0441\u0442:", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b \u0442\u0435\u0441\u0442\u0430:", None))
         self.change_view_chart_btn.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438 \u043e\u0442\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u044f \u0433\u0440\u0430\u0444\u0438\u043a\u0430...", None))
 #if QT_CONFIG(tooltip)
         self.up_chart_btn.setToolTip(QCoreApplication.translate("MainWindow", u"\u0421\u043c\u0435\u0441\u0442\u0438\u0442\u044c \u043d\u0430\u0432\u0435\u0440\u0445", None))
 #endif // QT_CONFIG(tooltip)
         self.up_chart_btn.setText("")
+#if QT_CONFIG(shortcut)
+        self.up_chart_btn.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Up", None))
+#endif // QT_CONFIG(shortcut)
 #if QT_CONFIG(tooltip)
         self.down_chart_btn.setToolTip(QCoreApplication.translate("MainWindow", u"\u0421\u043c\u0435\u0441\u0442\u0438\u0442\u044c \u0432\u043d\u0438\u0437", None))
 #endif // QT_CONFIG(tooltip)
         self.down_chart_btn.setText("")
+#if QT_CONFIG(shortcut)
+        self.down_chart_btn.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Down", None))
+#endif // QT_CONFIG(shortcut)
 #if QT_CONFIG(tooltip)
         self.right_chart_btn.setToolTip(QCoreApplication.translate("MainWindow", u"\u0421\u043c\u0435\u0441\u0442\u0438\u0442\u044c \u0432\u043f\u0440\u0430\u0432\u043e", None))
 #endif // QT_CONFIG(tooltip)
         self.right_chart_btn.setText("")
+#if QT_CONFIG(shortcut)
+        self.right_chart_btn.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Right", None))
+#endif // QT_CONFIG(shortcut)
 #if QT_CONFIG(tooltip)
         self.left_chart_btn.setToolTip(QCoreApplication.translate("MainWindow", u"\u0421\u043c\u0435\u0441\u0442\u0438\u0442\u044c \u0432\u043b\u0435\u0432\u043e", None))
 #endif // QT_CONFIG(tooltip)
         self.left_chart_btn.setText("")
+#if QT_CONFIG(shortcut)
+        self.left_chart_btn.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Left", None))
+#endif // QT_CONFIG(shortcut)
 #if QT_CONFIG(tooltip)
         self.zoom_out_chart_btn.setToolTip(QCoreApplication.translate("MainWindow", u"\u0423\u043c\u0435\u043d\u044c\u0448\u0438\u0442\u044c \u043c\u0430\u0441\u0448\u0442\u0430\u0431", None))
 #endif // QT_CONFIG(tooltip)
         self.zoom_out_chart_btn.setText("")
+#if QT_CONFIG(shortcut)
+        self.zoom_out_chart_btn.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+-", None))
+#endif // QT_CONFIG(shortcut)
 #if QT_CONFIG(tooltip)
         self.zoom_in_chart_btn.setToolTip(QCoreApplication.translate("MainWindow", u"\u0423\u0432\u0435\u043b\u0438\u0447\u0438\u0442\u044c \u043c\u0430\u0441\u0448\u0442\u0430\u0431", None))
 #endif // QT_CONFIG(tooltip)
         self.zoom_in_chart_btn.setText("")
+#if QT_CONFIG(shortcut)
+        self.zoom_in_chart_btn.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+=", None))
+#endif // QT_CONFIG(shortcut)
         self.reset_chart_btn.setText("")
+#if QT_CONFIG(shortcut)
+        self.reset_chart_btn.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+/", None))
+#endif // QT_CONFIG(shortcut)
 #if QT_CONFIG(tooltip)
         self.save_chart_btn.setToolTip(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c \u0433\u0440\u0430\u0444\u0438\u043a", None))
 #endif // QT_CONFIG(tooltip)
         self.save_chart_btn.setText("")
+#if QT_CONFIG(shortcut)
+        self.save_chart_btn.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+S", None))
+#endif // QT_CONFIG(shortcut)
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"\u0422\u0435\u0441\u0442: ", None))
         self.btn_extension_search.setText(QCoreApplication.translate("MainWindow", u"\u0420\u0430\u0441\u0448\u0438\u0440\u0435\u043d\u043d\u043d\u044b\u0439 \u043f\u043e\u0438\u0441\u043a", None))
 #if QT_CONFIG(tooltip)
         self.btn_change_view.setToolTip("")
 #endif // QT_CONFIG(tooltip)
         self.btn_change_view.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0430 \u043e\u0442\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u044f", None))
         self.btn_save_view.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c..", None))
+        self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0440\u0430\u0437\u0434\u0435\u043b...", None))
+        ___qtreewidgetitem = self.treeWidget.headerItem()
+        ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", u"\u0417\u0430\u043c\u0435\u0442\u043a\u0438", None));
         self.creditsLabel.setText("")
         self.version.setText(QCoreApplication.translate("MainWindow", u"v0.0.1", None))
     # retranslateUi

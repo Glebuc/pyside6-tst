@@ -7,7 +7,7 @@ from database import db_params
 from ..BaseModel import BaseModel
 
 
-class DatabaseModel(BaseModel):
+class ResultModel(BaseModel):
     """Модель для страницы результатов и манипулирования табличными значением"""
     def __init__(self, table_name):
         super().__init__(table_name)
@@ -33,6 +33,35 @@ class DatabaseModel(BaseModel):
         # self.setHeaderData(index_time_test, Qt.Horizontal, self.tr("Время выполнения"))
         # self.setHeaderData(index_user_name, Qt.Horizontal, self.tr("Пользователь"))
         # self.setHeaderData(index_test_result, Qt.Horizontal, self.tr("Результат"))
+
+    def apply_filter(self,table_view, test_data, start_date, end_date, user_data):
+        filters = []
+        if test_data:
+            filters.append(f"test_name = '{test_data}'")
+        if user_data:
+            filters.append(f"user_name = '{user_data}'")
+        if start_date and end_date:
+            filters.append(f"start_test BETWEEN '{start_date}' AND '{end_date}'")
+        where_clause = " AND ".join(filters)
+        if where_clause:
+            where_clause = "WHERE " + where_clause
+        query = f""" SELECT t.test_name, t.test_param, t.time_test, t.test_result, t.start_test, u.user_name
+                       FROM tests as t
+                       INNER JOIN users as u ON t.id_user_fk = u.user_id {where_clause}"""
+        print(query)
+        self.setQuery(query)
+        if self.rowCount() == 0:
+            # Если строк нет, выводим предупреждение
+            QMessageBox.warning(None, "Предупреждение", "Нет данных, удовлетворяющих условиям запроса.")
+            # Оставляем модель предыдущей
+            self.setQuery(self.model.ALL_RESULT_SQL)
+        else:
+            # Если нет ни одного условия, выводим предупреждение
+            QMessageBox.information(None, "Данные были изменены", "Данные в таблице  отфильтрованы")
+        self.tableView.setModel(self.model)
+
+
+
 
     def filter_data(self, combo_box: QComboBox, table_view: QTableView) -> None:
         selected_option = combo_box.currentText()

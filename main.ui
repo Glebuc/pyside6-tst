@@ -1723,7 +1723,13 @@ background-image: none;
                            </widget>
                           </item>
                           <item>
-                           <widget class="QComboBox" name="comboBox">
+                           <widget class="QComboBox" name="list_param_test">
+                            <property name="minimumSize">
+                             <size>
+                              <width>200</width>
+                              <height>0</height>
+                             </size>
+                            </property>
                             <property name="cursor">
                              <cursorShape>PointingHandCursor</cursorShape>
                             </property>

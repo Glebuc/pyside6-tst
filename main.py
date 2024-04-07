@@ -17,6 +17,7 @@ from PySide6 import QtCore
 from PySide6.QtCore import Qt, QResource
 
 import doctest
+from typing import List, Tuple, Union, Optional
 
 from datetime import datetime
 from loger import Logger
@@ -24,7 +25,7 @@ from Application import Application
 from ui_modules import *
 from widgets import *
 from pages import BaseModel, Model_result, Save_data, View_result, Dialog_change_view, DialogsSetting, DialogsResult,\
-                            Chart_view
+                            Chart_view, Model_chart
 
 from utils import get_translate_path, get_themes_path
 
@@ -56,7 +57,8 @@ class MainWindow(QMainWindow):
 
         self.tableView = View_result.CustomTableView()
         widgets.verticalLayout_20.replaceWidget(widgets.resultView, self.tableView)
-        self.model = Model_result.ResultModel('tests')
+        self.model_result = Model_result.ResultModel('tests')
+        self.model_chart = Model_chart.ChartModel('tests')
 
         widgets.btn_change_view.clicked.connect(self.open_column_selection_dialog)
 
@@ -79,12 +81,17 @@ class MainWindow(QMainWindow):
         widgets.graphicsView.setChart(self.chart)
 
         widgets.list_test_result.addItem("Все тесты")
-        for i in self.model.execute_sql(BaseModel.LIST_TEST_SQL):
+        for i in self.model_result.execute_sql(BaseModel.LIST_TEST_SQL):
             widgets.list_test_result.addItem(i)
             widgets.list_test_chart.addItem(i)
 
+        test_name =  widgets.list_test_chart.currentText()
+
+
         widgets.list_test_result.currentIndexChanged.connect(
-            lambda: self.model.filter_data(combo_box=widgets.list_test_result, table_view=self.tableView))
+            lambda: self.model_result.filter_data(combo_box=widgets.list_test_result, table_view=self.tableView))
+
+        widgets.list_test_chart.activated.connect(self.set_param_test_for_chart)
 
         widgets.btn_save_view.clicked.connect(lambda: Save_data.save_data_to_csv(self.tableView))
         widgets.toggleButton.clicked.connect(lambda: UIFunctions.toggleMenu(self, True))
@@ -116,13 +123,34 @@ class MainWindow(QMainWindow):
         self.show()
         widgets.stackedWidget.setCurrentWidget(widgets.report_page)
 
-        record = self.model.record()
+        record = self.model_result.record()
         column_names = [record.fieldName(i) for i in range(record.count())]
 
         self.column_selection_dialog = Dialog_change_view.ColumnSelectionDialog(column_names)
 
         # словарь для хранения состояний флажков
         self.checkbox_dict = {}
+
+    def get_text_from_combo_chart(self) -> str:
+        return widgets.list_test_chart.currentText()
+
+    def get_param_test(self) -> List:
+        test_name =  self.get_text_from_combo_chart()
+        parameters_query = self.model_chart.get_test_parameters(test_name)
+        list_param = []
+        if parameters_query:
+            while parameters_query.next():
+                param = parameters_query.value(0)
+                list_param.append(param)
+            return list_param
+
+    def set_param_test_for_chart(self):
+        widgets.list_param_test.clear()
+        list_param = self.get_param_test()
+        if list_param:
+            widgets.list_param_test.addItems(list_param)
+
+
 
     def change_translation(self, text:str) -> None:
         """
@@ -171,11 +199,11 @@ class MainWindow(QMainWindow):
            Returns:
                None
            """
-        visible_columns = [self.model.headerData(i, QtCore.Qt.Horizontal) for i in range(self.model.columnCount())]
+        visible_columns = [self.model_result.headerData(i, QtCore.Qt.Horizontal) for i in range(self.model_result.columnCount())]
         if self.column_selection_dialog.exec() == QDialog.Accepted:
             selected_columns = self.column_selection_dialog.get_selected_columns()
-            for column_index in range(self.model.columnCount()):
-                column_name = self.model.headerData(column_index, QtCore.Qt.Horizontal)
+            for column_index in range(self.model_result.columnCount()):
+                column_name = self.model_result.headerData(column_index, QtCore.Qt.Horizontal)
                 if selected_columns.get(column_name, False):
                     self.tableView.showColumn(column_index)
                 else:

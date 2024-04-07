@@ -15,7 +15,6 @@ from PySide6.QtCharts import *
 
 from . resources_rc import *
 
-
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
@@ -1090,11 +1089,12 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_9.addWidget(self.label_3)
 
-        self.comboBox = QComboBox(self.frame_3)
-        self.comboBox.setObjectName(u"comboBox")
-        self.comboBox.setCursor(QCursor(Qt.PointingHandCursor))
+        self.list_param_test = QComboBox(self.frame_3)
+        self.list_param_test.setObjectName(u"list_param_test")
+        self.list_param_test.setMinimumSize(QSize(200, 0))
+        self.list_param_test.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.horizontalLayout_9.addWidget(self.comboBox)
+        self.horizontalLayout_9.addWidget(self.list_param_test)
 
         self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 

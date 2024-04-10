@@ -11,9 +11,8 @@ from ..BaseModel import BaseModel
 
 
 class ChartModel(BaseModel):
-    SELECT_ALL_PARAMETRS = "select test_param from tests t where test_param is not null and test_name = :test_name  group by test_param;"
+    """Модель для страницы графиков и манипулирования табличными значением"""
 
-    """Модель для страницы результатов и манипулирования табличными значением"""
     def __init__(self, table_name):
         super().__init__(table_name)
 
@@ -39,6 +38,11 @@ class ChartModel(BaseModel):
             print("Error executing query:", query.lastError().text())
             return None
         return query
+
+    def get_data_for_chart(self, test_name, test_param):
+
+
+
 
 
 

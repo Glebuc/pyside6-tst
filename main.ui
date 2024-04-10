@@ -581,7 +581,6 @@ background-image: url(:/icons/images/icons/cil-chart-pie.png);
 	background-image: url(:/icons/images/icons/cil-task.png);
 }
 #btn_note {
-	
 	background-image: url(:/icons/images/icons/cil-pen-alt.png);
 }
 #save_chart_btn{
@@ -611,6 +610,10 @@ background-image: url(:/icons/images/icons/cil-chart-pie.png);
 }
 #list_test {
 	color:#ffffff;
+}
+
+#change_view_chart_btn {
+	background-image: url(:/icons/images/icons/cil-settings.png);
 }</string>
    </property>
    <layout class="QGridLayout" name="gridLayout_3">
@@ -998,6 +1001,13 @@ background-image: url(:/icons/images/icons/cil-chart-pie.png);
                   <property name="text">
                    <string>Заметки</string>
                   </property>
+                  <property name="icon">
+                   <iconset resource="resources.qrc">
+                    <normaloff>:/icons/images/icons/cil-pen-alt.png</normaloff>:/icons/images/icons/cil-pen-alt.png</iconset>
+                  </property>
+                  <property name="shortcut">
+                   <string>Ctrl+R</string>
+                  </property>
                  </widget>
                 </item>
                </layout>
@@ -1071,7 +1081,7 @@ background-image: none;
                    <string>Настройки</string>
                   </property>
                   <property name="shortcut">
-                   <string>Ctrl+R</string>
+                   <string>Ctrl+T</string>
                   </property>
                  </widget>
                 </item>
@@ -1614,7 +1624,7 @@ background-image: none;
                       <number>0</number>
                      </property>
                      <property name="currentIndex">
-                      <number>1</number>
+                      <number>2</number>
                      </property>
                      <widget class="QWidget" name="report_page">
                       <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -1726,7 +1736,7 @@ background-image: none;
                            <widget class="QComboBox" name="list_param_test">
                             <property name="minimumSize">
                              <size>
-                              <width>200</width>
+                              <width>170</width>
                               <height>0</height>
                              </size>
                             </property>
@@ -1753,8 +1763,11 @@ background-image: none;
                             <property name="cursor">
                              <cursorShape>PointingHandCursor</cursorShape>
                             </property>
+                            <property name="toolTip">
+                             <string>Настройки отображения графика</string>
+                            </property>
                             <property name="text">
-                             <string>Настройки отображения графика...</string>
+                             <string/>
                             </property>
                            </widget>
                           </item>
@@ -2215,6 +2228,13 @@ background-image: none;
                             </property>
                            </widget>
                           </item>
+                          <item>
+                           <widget class="QPushButton" name="pushButton_4">
+                            <property name="text">
+                             <string>Добавить статью...</string>
+                            </property>
+                           </widget>
+                          </item>
                          </layout>
                         </widget>
                        </item>
@@ -2234,18 +2254,92 @@ background-image: none;
                            <rect>
                             <x>0</x>
                             <y>0</y>
-                            <width>92</width>
-                            <height>67</height>
+                            <width>858</width>
+                            <height>464</height>
                            </rect>
                           </property>
                           <layout class="QVBoxLayout" name="verticalLayout_16">
                            <item>
                             <widget class="QTreeWidget" name="treeWidget">
+                             <property name="styleSheet">
+                              <string notr="true">color:#000</string>
+                             </property>
                              <column>
                               <property name="text">
                                <string>Заметки</string>
                               </property>
+                              <property name="background">
+                               <color>
+                                <red>104</red>
+                                <green>104</green>
+                                <blue>104</blue>
+                               </color>
+                              </property>
+                              <property name="foreground">
+                               <brush brushstyle="NoBrush">
+                                <color alpha="255">
+                                 <red>255</red>
+                                 <green>255</green>
+                                 <blue>255</blue>
+                                </color>
+                               </brush>
+                              </property>
                              </column>
+                             <item>
+                              <property name="text">
+                               <string>Тесты</string>
+                              </property>
+                              <item>
+                               <property name="text">
+                                <string>HPCG</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>IMB</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>HPL</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>b_eff</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>STREAM</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>IOZONE</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>SPEC HPC</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>IO-500</string>
+                               </property>
+                              </item>
+                             </item>
+                             <item>
+                              <property name="text">
+                               <string>Оптимизация тестов</string>
+                              </property>
+                              <item>
+                               <property name="text">
+                                <string>Выбор наилучших параметров для HPL</string>
+                               </property>
+                              </item>
+                             </item>
                             </widget>
                            </item>
                           </layout>

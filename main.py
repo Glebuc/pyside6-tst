@@ -11,7 +11,7 @@ import os
 import platform
 
 from PySide6.QtWidgets import QDialog, QFormLayout, QCheckBox, QVBoxLayout, QPushButton, \
-    QTableView,QMainWindow, QWidget, QHeaderView, QMessageBox, QGraphicsScene
+    QTableView,QMainWindow, QWidget, QHeaderView, QMessageBox, QGraphicsScene, QGraphicsView
 from PySide6.QtGui import QTransform
 from PySide6 import QtCore
 from PySide6.QtCore import Qt, QResource
@@ -77,8 +77,11 @@ class MainWindow(QMainWindow):
         widgets.zoom_out_chart_btn.clicked.connect(self.chart.zoom_out)
         widgets.reset_chart_btn.clicked.connect(self.chart.reset)
 
-
+        widgets.graphicsView.setDragMode(QGraphicsView.ScrollHandDrag)
         widgets.graphicsView.setChart(self.chart)
+
+
+        self.chart.save_chart_image(widgets.graphicsView, "C:\\Users\\Admin\\Desktop\\ДИПЛОМ" )
 
         widgets.list_test_result.addItem("Все тесты")
         for i in self.model_result.execute_sql(BaseModel.LIST_TEST_SQL):
@@ -131,25 +134,44 @@ class MainWindow(QMainWindow):
         # словарь для хранения состояний флажков
         self.checkbox_dict = {}
 
+
     def get_text_from_combo_chart(self) -> str:
+        """
+        Получает текущее значение из ComboBox.
+
+        Returns:
+            str: Текущее выбранное значение из ComboBox.
+        """
         return widgets.list_test_chart.currentText()
 
+
     def get_param_test(self) -> List:
-        test_name =  self.get_text_from_combo_chart()
+        """
+        Получает параметры теста на основе текущего выбранного значения в ComboBox.
+
+        Returns:
+            List: Список параметров теста.
+        """
+        test_name = self.get_text_from_combo_chart()
         parameters_query = self.model_chart.get_test_parameters(test_name)
         list_param = []
         if parameters_query:
             while parameters_query.next():
                 param = parameters_query.value(0)
                 list_param.append(param)
-            return list_param
+        return list_param
 
-    def set_param_test_for_chart(self):
+
+    def set_param_test_for_chart(self) -> None:
+        """
+        Устанавливает параметры теста для ComboBox.
+
+        Очищает содержимое ComboBox и затем добавляет новые параметры.
+        """
         widgets.list_param_test.clear()
         list_param = self.get_param_test()
         if list_param:
             widgets.list_param_test.addItems(list_param)
-
 
 
     def change_translation(self, text:str) -> None:
@@ -237,8 +259,8 @@ class MainWindow(QMainWindow):
     def open_dialog_extension_search(self):
         dialog = DialogsResult.DialogExtensionSearch(self)
         if dialog.exec() == QDialog.Accepted:
-            test_data,user_data,np_data,N_data, start_date, end_date = dialog.get_filter_parameters()
-            self.apply_filter(test_data, start_date, end_date, user_data)
+            test_data, user_data, param_test, start_date, end_date = dialog.get_filter_parameters()
+            self.model_result.apply_filter(self.tableView, test_data, user_data, param_test, start_date, end_date)
 
 
 

@@ -22,25 +22,92 @@ class CustomChart(QChart):
         self.series.attachAxis(self.axis_y)
         self.legend().hide()
 
+    def save_chart_image(self, graphics_view, file_path):
+        """
+        Сохраняет график в виде изображения.
+
+        Args:
+            graphics_view (QGraphicsView): Объект QGraphicsView, в котором находится график.
+            file_path (str): Путь к файлу, в который нужно сохранить изображение.
+
+        Returns:
+            bool: True, если сохранение прошло успешно, в противном случае False.
+        """
+        chart_view = graphics_view
+        chart_view.resize(self.size().toSize())  # Размер QGraphicsView соответствует размеру графика
+        image = chart_view.grab()
+
+        # Проверяем, удалось ли сохранить изображение
+        if image.save(file_path):
+            print("График успешно сохранен в", file_path)
+            return True
+        else:
+            print("Не удалось сохранить график в", file_path)
+            return False
+
+
+
     def scroll_up(self):
+        """
+            Прокручивает вид вверх на фиксированное расстояние.
+
+            :return:
+                None
+        """
         self.scroll(0, -10)
 
     def scroll_down(self):
+        """
+            Прокручивает вид вниз на фиксированное расстояние.
+
+            :return:
+                None
+        """
         self.scroll(0, 10)
 
     def scroll_left(self):
+        """
+           Прокручивает вид влево на фиксированное расстояние.
+
+           :return:
+               None
+        """
         self.scroll(-10, 0)
 
     def scroll_right(self):
+        """
+            Прокручивает вид вправо на фиксированное расстояние.
+
+            :return:
+                None
+        """
         self.scroll(10, 0)
 
     def zoom_in(self):
+        """
+            Увеличивает масштаб видимости на 1.1 раза.
+
+            :return:
+                None
+        """
         self.zoom(1.1)
 
     def zoom_out(self):
+        """
+            Уменьшает масштаб видимости на 0.9 раза.
+
+            :return:
+                None
+        """
         self.zoom(0.9)
 
     def reset(self):
+        """
+            Сбрасывает вид в его начальное состояние.
+
+            :return:
+                None
+        """
         self.zoomReset()
 
 

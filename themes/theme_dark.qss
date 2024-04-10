@@ -1,4 +1,3 @@
-
 QWidget{
 	color: rgb(221, 221, 221);
 	font: 10pt "Segoe UI";
@@ -24,6 +23,9 @@ QToolTip {
 	background-image: none;
 }
 
+QGraphicsView {
+	background-color: rgb(35, 40, 49);
+}
 QPushButton {
 	background-color: rgb(50, 54, 62);
 	border: 2px solid rgb(30, 34, 42);
@@ -151,24 +153,6 @@ Extra Tab */
 	border-top: 3px solid rgb(40, 44, 52);
 }
 
-/* Extra Top Menus */
-#extraTopMenu .QPushButton {
-	background-position: left center;
-    background-repeat: no-repeat;
-	border: none;
-	border-left: 22px solid transparent;
-	background-color:transparent;
-	text-align: left;
-	padding-left: 44px;
-}
-#extraTopMenu .QPushButton:hover {
-	background-color: rgb(40, 44, 52);
-}
-#extraTopMenu .QPushButton:pressed {
-	background-color: rgb(35, 40, 49);
-	color: rgb(255, 255, 255);
-}
-
 /* /////////////////////////////////////////////////////////////////////////////////////////////////
 Content App */
 #contentTopBg{
@@ -202,7 +186,6 @@ Content App */
 	text-align: left;
 	padding-left: 44px;
 }
-
 
 /* /////////////////////////////////////////////////////////////////////////////////////////////////
 QTableWidget */
@@ -360,13 +343,16 @@ QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal
  QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
      background: none;
  }
-
+QScrollArea {
+	background-color: rgb(94, 92, 100);
+}
 /* /////////////////////////////////////////////////////////////////////////////////////////////////
 CheckBox */
 QCheckBox::indicator {
     border: 3px solid rgb(52, 59, 72);
 	width: 15px;
 	height: 15px;
+	border-radius: 10px;
     background:rgb(100, 100, 100);
 }
 QCheckBox::indicator:hover {
@@ -377,8 +363,7 @@ QCheckBox::indicator:checked {
 	border: 3px solid rgb(52, 59, 72);
 	background-image: url(:/icons/images/icons/cil-check-alt.png);
 }
-
-
+/* /////////////////////////////////////////////////////////////////////////////////////////////////
 RadioButton */
 QRadioButton::indicator {
     border: 3px solid rgb(52, 59, 72);
@@ -394,7 +379,7 @@ QRadioButton::indicator:checked {
     background: 3px solid rgb(94, 106, 130);
 	border: 3px solid rgb(52, 59, 72);
 }
-
+/* /////////////////////////////////////////////////////////////////////////////////////////////////
 ComboBox */
 QComboBox{
 	background-color: rgb(27, 29, 35);
@@ -424,7 +409,6 @@ QComboBox QAbstractItemView {
 	padding: 10px;
 	selection-background-color: rgb(39, 44, 54);
 }
-
 /* /////////////////////////////////////////////////////////////////////////////////////////////////
 Sliders */
 QSlider::groove:horizontal {
@@ -450,7 +434,6 @@ QSlider::handle:horizontal:hover {
 QSlider::handle:horizontal:pressed {
     background-color: rgb(35, 40, 49);
 }
-
 QSlider::groove:vertical {
     border-radius: 5px;
     width: 10px;
@@ -474,7 +457,6 @@ QSlider::handle:vertical:hover {
 QSlider::handle:vertical:pressed {
     background-color: rgb(35, 40, 49);
 }
-
 /* /////////////////////////////////////////////////////////////////////////////////////////////////
 CommandLinkButton */
 QCommandLinkButton {
@@ -490,7 +472,6 @@ QCommandLinkButton:pressed {
 	color: rgb(189, 147, 249);
 	background-color: rgb(35, 40, 49);
 }
-
 /* /////////////////////////////////////////////////////////////////////////////////////////////////
 Button */
 #pagesContainer QPushButton {
@@ -506,12 +487,10 @@ Button */
 	background-color: rgb(35, 40, 49);
 	border: 2px solid rgb(43, 50, 61);
 }
-
 #extraLeftBox QPushButton {
 	background-color: rgb(35, 40, 49);
 	padding: 5px;
 }
-
 #result_page {
 	background-color: rgb(94, 92, 100);
 }
@@ -521,7 +500,22 @@ Button */
 #report_page{
 	background-color: rgb(94, 92, 100);
 }
+#note_page {
+	background-color: rgb(94, 92, 100);
+}
 #result_page QPushButton {
+	background-color: rgb(35, 40, 49);
+	padding: 5px;
+}
+#chart_page QPushButton {
+	background-color: rgb(35, 40, 49);
+	padding: 5px;
+}
+#note_page QPushButton {
+	background-color: rgb(35, 40, 49);
+	padding: 5px;
+}
+#report_page QPushButton {
 	background-color: rgb(35, 40, 49);
 	padding: 5px;
 }
@@ -531,7 +525,6 @@ QTableView {
 #pagesContainer  {
 	background-color: rgb(94, 92, 100);
 }
-
 #btn_report {
 	background-image: url(:/icons/images/icons/cil-file.png);
 }
@@ -566,34 +559,9 @@ background-image: url(:/icons/images/icons/cil-chart-pie.png);
 	background-image: url(:/icons/images/icons/cil-caret-right.png);
 }
 #reset_chart_btn{
+
 	background-image: url(:/icons/images/icons/cil-loop-circular.png);
 }
 #list_test {
 	color:#ffffff;
 }
-QDialog {
-	color: rgb(255, 255, 255);
-	font: 10pt "Segoe UI";
-	background-color: rgb(40, 44, 52);
-	border: 1px solid rgb(44, 49, 58);
-}
-
-QTreeWidget {
-        background-color: #f0f0f0; /* Цвет фона всего дерева */
-        color: #333; /* Цвет текста */
-        border: 1px solid #ccc; /* Граница */
-    }
-
-    QTreeWidget::item {
-        background-color: #fff; /* Цвет фона элемента */
-        color: #333; /* Цвет текста элемента */
-    }
-
-    QTreeWidget::item:selected {
-        background-color: #0078d7; /* Цвет выделенного элемента */
-        color: #fff; /* Цвет текста выделенного элемента */
-    }
-
-    QTreeWidget::branch {
-        background-color: #fff; /* Цвет фона для индикатора развертывания (треугольника) */
-    }

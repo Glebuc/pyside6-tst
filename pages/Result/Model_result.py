@@ -34,12 +34,14 @@ class ResultModel(BaseModel):
         # self.setHeaderData(index_user_name, Qt.Horizontal, self.tr("Пользователь"))
         # self.setHeaderData(index_test_result, Qt.Horizontal, self.tr("Результат"))
 
-    def apply_filter(self,table_view, test_data, start_date, end_date, user_data):
+    def apply_filter(self,table_view,  test_data, user_data, param_test, start_date, end_date):
         filters = []
-        if test_data:
+        if test_data != "Все тесты" and test_data != "All tests":
             filters.append(f"test_name = '{test_data}'")
-        if user_data:
+        if user_data != "Все пользователи" and user_data != "All users":
             filters.append(f"user_name = '{user_data}'")
+        if param_test:
+            filters.append(f"test_param = '{param_test}'")
         if start_date and end_date:
             filters.append(f"start_test BETWEEN '{start_date}' AND '{end_date}'")
         where_clause = " AND ".join(filters)
@@ -53,12 +55,12 @@ class ResultModel(BaseModel):
         if self.rowCount() == 0:
             # Если строк нет, выводим предупреждение
             QMessageBox.warning(None, "Предупреждение", "Нет данных, удовлетворяющих условиям запроса.")
-            # Оставляем модель предыдущей
-            self.setQuery(self.model.ALL_RESULT_SQL)
+            self.setQuery(self.ALL_RESULT_SQL)
         else:
             # Если нет ни одного условия, выводим предупреждение
             QMessageBox.information(None, "Данные были изменены", "Данные в таблице  отфильтрованы")
-        self.tableView.setModel(self.model)
+        table_view.setModel(self)
+
 
 
 

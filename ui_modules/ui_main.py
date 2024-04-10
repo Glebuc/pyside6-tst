@@ -595,7 +595,6 @@ class Ui_MainWindow(object):
 "	background-image: url(:/icons/images/icons/cil-task.png);\n"
 "}\n"
 "#btn_note {\n"
-"	\n"
 "	background-image: url(:/icons/images/icons/cil-pen-alt.png);\n"
 "}\n"
 "#save_chart_btn{\n"
@@ -611,8 +610,8 @@ class Ui_MainWindow(object):
 "	background-image: url(:/icons/images/icons/cil-caret-top.png);\n"
 "}\n"
 "#down_chart_btn {\n"
-"	backgroun"
-                        "d-image: url(:/icons/images/icons/cil-caret-bottom.png);\n"
+"	background-imag"
+                        "e: url(:/icons/images/icons/cil-caret-bottom.png);\n"
 "}\n"
 "#left_chart_btn {\n"
 "	background-image: url(:/icons/images/icons/cil-caret-left.png);\n"
@@ -626,6 +625,10 @@ class Ui_MainWindow(object):
 "}\n"
 "#list_test {\n"
 "	color:#ffffff;\n"
+"}\n"
+"\n"
+"#change_view_chart_btn {\n"
+"	background-image: url(:/icons/images/icons/cil-settings.png);\n"
 "}")
         self.gridLayout_3 = QGridLayout(self.styleSheet)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
@@ -752,6 +755,9 @@ class Ui_MainWindow(object):
         self.btn_note.setObjectName(u"btn_note")
         self.btn_note.setMinimumSize(QSize(0, 45))
         self.btn_note.setCursor(QCursor(Qt.PointingHandCursor))
+        icon = QIcon()
+        icon.addFile(u":/icons/images/icons/cil-pen-alt.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_note.setIcon(icon)
 
         self.verticalLayout_8.addWidget(self.btn_note)
 
@@ -838,9 +844,9 @@ class Ui_MainWindow(object):
         self.extraCloseColumnBtn.setMinimumSize(QSize(28, 28))
         self.extraCloseColumnBtn.setMaximumSize(QSize(28, 28))
         self.extraCloseColumnBtn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon = QIcon()
-        icon.addFile(u":/icons/images/icons/icon_close.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.extraCloseColumnBtn.setIcon(icon)
+        icon1 = QIcon()
+        icon1.addFile(u":/icons/images/icons/icon_close.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.extraCloseColumnBtn.setIcon(icon1)
         self.extraCloseColumnBtn.setIconSize(QSize(20, 20))
 
         self.extraTopLayout.addWidget(self.extraCloseColumnBtn, 0, 2, 1, 1)
@@ -914,9 +920,9 @@ class Ui_MainWindow(object):
         self.btn_config_DB = QPushButton(self.extraCenter)
         self.btn_config_DB.setObjectName(u"btn_config_DB")
         self.btn_config_DB.setCursor(QCursor(Qt.PointingHandCursor))
-        icon1 = QIcon()
-        icon1.addFile(u":/icons/images/icons/cil-settings.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_config_DB.setIcon(icon1)
+        icon2 = QIcon()
+        icon2.addFile(u":/icons/images/icons/cil-settings.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_config_DB.setIcon(icon2)
 
         self.verticalLayout_10.addWidget(self.btn_config_DB)
 
@@ -943,18 +949,18 @@ class Ui_MainWindow(object):
         font1.setStyleStrategy(QFont.PreferDefault)
         self.btn_user_guide.setFont(font1)
         self.btn_user_guide.setCursor(QCursor(Qt.PointingHandCursor))
-        icon2 = QIcon()
-        icon2.addFile(u":/icons/images/icons/cil-user.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_user_guide.setIcon(icon2)
+        icon3 = QIcon()
+        icon3.addFile(u":/icons/images/icons/cil-user.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_user_guide.setIcon(icon3)
 
         self.verticalLayout_10.addWidget(self.btn_user_guide)
 
         self.btn_hot_keys = QPushButton(self.extraCenter)
         self.btn_hot_keys.setObjectName(u"btn_hot_keys")
         self.btn_hot_keys.setCursor(QCursor(Qt.PointingHandCursor))
-        icon3 = QIcon()
-        icon3.addFile(u":/icons/images/icons/cil-keyboard.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_hot_keys.setIcon(icon3)
+        icon4 = QIcon()
+        icon4.addFile(u":/icons/images/icons/cil-keyboard.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_hot_keys.setIcon(icon4)
 
         self.verticalLayout_10.addWidget(self.btn_hot_keys)
 
@@ -1091,7 +1097,7 @@ class Ui_MainWindow(object):
 
         self.list_param_test = QComboBox(self.frame_3)
         self.list_param_test.setObjectName(u"list_param_test")
-        self.list_param_test.setMinimumSize(QSize(200, 0))
+        self.list_param_test.setMinimumSize(QSize(170, 0))
         self.list_param_test.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.horizontalLayout_9.addWidget(self.list_param_test)
@@ -1236,9 +1242,9 @@ class Ui_MainWindow(object):
         self.btn_extension_search = QPushButton(self.frame)
         self.btn_extension_search.setObjectName(u"btn_extension_search")
         self.btn_extension_search.setCursor(QCursor(Qt.PointingHandCursor))
-        icon4 = QIcon()
-        icon4.addFile(u":/icons/images/icons/cil-magnifying-glass.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_extension_search.setIcon(icon4)
+        icon5 = QIcon()
+        icon5.addFile(u":/icons/images/icons/cil-magnifying-glass.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_extension_search.setIcon(icon5)
 
         self.horizontalLayout_7.addWidget(self.btn_extension_search)
 
@@ -1266,18 +1272,18 @@ class Ui_MainWindow(object):
         self.btn_change_view = QPushButton(self.frame_2)
         self.btn_change_view.setObjectName(u"btn_change_view")
         self.btn_change_view.setCursor(QCursor(Qt.PointingHandCursor))
-        icon5 = QIcon()
-        icon5.addFile(u":/icons/images/icons/cil-equalizer.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_change_view.setIcon(icon5)
+        icon6 = QIcon()
+        icon6.addFile(u":/icons/images/icons/cil-equalizer.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_change_view.setIcon(icon6)
 
         self.horizontalLayout_8.addWidget(self.btn_change_view)
 
         self.btn_save_view = QPushButton(self.frame_2)
         self.btn_save_view.setObjectName(u"btn_save_view")
         self.btn_save_view.setCursor(QCursor(Qt.PointingHandCursor))
-        icon6 = QIcon()
-        icon6.addFile(u":/icons/images/icons/cil-save.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_save_view.setIcon(icon6)
+        icon7 = QIcon()
+        icon7.addFile(u":/icons/images/icons/cil-save.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_save_view.setIcon(icon7)
 
         self.horizontalLayout_8.addWidget(self.btn_save_view)
 
@@ -1308,6 +1314,11 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout.addWidget(self.pushButton_3)
 
+        self.pushButton_4 = QPushButton(self.frame_4)
+        self.pushButton_4.setObjectName(u"pushButton_4")
+
+        self.horizontalLayout.addWidget(self.pushButton_4)
+
 
         self.verticalLayout_14.addWidget(self.frame_4)
 
@@ -1318,11 +1329,29 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 92, 67))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 858, 464))
         self.verticalLayout_16 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_16.setObjectName(u"verticalLayout_16")
         self.treeWidget = QTreeWidget(self.scrollAreaWidgetContents)
+        brush = QBrush(QColor(255, 255, 255, 255))
+        brush.setStyle(Qt.NoBrush)
+        __qtreewidgetitem = QTreeWidgetItem()
+        __qtreewidgetitem.setBackground(0, QColor(104, 104, 104));
+        __qtreewidgetitem.setForeground(0, brush);
+        self.treeWidget.setHeaderItem(__qtreewidgetitem)
+        __qtreewidgetitem1 = QTreeWidgetItem(self.treeWidget)
+        QTreeWidgetItem(__qtreewidgetitem1)
+        QTreeWidgetItem(__qtreewidgetitem1)
+        QTreeWidgetItem(__qtreewidgetitem1)
+        QTreeWidgetItem(__qtreewidgetitem1)
+        QTreeWidgetItem(__qtreewidgetitem1)
+        QTreeWidgetItem(__qtreewidgetitem1)
+        QTreeWidgetItem(__qtreewidgetitem1)
+        QTreeWidgetItem(__qtreewidgetitem1)
+        __qtreewidgetitem2 = QTreeWidgetItem(self.treeWidget)
+        QTreeWidgetItem(__qtreewidgetitem2)
         self.treeWidget.setObjectName(u"treeWidget")
+        self.treeWidget.setStyleSheet(u"color:#000")
 
         self.verticalLayout_16.addWidget(self.treeWidget)
 
@@ -1394,7 +1423,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.comboBox_theme.setCurrentIndex(1)
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1428,12 +1457,15 @@ class Ui_MainWindow(object):
         self.btn_result.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+E", None))
 #endif // QT_CONFIG(shortcut)
         self.btn_note.setText(QCoreApplication.translate("MainWindow", u"\u0417\u0430\u043c\u0435\u0442\u043a\u0438", None))
+#if QT_CONFIG(shortcut)
+        self.btn_note.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+R", None))
+#endif // QT_CONFIG(shortcut)
 #if QT_CONFIG(tooltip)
         self.toggleLeftBox.setToolTip(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438", None))
 #endif // QT_CONFIG(tooltip)
         self.toggleLeftBox.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438", None))
 #if QT_CONFIG(shortcut)
-        self.toggleLeftBox.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+R", None))
+        self.toggleLeftBox.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+T", None))
 #endif // QT_CONFIG(shortcut)
         self.extraLabel.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438 \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u044f", None))
 #if QT_CONFIG(tooltip)
@@ -1460,7 +1492,10 @@ class Ui_MainWindow(object):
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c \u043e\u0442\u0447\u0435\u0442...", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"\u0422\u0435\u0441\u0442:", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b \u0442\u0435\u0441\u0442\u0430:", None))
-        self.change_view_chart_btn.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438 \u043e\u0442\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u044f \u0433\u0440\u0430\u0444\u0438\u043a\u0430...", None))
+#if QT_CONFIG(tooltip)
+        self.change_view_chart_btn.setToolTip(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438 \u043e\u0442\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u044f \u0433\u0440\u0430\u0444\u0438\u043a\u0430", None))
+#endif // QT_CONFIG(tooltip)
+        self.change_view_chart_btn.setText("")
 #if QT_CONFIG(tooltip)
         self.up_chart_btn.setToolTip(QCoreApplication.translate("MainWindow", u"\u0421\u043c\u0435\u0441\u0442\u0438\u0442\u044c \u043d\u0430\u0432\u0435\u0440\u0445", None))
 #endif // QT_CONFIG(tooltip)
@@ -1522,8 +1557,36 @@ class Ui_MainWindow(object):
         self.btn_change_view.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0430 \u043e\u0442\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u044f", None))
         self.btn_save_view.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c..", None))
         self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0440\u0430\u0437\u0434\u0435\u043b...", None))
+        self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0441\u0442\u0430\u0442\u044c\u044e...", None))
         ___qtreewidgetitem = self.treeWidget.headerItem()
         ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", u"\u0417\u0430\u043c\u0435\u0442\u043a\u0438", None));
+
+        __sortingEnabled = self.treeWidget.isSortingEnabled()
+        self.treeWidget.setSortingEnabled(False)
+        ___qtreewidgetitem1 = self.treeWidget.topLevelItem(0)
+        ___qtreewidgetitem1.setText(0, QCoreApplication.translate("MainWindow", u"\u0422\u0435\u0441\u0442\u044b", None));
+        ___qtreewidgetitem2 = ___qtreewidgetitem1.child(0)
+        ___qtreewidgetitem2.setText(0, QCoreApplication.translate("MainWindow", u"HPCG", None));
+        ___qtreewidgetitem3 = ___qtreewidgetitem1.child(1)
+        ___qtreewidgetitem3.setText(0, QCoreApplication.translate("MainWindow", u"IMB", None));
+        ___qtreewidgetitem4 = ___qtreewidgetitem1.child(2)
+        ___qtreewidgetitem4.setText(0, QCoreApplication.translate("MainWindow", u"HPL", None));
+        ___qtreewidgetitem5 = ___qtreewidgetitem1.child(3)
+        ___qtreewidgetitem5.setText(0, QCoreApplication.translate("MainWindow", u"b_eff", None));
+        ___qtreewidgetitem6 = ___qtreewidgetitem1.child(4)
+        ___qtreewidgetitem6.setText(0, QCoreApplication.translate("MainWindow", u"STREAM", None));
+        ___qtreewidgetitem7 = ___qtreewidgetitem1.child(5)
+        ___qtreewidgetitem7.setText(0, QCoreApplication.translate("MainWindow", u"IOZONE", None));
+        ___qtreewidgetitem8 = ___qtreewidgetitem1.child(6)
+        ___qtreewidgetitem8.setText(0, QCoreApplication.translate("MainWindow", u"SPEC HPC", None));
+        ___qtreewidgetitem9 = ___qtreewidgetitem1.child(7)
+        ___qtreewidgetitem9.setText(0, QCoreApplication.translate("MainWindow", u"IO-500", None));
+        ___qtreewidgetitem10 = self.treeWidget.topLevelItem(1)
+        ___qtreewidgetitem10.setText(0, QCoreApplication.translate("MainWindow", u"\u041e\u043f\u0442\u0438\u043c\u0438\u0437\u0430\u0446\u0438\u044f \u0442\u0435\u0441\u0442\u043e\u0432", None));
+        ___qtreewidgetitem11 = ___qtreewidgetitem10.child(0)
+        ___qtreewidgetitem11.setText(0, QCoreApplication.translate("MainWindow", u"\u0412\u044b\u0431\u043e\u0440 \u043d\u0430\u0438\u043b\u0443\u0447\u0448\u0438\u0445 \u043f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u043e\u0432 \u0434\u043b\u044f HPL", None));
+        self.treeWidget.setSortingEnabled(__sortingEnabled)
+
         self.creditsLabel.setText("")
         self.version.setText(QCoreApplication.translate("MainWindow", u"v0.0.1", None))
     # retranslateUi

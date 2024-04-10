@@ -79,20 +79,6 @@ class BaseModel(QSqlQueryModel):
         FROM tests group by keys;
     """
 
-    N_PARAM_SQL = """
-        SELECT test_param->'N' AS value_json
-        FROM tests t 
-        WHERE test_param->'N' IS NOT NULL 
-        group by  test_param->'N';
-    """
-
-    NP_PARAM_SQL = """
-            SELECT test_param->'np' AS value_json
-            FROM tests t 
-            WHERE test_param->'np' IS NOT NULL 
-            group by  test_param->'np';
-        """
-
     def __init__(self, table_name):
         super().__init__()
         self.check_and_create_tables()

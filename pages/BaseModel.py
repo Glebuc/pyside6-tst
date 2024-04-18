@@ -6,6 +6,7 @@ from PySide6.QtUiTools import QUiLoader
 from database import db_params
 from typing import Optional, Dict, Tuple, Union, List
 
+from loger import Logger
 
 
 
@@ -81,10 +82,11 @@ class BaseModel(QSqlQueryModel):
 
     def __init__(self, table_name):
         super().__init__()
+        self.log = Logger.get_instance()
         self.check_and_create_tables()
         self.setQuery(self.ALL_RESULT_SQL)
         if self.lastError().isValid():
-            print("Ошибка выполнения запроса:", self.lastError().text())
+            self.log.log_error("Ошибка выполнения запроса:", self.lastError().text())
 
     def check_and_create_tables(self):
 
@@ -104,7 +106,7 @@ class BaseModel(QSqlQueryModel):
         for table_name, sql_query in tables_to_create.items():
             if table_name not in existing_tables:
                 if not query.exec(sql_query):
-                    print("Ошибка выполнения запроса:", query.lastError().text())
+                    self.log.log_error("Ошибка выполнения запроса:", query.lastError().text())
                     return False
         return True
 
@@ -126,7 +128,7 @@ class BaseModel(QSqlQueryModel):
                 existing_tables.append(query.value(0))
             return existing_tables
         else:
-            print("Ошибка выполнения запроса:", query.lastError().text())
+            self.log.log_error("Ошибка выполнения запроса:", query.lastError().text())
             return None
     def execute_sql(self, sql_query: str, params: Optional[Union[Tuple, Dict]] = None) -> List:
         """
@@ -151,5 +153,5 @@ class BaseModel(QSqlQueryModel):
             while query.next():
                 result.append(query.value(0))
         else:
-            print("Ошибка выполнения запроса:", query.lastError().text())
+            self.log.log_error("Ошибка выполнения запроса:", query.lastError().text())
         return result

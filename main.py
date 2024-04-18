@@ -45,7 +45,7 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         global widgets
         widgets = self.ui
-        self.log = Logger()
+        self.log = Logger.get_instance()
         self.ui.retranslateUi(self)
 
 

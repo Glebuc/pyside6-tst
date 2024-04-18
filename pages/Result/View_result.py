@@ -18,6 +18,8 @@ class CustomTableView(QTableView):
 
         header = self.horizontalHeader()
         for i in range(self.model.columnCount()):
-            header.setSectionResizeMode(i, QHeaderView.Stretch)
+            header.setSectionResizeMode(i, QHeaderView.Interactive)
+        column_names = ["First Column", "Second Column", "Third Column"]
+        self.setHorizontalHeaderLabels(column_names)
 
 

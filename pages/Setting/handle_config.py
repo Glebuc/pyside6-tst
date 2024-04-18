@@ -1,7 +1,7 @@
 import os
 from loger import Logger
 
-log = Logger()
+log = Logger.get_instance()
 
 def create_config_if_not_exists(file_path='config.ini'):
     if not os.path.exists(file_path):

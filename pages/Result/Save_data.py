@@ -4,7 +4,7 @@ from PySide6.QtCore import Qt, QDateTime, QTime
 import csv
 from loger import Logger
 
-log = Logger()
+log = Logger.get_instance()
 
 def save_data_to_csv(table_view):
     model = table_view.model

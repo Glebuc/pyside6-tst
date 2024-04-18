@@ -5,9 +5,13 @@ from PySide6.QtCharts import QChart, QLineSeries, QValueAxis
 from PySide6.QtGui import QPainter, QMouseEvent
 import random
 
+from loger import Logger
+
 class CustomChart(QChart):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+        self.log = Logger.get_instance()
 
         self.series = QLineSeries()
         self.addSeries(self.series)
@@ -39,10 +43,10 @@ class CustomChart(QChart):
 
         # Проверяем, удалось ли сохранить изображение
         if image.save(file_path):
-            print("График успешно сохранен в", file_path)
+            self.log.log_info("График успешно сохранен в" + file_path)
             return True
         else:
-            print("Не удалось сохранить график в", file_path)
+            self.log.log_error("Не удалось сохранить график в "+ file_path)
             return False
 
 

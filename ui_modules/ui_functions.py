@@ -150,7 +150,7 @@ class UIFunctions(MainWindow):
             stream = QTextStream(qss_file)
             self.ui.styleSheet.setStyleSheet(stream.readAll())
         except IOError as e:
-            print(f"Ошибка при чтении файла QSS: {e}")
+            self.log.log_error(f"Ошибка при чтении файла QSS: {e}")
             raise e
         finally:
             qss_file.close()

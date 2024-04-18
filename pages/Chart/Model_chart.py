@@ -8,6 +8,7 @@ from PySide6.QtUiTools import QUiLoader
 from ui_modules import *
 from database import db_params
 from ..BaseModel import BaseModel
+from loger import Logger
 
 
 class ChartModel(BaseModel):
@@ -15,6 +16,7 @@ class ChartModel(BaseModel):
 
     def __init__(self, table_name):
         super().__init__(table_name)
+        self.log = Logger.get_instance()
 
     def check_database_connection(self) -> bool:
         """Проверяет наличие соединения с базой данных"""
@@ -28,18 +30,19 @@ class ChartModel(BaseModel):
         :return: QSqlQuery с результатами запроса
         """
         if not self.check_database_connection():
-            print("No database connection.")
+            self.log.log_error("Нет соединения с БД")
             return None
 
         query = QSqlQuery()
         query.prepare("SELECT test_param FROM tests WHERE test_param IS NOT NULL AND test_name = :test_name GROUP BY test_param;")
         query.bindValue(":test_name", test_name)
         if not query.exec():
-            print("Error executing query:", query.lastError().text())
+            self.log.log_error("Error executing query:", query.lastError().text())
             return None
         return query
 
     def get_data_for_chart(self, test_name, test_param):
+        pass
 
 
 

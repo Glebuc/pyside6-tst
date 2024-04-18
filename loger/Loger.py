@@ -3,15 +3,22 @@ from datetime import datetime
 import sys
 
 class Logger:
-    filename = f"log-{datetime.now().strftime('%Y-%m-%d')}.txt"
+    _instance = None
+
+    @staticmethod
+    def get_instance():
+        if Logger._instance is None:
+            Logger._instance = Logger()
+        return Logger._instance
 
     def __init__(self):
+        self.filename = f"log-{datetime.now().strftime('%Y-%m-%d')}.txt"
         self.logger = logging.getLogger(__name__)
         self.logger.setLevel(logging.DEBUG)
 
         formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
 
-        file_handler = logging.FileHandler(Logger.filename, mode='w', encoding='utf-8')
+        file_handler = logging.FileHandler(self.filename, mode='w', encoding='utf-8')
         file_handler.setLevel(logging.DEBUG)
 
         console_handler = logging.StreamHandler(sys.stdout)
@@ -21,8 +28,6 @@ class Logger:
 
         self.logger.addHandler(file_handler)
         self.logger.addHandler(console_handler)
-
-
 
     def log_info(self, message):
         self.logger.info(message)
@@ -35,3 +40,4 @@ class Logger:
 
     def log_exception(self, message):
         self.logger.exception(message)
+

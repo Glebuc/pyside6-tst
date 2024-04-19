@@ -26,6 +26,7 @@ from ui_modules import *
 from widgets import *
 from pages import BaseModel, Model_result, Save_data, View_result, Dialog_change_view, DialogsSetting, DialogsResult,\
                             Chart_view, Model_chart
+from SettingApp import AppSettings
 
 from utils import get_translate_path, get_themes_path
 
@@ -61,7 +62,7 @@ class MainWindow(QMainWindow):
         self.model_chart = Model_chart.ChartModel('tests')
 
         widgets.btn_change_view.clicked.connect(self.open_column_selection_dialog)
-
+        self.setting = AppSettings()
         self.scene = QGraphicsScene()
         self.view = Chart_view.ChartView(self.scene)
         self.chart = Chart_view.CustomChart()

@@ -1,4 +1,3 @@
-import sys
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QWidget, QGraphicsView
 from PySide6.QtCharts import QChart, QLineSeries, QValueAxis
@@ -49,43 +48,6 @@ class CustomChart(QChart):
             self.log.log_error("Не удалось сохранить график в "+ file_path)
             return False
 
-
-
-    def scroll_up(self):
-        """
-            Прокручивает вид вверх на фиксированное расстояние.
-
-            :return:
-                None
-        """
-        self.scroll(0, -10)
-
-    def scroll_down(self):
-        """
-            Прокручивает вид вниз на фиксированное расстояние.
-
-            :return:
-                None
-        """
-        self.scroll(0, 10)
-
-    def scroll_left(self):
-        """
-           Прокручивает вид влево на фиксированное расстояние.
-
-           :return:
-               None
-        """
-        self.scroll(-10, 0)
-
-    def scroll_right(self):
-        """
-            Прокручивает вид вправо на фиксированное расстояние.
-
-            :return:
-                None
-        """
-        self.scroll(10, 0)
 
     def zoom_in(self):
         """

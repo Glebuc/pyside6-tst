@@ -1624,7 +1624,7 @@ background-image: none;
                       <number>0</number>
                      </property>
                      <property name="currentIndex">
-                      <number>2</number>
+                      <number>3</number>
                      </property>
                      <widget class="QWidget" name="report_page">
                       <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -1859,86 +1859,6 @@ background-image: none;
                                  <number>0</number>
                                 </property>
                                 <item>
-                                 <widget class="QPushButton" name="up_chart_btn">
-                                  <property name="cursor">
-                                   <cursorShape>PointingHandCursor</cursorShape>
-                                  </property>
-                                  <property name="toolTip">
-                                   <string>Сместить наверх</string>
-                                  </property>
-                                  <property name="text">
-                                   <string/>
-                                  </property>
-                                  <property name="shortcut">
-                                   <string>Ctrl+Up</string>
-                                  </property>
-                                 </widget>
-                                </item>
-                                <item>
-                                 <widget class="QPushButton" name="down_chart_btn">
-                                  <property name="cursor">
-                                   <cursorShape>PointingHandCursor</cursorShape>
-                                  </property>
-                                  <property name="toolTip">
-                                   <string>Сместить вниз</string>
-                                  </property>
-                                  <property name="text">
-                                   <string/>
-                                  </property>
-                                  <property name="shortcut">
-                                   <string>Ctrl+Down</string>
-                                  </property>
-                                 </widget>
-                                </item>
-                                <item>
-                                 <widget class="QPushButton" name="right_chart_btn">
-                                  <property name="cursor">
-                                   <cursorShape>PointingHandCursor</cursorShape>
-                                  </property>
-                                  <property name="toolTip">
-                                   <string>Сместить вправо</string>
-                                  </property>
-                                  <property name="text">
-                                   <string/>
-                                  </property>
-                                  <property name="shortcut">
-                                   <string>Ctrl+Right</string>
-                                  </property>
-                                 </widget>
-                                </item>
-                                <item>
-                                 <widget class="QPushButton" name="left_chart_btn">
-                                  <property name="cursor">
-                                   <cursorShape>PointingHandCursor</cursorShape>
-                                  </property>
-                                  <property name="toolTip">
-                                   <string>Сместить влево</string>
-                                  </property>
-                                  <property name="text">
-                                   <string/>
-                                  </property>
-                                  <property name="shortcut">
-                                   <string>Ctrl+Left</string>
-                                  </property>
-                                 </widget>
-                                </item>
-                                <item>
-                                 <spacer name="verticalSpacer_2">
-                                  <property name="orientation">
-                                   <enum>Qt::Vertical</enum>
-                                  </property>
-                                  <property name="sizeType">
-                                   <enum>QSizePolicy::Fixed</enum>
-                                  </property>
-                                  <property name="sizeHint" stdset="0">
-                                   <size>
-                                    <width>20</width>
-                                    <height>15</height>
-                                   </size>
-                                  </property>
-                                 </spacer>
-                                </item>
-                                <item>
                                  <widget class="QPushButton" name="zoom_out_chart_btn">
                                   <property name="cursor">
                                    <cursorShape>PointingHandCursor</cursorShape>
@@ -1974,6 +1894,9 @@ background-image: none;
                                  <widget class="QPushButton" name="reset_chart_btn">
                                   <property name="cursor">
                                    <cursorShape>PointingHandCursor</cursorShape>
+                                  </property>
+                                  <property name="toolTip">
+                                   <string>Сбросить масштабирование</string>
                                   </property>
                                   <property name="text">
                                    <string/>
@@ -2209,6 +2132,13 @@ background-image: none;
                            <number>0</number>
                           </property>
                           <item>
+                           <widget class="QPushButton" name="pushButton_4">
+                            <property name="text">
+                             <string>Справочник параметров</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
                            <spacer name="horizontalSpacer_4">
                             <property name="orientation">
                              <enum>Qt::Horizontal</enum>
@@ -2222,16 +2152,16 @@ background-image: none;
                            </spacer>
                           </item>
                           <item>
-                           <widget class="QPushButton" name="pushButton_3">
+                           <widget class="QPushButton" name="add_topic_note_btn">
                             <property name="text">
-                             <string>Добавить раздел...</string>
+                             <string>Добавить раздел ...</string>
                             </property>
                            </widget>
                           </item>
                           <item>
-                           <widget class="QPushButton" name="pushButton_4">
+                           <widget class="QPushButton" name="add_item_note_btn">
                             <property name="text">
-                             <string>Добавить статью...</string>
+                             <string>Добавить статью ...</string>
                             </property>
                            </widget>
                           </item>
@@ -2285,61 +2215,13 @@ background-image: none;
                                </brush>
                               </property>
                              </column>
-                             <item>
-                              <property name="text">
-                               <string>Тесты</string>
-                              </property>
-                              <item>
-                               <property name="text">
-                                <string>HPCG</string>
-                               </property>
-                              </item>
-                              <item>
-                               <property name="text">
-                                <string>IMB</string>
-                               </property>
-                              </item>
-                              <item>
-                               <property name="text">
-                                <string>HPL</string>
-                               </property>
-                              </item>
-                              <item>
-                               <property name="text">
-                                <string>b_eff</string>
-                               </property>
-                              </item>
-                              <item>
-                               <property name="text">
-                                <string>STREAM</string>
-                               </property>
-                              </item>
-                              <item>
-                               <property name="text">
-                                <string>IOZONE</string>
-                               </property>
-                              </item>
-                              <item>
-                               <property name="text">
-                                <string>SPEC HPC</string>
-                               </property>
-                              </item>
-                              <item>
-                               <property name="text">
-                                <string>IO-500</string>
-                               </property>
-                              </item>
-                             </item>
-                             <item>
-                              <property name="text">
-                               <string>Оптимизация тестов</string>
-                              </property>
-                              <item>
-                               <property name="text">
-                                <string>Выбор наилучших параметров для HPL</string>
-                               </property>
-                              </item>
-                             </item>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QPushButton" name="pushButton_3">
+                             <property name="text">
+                              <string>Удалить запись ...</string>
+                             </property>
                             </widget>
                            </item>
                           </layout>

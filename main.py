@@ -10,22 +10,22 @@ import sys
 import os
 import platform
 
-from PySide6.QtWidgets import QDialog, QFormLayout, QCheckBox, QVBoxLayout, QPushButton, \
+from PySide6.QtWidgets import QDialog, QFormLayout, QVBoxLayout, QPushButton, \
     QTableView,QMainWindow, QWidget, QHeaderView, QMessageBox, QGraphicsScene, QGraphicsView
 from PySide6.QtGui import QTransform
 from PySide6 import QtCore
 from PySide6.QtCore import Qt, QResource
 
 import doctest
-from typing import List, Tuple, Union, Optional
+from typing import List
 
 from datetime import datetime
 from loger import Logger
 from Application import Application
 from ui_modules import *
 from widgets import *
-from pages import BaseModel, Model_result, Save_data, View_result, Dialog_change_view, DialogsSetting, DialogsResult,\
-                            Chart_view, Model_chart
+from pages import BaseModel, Model_result, Save_data, View_result, Dialog_change_view, DialogsSetting,\
+    DialogsResult,Chart_view, Model_chart, Dialog_add_topic, Dialog_add_note, NoteView
 from SettingApp import AppSettings
 
 from utils import get_translate_path, get_themes_path
@@ -69,11 +69,8 @@ class MainWindow(QMainWindow):
         self.chart.update_chart()
         self.scene.addItem(self.chart)
 
-        #Обработчики кнопок перемещения графика
-        widgets.up_chart_btn.clicked.connect(self.chart.scroll_up)
-        widgets.down_chart_btn.clicked.connect(self.chart.scroll_down)
-        widgets.left_chart_btn.clicked.connect(self.chart.scroll_left)
-        widgets.right_chart_btn.clicked.connect(self.chart.scroll_right)
+
+        #Обработчики кнопок масштабирования графика
         widgets.zoom_in_chart_btn.clicked.connect(self.chart.zoom_in)
         widgets.zoom_out_chart_btn.clicked.connect(self.chart.zoom_out)
         widgets.reset_chart_btn.clicked.connect(self.chart.reset)
@@ -115,6 +112,9 @@ class MainWindow(QMainWindow):
         widgets.btn_hot_keys.clicked.connect(self.open_dialog_keyword)
         widgets.btn_extension_search.clicked.connect(self.open_dialog_extension_search)
 
+        widgets.add_item_note_btn.clicked.connect(self.open_dialog_add_item_topic)
+        widgets.add_topic_note_btn.clicked.connect(self.open_dialog_add_topic)
+
 
         def openCloseLeftBox():
             UIFunctions.toggleLeftBox(self, True)
@@ -134,7 +134,6 @@ class MainWindow(QMainWindow):
 
         # словарь для хранения состояний флажков
         self.checkbox_dict = {}
-
 
     def get_text_from_combo_chart(self) -> str:
         """
@@ -231,6 +230,35 @@ class MainWindow(QMainWindow):
                     self.tableView.showColumn(column_index)
                 else:
                     self.tableView.hideColumn(column_index)
+
+    def open_dialog_add_topic (self) -> None:
+        """
+            Открывает диалоговое окно для добавления раздела в Заметках.
+
+            Returns:
+                None
+        """
+        dialog = Dialog_add_topic.DialogAddTopic()
+        if not dialog.isVisible():
+            self.log.log_info("Открыто диалоговое окно для добавления раздела")
+        else:
+            self.log.log_error("Ошибка открытия диалогового окна для добавления раздела")
+        dialog.exec()
+
+    def open_dialog_add_item_topic(self) -> None:
+        """
+           Открывает диалоговое окно для добавления статьи в Заметках .
+
+            Returns:
+                None
+        """
+        dialog = Dialog_add_note.DialogAddNote()
+        if not dialog.isVisible():
+            self.log.log_info("Открыто диалоговое окно для добавления статьи")
+        else:
+            self.log.log_error("Ошибка открытия диалогового окна для добавления статьи")
+        dialog.exec()
+
 
     def open_dialog_config_db(self) -> None:
         """

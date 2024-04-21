@@ -18,7 +18,8 @@ class AppSettings:
             "database/user": "None",
             "database/password": "None",
             "AppSettings/language": "Russian",
-            "AppSettings/theme": "Light"
+            "AppSettings/theme": "Light",
+
         }
 
         self.set_default_settings(default_settings)
@@ -46,5 +47,11 @@ class AppSettings:
         """
         return self.settings.value(key)
 
-    def set_setting(self, key, value):
+    def set_setting(self, key: str, value: str) -> None:
+        """
+                   Возвращает значение настройки по указанному ключу.
+
+                   :argument:
+                   key (str): Ключ настройки, значение которой нужно получить.
+        """
         self.settings.setValue(key, value)

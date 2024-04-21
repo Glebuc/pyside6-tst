@@ -1140,34 +1140,6 @@ class Ui_MainWindow(object):
         self.verticalLayout_13 = QVBoxLayout(self.frame_5)
         self.verticalLayout_13.setObjectName(u"verticalLayout_13")
         self.verticalLayout_13.setContentsMargins(0, 0, 5, 0)
-        self.up_chart_btn = QPushButton(self.frame_5)
-        self.up_chart_btn.setObjectName(u"up_chart_btn")
-        self.up_chart_btn.setCursor(QCursor(Qt.PointingHandCursor))
-
-        self.verticalLayout_13.addWidget(self.up_chart_btn)
-
-        self.down_chart_btn = QPushButton(self.frame_5)
-        self.down_chart_btn.setObjectName(u"down_chart_btn")
-        self.down_chart_btn.setCursor(QCursor(Qt.PointingHandCursor))
-
-        self.verticalLayout_13.addWidget(self.down_chart_btn)
-
-        self.right_chart_btn = QPushButton(self.frame_5)
-        self.right_chart_btn.setObjectName(u"right_chart_btn")
-        self.right_chart_btn.setCursor(QCursor(Qt.PointingHandCursor))
-
-        self.verticalLayout_13.addWidget(self.right_chart_btn)
-
-        self.left_chart_btn = QPushButton(self.frame_5)
-        self.left_chart_btn.setObjectName(u"left_chart_btn")
-        self.left_chart_btn.setCursor(QCursor(Qt.PointingHandCursor))
-
-        self.verticalLayout_13.addWidget(self.left_chart_btn)
-
-        self.verticalSpacer_2 = QSpacerItem(20, 15, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
-
-        self.verticalLayout_13.addItem(self.verticalSpacer_2)
-
         self.zoom_out_chart_btn = QPushButton(self.frame_5)
         self.zoom_out_chart_btn.setObjectName(u"zoom_out_chart_btn")
         self.zoom_out_chart_btn.setCursor(QCursor(Qt.PointingHandCursor))
@@ -1305,19 +1277,24 @@ class Ui_MainWindow(object):
         self.horizontalLayout = QHBoxLayout(self.frame_4)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setContentsMargins(0, -1, 0, -1)
-        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.horizontalLayout.addItem(self.horizontalSpacer_4)
-
-        self.pushButton_3 = QPushButton(self.frame_4)
-        self.pushButton_3.setObjectName(u"pushButton_3")
-
-        self.horizontalLayout.addWidget(self.pushButton_3)
-
         self.pushButton_4 = QPushButton(self.frame_4)
         self.pushButton_4.setObjectName(u"pushButton_4")
 
         self.horizontalLayout.addWidget(self.pushButton_4)
+
+        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout.addItem(self.horizontalSpacer_4)
+
+        self.add_topic_note_btn = QPushButton(self.frame_4)
+        self.add_topic_note_btn.setObjectName(u"add_topic_note_btn")
+
+        self.horizontalLayout.addWidget(self.add_topic_note_btn)
+
+        self.add_item_note_btn = QPushButton(self.frame_4)
+        self.add_item_note_btn.setObjectName(u"add_item_note_btn")
+
+        self.horizontalLayout.addWidget(self.add_item_note_btn)
 
 
         self.verticalLayout_14.addWidget(self.frame_4)
@@ -1339,21 +1316,15 @@ class Ui_MainWindow(object):
         __qtreewidgetitem.setBackground(0, QColor(104, 104, 104));
         __qtreewidgetitem.setForeground(0, brush);
         self.treeWidget.setHeaderItem(__qtreewidgetitem)
-        __qtreewidgetitem1 = QTreeWidgetItem(self.treeWidget)
-        QTreeWidgetItem(__qtreewidgetitem1)
-        QTreeWidgetItem(__qtreewidgetitem1)
-        QTreeWidgetItem(__qtreewidgetitem1)
-        QTreeWidgetItem(__qtreewidgetitem1)
-        QTreeWidgetItem(__qtreewidgetitem1)
-        QTreeWidgetItem(__qtreewidgetitem1)
-        QTreeWidgetItem(__qtreewidgetitem1)
-        QTreeWidgetItem(__qtreewidgetitem1)
-        __qtreewidgetitem2 = QTreeWidgetItem(self.treeWidget)
-        QTreeWidgetItem(__qtreewidgetitem2)
         self.treeWidget.setObjectName(u"treeWidget")
         self.treeWidget.setStyleSheet(u"color:#000")
 
         self.verticalLayout_16.addWidget(self.treeWidget)
+
+        self.pushButton_3 = QPushButton(self.scrollAreaWidgetContents)
+        self.pushButton_3.setObjectName(u"pushButton_3")
+
+        self.verticalLayout_16.addWidget(self.pushButton_3)
 
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
@@ -1423,7 +1394,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.comboBox_theme.setCurrentIndex(1)
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(3)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1497,34 +1468,6 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(tooltip)
         self.change_view_chart_btn.setText("")
 #if QT_CONFIG(tooltip)
-        self.up_chart_btn.setToolTip(QCoreApplication.translate("MainWindow", u"\u0421\u043c\u0435\u0441\u0442\u0438\u0442\u044c \u043d\u0430\u0432\u0435\u0440\u0445", None))
-#endif // QT_CONFIG(tooltip)
-        self.up_chart_btn.setText("")
-#if QT_CONFIG(shortcut)
-        self.up_chart_btn.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Up", None))
-#endif // QT_CONFIG(shortcut)
-#if QT_CONFIG(tooltip)
-        self.down_chart_btn.setToolTip(QCoreApplication.translate("MainWindow", u"\u0421\u043c\u0435\u0441\u0442\u0438\u0442\u044c \u0432\u043d\u0438\u0437", None))
-#endif // QT_CONFIG(tooltip)
-        self.down_chart_btn.setText("")
-#if QT_CONFIG(shortcut)
-        self.down_chart_btn.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Down", None))
-#endif // QT_CONFIG(shortcut)
-#if QT_CONFIG(tooltip)
-        self.right_chart_btn.setToolTip(QCoreApplication.translate("MainWindow", u"\u0421\u043c\u0435\u0441\u0442\u0438\u0442\u044c \u0432\u043f\u0440\u0430\u0432\u043e", None))
-#endif // QT_CONFIG(tooltip)
-        self.right_chart_btn.setText("")
-#if QT_CONFIG(shortcut)
-        self.right_chart_btn.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Right", None))
-#endif // QT_CONFIG(shortcut)
-#if QT_CONFIG(tooltip)
-        self.left_chart_btn.setToolTip(QCoreApplication.translate("MainWindow", u"\u0421\u043c\u0435\u0441\u0442\u0438\u0442\u044c \u0432\u043b\u0435\u0432\u043e", None))
-#endif // QT_CONFIG(tooltip)
-        self.left_chart_btn.setText("")
-#if QT_CONFIG(shortcut)
-        self.left_chart_btn.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Left", None))
-#endif // QT_CONFIG(shortcut)
-#if QT_CONFIG(tooltip)
         self.zoom_out_chart_btn.setToolTip(QCoreApplication.translate("MainWindow", u"\u0423\u043c\u0435\u043d\u044c\u0448\u0438\u0442\u044c \u043c\u0430\u0441\u0448\u0442\u0430\u0431", None))
 #endif // QT_CONFIG(tooltip)
         self.zoom_out_chart_btn.setText("")
@@ -1538,6 +1481,9 @@ class Ui_MainWindow(object):
 #if QT_CONFIG(shortcut)
         self.zoom_in_chart_btn.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+=", None))
 #endif // QT_CONFIG(shortcut)
+#if QT_CONFIG(tooltip)
+        self.reset_chart_btn.setToolTip(QCoreApplication.translate("MainWindow", u"\u0421\u0431\u0440\u043e\u0441\u0438\u0442\u044c \u043c\u0430\u0441\u0448\u0442\u0430\u0431\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435", None))
+#endif // QT_CONFIG(tooltip)
         self.reset_chart_btn.setText("")
 #if QT_CONFIG(shortcut)
         self.reset_chart_btn.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+/", None))
@@ -1556,37 +1502,12 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(tooltip)
         self.btn_change_view.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0430 \u043e\u0442\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u044f", None))
         self.btn_save_view.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c..", None))
-        self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0440\u0430\u0437\u0434\u0435\u043b...", None))
-        self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0441\u0442\u0430\u0442\u044c\u044e...", None))
+        self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043f\u0440\u0430\u0432\u043e\u0447\u043d\u0438\u043a \u043f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u043e\u0432", None))
+        self.add_topic_note_btn.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0440\u0430\u0437\u0434\u0435\u043b ...", None))
+        self.add_item_note_btn.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0441\u0442\u0430\u0442\u044c\u044e ...", None))
         ___qtreewidgetitem = self.treeWidget.headerItem()
         ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", u"\u0417\u0430\u043c\u0435\u0442\u043a\u0438", None));
-
-        __sortingEnabled = self.treeWidget.isSortingEnabled()
-        self.treeWidget.setSortingEnabled(False)
-        ___qtreewidgetitem1 = self.treeWidget.topLevelItem(0)
-        ___qtreewidgetitem1.setText(0, QCoreApplication.translate("MainWindow", u"\u0422\u0435\u0441\u0442\u044b", None));
-        ___qtreewidgetitem2 = ___qtreewidgetitem1.child(0)
-        ___qtreewidgetitem2.setText(0, QCoreApplication.translate("MainWindow", u"HPCG", None));
-        ___qtreewidgetitem3 = ___qtreewidgetitem1.child(1)
-        ___qtreewidgetitem3.setText(0, QCoreApplication.translate("MainWindow", u"IMB", None));
-        ___qtreewidgetitem4 = ___qtreewidgetitem1.child(2)
-        ___qtreewidgetitem4.setText(0, QCoreApplication.translate("MainWindow", u"HPL", None));
-        ___qtreewidgetitem5 = ___qtreewidgetitem1.child(3)
-        ___qtreewidgetitem5.setText(0, QCoreApplication.translate("MainWindow", u"b_eff", None));
-        ___qtreewidgetitem6 = ___qtreewidgetitem1.child(4)
-        ___qtreewidgetitem6.setText(0, QCoreApplication.translate("MainWindow", u"STREAM", None));
-        ___qtreewidgetitem7 = ___qtreewidgetitem1.child(5)
-        ___qtreewidgetitem7.setText(0, QCoreApplication.translate("MainWindow", u"IOZONE", None));
-        ___qtreewidgetitem8 = ___qtreewidgetitem1.child(6)
-        ___qtreewidgetitem8.setText(0, QCoreApplication.translate("MainWindow", u"SPEC HPC", None));
-        ___qtreewidgetitem9 = ___qtreewidgetitem1.child(7)
-        ___qtreewidgetitem9.setText(0, QCoreApplication.translate("MainWindow", u"IO-500", None));
-        ___qtreewidgetitem10 = self.treeWidget.topLevelItem(1)
-        ___qtreewidgetitem10.setText(0, QCoreApplication.translate("MainWindow", u"\u041e\u043f\u0442\u0438\u043c\u0438\u0437\u0430\u0446\u0438\u044f \u0442\u0435\u0441\u0442\u043e\u0432", None));
-        ___qtreewidgetitem11 = ___qtreewidgetitem10.child(0)
-        ___qtreewidgetitem11.setText(0, QCoreApplication.translate("MainWindow", u"\u0412\u044b\u0431\u043e\u0440 \u043d\u0430\u0438\u043b\u0443\u0447\u0448\u0438\u0445 \u043f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u043e\u0432 \u0434\u043b\u044f HPL", None));
-        self.treeWidget.setSortingEnabled(__sortingEnabled)
-
+        self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u0437\u0430\u043f\u0438\u0441\u044c ...", None))
         self.creditsLabel.setText("")
         self.version.setText(QCoreApplication.translate("MainWindow", u"v0.0.1", None))
     # retranslateUi

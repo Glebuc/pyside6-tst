@@ -56,7 +56,24 @@ class BaseModel(QSqlQueryModel):
     	"scale" int4 NOT NULL DEFAULT 100,
     	user_id_fk int4 NOT NULL,
     	CONSTRAINT settings_pk PRIMARY KEY (setting_id),
-    	CONSTRAINT settings_fk FOREIGN KEY (user_id_fk) REFERENCES users(user_id));"""
+    	CONSTRAINT settings_fk FOREIGN KEY (user_id_fk) REFERENCES users(user_id));
+    """
+
+    SECTION_SQL = """
+    CREATE TABLE IF NOT EXISTS sections (
+        id SERIAL PRIMARY KEY,
+        name TEXT
+    )
+    """
+
+    NOTE_SQL = """
+     CREATE TABLE IF NOT EXISTS notes (
+        id SERIAL PRIMARY KEY,
+        title TEXT,
+        content TEXT,
+        section_id INTEGER REFERENCES sections(id)
+    )
+    """
 
     LIST_USER_SQL = """
         SELECT user_name FROM users GROUP BY user_name;
@@ -99,14 +116,16 @@ class BaseModel(QSqlQueryModel):
             'users': self.USERS_SQL,
             'tests': self.TESTS_SQL,
             'report': self.REPORT_SQL,
-            'settings': self.SETTING_SQL
+            'settings': self.SETTING_SQL,
+            'sections': self.SECTION_SQL,
+            'notes': self.NOTE_SQL
         }
 
         query = QSqlQuery()
         for table_name, sql_query in tables_to_create.items():
             if table_name not in existing_tables:
                 if not query.exec(sql_query):
-                    self.log.log_error("Ошибка выполнения запроса:", query.lastError().text())
+                    self.log.log_error("Ошибка выполнения запроса:"+ query.lastError().text())
                     return False
         return True
 

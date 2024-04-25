@@ -1311,12 +1311,13 @@ class Ui_MainWindow(object):
         self.verticalLayout_16.setObjectName(u"verticalLayout_16")
         self.treeWidget = QTreeWidget(self.scrollAreaWidgetContents)
         brush = QBrush(QColor(255, 255, 255, 255))
-        brush.setStyle(Qt.NoBrush)
+        brush.setStyle(Qt.SolidPattern)
         __qtreewidgetitem = QTreeWidgetItem()
         __qtreewidgetitem.setBackground(0, QColor(104, 104, 104));
         __qtreewidgetitem.setForeground(0, brush);
         self.treeWidget.setHeaderItem(__qtreewidgetitem)
         self.treeWidget.setObjectName(u"treeWidget")
+        self.treeWidget.viewport().setProperty("cursor", QCursor(Qt.PointingHandCursor))
         self.treeWidget.setStyleSheet(u"color:#000")
 
         self.verticalLayout_16.addWidget(self.treeWidget)

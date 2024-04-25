@@ -8,24 +8,21 @@
 
 import sys
 import os
-import platform
+
 
 from PySide6.QtWidgets import QDialog, QFormLayout, QVBoxLayout, QPushButton, \
-    QTableView,QMainWindow, QWidget, QHeaderView, QMessageBox, QGraphicsScene, QGraphicsView
+    QTableView,QMainWindow, QWidget, QHeaderView, QMessageBox, QGraphicsScene, QGraphicsView, QTreeWidgetItem
 from PySide6.QtGui import QTransform
 from PySide6 import QtCore
 from PySide6.QtCore import Qt, QResource
 
-import doctest
 from typing import List
 
-from datetime import datetime
 from loger import Logger
 from Application import Application
 from ui_modules import *
-from widgets import *
 from pages import BaseModel, Model_result, Save_data, View_result, Dialog_change_view, DialogsSetting,\
-    DialogsResult,Chart_view, Model_chart, Dialog_add_topic, Dialog_add_note, NoteView
+    DialogsResult,Chart_view, Model_chart, Dialog_add_topic, Dialog_add_note, NoteView, Model_notes
 from SettingApp import AppSettings
 
 from utils import get_translate_path, get_themes_path
@@ -60,6 +57,7 @@ class MainWindow(QMainWindow):
         widgets.verticalLayout_20.replaceWidget(widgets.resultView, self.tableView)
         self.model_result = Model_result.ResultModel('tests')
         self.model_chart = Model_chart.ChartModel('tests')
+        self.note_model = Model_notes.NoteModel('sections')
 
         widgets.btn_change_view.clicked.connect(self.open_column_selection_dialog)
         self.setting = AppSettings()
@@ -68,6 +66,7 @@ class MainWindow(QMainWindow):
         self.chart = Chart_view.CustomChart()
         self.chart.update_chart()
         self.scene.addItem(self.chart)
+        self.note = NoteView.NoteView()
 
 
         #Обработчики кнопок масштабирования графика
@@ -134,6 +133,7 @@ class MainWindow(QMainWindow):
 
         # словарь для хранения состояний флажков
         self.checkbox_dict = {}
+        self.populate_tree_widget()
 
     def get_text_from_combo_chart(self) -> str:
         """
@@ -143,6 +143,17 @@ class MainWindow(QMainWindow):
             str: Текущее выбранное значение из ComboBox.
         """
         return widgets.list_test_chart.currentText()
+
+
+
+    def populate_tree_widget(self):
+        section_names = self.note_model.get_section_names()
+        items = []
+        for name in section_names:
+            item = QTreeWidgetItem([name])
+            items.append(item)
+            self.ui.treeWidget.addTopLevelItem(item)
+        print(items)
 
 
     def get_param_test(self) -> List:
@@ -241,6 +252,9 @@ class MainWindow(QMainWindow):
         dialog = Dialog_add_topic.DialogAddTopic()
         if not dialog.isVisible():
             self.log.log_info("Открыто диалоговое окно для добавления раздела")
+            if dialog.exec() == QDialog.Accepted:
+                self.ui.treeWidget.clear()
+                self.populate_tree_widget()
         else:
             self.log.log_error("Ошибка открытия диалогового окна для добавления раздела")
         dialog.exec()
@@ -331,6 +345,5 @@ if __name__ == "__main__":
     app = Application(sys.argv)
     app.setWindowIcon(QIcon(u":/icons/images/icons/aramid.svg"))
     window = MainWindow(app)
-    # window.setWindowFlags(Qt.Window | Qt.CustomizeWindowHint | Qt.WindowTitleHint | Qt.WindowMinMaxButtonsHint)
     result = app.exec()
     sys.exit(result)

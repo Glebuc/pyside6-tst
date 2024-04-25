@@ -3,7 +3,7 @@ from PySide6.QtWidgets import QTableView, QVBoxLayout, QWidget, QHeaderView, QCo
 from PySide6.QtCore import Qt, Slot
 from ui_modules import *
 from PySide6.QtUiTools import QUiLoader
-from database import db_params
+
 from ..BaseModel import BaseModel
 
 

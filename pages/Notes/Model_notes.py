@@ -6,7 +6,6 @@ from PySide6.QtCore import Qt, Slot
 from PySide6.QtUiTools import QUiLoader
 
 from ui_modules import *
-from database import db_params
 from ..BaseModel import BaseModel
 
 
@@ -34,5 +33,5 @@ class NoteModel(BaseModel):
         if query.exec():
             return True
         else:
-            print("Ошибка при выполнении запроса:", query.lastError().text())
+            print("Ошибка при выполнении запроса:"+ query.lastError().text())
             return False

@@ -1,18 +1,14 @@
-# MAIN FILE
-# ///////////////////////////////////////////////////////////////
+
 from main import *
 from PySide6.QtWidgets import QPushButton
 from PySide6.QtCore import QFile, QTextStream
 
-# GLOBALS
-# ///////////////////////////////////////////////////////////////
+
 GLOBAL_STATE = False
 GLOBAL_TITLE_BAR = True
 
 
 class UIFunctions(MainWindow):
-    # MAXIMIZE/RESTORE
-    # ///////////////////////////////////////////////////////////////
     def maximize_restore(self) -> None:
         global GLOBAL_STATE
         status = GLOBAL_STATE

@@ -3,7 +3,6 @@ from PySide6.QtWidgets import QTableView, QVBoxLayout, QWidget, QHeaderView, QCo
 from PySide6.QtCore import Qt, Slot
 from ui_modules import *
 from PySide6.QtUiTools import QUiLoader
-from database import db_params
 from typing import Optional, Dict, Tuple, Union, List
 
 from loger import Logger
@@ -147,7 +146,7 @@ class BaseModel(QSqlQueryModel):
                 existing_tables.append(query.value(0))
             return existing_tables
         else:
-            self.log.log_error("Ошибка выполнения запроса:", query.lastError().text())
+            self.log.log_error("Ошибка выполнения запроса:"+ query.lastError().text())
             return None
     def execute_sql(self, sql_query: str, params: Optional[Union[Tuple, Dict]] = None) -> List:
         """
@@ -172,5 +171,5 @@ class BaseModel(QSqlQueryModel):
             while query.next():
                 result.append(query.value(0))
         else:
-            self.log.log_error("Ошибка выполнения запроса:", query.lastError().text())
+            self.log.log_error("Ошибка выполнения запроса: "+ query.lastError().text())
         return result

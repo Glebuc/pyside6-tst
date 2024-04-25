@@ -6,7 +6,6 @@ from PySide6.QtCore import Qt, Slot
 from PySide6.QtUiTools import QUiLoader
 
 from ui_modules import *
-from database import db_params
 from ..BaseModel import BaseModel
 from loger import Logger
 

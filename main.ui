@@ -2191,6 +2191,9 @@ background-image: none;
                           <layout class="QVBoxLayout" name="verticalLayout_16">
                            <item>
                             <widget class="QTreeWidget" name="treeWidget">
+                             <property name="cursor" stdset="0">
+                              <cursorShape>PointingHandCursor</cursorShape>
+                             </property>
                              <property name="styleSheet">
                               <string notr="true">color:#000</string>
                              </property>
@@ -2206,7 +2209,7 @@ background-image: none;
                                </color>
                               </property>
                               <property name="foreground">
-                               <brush brushstyle="NoBrush">
+                               <brush brushstyle="SolidPattern">
                                 <color alpha="255">
                                  <red>255</red>
                                  <green>255</green>

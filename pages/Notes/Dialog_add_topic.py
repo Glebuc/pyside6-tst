@@ -6,7 +6,6 @@ from ui_modules import  Ui_MainWindow
 class DialogAddTopic(QDialog):
     def __init__(self):
         super().__init__()
-        self.ui = Ui_MainWindow()
         self.note_model = NoteModel("sections")
         self.setWindowTitle("Добавление раздела")
         layout = QVBoxLayout(self)
@@ -21,16 +20,13 @@ class DialogAddTopic(QDialog):
     def add_section_to_database(self):
         name = self.line_edit.text()
         if name.strip():
-            # Вызов метода добавления раздела из NoteModel
             if self.note_model.add_section(name):
                 print("Раздел успешно добавлен в базу данных!")
-                self.accept()  # Закрываем диалоговое окно после успешной записи в базу данных
+                self.accept()
+                return True
             else:
                 print("Не удалось добавить раздел в базу данных.")
+                return False
         else:
             QMessageBox.warning(self,"Предупреждение","Название раздела не указано.")
 
-if __name__ == "__main__":
-    app = QApplication([])
-    dialog = MyDialog()
-    dialog.exec()

@@ -30,9 +30,7 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">
-
-QWidget{
+    <string notr="true">QWidget{
 	color: rgb(221, 221, 221);
 	font: 10pt &quot;Segoe UI&quot;;
 }
@@ -71,21 +69,21 @@ QPushButton:hover {
 	background-color: rgb(30, 34, 42);
 	border: 2px solid rgb(50, 54, 62);
 }
-QPushButton:pressed {	
+QPushButton:pressed {
 	background-color: rgb(35, 40, 49);
 	color: rgb(255, 255, 255);
 }
 
 /* /////////////////////////////////////////////////////////////////////////////////////////////////
 Bg App */
-#bgApp {	
+#bgApp {
 	background-color: rgb(40, 44, 52);
 	border: 1px solid rgb(44, 49, 58);
 }
 
 /* /////////////////////////////////////////////////////////////////////////////////////////////////
 Left Menu */
-#leftMenuBg {	
+#leftMenuBg {
 	background-color: rgb(33, 37, 43);
 }
 #topLogo {
@@ -100,7 +98,7 @@ background-color: rgb(119, 118, 123);
 #titleLeftDescription { font: 8pt &quot;Segoe UI&quot;; color: rgb(189, 147, 249); }
 
 /* MENUS */
-#topMenu .QPushButton {	
+#topMenu .QPushButton {
 	background-position: left center;
     background-repeat: no-repeat;
 	border: none;
@@ -112,11 +110,11 @@ background-color: rgb(119, 118, 123);
 #topMenu .QPushButton:hover {
 	background-color: rgb(40, 44, 52);
 }
-#topMenu .QPushButton:pressed {	
+#topMenu .QPushButton:pressed {
 	background-color: rgb(35, 40, 49);
 	color: rgb(255, 255, 255);
 }
-#bottomMenu .QPushButton {	
+#bottomMenu .QPushButton {
 	background-position: left center;
     background-repeat: no-repeat;
 	border: none;
@@ -128,7 +126,7 @@ background-color: rgb(119, 118, 123);
 #bottomMenu .QPushButton:hover {
 	background-color: rgb(40, 44, 52);
 }
-#bottomMenu .QPushButton:pressed {	
+#bottomMenu .QPushButton:pressed {
 	background-color: rgb(35, 40, 49);
 	color: rgb(255, 255, 255);
 }
@@ -160,10 +158,10 @@ background-color: rgb(119, 118, 123);
 
 /* /////////////////////////////////////////////////////////////////////////////////////////////////
 Extra Tab */
-#extraLeftBox {	
+#extraLeftBox {
 	background-color: rgb(44, 49, 58);
 }
-#extraTopBg{	
+#extraTopBg{
 	background-color: rgba(33, 37, 43, 180);
 }
 
@@ -187,11 +185,9 @@ Extra Tab */
 	border-top: 3px solid rgb(40, 44, 52);
 }
 
-
-
 /* /////////////////////////////////////////////////////////////////////////////////////////////////
 Content App */
-#contentTopBg{	
+#contentTopBg{
 	background-color: rgb(33, 37, 43);
 }
 #contentBottom{
@@ -213,7 +209,7 @@ Content App */
 
 /* CONTENT SETTINGS */
 /* MENUS */
-#contentSettings .QPushButton {	
+#contentSettings .QPushButton {
 	background-position: left center;
     background-repeat: no-repeat;
 	border: none;
@@ -223,10 +219,9 @@ Content App */
 	padding-left: 44px;
 }
 
-
 /* /////////////////////////////////////////////////////////////////////////////////////////////////
 QTableWidget */
-QTableWidget {	
+QTableWidget {
 	background-color: transparent;
 	padding: 10px;
 	border-radius: 5px;
@@ -250,7 +245,7 @@ QHeaderView::section{
     border-bottom: 1px solid rgb(44, 49, 60);
     border-right: 1px solid rgb(44, 49, 60);
 }
-QTableWidget::horizontalHeader {	
+QTableWidget::horizontalHeader {
 	background-color: rgb(33, 37, 43);
 }
 QHeaderView::section:horizontal
@@ -350,7 +345,7 @@ QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal
     margin: 21px 0 21px 0;
 	border-radius: 0px;
  }
- QScrollBar::handle:vertical {	
+ QScrollBar::handle:vertical {
 	background: rgb(50, 50, 50);
     min-height: 25px;
 	border-radius: 4px
@@ -397,10 +392,9 @@ QCheckBox::indicator:hover {
 }
 QCheckBox::indicator:checked {
     background: 3px solid rgb(52, 59, 72);
-	border: 3px solid rgb(52, 59, 72);	
+	border: 3px solid rgb(52, 59, 72);
 	background-image: url(:/icons/images/icons/cil-check-alt.png);
 }
-
 /* /////////////////////////////////////////////////////////////////////////////////////////////////
 RadioButton */
 QRadioButton::indicator {
@@ -415,9 +409,8 @@ QRadioButton::indicator:hover {
 }
 QRadioButton::indicator:checked {
     background: 3px solid rgb(94, 106, 130);
-	border: 3px solid rgb(52, 59, 72);	
+	border: 3px solid rgb(52, 59, 72);
 }
-
 /* /////////////////////////////////////////////////////////////////////////////////////////////////
 ComboBox */
 QComboBox{
@@ -432,23 +425,22 @@ QComboBox:hover{
 QComboBox::drop-down {
 	subcontrol-origin: padding;
 	subcontrol-position: top right;
-	width: 25px; 
+	width: 25px;
 	border-left-width: 3px;
 	border-left-color: rgba(39, 44, 54, 150);
 	border-left-style: solid;
 	border-top-right-radius: 3px;
-	border-bottom-right-radius: 3px;	
+	border-bottom-right-radius: 3px;
 	background-image: url(:/icons/images/icons/cil-arrow-bottom.png);
 	background-position: center;
 	background-repeat: no-reperat;
  }
 QComboBox QAbstractItemView {
-	color: rgb(255, 255, 255);	
+	color: rgb(255, 255, 255);
 	background-color: rgb(33, 37, 43);
 	padding: 10px;
 	selection-background-color: rgb(39, 44, 54);
 }
-
 /* /////////////////////////////////////////////////////////////////////////////////////////////////
 Sliders */
 QSlider::groove:horizontal {
@@ -474,7 +466,6 @@ QSlider::handle:horizontal:hover {
 QSlider::handle:horizontal:pressed {
     background-color: rgb(35, 40, 49);
 }
-
 QSlider::groove:vertical {
     border-radius: 5px;
     width: 10px;
@@ -498,44 +489,40 @@ QSlider::handle:vertical:hover {
 QSlider::handle:vertical:pressed {
     background-color: rgb(35, 40, 49);
 }
-
 /* /////////////////////////////////////////////////////////////////////////////////////////////////
 CommandLinkButton */
-QCommandLinkButton {	
+QCommandLinkButton {
 	color: rgb(255, 121, 198);
 	border-radius: 5px;
 	padding: 5px;
 }
-QCommandLinkButton:hover {	
+QCommandLinkButton:hover {
 	color: rgb(255, 170, 255);
 	background-color: rgb(44, 49, 60);
 }
-QCommandLinkButton:pressed {	
+QCommandLinkButton:pressed {
 	color: rgb(189, 147, 249);
 	background-color: rgb(35, 40, 49);
 }
-
 /* /////////////////////////////////////////////////////////////////////////////////////////////////
 Button */
 #pagesContainer QPushButton {
 	border: 2px solid rgb(52, 59, 72);
-	border-radius: 5px;	
+	border-radius: 5px;
 	background-color: rgb(52, 59, 72);
 }
 #pagesContainer QPushButton:hover {
 	background-color: rgb(57, 65, 80);
 	border: 2px solid rgb(61, 70, 86);
 }
-#pagesContainer QPushButton:pressed {	
+#pagesContainer QPushButton:pressed {
 	background-color: rgb(35, 40, 49);
 	border: 2px solid rgb(43, 50, 61);
 }
-
 #extraLeftBox QPushButton {
 	background-color: rgb(35, 40, 49);
 	padding: 5px;
 }
-
 #result_page {
 	background-color: rgb(94, 92, 100);
 }
@@ -570,7 +557,6 @@ QTableView {
 #pagesContainer  {
 	background-color: rgb(94, 92, 100);
 }
-
 #btn_report {
 	background-image: url(:/icons/images/icons/cil-file.png);
 }
@@ -605,15 +591,11 @@ background-image: url(:/icons/images/icons/cil-chart-pie.png);
 	background-image: url(:/icons/images/icons/cil-caret-right.png);
 }
 #reset_chart_btn{
-	
+
 	background-image: url(:/icons/images/icons/cil-loop-circular.png);
 }
 #list_test {
 	color:#ffffff;
-}
-
-#change_view_chart_btn {
-	background-image: url(:/icons/images/icons/cil-settings.png);
 }</string>
    </property>
    <layout class="QGridLayout" name="gridLayout_3">
@@ -1000,10 +982,6 @@ background-image: url(:/icons/images/icons/cil-chart-pie.png);
                   </property>
                   <property name="text">
                    <string>Заметки</string>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="resources.qrc">
-                    <normaloff>:/icons/images/icons/cil-pen-alt.png</normaloff>:/icons/images/icons/cil-pen-alt.png</iconset>
                   </property>
                   <property name="shortcut">
                    <string>Ctrl+R</string>
@@ -2221,10 +2199,48 @@ background-image: none;
                             </widget>
                            </item>
                            <item>
-                            <widget class="QPushButton" name="pushButton_3">
-                             <property name="text">
-                              <string>Удалить запись ...</string>
+                            <widget class="QFrame" name="frame_6">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>50</height>
+                              </size>
                              </property>
+                             <property name="frameShape">
+                              <enum>QFrame::StyledPanel</enum>
+                             </property>
+                             <property name="frameShadow">
+                              <enum>QFrame::Raised</enum>
+                             </property>
+                             <layout class="QHBoxLayout" name="horizontalLayout_2">
+                              <item>
+                               <spacer name="horizontalSpacer_5">
+                                <property name="orientation">
+                                 <enum>Qt::Horizontal</enum>
+                                </property>
+                                <property name="sizeHint" stdset="0">
+                                 <size>
+                                  <width>40</width>
+                                  <height>20</height>
+                                 </size>
+                                </property>
+                               </spacer>
+                              </item>
+                              <item>
+                               <widget class="QPushButton" name="pushButton_5">
+                                <property name="text">
+                                 <string>Редактировать...</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QPushButton" name="pushButton_3">
+                                <property name="text">
+                                 <string>Удалить запись ...</string>
+                                </property>
+                               </widget>
+                              </item>
+                             </layout>
                             </widget>
                            </item>
                           </layout>

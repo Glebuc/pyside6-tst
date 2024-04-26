@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pages.Result.ui_dialog_extension_search &mdash; документация Aramid-TsT-Graph 0.0.1</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=ba58aea8"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/translations.js?v=29b1f277"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Алфавитный указатель" href="../../../genindex.html" />
+    <link rel="search" title="Поиск" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Aramid-TsT-Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" aria-label="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Меню навигации">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Меню навигации для мобильных устройств" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Aramid-TsT-Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Навигация по страницам">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Код модуля</a></li>
+      <li class="breadcrumb-item active">pages.Result.ui_dialog_extension_search</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Исходный код pages.Result.ui_dialog_extension_search</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="c1">################################################################################</span>
+<span class="c1">## Form generated from reading UI file &#39;extension_search.ui&#39;</span>
+<span class="c1">##</span>
+<span class="c1">## Created by: Qt User Interface Compiler version 6.6.3</span>
+<span class="c1">##</span>
+<span class="c1">## WARNING! All changes made in this file will be lost when recompiling UI file!</span>
+<span class="c1">################################################################################</span>
+
+<span class="kn">from</span> <span class="nn">PySide6.QtCore</span> <span class="kn">import</span> <span class="p">(</span><span class="n">QCoreApplication</span><span class="p">,</span> <span class="n">QDate</span><span class="p">,</span> <span class="n">QDateTime</span><span class="p">,</span> <span class="n">QLocale</span><span class="p">,</span>
+    <span class="n">QMetaObject</span><span class="p">,</span> <span class="n">QObject</span><span class="p">,</span> <span class="n">QPoint</span><span class="p">,</span> <span class="n">QRect</span><span class="p">,</span>
+    <span class="n">QSize</span><span class="p">,</span> <span class="n">QTime</span><span class="p">,</span> <span class="n">QUrl</span><span class="p">,</span> <span class="n">Qt</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">PySide6.QtGui</span> <span class="kn">import</span> <span class="p">(</span><span class="n">QBrush</span><span class="p">,</span> <span class="n">QColor</span><span class="p">,</span> <span class="n">QConicalGradient</span><span class="p">,</span> <span class="n">QCursor</span><span class="p">,</span>
+    <span class="n">QFont</span><span class="p">,</span> <span class="n">QFontDatabase</span><span class="p">,</span> <span class="n">QGradient</span><span class="p">,</span> <span class="n">QIcon</span><span class="p">,</span>
+    <span class="n">QImage</span><span class="p">,</span> <span class="n">QKeySequence</span><span class="p">,</span> <span class="n">QLinearGradient</span><span class="p">,</span> <span class="n">QPainter</span><span class="p">,</span>
+    <span class="n">QPalette</span><span class="p">,</span> <span class="n">QPixmap</span><span class="p">,</span> <span class="n">QRadialGradient</span><span class="p">,</span> <span class="n">QTransform</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">PySide6.QtWidgets</span> <span class="kn">import</span> <span class="p">(</span><span class="n">QApplication</span><span class="p">,</span> <span class="n">QComboBox</span><span class="p">,</span> <span class="n">QDateEdit</span><span class="p">,</span> <span class="n">QDialog</span><span class="p">,</span>
+    <span class="n">QFrame</span><span class="p">,</span> <span class="n">QGridLayout</span><span class="p">,</span> <span class="n">QLabel</span><span class="p">,</span> <span class="n">QPushButton</span><span class="p">,</span>
+    <span class="n">QSizePolicy</span><span class="p">,</span> <span class="n">QSpacerItem</span><span class="p">,</span> <span class="n">QVBoxLayout</span><span class="p">,</span> <span class="n">QWidget</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Ui_Dialog">
+<a class="viewcode-back" href="../../../pages.Result.html#pages.Result.ui_dialog_extension_search.Ui_Dialog">[документация]</a>
+<span class="k">class</span> <span class="nc">Ui_Dialog</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="Ui_Dialog.setupUi">
+<a class="viewcode-back" href="../../../pages.Result.html#pages.Result.ui_dialog_extension_search.Ui_Dialog.setupUi">[документация]</a>
+    <span class="k">def</span> <span class="nf">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Dialog</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">Dialog</span><span class="o">.</span><span class="n">objectName</span><span class="p">():</span>
+            <span class="n">Dialog</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="sa">u</span><span class="s2">&quot;Dialog&quot;</span><span class="p">)</span>
+        <span class="n">Dialog</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">350</span><span class="p">,</span> <span class="mi">450</span><span class="p">)</span>
+        <span class="n">Dialog</span><span class="o">.</span><span class="n">setMinimumSize</span><span class="p">(</span><span class="n">QSize</span><span class="p">(</span><span class="mi">350</span><span class="p">,</span> <span class="mi">450</span><span class="p">))</span>
+        <span class="n">Dialog</span><span class="o">.</span><span class="n">setMaximumSize</span><span class="p">(</span><span class="n">QSize</span><span class="p">(</span><span class="mi">350</span><span class="p">,</span> <span class="mi">450</span><span class="p">))</span>
+        <span class="n">Dialog</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="sa">u</span><span class="s2">&quot;/* </span><span class="se">\u0426\u0432\u0435\u0442\u0430</span><span class="s2"> </span><span class="se">\u0438</span><span class="s2"> </span><span class="se">\u0448\u0440\u0438\u0444\u0442\u044b</span><span class="s2"> */</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;    QDateEdit QCalendarWidget {</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;        background-color: #2c3e50; /* </span><span class="se">\u0426\u0432\u0435\u0442</span><span class="s2"> </span><span class="se">\u0444\u043e\u043d\u0430</span><span class="s2"> */</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;        color: #ecf0f1; /* </span><span class="se">\u0426\u0432\u0435\u0442</span><span class="s2"> </span><span class="se">\u0442\u0435\u043a\u0441\u0442\u0430</span><span class="s2"> */</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;        font-family: Arial, sans-serif; /* </span><span class="se">\u0428\u0440\u0438\u0444\u0442</span><span class="s2"> */</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;    }</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;    </span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;    /* </span><span class="se">\u041a\u043d\u043e\u043f\u043a\u0438</span><span class="s2"> </span><span class="se">\u0432\u0432\u0435\u0440\u0445</span><span class="s2">/</span><span class="se">\u0432\u043d\u0438\u0437</span><span class="s2"> </span><span class="se">\u0434\u043b\u044f</span><span class="s2"> </span><span class="se">\u043f\u0435\u0440\u0435\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u044f</span><span class="s2"> </span><span class="se">\u043c\u0435\u0441\u044f\u0446\u0435\u0432</span><span class="s2">/</span><span class="se">\u0433\u043e\u0434\u043e\u0432</span><span class="s2"> */</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;    QDateEdit QCalendarWidget QAbstractItemView {</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;        background-color: #34495e; /* </span><span class="se">\u0426\u0432\u0435\u0442</span><span class="s2"> </span><span class="se">\u0444\u043e\u043d\u0430</span><span class="s2"> */</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;        color: #ecf0f1; /* </span><span class="se">\u0426\u0432\u0435\u0442</span><span class="s2"> </span><span class="se">\u0442\u0435\u043a\u0441\u0442\u0430</span><span class="s2"> */</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;    }</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;    /* </span><span class="se">\u041a\u043d\u043e\u043f\u043a\u0438</span><span class="s2"> </span><span class="se">\u043f\u0435\u0440\u0435\u043a\u043b</span><span class="s2">&quot;</span>
+                        <span class="s2">&quot;</span><span class="se">\u044e\u0447\u0435\u043d\u0438\u044f</span><span class="s2"> </span><span class="se">\u043c\u0435\u0441\u044f\u0446\u0435\u0432</span><span class="s2">/</span><span class="se">\u0433\u043e\u0434\u043e\u0432</span><span class="s2"> */</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;    QDateEdit QCalendarWidget QToolButton {</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;        background-color: #2c3e50; /* </span><span class="se">\u0426\u0432\u0435\u0442</span><span class="s2"> </span><span class="se">\u0444\u043e\u043d\u0430</span><span class="s2"> */</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;        color: #ecf0f1; /* </span><span class="se">\u0426\u0432\u0435\u0442</span><span class="s2"> </span><span class="se">\u0442\u0435\u043a\u0441\u0442\u0430</span><span class="s2"> */</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;    }</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;    /* </span><span class="se">\u041a\u043d\u043e\u043f\u043a\u0438</span><span class="s2"> </span><span class="se">\u0432\u0441\u043f\u043b\u044b\u0432\u0430\u044e\u0449\u0435\u0433\u043e</span><span class="s2"> </span><span class="se">\u043e\u043a\u043d\u0430</span><span class="s2"> */</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;    QDateEdit QCalendarWidget QToolButton:hover {</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;        background-color: #4a69bd; /* </span><span class="se">\u0426\u0432\u0435\u0442</span><span class="s2"> </span><span class="se">\u0444\u043e\u043d\u0430</span><span class="s2"> </span><span class="se">\u043f\u0440\u0438</span><span class="s2"> </span><span class="se">\u043d\u0430\u0432\u0435\u0434\u0435\u043d\u0438\u0438</span><span class="s2"> */</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;    }</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;    /* </span><span class="se">\u0424\u043e\u043d</span><span class="s2"> </span><span class="se">\u0432\u044b\u0434\u0435\u043b\u0435\u043d\u043d\u043e\u0439</span><span class="s2"> </span><span class="se">\u0434\u0430\u0442\u044b</span><span class="s2"> */</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;    QDateEdit QCalendarWidget QTableView:selected {</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;        background-color: #4a69bd; /* </span><span class="se">\u0426\u0432\u0435\u0442</span><span class="s2"> </span><span class="se">\u0444\u043e\u043d\u0430</span><span class="s2"> */</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;&quot;</span>
+                        <span class="s2">&quot;        color: #ecf0f1; /* </span><span class="se">\u0426\u0432\u0435\u0442</span><span class="s2"> </span><span class="se">\u0442\u0435\u043a\u0441\u0442\u0430</span><span class="s2"> */</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;    }</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;    /* </span><span class="se">\u0424\u043e\u043d</span><span class="s2"> </span><span class="se">\u0434\u043b\u044f</span><span class="s2"> </span><span class="se">\u0432\u044b\u0445\u043e\u0434\u043d\u044b\u0445</span><span class="s2"> </span><span class="se">\u0434\u043d\u0435\u0439</span><span class="s2"> */</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;    QDateEdit QCalendarWidget QTableView:!disabled {</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;        alternate-background-color: #34495e; /* </span><span class="se">\u0426\u0432\u0435\u0442</span><span class="s2"> </span><span class="se">\u0444\u043e\u043d\u0430</span><span class="s2"> */</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;    }</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;    </span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;    /* </span><span class="se">\u0413\u0440\u0430\u043d\u0438\u0446\u044b</span><span class="s2"> </span><span class="se">\u044f\u0447\u0435\u0435\u043a</span><span class="s2"> */</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;    QDateEdit QCalendarWidget QTableView {</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;        border: 1px solid #34495e; /* </span><span class="se">\u0426\u0432\u0435\u0442</span><span class="s2"> </span><span class="se">\u0433\u0440\u0430\u043d\u0438\u0446</span><span class="s2"> */</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;    }</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;QDateEdit QCalendarWidget QHeaderView {</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;        background-color: #ffffff; /* </span><span class="se">\u0426\u0432\u0435\u0442</span><span class="s2"> </span><span class="se">\u0444\u043e\u043d\u0430</span><span class="s2"> */</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;        color: #ecf0f1; /* </span><span class="se">\u0426\u0432\u0435\u0442</span><span class="s2"> </span><span class="se">\u0442\u0435\u043a\u0441\u0442\u0430</span><span class="s2"> */</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;    }</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;    /* </span><span class="se">\u041f\u0435\u0440\u0435\u043a\u043b\u044e\u0447\u0430\u0442\u0435\u043b\u0438</span><span class="s2"> </span><span class="se">\u043c\u0435\u0441</span><span class="s2">&quot;</span>
+                        <span class="s2">&quot;</span><span class="se">\u044f\u0446\u0435\u0432</span><span class="s2"> </span><span class="se">\u0438</span><span class="s2"> </span><span class="se">\u0433\u043e\u0434\u043e\u0432</span><span class="s2"> */</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;    QDateEdit QCalendarWidget QToolButton {</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;        background-color: #2c3e50; /* </span><span class="se">\u0426\u0432\u0435\u0442</span><span class="s2"> </span><span class="se">\u0444\u043e\u043d\u0430</span><span class="s2"> */</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;        color: #ecf0f1; /* </span><span class="se">\u0426\u0432\u0435\u0442</span><span class="s2"> </span><span class="se">\u0442\u0435\u043a\u0441\u0442\u0430</span><span class="s2"> */</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;    }</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;    /* </span><span class="se">\u041f\u0435\u0440\u0435\u043a\u043b\u044e\u0447\u0430\u0442\u0435\u043b\u0438</span><span class="s2"> </span><span class="se">\u043c\u0435\u0441\u044f\u0446\u0435\u0432</span><span class="s2"> </span><span class="se">\u0438</span><span class="s2"> </span><span class="se">\u0433\u043e\u0434\u043e\u0432</span><span class="s2"> </span><span class="se">\u043f\u0440\u0438</span><span class="s2"> </span><span class="se">\u043d\u0430\u0432\u0435\u0434\u0435\u043d\u0438\u0438</span><span class="s2"> */</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;    QDateEdit QCalendarWidget QToolButton:hover {</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;        background-color: #4a69bd; /* </span><span class="se">\u0426\u0432\u0435\u0442</span><span class="s2"> </span><span class="se">\u0444\u043e\u043d\u0430</span><span class="s2"> </span><span class="se">\u043f\u0440\u0438</span><span class="s2"> </span><span class="se">\u043d\u0430\u0432\u0435\u0434\u0435\u043d\u0438\u0438</span><span class="s2"> */</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;    }&quot;</span><span class="p">)</span>
+        <span class="n">Dialog</span><span class="o">.</span><span class="n">setSizeGripEnabled</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verticalLayout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">(</span><span class="n">Dialog</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verticalLayout</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="sa">u</span><span class="s2">&quot;verticalLayout&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">QFrame</span><span class="p">(</span><span class="n">Dialog</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="sa">u</span><span class="s2">&quot;frame&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">setFrameShape</span><span class="p">(</span><span class="n">QFrame</span><span class="o">.</span><span class="n">StyledPanel</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">setFrameShadow</span><span class="p">(</span><span class="n">QFrame</span><span class="o">.</span><span class="n">Raised</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verticalLayout_2</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frame</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verticalLayout_2</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="sa">u</span><span class="s2">&quot;verticalLayout_2&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verticalLayout_2</span><span class="o">.</span><span class="n">setContentsMargins</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gridLayout</span> <span class="o">=</span> <span class="n">QGridLayout</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gridLayout</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="sa">u</span><span class="s2">&quot;gridLayout&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gridLayout</span><span class="o">.</span><span class="n">setHorizontalSpacing</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_7</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frame</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_7</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="sa">u</span><span class="s2">&quot;label_7&quot;</span><span class="p">)</span>
+        <span class="n">sizePolicy</span> <span class="o">=</span> <span class="n">QSizePolicy</span><span class="p">(</span><span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Policy</span><span class="o">.</span><span class="n">Preferred</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Policy</span><span class="o">.</span><span class="n">Fixed</span><span class="p">)</span>
+        <span class="n">sizePolicy</span><span class="o">.</span><span class="n">setHorizontalStretch</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">sizePolicy</span><span class="o">.</span><span class="n">setVerticalStretch</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">sizePolicy</span><span class="o">.</span><span class="n">setHeightForWidth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_7</span><span class="o">.</span><span class="n">sizePolicy</span><span class="p">()</span><span class="o">.</span><span class="n">hasHeightForWidth</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_7</span><span class="o">.</span><span class="n">setSizePolicy</span><span class="p">(</span><span class="n">sizePolicy</span><span class="p">)</span>
+        <span class="n">font</span> <span class="o">=</span> <span class="n">QFont</span><span class="p">()</span>
+        <span class="n">font</span><span class="o">.</span><span class="n">setPointSize</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_7</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">gridLayout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">before_dateEdit</span> <span class="o">=</span> <span class="n">QDateEdit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frame</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">before_dateEdit</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="sa">u</span><span class="s2">&quot;before_dateEdit&quot;</span><span class="p">)</span>
+        <span class="n">sizePolicy1</span> <span class="o">=</span> <span class="n">QSizePolicy</span><span class="p">(</span><span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Policy</span><span class="o">.</span><span class="n">Expanding</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Policy</span><span class="o">.</span><span class="n">Fixed</span><span class="p">)</span>
+        <span class="n">sizePolicy1</span><span class="o">.</span><span class="n">setHorizontalStretch</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">sizePolicy1</span><span class="o">.</span><span class="n">setVerticalStretch</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">sizePolicy1</span><span class="o">.</span><span class="n">setHeightForWidth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">before_dateEdit</span><span class="o">.</span><span class="n">sizePolicy</span><span class="p">()</span><span class="o">.</span><span class="n">hasHeightForWidth</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">before_dateEdit</span><span class="o">.</span><span class="n">setSizePolicy</span><span class="p">(</span><span class="n">sizePolicy1</span><span class="p">)</span>
+        <span class="n">font1</span> <span class="o">=</span> <span class="n">QFont</span><span class="p">()</span>
+        <span class="n">font1</span><span class="o">.</span><span class="n">setPointSize</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">before_dateEdit</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">font1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">before_dateEdit</span><span class="o">.</span><span class="n">setCursor</span><span class="p">(</span><span class="n">QCursor</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">IBeamCursor</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">before_dateEdit</span><span class="o">.</span><span class="n">setMinimumDateTime</span><span class="p">(</span><span class="n">QDateTime</span><span class="p">(</span><span class="n">QDate</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="n">QTime</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">before_dateEdit</span><span class="o">.</span><span class="n">setMinimumDate</span><span class="p">(</span><span class="n">QDate</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">13</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">before_dateEdit</span><span class="o">.</span><span class="n">setCalendarPopup</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">gridLayout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">before_dateEdit</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">from_dateEdit</span> <span class="o">=</span> <span class="n">QDateEdit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frame</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">from_dateEdit</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="sa">u</span><span class="s2">&quot;from_dateEdit&quot;</span><span class="p">)</span>
+        <span class="n">sizePolicy1</span><span class="o">.</span><span class="n">setHeightForWidth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">from_dateEdit</span><span class="o">.</span><span class="n">sizePolicy</span><span class="p">()</span><span class="o">.</span><span class="n">hasHeightForWidth</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">from_dateEdit</span><span class="o">.</span><span class="n">setSizePolicy</span><span class="p">(</span><span class="n">sizePolicy1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">from_dateEdit</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">font1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">from_dateEdit</span><span class="o">.</span><span class="n">setCursor</span><span class="p">(</span><span class="n">QCursor</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">IBeamCursor</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">from_dateEdit</span><span class="o">.</span><span class="n">setMinimumDateTime</span><span class="p">(</span><span class="n">QDateTime</span><span class="p">(</span><span class="n">QDate</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="n">QTime</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">from_dateEdit</span><span class="o">.</span><span class="n">setMinimumDate</span><span class="p">(</span><span class="n">QDate</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">13</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">from_dateEdit</span><span class="o">.</span><span class="n">setCalendarPopup</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">gridLayout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">from_dateEdit</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_3</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frame</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_3</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="sa">u</span><span class="s2">&quot;label_3&quot;</span><span class="p">)</span>
+        <span class="n">sizePolicy</span><span class="o">.</span><span class="n">setHeightForWidth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_3</span><span class="o">.</span><span class="n">sizePolicy</span><span class="p">()</span><span class="o">.</span><span class="n">hasHeightForWidth</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_3</span><span class="o">.</span><span class="n">setSizePolicy</span><span class="p">(</span><span class="n">sizePolicy</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_3</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">gridLayout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_6</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frame</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_6</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="sa">u</span><span class="s2">&quot;label_6&quot;</span><span class="p">)</span>
+        <span class="n">sizePolicy2</span> <span class="o">=</span> <span class="n">QSizePolicy</span><span class="p">(</span><span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Policy</span><span class="o">.</span><span class="n">Fixed</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Policy</span><span class="o">.</span><span class="n">Preferred</span><span class="p">)</span>
+        <span class="n">sizePolicy2</span><span class="o">.</span><span class="n">setHorizontalStretch</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">sizePolicy2</span><span class="o">.</span><span class="n">setVerticalStretch</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">sizePolicy2</span><span class="o">.</span><span class="n">setHeightForWidth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_6</span><span class="o">.</span><span class="n">sizePolicy</span><span class="p">()</span><span class="o">.</span><span class="n">hasHeightForWidth</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_6</span><span class="o">.</span><span class="n">setSizePolicy</span><span class="p">(</span><span class="n">sizePolicy2</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">gridLayout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_2</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frame</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_2</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="sa">u</span><span class="s2">&quot;label_2&quot;</span><span class="p">)</span>
+        <span class="n">sizePolicy</span><span class="o">.</span><span class="n">setHeightForWidth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_2</span><span class="o">.</span><span class="n">sizePolicy</span><span class="p">()</span><span class="o">.</span><span class="n">hasHeightForWidth</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_2</span><span class="o">.</span><span class="n">setSizePolicy</span><span class="p">(</span><span class="n">sizePolicy</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_2</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">gridLayout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_comboBox</span> <span class="o">=</span> <span class="n">QComboBox</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frame</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_comboBox</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_comboBox</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="sa">u</span><span class="s2">&quot;test_comboBox&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_comboBox</span><span class="o">.</span><span class="n">setCursor</span><span class="p">(</span><span class="n">QCursor</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">PointingHandCursor</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">gridLayout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_comboBox</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">user_comboBox</span> <span class="o">=</span> <span class="n">QComboBox</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frame</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user_comboBox</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user_comboBox</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="sa">u</span><span class="s2">&quot;user_comboBox&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user_comboBox</span><span class="o">.</span><span class="n">setCursor</span><span class="p">(</span><span class="n">QCursor</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">PointingHandCursor</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">gridLayout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user_comboBox</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_4</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frame</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_4</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="sa">u</span><span class="s2">&quot;label_4&quot;</span><span class="p">)</span>
+        <span class="n">sizePolicy</span><span class="o">.</span><span class="n">setHeightForWidth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_4</span><span class="o">.</span><span class="n">sizePolicy</span><span class="p">()</span><span class="o">.</span><span class="n">hasHeightForWidth</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_4</span><span class="o">.</span><span class="n">setSizePolicy</span><span class="p">(</span><span class="n">sizePolicy</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_4</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">gridLayout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_5</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frame</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_5</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="sa">u</span><span class="s2">&quot;label_5&quot;</span><span class="p">)</span>
+        <span class="n">sizePolicy2</span><span class="o">.</span><span class="n">setHeightForWidth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_5</span><span class="o">.</span><span class="n">sizePolicy</span><span class="p">()</span><span class="o">.</span><span class="n">hasHeightForWidth</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_5</span><span class="o">.</span><span class="n">setSizePolicy</span><span class="p">(</span><span class="n">sizePolicy2</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">gridLayout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">parametrs_tests</span> <span class="o">=</span> <span class="n">QComboBox</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frame</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parametrs_tests</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="sa">u</span><span class="s2">&quot;parametrs_tests&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">gridLayout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parametrs_tests</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">verticalLayout_2</span><span class="o">.</span><span class="n">addLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gridLayout</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">verticalSpacer_2</span> <span class="o">=</span> <span class="n">QSpacerItem</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Policy</span><span class="o">.</span><span class="n">Minimum</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Policy</span><span class="o">.</span><span class="n">Fixed</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">verticalLayout_2</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">verticalSpacer_2</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">accept_btn</span> <span class="o">=</span> <span class="n">QPushButton</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frame</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">accept_btn</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="sa">u</span><span class="s2">&quot;accept_btn&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">accept_btn</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">font1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">accept_btn</span><span class="o">.</span><span class="n">setCursor</span><span class="p">(</span><span class="n">QCursor</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">PointingHandCursor</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">verticalLayout_2</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">accept_btn</span><span class="p">)</span>
+
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">verticalLayout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frame</span><span class="p">)</span>
+
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">retranslateUi</span><span class="p">(</span><span class="n">Dialog</span><span class="p">)</span>
+
+        <span class="n">QMetaObject</span><span class="o">.</span><span class="n">connectSlotsByName</span><span class="p">(</span><span class="n">Dialog</span><span class="p">)</span></div>
+
+    <span class="c1"># setupUi</span>
+
+<div class="viewcode-block" id="Ui_Dialog.retranslateUi">
+<a class="viewcode-back" href="../../../pages.Result.html#pages.Result.ui_dialog_extension_search.Ui_Dialog.retranslateUi">[документация]</a>
+    <span class="k">def</span> <span class="nf">retranslateUi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Dialog</span><span class="p">):</span>
+        <span class="n">Dialog</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="n">QCoreApplication</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="s2">&quot;Dialog&quot;</span><span class="p">,</span> <span class="sa">u</span><span class="s2">&quot;</span><span class="se">\u0420\u0430\u0441\u0448\u0438\u0440\u0435\u043d\u043d\u044b\u0439</span><span class="s2"> </span><span class="se">\u043f\u043e\u0438\u0441\u043a</span><span class="s2">&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_7</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">QCoreApplication</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="s2">&quot;Dialog&quot;</span><span class="p">,</span> <span class="sa">u</span><span class="s2">&quot;</span><span class="se">\u0422\u0435\u0441\u0442</span><span class="s2">&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_3</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">QCoreApplication</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="s2">&quot;Dialog&quot;</span><span class="p">,</span> <span class="sa">u</span><span class="s2">&quot;</span><span class="se">\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b</span><span class="s2"> </span><span class="se">\u0442\u0435\u0441\u0442\u043e\u0432</span><span class="s2">&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_6</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">QCoreApplication</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="s2">&quot;Dialog&quot;</span><span class="p">,</span> <span class="sa">u</span><span class="s2">&quot;</span><span class="se">\u0434\u043e</span><span class="s2">&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_2</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">QCoreApplication</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="s2">&quot;Dialog&quot;</span><span class="p">,</span> <span class="sa">u</span><span class="s2">&quot;</span><span class="se">\u041f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044c</span><span class="s2">&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_comboBox</span><span class="o">.</span><span class="n">setItemText</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">QCoreApplication</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="s2">&quot;Dialog&quot;</span><span class="p">,</span> <span class="sa">u</span><span class="s2">&quot;</span><span class="se">\u0412\u0441\u0435</span><span class="s2"> </span><span class="se">\u0442\u0435\u0441\u0442\u044b</span><span class="s2">&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">user_comboBox</span><span class="o">.</span><span class="n">setItemText</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">QCoreApplication</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="s2">&quot;Dialog&quot;</span><span class="p">,</span> <span class="sa">u</span><span class="s2">&quot;</span><span class="se">\u0412\u0441\u0435</span><span class="s2"> </span><span class="se">\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0438</span><span class="s2">&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_4</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">QCoreApplication</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="s2">&quot;Dialog&quot;</span><span class="p">,</span> <span class="sa">u</span><span class="s2">&quot;</span><span class="se">\u0414\u0430\u0442\u0430</span><span class="s2"> </span><span class="se">\u0432\u044b\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u044f</span><span class="s2">&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_5</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">QCoreApplication</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="s2">&quot;Dialog&quot;</span><span class="p">,</span> <span class="sa">u</span><span class="s2">&quot;</span><span class="se">\u043e\u0442</span><span class="s2">&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">accept_btn</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">QCoreApplication</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="s2">&quot;Dialog&quot;</span><span class="p">,</span> <span class="sa">u</span><span class="s2">&quot;</span><span class="se">\u041f\u0440\u0438\u043d\u044f\u0442\u044c</span><span class="s2">&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span></div>
+</div>
+
+    <span class="c1"># retranslateUi</span>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Авторские права 2024, Deryugin Gleb. </p>
+  </div>
+
+  Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">темы,</a>
+    предоставленной <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

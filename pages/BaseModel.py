@@ -61,7 +61,7 @@ class BaseModel(QSqlQueryModel):
     SECTION_SQL = """
     CREATE TABLE IF NOT EXISTS sections (
         id SERIAL PRIMARY KEY,
-        name TEXT
+        name TEXT NOT NULL 
     )
     """
 

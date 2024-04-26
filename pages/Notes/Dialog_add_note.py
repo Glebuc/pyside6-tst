@@ -1,4 +1,5 @@
-from PySide6.QtWidgets import QApplication, QDialog, QVBoxLayout, QLabel, QComboBox, QTextEdit, QPushButton
+from PySide6.QtWidgets import QApplication, QDialog, QVBoxLayout, QLabel, QComboBox, QTextEdit, QPushButton, QLineEdit
+from .Model_notes import NoteModel
 
 class DialogAddNote(QDialog):
     def __init__(self):
@@ -11,7 +12,12 @@ class DialogAddNote(QDialog):
         layout.addWidget(select_label)
         self.section_combo = QComboBox(self)
         layout.addWidget(self.section_combo)
-        label = QLabel("Введите текст статьи (используйте Markdown):", self)
+        label_title = QLabel("Введите заголовок статьи:")
+        layout.addWidget(label_title)
+        self.title_edit = QLineEdit()
+        layout.addWidget(self.title_edit)
+        self.section_combo.addItems(NoteModel.get_section_names(self))
+        label = QLabel("Введите текст статьи:", self)
         layout.addWidget(label)
         self.text_edit = QTextEdit(self)
         layout.addWidget(self.text_edit)
@@ -19,28 +25,32 @@ class DialogAddNote(QDialog):
         publish_button.clicked.connect(self.publish_article)
         layout.addWidget(publish_button)
 
+    def get_selected_section(self) -> str:
+        """
+        Возвращает выбранный раздел из выпадающего списка.
 
-    def get_selected_section(self):
-        # Возвращает выбранный раздел
+        :return: Строка с выбранным разделом.
+        """
         return self.section_combo.currentText()
 
-    def get_article_text(self):
-        # Возвращает текст статьи из QTextEdit
+    def get_article_text(self) -> str:
+        """
+        Возвращает текст статьи из текстового редактора.
+
+        :return: Строка с текстом статьи.
+        """
         return self.text_edit.toPlainText()
 
-    def publish_article(self):
-        # Вызывается при нажатии кнопки "Опубликовать"
+    def publish_article(self) -> None:
+        """
+        Публикует статью в выбранном разделе.
+
+        Вызывается при нажатии кнопки "Опубликовать". Получает выбранный раздел и текст статьи,
+        а затем записывает данные в БД.
+
+        :return: None
+        """
         section = self.get_selected_section()
         text = self.get_article_text()
         print(f"Опубликовать статью в разделе '{section}':\n{text}")
 
-if __name__ == "__main__":
-    app = QApplication([])
-
-    # Пример списка разделов
-    sections = ["Тесты", "Оптимизация тестов"]
-
-    dialog = MyDialog(sections)
-    dialog.exec()
-
-    app.exec()

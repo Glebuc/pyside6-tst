@@ -755,9 +755,6 @@ class Ui_MainWindow(object):
         self.btn_note.setObjectName(u"btn_note")
         self.btn_note.setMinimumSize(QSize(0, 45))
         self.btn_note.setCursor(QCursor(Qt.PointingHandCursor))
-        icon = QIcon()
-        icon.addFile(u":/icons/images/icons/cil-pen-alt.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_note.setIcon(icon)
 
         self.verticalLayout_8.addWidget(self.btn_note)
 
@@ -844,9 +841,9 @@ class Ui_MainWindow(object):
         self.extraCloseColumnBtn.setMinimumSize(QSize(28, 28))
         self.extraCloseColumnBtn.setMaximumSize(QSize(28, 28))
         self.extraCloseColumnBtn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon1 = QIcon()
-        icon1.addFile(u":/icons/images/icons/icon_close.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.extraCloseColumnBtn.setIcon(icon1)
+        icon = QIcon()
+        icon.addFile(u":/icons/images/icons/icon_close.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.extraCloseColumnBtn.setIcon(icon)
         self.extraCloseColumnBtn.setIconSize(QSize(20, 20))
 
         self.extraTopLayout.addWidget(self.extraCloseColumnBtn, 0, 2, 1, 1)
@@ -920,9 +917,9 @@ class Ui_MainWindow(object):
         self.btn_config_DB = QPushButton(self.extraCenter)
         self.btn_config_DB.setObjectName(u"btn_config_DB")
         self.btn_config_DB.setCursor(QCursor(Qt.PointingHandCursor))
-        icon2 = QIcon()
-        icon2.addFile(u":/icons/images/icons/cil-settings.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_config_DB.setIcon(icon2)
+        icon1 = QIcon()
+        icon1.addFile(u":/icons/images/icons/cil-settings.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_config_DB.setIcon(icon1)
 
         self.verticalLayout_10.addWidget(self.btn_config_DB)
 
@@ -949,18 +946,18 @@ class Ui_MainWindow(object):
         font1.setStyleStrategy(QFont.PreferDefault)
         self.btn_user_guide.setFont(font1)
         self.btn_user_guide.setCursor(QCursor(Qt.PointingHandCursor))
-        icon3 = QIcon()
-        icon3.addFile(u":/icons/images/icons/cil-user.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_user_guide.setIcon(icon3)
+        icon2 = QIcon()
+        icon2.addFile(u":/icons/images/icons/cil-user.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_user_guide.setIcon(icon2)
 
         self.verticalLayout_10.addWidget(self.btn_user_guide)
 
         self.btn_hot_keys = QPushButton(self.extraCenter)
         self.btn_hot_keys.setObjectName(u"btn_hot_keys")
         self.btn_hot_keys.setCursor(QCursor(Qt.PointingHandCursor))
-        icon4 = QIcon()
-        icon4.addFile(u":/icons/images/icons/cil-keyboard.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_hot_keys.setIcon(icon4)
+        icon3 = QIcon()
+        icon3.addFile(u":/icons/images/icons/cil-keyboard.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_hot_keys.setIcon(icon3)
 
         self.verticalLayout_10.addWidget(self.btn_hot_keys)
 
@@ -1214,9 +1211,9 @@ class Ui_MainWindow(object):
         self.btn_extension_search = QPushButton(self.frame)
         self.btn_extension_search.setObjectName(u"btn_extension_search")
         self.btn_extension_search.setCursor(QCursor(Qt.PointingHandCursor))
-        icon5 = QIcon()
-        icon5.addFile(u":/icons/images/icons/cil-magnifying-glass.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_extension_search.setIcon(icon5)
+        icon4 = QIcon()
+        icon4.addFile(u":/icons/images/icons/cil-magnifying-glass.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_extension_search.setIcon(icon4)
 
         self.horizontalLayout_7.addWidget(self.btn_extension_search)
 
@@ -1244,18 +1241,18 @@ class Ui_MainWindow(object):
         self.btn_change_view = QPushButton(self.frame_2)
         self.btn_change_view.setObjectName(u"btn_change_view")
         self.btn_change_view.setCursor(QCursor(Qt.PointingHandCursor))
-        icon6 = QIcon()
-        icon6.addFile(u":/icons/images/icons/cil-equalizer.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_change_view.setIcon(icon6)
+        icon5 = QIcon()
+        icon5.addFile(u":/icons/images/icons/cil-equalizer.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_change_view.setIcon(icon5)
 
         self.horizontalLayout_8.addWidget(self.btn_change_view)
 
         self.btn_save_view = QPushButton(self.frame_2)
         self.btn_save_view.setObjectName(u"btn_save_view")
         self.btn_save_view.setCursor(QCursor(Qt.PointingHandCursor))
-        icon7 = QIcon()
-        icon7.addFile(u":/icons/images/icons/cil-save.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_save_view.setIcon(icon7)
+        icon6 = QIcon()
+        icon6.addFile(u":/icons/images/icons/cil-save.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_save_view.setIcon(icon6)
 
         self.horizontalLayout_8.addWidget(self.btn_save_view)
 

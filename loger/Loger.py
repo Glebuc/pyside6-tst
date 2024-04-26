@@ -35,14 +35,39 @@ class Logger:
         self.logger.addHandler(console_handler)
 
     def log_info(self, message: str) -> None:
+        """
+        Записывает информационное сообщение в журнал.
+
+        :param message: Строка с информационным сообщением.
+        :return: None
+        """
         self.logger.info(message)
 
     def log_warning(self, message: str) -> None:
+        """
+        Записывает предупреждающее сообщение в журнал.
+
+        :param message: Строка с предупреждающим сообщением.
+        :return: None
+        """
         self.logger.warning(message)
 
     def log_error(self, message: str) -> None:
+        """
+        Записывает сообщение об ошибке в журнал.
+
+        :param message: Строка с сообщением об ошибке.
+        :return: None
+        """
         self.logger.error(message)
 
     def log_exception(self, message: str) -> None:
+        """
+        Записывает сообщение об исключении в журнал.
+
+        :param message: Строка с сообщением об исключении.
+        :return: None
+        """
         self.logger.exception(message)
+
 

@@ -1,7 +1,8 @@
 
-from main import *
-from PySide6.QtWidgets import QPushButton
-from PySide6.QtCore import QFile, QTextStream
+from main import MainWindow, Settings
+from PySide6.QtWidgets import QPushButton, QGraphicsDropShadowEffect, QSizeGrip
+from PySide6.QtCore import QFile, QTextStream, QPropertyAnimation, QEasingCurve, QParallelAnimationGroup
+from PySide6.QtGui import QColor
 
 
 GLOBAL_STATE = False
@@ -150,63 +151,6 @@ class UIFunctions(MainWindow):
             raise e
         finally:
             qss_file.close()
-
-    def uiDefinitions(self):
-        def dobleClickMaximizeRestore(event):
-            # IF DOUBLE CLICK CHANGE STATUS
-            if event.type() == QEvent.MouseButtonDblClick:
-                QTimer.singleShot(250, lambda: UIFunctions.maximize_restore(self))
-
-        # self.ui.titleRightInfo.mouseDoubleClickEvent = dobleClickMaximizeRestore
-
-        if Settings.ENABLE_CUSTOM_TITLE_BAR:
-            # STANDARD TITLE BAR
-            self.setWindowFlags(Qt.FramelessWindowHint)
-            self.setAttribute(Qt.WA_TranslucentBackground)
-
-            # MOVE WINDOW / MAXIMIZE / RESTORE
-            def moveWindow(event):
-                # IF MAXIMIZED CHANGE TO NORMAL
-                if UIFunctions.returStatus(self):
-                    UIFunctions.maximize_restore(self)
-                # MOVE WINDOW
-                if event.buttons() == Qt.LeftButton:
-                    new_pos = self.pos() + event.globalPos() - self.dragPos
-                    self.move(new_pos)
-                    self.dragPos = event.globalPos()
-                    event.accept()
-
-
-            # CUSTOM GRIPS
-            self.left_grip = CustomGrip(self, Qt.LeftEdge, True)
-            self.right_grip = CustomGrip(self, Qt.RightEdge, True)
-            self.top_grip = CustomGrip(self, Qt.TopEdge, True)
-            self.bottom_grip = CustomGrip(self, Qt.BottomEdge, True)
-
-        else:
-            self.ui.styleSheet.setContentsMargins(0, 0, 0, 0)
-            self.ui.frame_size_grip.hide()
-            self.ui.topLogoInfo.hide()
-
-        # DROP SHADOW
-        self.shadow = QGraphicsDropShadowEffect(self)
-        self.shadow.setBlurRadius(17)
-        self.shadow.setXOffset(0)
-        self.shadow.setYOffset(0)
-        self.shadow.setColor(QColor(0, 0, 0, 150))
-        self.ui.bgApp.setGraphicsEffect(self.shadow)
-
-        # RESIZE WINDOW
-        self.sizegrip = QSizeGrip(self.ui.frame_size_grip)
-        self.sizegrip.setStyleSheet("width: 20px; height: 20px; margin 0px; padding: 0px;")
-
-
-    def resize_grips(self):
-        if Settings.ENABLE_CUSTOM_TITLE_BAR:
-            self.left_grip.setGeometry(0, 10, 10, self.height())
-            self.right_grip.setGeometry(self.width() - 10, 10, 10, self.height())
-            self.top_grip.setGeometry(0, 0, self.width(), 10)
-            self.bottom_grip.setGeometry(0, self.height() - 10, self.width(), 10)
 
 
     def setStyle(self, widget, style):

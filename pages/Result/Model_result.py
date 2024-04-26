@@ -50,7 +50,6 @@ class ResultModel(BaseModel):
         query = f""" SELECT t.test_name, t.test_param, t.time_test, t.test_result, t.start_test, u.user_name
                        FROM tests as t
                        INNER JOIN users as u ON t.id_user_fk = u.user_id {where_clause}"""
-        print(query)
         self.setQuery(query)
         if self.rowCount() == 0:
             # Если строк нет, выводим предупреждение

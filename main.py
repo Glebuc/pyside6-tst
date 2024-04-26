@@ -12,7 +12,7 @@ import os
 
 from PySide6.QtWidgets import QDialog, QFormLayout, QVBoxLayout, QPushButton, \
     QTableView,QMainWindow, QWidget, QHeaderView, QMessageBox, QGraphicsScene, QGraphicsView, QTreeWidgetItem
-from PySide6.QtGui import QTransform
+from PySide6.QtGui import QTransform, QIcon
 from PySide6 import QtCore
 from PySide6.QtCore import Qt, QResource
 
@@ -22,7 +22,7 @@ from loger import Logger
 from Application import Application
 from ui_modules import *
 from pages import BaseModel, Model_result, Save_data, View_result, Dialog_change_view, DialogsSetting,\
-    DialogsResult,Chart_view, Model_chart, Dialog_add_topic, Dialog_add_note, NoteView, Model_notes
+    DialogsResult,Chart_view, Model_chart, Dialog_add_topic, Dialog_add_note, Model_notes
 from SettingApp import AppSettings
 
 from utils import get_translate_path, get_themes_path
@@ -46,10 +46,6 @@ class MainWindow(QMainWindow):
         self.log = Logger.get_instance()
         self.ui.retranslateUi(self)
 
-
-        Settings.ENABLE_CUSTOM_TITLE_BAR = False
-
-
         title = "Aramid TsT Graph"
         self.setWindowTitle(title)
 
@@ -66,7 +62,6 @@ class MainWindow(QMainWindow):
         self.chart = Chart_view.CustomChart()
         self.chart.update_chart()
         self.scene.addItem(self.chart)
-        self.note = NoteView.NoteView()
 
 
         #Обработчики кнопок масштабирования графика
@@ -81,7 +76,7 @@ class MainWindow(QMainWindow):
         self.chart.save_chart_image(widgets.graphicsView, "C:\\Users\\Admin\\Desktop\\ДИПЛОМ" )
 
         widgets.list_test_result.addItem("Все тесты")
-        for i in self.model_result.execute_sql(BaseModel.LIST_TEST_SQL):
+        for i in self.model_result.execute_sql(self.model_result.LIST_TEST_SQL):
             widgets.list_test_result.addItem(i)
             widgets.list_test_chart.addItem(i)
 
@@ -96,7 +91,6 @@ class MainWindow(QMainWindow):
         widgets.btn_save_view.clicked.connect(lambda: Save_data.save_data_to_csv(self.tableView))
         widgets.toggleButton.clicked.connect(lambda: UIFunctions.toggleMenu(self, True))
 
-        UIFunctions.uiDefinitions(self)
 
         widgets.resultView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
@@ -139,7 +133,7 @@ class MainWindow(QMainWindow):
         """
         Получает текущее значение из ComboBox.
 
-        Returns:
+        :return:
             str: Текущее выбранное значение из ComboBox.
         """
         return widgets.list_test_chart.currentText()
@@ -160,7 +154,7 @@ class MainWindow(QMainWindow):
         """
         Получает параметры теста на основе текущего выбранного значения в ComboBox.
 
-        Returns:
+        :return:
             List: Список параметров теста.
         """
         test_name = self.get_text_from_combo_chart()
@@ -206,20 +200,18 @@ class MainWindow(QMainWindow):
         """
            Изменяет тему интерфейса в зависимости от выбранного текста в ComboBox.
 
-           Args:
+           :argument:
                text (str): Текст текущего выбранного элемента в ComboBox. Должен быть "Светлая" или "Темная".
 
-           Returns:
+           :return:
                None
         """
         themeFile_light = ':/themes/themes/theme_light.qss'
         themeFile_dark = ':/themes/themes/theme_dark.qss'
         if text == "Светлая" or text == "Light":
             UIFunctions.theme(self,themeFile_light)
-            AppFunctions.setThemeHack(self)
         elif text == "Темная" or text == "Dark":
             UIFunctions.theme(self,themeFile_dark)
-            AppFunctions.setThemeHack(self)
 
     def open_column_selection_dialog(self):
         """
@@ -229,9 +221,9 @@ class MainWindow(QMainWindow):
            После нажатия на кнопку "Подтвердить" диалогового окна функция проверяет, какие столбцы были выбраны пользователем, и соответственно
            скрывает или отображает столбцы в таблице.
 
-           Returns:
+           :return:
                None
-           """
+        """
         visible_columns = [self.model_result.headerData(i, QtCore.Qt.Horizontal) for i in range(self.model_result.columnCount())]
         if self.column_selection_dialog.exec() == QDialog.Accepted:
             selected_columns = self.column_selection_dialog.get_selected_columns()
@@ -246,7 +238,7 @@ class MainWindow(QMainWindow):
         """
             Открывает диалоговое окно для добавления раздела в Заметках.
 
-            Returns:
+            :return:
                 None
         """
         dialog = Dialog_add_topic.DialogAddTopic()
@@ -257,13 +249,12 @@ class MainWindow(QMainWindow):
                 self.populate_tree_widget()
         else:
             self.log.log_error("Ошибка открытия диалогового окна для добавления раздела")
-        dialog.exec()
 
     def open_dialog_add_item_topic(self) -> None:
         """
            Открывает диалоговое окно для добавления статьи в Заметках .
 
-            Returns:
+            :return:
                 None
         """
         dialog = Dialog_add_note.DialogAddNote()
@@ -278,7 +269,7 @@ class MainWindow(QMainWindow):
         """
             Открывает диалоговое окно для настройки подключения к базе данных.
 
-            Returns:
+            :return:
                 None
         """
         dialog = DialogsSetting.DialogConfigDB(self)
@@ -291,7 +282,7 @@ class MainWindow(QMainWindow):
         """
             Открывает диалоговое окно для отображения горячих клавиш в приложение.
 
-            Returns:
+            :return:
                     None
         """
         dialog = DialogsSetting.DialogKey(self)
@@ -314,7 +305,7 @@ class MainWindow(QMainWindow):
         В зависимости от названия кнопки устанавливает соответствующую страницу в stackedWidget,
         сбрасывает стиль всех кнопок и устанавливает стиль нажатой кнопки.
 
-        Returns:
+        :return:
             None
         """
         btn = self.sender()

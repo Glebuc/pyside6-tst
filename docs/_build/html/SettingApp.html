@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SettingApp module &mdash; документация Aramid-TsT-Graph 0.0.1</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=ba58aea8"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/translations.js?v=29b1f277"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Aramid-TsT-Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" aria-label="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Меню навигации">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">SettingApp module</a><ul>
+<li><a class="reference internal" href="#SettingApp.AppSettings"><code class="docutils literal notranslate"><span class="pre">AppSettings</span></code></a><ul>
+<li><a class="reference internal" href="#SettingApp.AppSettings.get_instance"><code class="docutils literal notranslate"><span class="pre">AppSettings.get_instance()</span></code></a></li>
+<li><a class="reference internal" href="#SettingApp.AppSettings.get_setting"><code class="docutils literal notranslate"><span class="pre">AppSettings.get_setting()</span></code></a></li>
+<li><a class="reference internal" href="#SettingApp.AppSettings.get_settings_by_tag"><code class="docutils literal notranslate"><span class="pre">AppSettings.get_settings_by_tag()</span></code></a></li>
+<li><a class="reference internal" href="#SettingApp.AppSettings.set_default_settings"><code class="docutils literal notranslate"><span class="pre">AppSettings.set_default_settings()</span></code></a></li>
+<li><a class="reference internal" href="#SettingApp.AppSettings.set_setting"><code class="docutils literal notranslate"><span class="pre">AppSettings.set_setting()</span></code></a></li>
+<li><a class="reference internal" href="#SettingApp.AppSettings.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">AppSettings.staticMetaObject</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Меню навигации для мобильных устройств" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Aramid-TsT-Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Навигация по страницам">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">SettingApp module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/SettingApp.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-SettingApp">
+<span id="settingapp-module"></span><h1>SettingApp module<a class="headerlink" href="#module-SettingApp" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="SettingApp.AppSettings">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SettingApp.</span></span><span class="sig-name descname"><span class="pre">AppSettings</span></span><a class="reference internal" href="_modules/SettingApp.html#AppSettings"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#SettingApp.AppSettings" title="Link to this definition"></a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">QSettings</span></code></p>
+<p>Класс для работы с настройками приложения.</p>
+<p>Унаследован от QSettings для работы с файлами настроек.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="SettingApp.AppSettings.get_instance">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_instance</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/SettingApp.html#AppSettings.get_instance"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#SettingApp.AppSettings.get_instance" title="Link to this definition"></a></dt>
+<dd><p>Получить единственный экземпляр класса AppSettings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+<p>Уникальный экземпляр класса AppSettings.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SettingApp.AppSettings.get_setting">
+<span class="sig-name descname"><span class="pre">get_setting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/SettingApp.html#AppSettings.get_setting"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#SettingApp.AppSettings.get_setting" title="Link to this definition"></a></dt>
+<dd><p>Получить значение настройки по указанному ключу.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>key</strong> – Ключ настройки, значение которой нужно получить.</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>Значение настройки, соответствующее указанному ключу.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SettingApp.AppSettings.get_settings_by_tag">
+<span class="sig-name descname"><span class="pre">get_settings_by_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="reference internal" href="_modules/SettingApp.html#AppSettings.get_settings_by_tag"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#SettingApp.AppSettings.get_settings_by_tag" title="Link to this definition"></a></dt>
+<dd><p>Получить все значения из настроек под определенным тегом.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tag</strong> – Тег, который определяет группу настроек.</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>Словарь со значениями настроек, где ключи - это имена настроек, начинающиеся с указанного тега.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SettingApp.AppSettings.set_default_settings">
+<span class="sig-name descname"><span class="pre">set_default_settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default_settings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/SettingApp.html#AppSettings.set_default_settings"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#SettingApp.AppSettings.set_default_settings" title="Link to this definition"></a></dt>
+<dd><p>Установить значения по умолчанию для настроек, если они отсутствуют.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>default_settings</strong> – Словарь с парами ключ-значение для значений по умолчанию.</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SettingApp.AppSettings.set_setting">
+<span class="sig-name descname"><span class="pre">set_setting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/SettingApp.html#AppSettings.set_setting"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#SettingApp.AppSettings.set_setting" title="Link to this definition"></a></dt>
+<dd><p>Установить значение настройки по указанному ключу.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> – Ключ настройки, значение которой нужно установить.</p></li>
+<li><p><strong>value</strong> – Новое значение настройки.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SettingApp.AppSettings.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject(&quot;AppSettings&quot;</span> <span class="pre">inherits</span> <span class="pre">&quot;QSettings&quot;:</span> <span class="pre">)</span></em><a class="headerlink" href="#SettingApp.AppSettings.staticMetaObject" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Авторские права 2024, Deryugin Gleb. </p>
+  </div>
+
+  Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">темы,</a>
+    предоставленной <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

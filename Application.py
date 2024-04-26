@@ -20,13 +20,22 @@ class Application(QApplication):
         self.translator = QTranslator(self)
         self.setup()
 
+    def setup(self, lang=None) -> 'self':
+        """
+        Устанавливает настройки и возвращает текущий экземпляр класса.
 
-    def setup(self, lang=None):
+        :param lang: Строка, указывающая язык для перевода.
+        :return: Экземпляр класса, настроенный с заданным языком (если указан).
+        """
         self.set_translation(lang)
         return self
 
+    def app_connection_to_db(self) -> bool:
+        """
+        Устанавливает соединение с базой данных на основе параметров из настроек приложения.
 
-    def app_connection_to_db(self):
+        :return: True, если соединение успешно установлено, иначе False.
+        """
         db_params = {
             "host": self.app_settings.get_setting("database/host"),
             "port": self.app_settings.get_setting("database/port"),
@@ -49,7 +58,13 @@ class Application(QApplication):
             self.log.log_info("Соединение с БД установлено")
             return True
 
-    def set_translation(self, language=None):
+    def set_translation(self, language=None) -> None:
+        """
+        Устанавливает перевод интерфейса приложения на указанный язык.
+
+        :param language: Строка, указывающая язык для перевода.
+        :return: None
+        """
         if not language:
             return
         self.remove_translation()
@@ -61,6 +76,11 @@ class Application(QApplication):
         else:
             self.log.log_error("Ошибка при загрузке перевода")
 
-    def remove_translation(self):
+    def remove_translation(self) -> None:
+        """
+        Удаляет установленный перевод интерфейса приложения.
+
+        :return: None
+        """
         QApplication.removeTranslator(self.translator)
 

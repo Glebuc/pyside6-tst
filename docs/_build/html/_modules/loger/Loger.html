@@ -77,18 +77,40 @@
 <div class="viewcode-block" id="Logger">
 <a class="viewcode-back" href="../../loger.html#loger.Loger.Logger">[документация]</a>
 <span class="k">class</span> <span class="nc">Logger</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">       Класс для логирования сообщений в файл и на консоль.</span>
+
+<span class="sd">       Пример использования:</span>
+
+<span class="sd">       .. code-block:: python</span>
+
+<span class="sd">           logger = Logger.get_instance()</span>
+<span class="sd">           logger.log_info(&quot;Информационное сообщение&quot;)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">_instance</span> <span class="o">=</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="Logger.get_instance">
 <a class="viewcode-back" href="../../loger.html#loger.Loger.Logger.get_instance">[документация]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">get_instance</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Получает единственный экземпляр класса Logger.</span>
+
+<span class="sd">            :return: Единственный экземпляр класса Logger.</span>
+<span class="sd">            :rtype: Logger</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">Logger</span><span class="o">.</span><span class="n">_instance</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">Logger</span><span class="o">.</span><span class="n">_instance</span> <span class="o">=</span> <span class="n">Logger</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">Logger</span><span class="o">.</span><span class="n">_instance</span></div>
 
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">              Инициализирует объект Logger.</span>
+<span class="sd">              </span>
+<span class="sd">              Создает файл для логирования, настраивает логгер и добавляет обработчики для записи в файл и на консоль.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">),</span> <span class="s2">&quot;.aramid-tst-graph&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;log-</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">.txt&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">log_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config_dir</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>

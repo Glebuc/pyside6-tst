@@ -133,15 +133,34 @@
 <dt class="sig sig-object py" id="pages.Result.Dialog_change_view.ColumnSelectionDialog">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pages.Result.Dialog_change_view.</span></span><span class="sig-name descname"><span class="pre">ColumnSelectionDialog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Result/Dialog_change_view.html#ColumnSelectionDialog"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Result.Dialog_change_view.ColumnSelectionDialog" title="Link to this definition"></a></dt>
 <dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">QDialog</span></code></p>
+<p>Диалоговое окно выбора отображаемых столбцов.
+Позволяет пользователю выбирать, какие столбцы должны быть отображены в интерфейсе.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Argument<span class="colon">:</span></dt>
+<dd class="field-odd"><p>column_names (list of str): Список имен столбцов, из которых пользователь может выбирать.</p>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="pages.Result.Dialog_change_view.ColumnSelectionDialog.get_selected_columns">
 <span class="sig-name descname"><span class="pre">get_selected_columns</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Result/Dialog_change_view.html#ColumnSelectionDialog.get_selected_columns"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Result.Dialog_change_view.ColumnSelectionDialog.get_selected_columns" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Получает выбранные пользователем столбцы и их состояния.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict: Словарь, где ключи - имена столбцов, значения - состояния флажков (True или False).</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pages.Result.Dialog_change_view.ColumnSelectionDialog.restore_checkbox_states">
 <span class="sig-name descname"><span class="pre">restore_checkbox_states</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">checkbox_states</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Result/Dialog_change_view.html#ColumnSelectionDialog.restore_checkbox_states"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Result.Dialog_change_view.ColumnSelectionDialog.restore_checkbox_states" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Восстанавливает состояния флажков на основе предоставленных состояний.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Argument<span class="colon">:</span></dt>
+<dd class="field-odd"><p>checkbox_states (dict): Словарь состояний флажков, где ключи - имена столбцов, значения - состояния (True или False).</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pages.Result.Dialog_change_view.ColumnSelectionDialog.staticMetaObject">

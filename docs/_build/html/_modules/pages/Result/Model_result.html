@@ -125,7 +125,6 @@
         <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot; SELECT t.test_name, t.test_param, t.time_test, t.test_result, t.start_test, u.user_name</span>
 <span class="s2">                       FROM tests as t</span>
 <span class="s2">                       INNER JOIN users as u ON t.id_user_fk = u.user_id </span><span class="si">{</span><span class="n">where_clause</span><span class="si">}</span><span class="s2">&quot;&quot;&quot;</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setQuery</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rowCount</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="c1"># Если строк нет, выводим предупреждение</span>

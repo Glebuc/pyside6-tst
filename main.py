@@ -138,16 +138,27 @@ class MainWindow(QMainWindow):
         """
         return widgets.list_test_chart.currentText()
 
-
-
     def populate_tree_widget(self):
-        section_names = self.note_model.get_section_names()
-        items = []
-        for name in section_names:
-            item = QTreeWidgetItem([name])
-            items.append(item)
-            self.ui.treeWidget.addTopLevelItem(item)
-        print(items)
+        """
+        Заполняет QTreeWidget данными из базы данных.
+
+        Получает данные из базы данных с помощью функции get_data_from_database
+        и добавляет их в QTreeWidget.
+        """
+        # Очищаем QTreeWidget перед заполнением новыми данными
+        self.ui.treeWidget.clear()
+
+        # Получаем данные из базы данных
+        data = self.note_model.get_data_from_database()
+
+        # Создаем элементы QTreeWidgetItem и добавляем их в QTreeWidget
+        for section_name, article_titles in data.items():
+            section_item = QTreeWidgetItem([section_name])
+            self.ui.treeWidget.addTopLevelItem(section_item)
+
+            for title in article_titles:
+                article_item = QTreeWidgetItem([title])
+                section_item.addChild(article_item)
 
 
     def get_param_test(self) -> List:
@@ -260,9 +271,11 @@ class MainWindow(QMainWindow):
         dialog = Dialog_add_note.DialogAddNote()
         if not dialog.isVisible():
             self.log.log_info("Открыто диалоговое окно для добавления статьи")
+            if dialog.exec() == QDialog.Accepted:
+                self.ui.treeWidget.clear()
+                self.populate_tree_widget()
         else:
             self.log.log_error("Ошибка открытия диалогового окна для добавления статьи")
-        dialog.exec()
 
 
     def open_dialog_config_db(self) -> None:

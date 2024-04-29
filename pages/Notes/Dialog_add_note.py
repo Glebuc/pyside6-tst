@@ -1,4 +1,6 @@
-from PySide6.QtWidgets import QApplication, QDialog, QVBoxLayout, QLabel, QComboBox, QTextEdit, QPushButton, QLineEdit
+from PySide6.QtWidgets import QApplication, QDialog, QVBoxLayout, QLabel, QComboBox, QTextEdit, QPushButton,\
+    QLineEdit, QMessageBox
+
 from .Model_notes import NoteModel
 
 class DialogAddNote(QDialog):
@@ -7,6 +9,7 @@ class DialogAddNote(QDialog):
 
         self.resize(500, 500)
         self.setWindowTitle("Добавление статьи")
+        self.note_model = NoteModel("sections")
         layout = QVBoxLayout(self)
         select_label = QLabel("Выберите раздел:", self)
         layout.addWidget(select_label)
@@ -31,7 +34,7 @@ class DialogAddNote(QDialog):
 
         :return: Строка с выбранным разделом.
         """
-        return self.section_combo.currentText()
+        return self.section_combo.currentText().strip()
 
     def get_article_text(self) -> str:
         """
@@ -39,18 +42,39 @@ class DialogAddNote(QDialog):
 
         :return: Строка с текстом статьи.
         """
-        return self.text_edit.toPlainText()
+        text = self.text_edit.toPlainText().strip()
+        if text:
+            return text
+
+    def get_article_title(self) -> str:
+        """
+        Возвращает заголовок статьи из текстового ввода пользователя.
+
+        :return: Строка с текстом статьи.
+        """
+        title = self.title_edit.text().strip()
+        if title:
+            return title
+
+
 
     def publish_article(self) -> None:
         """
         Публикует статью в выбранном разделе.
 
-        Вызывается при нажатии кнопки "Опубликовать". Получает выбранный раздел и текст статьи,
+        Вызывается при нажатии кнопки "Опубликовать". Получает выбранный раздел, заголовок и текст статьи,
         а затем записывает данные в БД.
 
         :return: None
         """
         section = self.get_selected_section()
+        title = self.get_article_title()
         text = self.get_article_text()
-        print(f"Опубликовать статью в разделе '{section}':\n{text}")
+
+        if section and title and text:
+            if self.note_model.add_note(title, text, section):
+                self.accept()
+                QMessageBox.information(self, "Информация", "Статья успешно добавлена")
+        else:
+            QMessageBox.warning(self, "Предупреждение", "Заполните все поля перед публикацией")
 

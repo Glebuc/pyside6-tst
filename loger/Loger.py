@@ -4,15 +4,37 @@ import sys
 import os
 
 class Logger:
+    """
+       Класс для логирования сообщений в файл и на консоль.
+
+       Пример использования:
+
+       .. code-block:: python
+
+           logger = Logger.get_instance()
+           logger.log_info("Информационное сообщение")
+
+    """
     _instance = None
 
     @staticmethod
     def get_instance():
+        """
+            Получает единственный экземпляр класса Logger.
+
+            :return: Единственный экземпляр класса Logger.
+            :rtype: Logger
+        """
         if Logger._instance is None:
             Logger._instance = Logger()
         return Logger._instance
 
     def __init__(self):
+        """
+              Инициализирует объект Logger.
+              
+              Создает файл для логирования, настраивает логгер и добавляет обработчики для записи в файл и на консоль.
+        """
         self.config_dir = os.path.join(os.path.expanduser("~"), ".aramid-tst-graph")
         self.filename = f"log-{datetime.now().strftime('%Y-%m-%d')}.txt"
         self.log_filepath = os.path.join(self.config_dir, self.filename)

@@ -45,9 +45,9 @@ class ColumnSelectionDialog(QDialog):
         layout.addWidget(button)
 
         # Применение стилей для диалогового окна
-        with open(os.path.abspath(os.path.join(get_themes_path(), 'theme_light.qss')), 'r') as f: # придумать что-то с путями для файлов приложения
-            dialog_stylesheet = f.read()
-        self.setStyleSheet(dialog_stylesheet)
+        # with open(os.path.abspath(os.path.join(get_themes_path(), 'theme_light.qss')), 'r') as f: # придумать что-то с путями для файлов приложения
+        #     dialog_stylesheet = f.read()
+        # self.setStyleSheet(dialog_stylesheet)
         self.setMaximumSize(300, 300)
 
     def get_selected_columns(self):

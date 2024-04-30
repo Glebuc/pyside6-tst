@@ -2186,8 +2186,8 @@ background-image: none;
                            <rect>
                             <x>0</x>
                             <y>0</y>
-                            <width>858</width>
-                            <height>464</height>
+                            <width>313</width>
+                            <height>123</height>
                            </rect>
                           </property>
                           <layout class="QVBoxLayout" name="verticalLayout_16">

@@ -77,6 +77,19 @@ class AppSettings(QSettings):
         """
         self.setValue(key, value)
 
+    def set_setting_application(self, new_settings: Dict) -> None:
+        """
+        Устанавливает новые значения для настроек приложения.
+
+        :param:
+            new_settings (Dict): Словарь, содержащий новые значения настроек в формате {ключ: значение}.
+
+        :return:
+            None
+        """
+        for key, value in new_settings.items():
+            self.setValue(f"AppSettings/{key}", value)
+
     def get_settings_by_tag(self, tag: str) -> Dict:
         """
         Получить все значения из настроек под определенным тегом.

@@ -22,7 +22,7 @@ from loger import Logger
 from Application import Application
 from ui_modules import *
 from pages import BaseModel, Model_result, Save_data, View_result, Dialog_change_view, DialogsSetting,\
-    DialogsResult,Chart_view, Model_chart, Dialog_add_topic, Dialog_add_note, Model_notes
+    DialogsResult,Chart_view, Model_chart, Dialog_add_topic, Dialog_add_note, Model_notes, Controller_setting
 from SettingApp import AppSettings
 
 from utils import get_translate_path, get_themes_path
@@ -48,6 +48,8 @@ class MainWindow(QMainWindow):
 
         title = "Aramid TsT Graph"
         self.setWindowTitle(title)
+
+        self.controller_setting = Controller_setting.ControllerSettings()
 
         self.tableView = View_result.CustomTableView()
         widgets.verticalLayout_20.replaceWidget(widgets.resultView, self.tableView)
@@ -102,7 +104,7 @@ class MainWindow(QMainWindow):
         widgets.btn_note.clicked.connect(self.button_click)
 
         widgets.btn_config_DB.clicked.connect(self.open_dialog_config_db)
-        widgets.btn_hot_keys.clicked.connect(self.open_dialog_keyword)
+        # widgets.btn_hot_keys.clicked.connect(self.open_dialog_keyword)
         widgets.btn_extension_search.clicked.connect(self.open_dialog_extension_search)
 
         widgets.add_item_note_btn.clicked.connect(self.open_dialog_add_item_topic)
@@ -116,6 +118,7 @@ class MainWindow(QMainWindow):
         widgets.extraCloseColumnBtn.clicked.connect(openCloseLeftBox)
         widgets.comboBox_theme.currentTextChanged.connect(self.change_theme)
         widgets.comboBox_language.currentTextChanged.connect(self.change_translation)
+        widgets.btn_save_settings.clicked.connect(self.save_settings)
 
         self.show()
         widgets.stackedWidget.setCurrentWidget(widgets.report_page)
@@ -128,6 +131,37 @@ class MainWindow(QMainWindow):
         # словарь для хранения состояний флажков
         self.checkbox_dict = {}
         self.populate_tree_widget()
+
+    def save_settings(self) -> None:
+        """
+        Сохраняет текущие настройки приложения.
+
+        Получает текущие значения выбранных темы и языка из соответствующих ComboBox'ов и сохраняет их в настройках приложения.
+        Если выбранная тема равна "Светлая", она сохраняется как "Light", если равна "Темная", то как "Dark".
+        Если выбранный язык равен "Русский", он сохраняется как "Russian", если равен "Английский", то как "English".
+
+        :returns:
+            None
+        """
+        dict_setting = {}
+        theme_text = widgets.comboBox_theme.currentText()
+        language_text = widgets.comboBox_language.currentText()
+
+        if theme_text == "Светлая":
+            dict_setting["theme"] = "Light"
+        elif theme_text == "Темная":
+            dict_setting["theme"] = "Dark"
+        else:
+            dict_setting["theme"] = theme_text
+
+        if language_text == "Русский":
+            dict_setting["language"] = "Russian"
+        elif language_text == "Английский":
+            dict_setting["language"] = "English"
+        else:
+            dict_setting["language"] = language_text
+
+        self.setting.set_setting_application(dict_setting)
 
     def get_text_from_combo_chart(self) -> str:
         """
@@ -291,17 +325,17 @@ class MainWindow(QMainWindow):
         dialog.exec()
 
 
-    def open_dialog_keyword(self) -> None:
-        """
-            Открывает диалоговое окно для отображения горячих клавиш в приложение.
-
-            :return:
-                    None
-        """
-        dialog = DialogsSetting.DialogKey(self)
-        if not dialog.isVisible():
-            self.log.log_info("Открыто диалоговое окно с горячими клавишами")
-        dialog.exec()
+    # def open_dialog_keyword(self) -> None:
+    #     """
+    #         Открывает диалоговое окно для отображения горячих клавиш в приложение.
+    #
+    #         :return:
+    #                 None
+    #     """
+    #     dialog = DialogsSetting.DialogKey(self)
+    #     if not dialog.isVisible():
+    #         self.log.log_info("Открыто диалоговое окно с горячими клавишами")
+    #     dialog.exec()
 
     def open_dialog_extension_search(self):
         dialog = DialogsResult.DialogExtensionSearch(self)

@@ -61,15 +61,15 @@ class BaseModel(QSqlQueryModel):
     SECTION_SQL = """
     CREATE TABLE IF NOT EXISTS sections (
         id SERIAL PRIMARY KEY,
-        name TEXT NOT NULL 
+        name TEXT NOT NULL UNIQUE
     )
     """
 
     NOTE_SQL = """
      CREATE TABLE IF NOT EXISTS notes (
         id SERIAL PRIMARY KEY,
-        title TEXT,
-        content TEXT,
+        title TEXT NOT NULL UNIQUE,
+        content TEXT NOT NULL,
         section_id INTEGER REFERENCES sections(id)
     )
     """

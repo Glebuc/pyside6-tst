@@ -75,6 +75,8 @@ class DialogAddNote(QDialog):
             if self.note_model.add_note(title, text, section):
                 self.accept()
                 QMessageBox.information(self, "Информация", "Статья успешно добавлена")
+            else:
+                QMessageBox.warning(self, "Ошибка", "Ошибка записи. Статья с таким заголовком уже существует")
         else:
             QMessageBox.warning(self, "Предупреждение", "Заполните все поля перед публикацией")
 

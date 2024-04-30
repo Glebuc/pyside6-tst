@@ -42,11 +42,11 @@ class DialogAddTopic(QDialog):
         name = self.line_edit.text()
         if name.strip():
             if self.note_model.add_section(name):
-                print("Раздел успешно добавлен в базу данных!")
+                QMessageBox.information(self, "Информация","Раздел успешно добавлен в базу данных!")
                 self.accept()
                 return True
             else:
-                print("Не удалось добавить раздел в базу данных.")
+                QMessageBox.warning(self, "Информация","Не удалось добавить раздел в базу данных.\nТакой раздел уже существует")
                 return False
         else:
             QMessageBox.warning(self, "Предупреждение", "Название раздела не указано.")

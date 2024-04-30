@@ -8,7 +8,6 @@ from pages.Result import Model_result
 class CustomTableView(QTableView):
     def __init__(self, parent=None):
         super(CustomTableView, self).__init__(parent)
-        #Model_result.init_db()
 
         self.setSelectionMode(QTableView.SingleSelection)
         self.verticalHeader().setVisible(False)

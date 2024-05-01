@@ -18,8 +18,12 @@ class NoteModel(BaseModel):
         self.get_data_from_database()
 
     def get_section_names(self):
-        """Возвращает список названий разделов из таблицы 'sections'."""
+        """
+        Возвращает список названий разделов из таблицы 'sections'.
 
+        :return: Список строк с названиями разделов.
+        :rtype: list[str]
+        """
         query = QSqlQuery("SELECT name FROM sections")
         section_names = []
         while query.next():
@@ -52,18 +56,32 @@ class NoteModel(BaseModel):
         return data
 
     def add_section(self, name: str) -> bool:
-        """Добавляет новый раздел в таблицу 'sections'."""
+        """
+        Добавляет новый раздел в таблицу 'sections'.
+
+        :argument name: Название раздела для добавления.
+        :type name: str
+        :return: True, если раздел успешно добавлен, False в противном случае.
+        :rtype: bool
+        """
         query = QSqlQuery()
         query.prepare("INSERT INTO sections (name) VALUES (:name)")
         query.bindValue(":name", name)
         if query.exec():
             return True
         else:
-            self.log.log_error("Ошибка при выполнении запроса:"+ query.lastError().text())
+            self.log.log_error("Ошибка при выполнении запроса:" + query.lastError().text())
             return False
 
     def get_section_id_by_name(self, section_name: str) -> int:
-        """Получает идентификатор раздела по его имени."""
+        """
+        Получает идентификатор раздела по его имени.
+
+        :argument section_name: Имя раздела, для которого нужно получить идентификатор.
+        :type section_name: str
+        :return: Идентификатор раздела, если он найден, иначе None.
+        :rtype: int or None
+        """
         query = QSqlQuery()
         query.prepare("SELECT id FROM sections WHERE name = :name")
         query.bindValue(":name", section_name)
@@ -76,7 +94,7 @@ class NoteModel(BaseModel):
         """
         Добавление новой заметки в таблицу 'notes'.
 
-        :param title: Заголовок заметки.
+        :argument title: Заголовок заметки.
         :type title: str
         :param content: Содержимое заметки.
         :type content: str

@@ -47,11 +47,39 @@
               <div class="local-toc"><ul>
 <li><a class="reference internal" href="#">pages.Notes package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#pages-notes-dialog-add-note-module">pages.Notes.Dialog_add_note module</a></li>
-<li><a class="reference internal" href="#pages-notes-dialog-add-topic-module">pages.Notes.Dialog_add_topic module</a></li>
-<li><a class="reference internal" href="#pages-notes-model-notes-module">pages.Notes.Model_notes module</a></li>
+<li><a class="reference internal" href="#module-pages.Notes.Dialog_add_note">pages.Notes.Dialog_add_note module</a><ul>
+<li><a class="reference internal" href="#pages.Notes.Dialog_add_note.DialogAddNote"><code class="docutils literal notranslate"><span class="pre">DialogAddNote</span></code></a><ul>
+<li><a class="reference internal" href="#pages.Notes.Dialog_add_note.DialogAddNote.get_article_text"><code class="docutils literal notranslate"><span class="pre">DialogAddNote.get_article_text()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Notes.Dialog_add_note.DialogAddNote.get_article_title"><code class="docutils literal notranslate"><span class="pre">DialogAddNote.get_article_title()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Notes.Dialog_add_note.DialogAddNote.get_selected_section"><code class="docutils literal notranslate"><span class="pre">DialogAddNote.get_selected_section()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Notes.Dialog_add_note.DialogAddNote.publish_article"><code class="docutils literal notranslate"><span class="pre">DialogAddNote.publish_article()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Notes.Dialog_add_note.DialogAddNote.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">DialogAddNote.staticMetaObject</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-pages.Notes.Dialog_add_topic">pages.Notes.Dialog_add_topic module</a><ul>
+<li><a class="reference internal" href="#pages.Notes.Dialog_add_topic.DialogAddTopic"><code class="docutils literal notranslate"><span class="pre">DialogAddTopic</span></code></a><ul>
+<li><a class="reference internal" href="#pages.Notes.Dialog_add_topic.DialogAddTopic.add_section_to_database"><code class="docutils literal notranslate"><span class="pre">DialogAddTopic.add_section_to_database()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Notes.Dialog_add_topic.DialogAddTopic.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">DialogAddTopic.staticMetaObject</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-pages.Notes.Model_notes">pages.Notes.Model_notes module</a><ul>
+<li><a class="reference internal" href="#pages.Notes.Model_notes.NoteModel"><code class="docutils literal notranslate"><span class="pre">NoteModel</span></code></a><ul>
+<li><a class="reference internal" href="#pages.Notes.Model_notes.NoteModel.add_note"><code class="docutils literal notranslate"><span class="pre">NoteModel.add_note()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Notes.Model_notes.NoteModel.add_section"><code class="docutils literal notranslate"><span class="pre">NoteModel.add_section()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Notes.Model_notes.NoteModel.get_data_from_database"><code class="docutils literal notranslate"><span class="pre">NoteModel.get_data_from_database()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Notes.Model_notes.NoteModel.get_section_id_by_name"><code class="docutils literal notranslate"><span class="pre">NoteModel.get_section_id_by_name()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Notes.Model_notes.NoteModel.get_section_names"><code class="docutils literal notranslate"><span class="pre">NoteModel.get_section_names()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Notes.Model_notes.NoteModel.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">NoteModel.staticMetaObject</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#pages-notes-noteview-module">pages.Notes.NoteView module</a></li>
-<li><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li><a class="reference internal" href="#module-pages.Notes">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -85,20 +113,199 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
 </section>
-<section id="pages-notes-dialog-add-note-module">
-<h2>pages.Notes.Dialog_add_note module<a class="headerlink" href="#pages-notes-dialog-add-note-module" title="Link to this heading"></a></h2>
+<section id="module-pages.Notes.Dialog_add_note">
+<span id="pages-notes-dialog-add-note-module"></span><h2>pages.Notes.Dialog_add_note module<a class="headerlink" href="#module-pages.Notes.Dialog_add_note" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pages.Notes.Dialog_add_note.DialogAddNote">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pages.Notes.Dialog_add_note.</span></span><span class="sig-name descname"><span class="pre">DialogAddNote</span></span><a class="reference internal" href="_modules/pages/Notes/Dialog_add_note.html#DialogAddNote"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Notes.Dialog_add_note.DialogAddNote" title="Link to this definition"></a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">QDialog</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Notes.Dialog_add_note.DialogAddNote.get_article_text">
+<span class="sig-name descname"><span class="pre">get_article_text</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/pages/Notes/Dialog_add_note.html#DialogAddNote.get_article_text"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Notes.Dialog_add_note.DialogAddNote.get_article_text" title="Link to this definition"></a></dt>
+<dd><p>Возвращает текст статьи из текстового редактора.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Строка с текстом статьи.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Notes.Dialog_add_note.DialogAddNote.get_article_title">
+<span class="sig-name descname"><span class="pre">get_article_title</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/pages/Notes/Dialog_add_note.html#DialogAddNote.get_article_title"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Notes.Dialog_add_note.DialogAddNote.get_article_title" title="Link to this definition"></a></dt>
+<dd><p>Возвращает заголовок статьи из текстового ввода пользователя.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Строка с текстом статьи.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Notes.Dialog_add_note.DialogAddNote.get_selected_section">
+<span class="sig-name descname"><span class="pre">get_selected_section</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/pages/Notes/Dialog_add_note.html#DialogAddNote.get_selected_section"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Notes.Dialog_add_note.DialogAddNote.get_selected_section" title="Link to this definition"></a></dt>
+<dd><p>Возвращает выбранный раздел из выпадающего списка.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Строка с выбранным разделом.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Notes.Dialog_add_note.DialogAddNote.publish_article">
+<span class="sig-name descname"><span class="pre">publish_article</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pages/Notes/Dialog_add_note.html#DialogAddNote.publish_article"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Notes.Dialog_add_note.DialogAddNote.publish_article" title="Link to this definition"></a></dt>
+<dd><p>Публикует статью в выбранном разделе.</p>
+<p>Вызывается при нажатии кнопки «Опубликовать». Получает выбранный раздел, заголовок и текст статьи,
+а затем записывает данные в БД.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pages.Notes.Dialog_add_note.DialogAddNote.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject(&quot;DialogAddNote&quot;</span> <span class="pre">inherits</span> <span class="pre">&quot;QDialog&quot;:</span> <span class="pre">)</span></em><a class="headerlink" href="#pages.Notes.Dialog_add_note.DialogAddNote.staticMetaObject" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="pages-notes-dialog-add-topic-module">
-<h2>pages.Notes.Dialog_add_topic module<a class="headerlink" href="#pages-notes-dialog-add-topic-module" title="Link to this heading"></a></h2>
+<section id="module-pages.Notes.Dialog_add_topic">
+<span id="pages-notes-dialog-add-topic-module"></span><h2>pages.Notes.Dialog_add_topic module<a class="headerlink" href="#module-pages.Notes.Dialog_add_topic" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pages.Notes.Dialog_add_topic.DialogAddTopic">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pages.Notes.Dialog_add_topic.</span></span><span class="sig-name descname"><span class="pre">DialogAddTopic</span></span><a class="reference internal" href="_modules/pages/Notes/Dialog_add_topic.html#DialogAddTopic"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Notes.Dialog_add_topic.DialogAddTopic" title="Link to this definition"></a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">QDialog</span></code></p>
+<p>Диалоговое окно для добавления нового раздела.</p>
+<p>Отображает диалоговое окно, в котором пользователь может ввести название нового раздела
+и при подтверждении сохраняет раздел в базу данных.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Notes.Dialog_add_topic.DialogAddTopic.add_section_to_database">
+<span class="sig-name descname"><span class="pre">add_section_to_database</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/pages/Notes/Dialog_add_topic.html#DialogAddTopic.add_section_to_database"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Notes.Dialog_add_topic.DialogAddTopic.add_section_to_database" title="Link to this definition"></a></dt>
+<dd><p>Добавляет раздел в базу данных.</p>
+<p>При нажатии кнопки «Подтвердить» извлекает текст из поля ввода и добавляет его в базу данных.
+Если раздел успешно добавлен, диалоговое окно закрывается.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool: Возвращает True, если раздел успешно добавлен, иначе False.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pages.Notes.Dialog_add_topic.DialogAddTopic.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject(&quot;DialogAddTopic&quot;</span> <span class="pre">inherits</span> <span class="pre">&quot;QDialog&quot;:</span> <span class="pre">)</span></em><a class="headerlink" href="#pages.Notes.Dialog_add_topic.DialogAddTopic.staticMetaObject" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="pages-notes-model-notes-module">
-<h2>pages.Notes.Model_notes module<a class="headerlink" href="#pages-notes-model-notes-module" title="Link to this heading"></a></h2>
+<section id="module-pages.Notes.Model_notes">
+<span id="pages-notes-model-notes-module"></span><h2>pages.Notes.Model_notes module<a class="headerlink" href="#module-pages.Notes.Model_notes" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pages.Notes.Model_notes.NoteModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pages.Notes.Model_notes.</span></span><span class="sig-name descname"><span class="pre">NoteModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Notes/Model_notes.html#NoteModel"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Notes.Model_notes.NoteModel" title="Link to this definition"></a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="pages.html#pages.BaseModel.BaseModel" title="pages.BaseModel.BaseModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></a></p>
+<p>Модель для страницы заметок и манипулирования табличными значением</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Notes.Model_notes.NoteModel.add_note">
+<span class="sig-name descname"><span class="pre">add_note</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/pages/Notes/Model_notes.html#NoteModel.add_note"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Notes.Model_notes.NoteModel.add_note" title="Link to this definition"></a></dt>
+<dd><p>Добавление новой заметки в таблицу „notes“.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>title</strong> (<em>str</em>) – Заголовок заметки.</p></li>
+<li><p><strong>content</strong> (<em>str</em>) – Содержимое заметки.</p></li>
+<li><p><strong>section_name</strong> (<em>str</em>) – Имя раздела, к которому привязана заметка.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>True, если заметка успешно добавлена, False в противном случае.</p>
+</dd>
+<dt class="field-odd">Тип результата<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Notes.Model_notes.NoteModel.add_section">
+<span class="sig-name descname"><span class="pre">add_section</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/pages/Notes/Model_notes.html#NoteModel.add_section"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Notes.Model_notes.NoteModel.add_section" title="Link to this definition"></a></dt>
+<dd><p>Добавляет новый раздел в таблицу „sections“.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – Название раздела для добавления.</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>True, если раздел успешно добавлен, False в противном случае.</p>
+</dd>
+<dt class="field-odd">Тип результата<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Notes.Model_notes.NoteModel.get_data_from_database">
+<span class="sig-name descname"><span class="pre">get_data_from_database</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Notes/Model_notes.html#NoteModel.get_data_from_database"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Notes.Model_notes.NoteModel.get_data_from_database" title="Link to this definition"></a></dt>
+<dd><p>Получает данные из базы данных и формирует словарь в формате {название_раздела: [название_статьи1, название_статьи2, …]}.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Словарь данных</p>
+</dd>
+<dt class="field-even">Тип результата<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Notes.Model_notes.NoteModel.get_section_id_by_name">
+<span class="sig-name descname"><span class="pre">get_section_id_by_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/pages/Notes/Model_notes.html#NoteModel.get_section_id_by_name"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Notes.Model_notes.NoteModel.get_section_id_by_name" title="Link to this definition"></a></dt>
+<dd><p>Получает идентификатор раздела по его имени.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>section_name</strong> (<em>str</em>) – Имя раздела, для которого нужно получить идентификатор.</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>Идентификатор раздела, если он найден, иначе None.</p>
+</dd>
+<dt class="field-odd">Тип результата<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Notes.Model_notes.NoteModel.get_section_names">
+<span class="sig-name descname"><span class="pre">get_section_names</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Notes/Model_notes.html#NoteModel.get_section_names"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Notes.Model_notes.NoteModel.get_section_names" title="Link to this definition"></a></dt>
+<dd><p>Возвращает список названий разделов из таблицы „sections“.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Список строк с названиями разделов.</p>
+</dd>
+<dt class="field-even">Тип результата<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pages.Notes.Model_notes.NoteModel.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject(&quot;NoteModel&quot;</span> <span class="pre">inherits</span> <span class="pre">&quot;BaseModel&quot;:</span> <span class="pre">)</span></em><a class="headerlink" href="#pages.Notes.Model_notes.NoteModel.staticMetaObject" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 <section id="pages-notes-noteview-module">
 <h2>pages.Notes.NoteView module<a class="headerlink" href="#pages-notes-noteview-module" title="Link to this heading"></a></h2>
 </section>
-<section id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
+<section id="module-pages.Notes">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pages.Notes" title="Link to this heading"></a></h2>
 </section>
 </section>
 

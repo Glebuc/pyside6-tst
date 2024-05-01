@@ -79,7 +79,13 @@
 
 <div class="viewcode-block" id="save_data_to_csv">
 <a class="viewcode-back" href="../../../pages.Result.html#pages.Result.Save_data.save_data_to_csv">[документация]</a>
-<span class="k">def</span> <span class="nf">save_data_to_csv</span><span class="p">(</span><span class="n">table_view</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">save_data_to_csv</span><span class="p">(</span><span class="n">table_view</span><span class="p">:</span> <span class="n">QTableView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Сохраняет данные из QTableView в файл CSV.</span>
+
+<span class="sd">        :argument table_view: QTableView, содержащая данные для сохранения.</span>
+<span class="sd">        :type table_view: QTableView</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">table_view</span><span class="o">.</span><span class="n">model</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">QSqlQueryModel</span><span class="p">):</span>

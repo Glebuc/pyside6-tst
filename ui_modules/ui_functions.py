@@ -1,56 +1,20 @@
 
-from main import MainWindow, Settings
+from Mainwindow import SetupUI
+from ui_modules import Settings
 from PySide6.QtWidgets import QPushButton, QGraphicsDropShadowEffect, QSizeGrip
 from PySide6.QtCore import QFile, QTextStream, QPropertyAnimation, QEasingCurve, QParallelAnimationGroup
 from PySide6.QtGui import QColor
 
 
-GLOBAL_STATE = False
-GLOBAL_TITLE_BAR = True
+class UIFunctions(SetupUI):
 
+    def toggleMenu(self, enable: bool) -> None:
+        """
+        Переключает видимость бокового меню.
 
-class UIFunctions(MainWindow):
-    def maximize_restore(self) -> None:
-        global GLOBAL_STATE
-        status = GLOBAL_STATE
-        if status == False:
-            self.showMaximized()
-            GLOBAL_STATE = True
-            self.ui.styleSheet.setContentsMargins(0, 0, 0, 0)
-            self.ui.maximizeRestoreAppBtn.setToolTip("Сделать окном")
-            self.ui.maximizeRestoreAppBtn.setIcon(QIcon(u":/icons/images/icons/icon_restore.png"))
-            self.ui.frame_size_grip.hide()
-            self.left_grip.hide()
-            self.right_grip.hide()
-            self.top_grip.hide()
-            self.bottom_grip.hide()
-        else:
-            GLOBAL_STATE = False
-            self.showNormal()
-            self.resize(self.width() + 1, self.height() + 1)
-            self.ui.styleSheet.setContentsMargins(10, 10, 10, 10)
-            self.ui.maximizeRestoreAppBtn.setToolTip("На весь экран")
-            self.ui.maximizeRestoreAppBtn.setIcon(QIcon(u":/icons/images/icons/icon_maximize.png"))
-            self.ui.frame_size_grip.show()
-            self.left_grip.show()
-            self.right_grip.show()
-            self.top_grip.show()
-            self.bottom_grip.show()
-
-    # RETURN STATUS
-    # ///////////////////////////////////////////////////////////////
-    def returStatus(self) -> GLOBAL_STATE:
-        return GLOBAL_STATE
-
-    # SET STATUS
-    # ///////////////////////////////////////////////////////////////
-    def setStatus(self, status):
-        global GLOBAL_STATE
-        GLOBAL_STATE = status
-
-    # TOGGLE MENU
-    # ///////////////////////////////////////////////////////////////
-    def toggleMenu(self, enable) -> None:
+        :argument enable: Флаг, указывающий, следует ли показать меню (True) или скрыть (False).
+        :type enable: bool
+        """
         if enable:
             # GET WIDTH
             width = self.ui.leftMenuBg.width()
@@ -71,9 +35,13 @@ class UIFunctions(MainWindow):
             self.animation.setEasingCurve(QEasingCurve.InOutQuart)
             self.animation.start()
 
-    # TOGGLE LEFT BOX
-    # ///////////////////////////////////////////////////////////////
     def toggleLeftBox(self, enable):
+        """
+           Переключает видимость левой дополнительной панели.
+
+           :argument enable: Флаг, указывающий, нужно ли включить панель (True) или выключить (False).
+           :type enable: bool
+        """
         if enable:
             # GET WIDTH
             width = self.ui.extraLeftBox.width()
@@ -87,40 +55,46 @@ class UIFunctions(MainWindow):
             # SET MAX WIDTH
             if width == 0:
                 widthExtended = maxExtend
-                # SELECT BTN
-                # self.ui.toggleLeftBox.setStyleSheet(style + color)
             else:
                 widthExtended = standard
-                # RESET BTN
-                # self.ui.toggleLeftBox.setStyleSheet(style.replace(color, ''))
 
-        UIFunctions.start_box_animation(self, width, width, "left")
+        UIFunctions.start_box_animation(self, width, "left")
 
-    # TOGGLE RIGHT BOX
-    # ///////////////////////////////////////////////////////////////
 
-    def start_box_animation(self, left_box_width, right_box_width, direction):
+    def start_box_animation(self, left_box_width, direction):
+        """
+            Запускает анимацию изменения ширины дополнительных боковых панелей.
+
+            :argument left_box_width: Текущая ширина левой дополнительной панели.
+            :type left_box_width: int
+            :argument direction: Направление анимации. "left" для левой панели
+            :type direction: str
+            """
         left_width = 0
 
-        # Check values
         if left_box_width == 0 and direction == "left":
             left_width = Settings.LEFT_BOX_WIDTH
         else:
             left_width = 0
-        # ANIMATION LEFT BOX        
+
         self.left_box = QPropertyAnimation(self.ui.extraLeftBox, b"minimumWidth")
         self.left_box.setDuration(Settings.TIME_ANIMATION)
         self.left_box.setStartValue(left_box_width)
         self.left_box.setEndValue(left_width)
         self.left_box.setEasingCurve(QEasingCurve.InOutQuart)
 
-        # GROUP ANIMATION
+
         self.group = QParallelAnimationGroup()
         self.group.addAnimation(self.left_box)
         self.group.start()
 
-    # START SELECTION
     def selectStandardMenu(self, widget):
+        """
+        Выделяет стандартное меню на панели верхнего меню.
+
+        :argument widget: Имя объекта кнопки, которую следует выделить.
+        :type widget: str
+        """
         for w in self.ui.topMenu.findChildren('QPushButton'):
             if w.objectName() == widget:
                 w.setStyleSheet(UIFunctions.selectMenu(w.styleSheet()))
@@ -129,13 +103,13 @@ class UIFunctions(MainWindow):
         """
             Применяет тему стилей к пользовательскому интерфейсу из файла QSS.
 
-            Args:
+            :argument:
                 file (str): Путь к файлу QSS, содержащему стили.
 
-            Returns:
+            :returns:
                 None
 
-            Raises:
+            :raise:
                 FileNotFoundError: Если файл QSS не найден.
                 IOError: Если возникает ошибка при чтении файла QSS.
             """
@@ -152,20 +126,48 @@ class UIFunctions(MainWindow):
         finally:
             qss_file.close()
 
-
     def setStyle(self, widget, style):
+        """
+        Применяет стиль к виджету.
+
+        :argument widget: Виджет, к которому нужно применить стиль.
+        :type widget: QWidget
+        :argument style: Строка с CSS-стилями для применения к виджету.
+        :type style: str
+        """
         widget.setStyleSheet(style)
 
     def resetStyle(self, selectedBtnName):
+        """
+        Сбрасывает стиль всех кнопок в верхнем меню, кроме выбранной кнопки.
+
+        :argument selectedBtnName: Имя выбранной кнопки, стиль которой не нужно сбрасывать.
+        :type selectedBtnName: str
+        """
         for btn in self.ui.topMenu.findChildren(QPushButton):
-            if btn != selectedBtnName:
+            if btn.objectName() != selectedBtnName:
                 btn.setStyleSheet("")
 
     @staticmethod
-    def selectMenu():
+    def selectMenu() -> str:
+        """
+        Возвращает строку со стилем для выделения пункта меню.
+
+        :return: Строка со стилем для выделения пункта меню.
+        :rtype: str
+        """
         return "background-color: rgb(70, 70, 70)"
 
     @staticmethod
-    def addStyle(widget, new_style):
+    def addStyle(widget, new_style: str) -> None:
+        """
+        Добавляет новый стиль к существующему стилю виджета.
+
+        :argument widget: Виджет, к которому нужно добавить стиль.
+        :type widget: QWidget
+        :argument new_style: Новый стиль, который нужно добавить к существующему стилю виджета.
+        :type new_style: str
+        """
         current_style = widget.styleSheet()
         widget.setStyleSheet(current_style + new_style)
+

@@ -65,12 +65,9 @@
 <li><a class="reference internal" href="#module-ui_modules.ui_functions">ui_modules.ui_functions module</a><ul>
 <li><a class="reference internal" href="#ui_modules.ui_functions.UIFunctions"><code class="docutils literal notranslate"><span class="pre">UIFunctions</span></code></a><ul>
 <li><a class="reference internal" href="#ui_modules.ui_functions.UIFunctions.addStyle"><code class="docutils literal notranslate"><span class="pre">UIFunctions.addStyle()</span></code></a></li>
-<li><a class="reference internal" href="#ui_modules.ui_functions.UIFunctions.maximize_restore"><code class="docutils literal notranslate"><span class="pre">UIFunctions.maximize_restore()</span></code></a></li>
 <li><a class="reference internal" href="#ui_modules.ui_functions.UIFunctions.resetStyle"><code class="docutils literal notranslate"><span class="pre">UIFunctions.resetStyle()</span></code></a></li>
-<li><a class="reference internal" href="#ui_modules.ui_functions.UIFunctions.returStatus"><code class="docutils literal notranslate"><span class="pre">UIFunctions.returStatus()</span></code></a></li>
 <li><a class="reference internal" href="#ui_modules.ui_functions.UIFunctions.selectMenu"><code class="docutils literal notranslate"><span class="pre">UIFunctions.selectMenu()</span></code></a></li>
 <li><a class="reference internal" href="#ui_modules.ui_functions.UIFunctions.selectStandardMenu"><code class="docutils literal notranslate"><span class="pre">UIFunctions.selectStandardMenu()</span></code></a></li>
-<li><a class="reference internal" href="#ui_modules.ui_functions.UIFunctions.setStatus"><code class="docutils literal notranslate"><span class="pre">UIFunctions.setStatus()</span></code></a></li>
 <li><a class="reference internal" href="#ui_modules.ui_functions.UIFunctions.setStyle"><code class="docutils literal notranslate"><span class="pre">UIFunctions.setStyle()</span></code></a></li>
 <li><a class="reference internal" href="#ui_modules.ui_functions.UIFunctions.start_box_animation"><code class="docutils literal notranslate"><span class="pre">UIFunctions.start_box_animation()</span></code></a></li>
 <li><a class="reference internal" href="#ui_modules.ui_functions.UIFunctions.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">UIFunctions.staticMetaObject</span></code></a></li>
@@ -168,67 +165,103 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="ui_modules.ui_functions.UIFunctions">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ui_modules.ui_functions.</span></span><span class="sig-name descname"><span class="pre">UIFunctions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ui_modules/ui_functions.html#UIFunctions"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#ui_modules.ui_functions.UIFunctions" title="Link to this definition"></a></dt>
-<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">MainWindow</span></code></p>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">SetupUI</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="ui_modules.ui_functions.UIFunctions.addStyle">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">addStyle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">widget</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_style</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ui_modules/ui_functions.html#UIFunctions.addStyle"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#ui_modules.ui_functions.UIFunctions.addStyle" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ui_modules.ui_functions.UIFunctions.maximize_restore">
-<span class="sig-name descname"><span class="pre">maximize_restore</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/ui_modules/ui_functions.html#UIFunctions.maximize_restore"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#ui_modules.ui_functions.UIFunctions.maximize_restore" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">addStyle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">widget</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_style</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/ui_modules/ui_functions.html#UIFunctions.addStyle"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#ui_modules.ui_functions.UIFunctions.addStyle" title="Link to this definition"></a></dt>
+<dd><p>Добавляет новый стиль к существующему стилю виджета.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>widget</strong> (<em>QWidget</em>) – Виджет, к которому нужно добавить стиль.</p></li>
+<li><p><strong>new_style</strong> (<em>str</em>) – Новый стиль, который нужно добавить к существующему стилю виджета.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ui_modules.ui_functions.UIFunctions.resetStyle">
 <span class="sig-name descname"><span class="pre">resetStyle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">selectedBtnName</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ui_modules/ui_functions.html#UIFunctions.resetStyle"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#ui_modules.ui_functions.UIFunctions.resetStyle" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ui_modules.ui_functions.UIFunctions.returStatus">
-<span class="sig-name descname"><span class="pre">returStatus</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="k"><span class="pre">False</span></span></span></span><a class="reference internal" href="_modules/ui_modules/ui_functions.html#UIFunctions.returStatus"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#ui_modules.ui_functions.UIFunctions.returStatus" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Сбрасывает стиль всех кнопок в верхнем меню, кроме выбранной кнопки.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>selectedBtnName</strong> (<em>str</em>) – Имя выбранной кнопки, стиль которой не нужно сбрасывать.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ui_modules.ui_functions.UIFunctions.selectMenu">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">selectMenu</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ui_modules/ui_functions.html#UIFunctions.selectMenu"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#ui_modules.ui_functions.UIFunctions.selectMenu" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">selectMenu</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/ui_modules/ui_functions.html#UIFunctions.selectMenu"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#ui_modules.ui_functions.UIFunctions.selectMenu" title="Link to this definition"></a></dt>
+<dd><p>Возвращает строку со стилем для выделения пункта меню.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Строка со стилем для выделения пункта меню.</p>
+</dd>
+<dt class="field-even">Тип результата<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ui_modules.ui_functions.UIFunctions.selectStandardMenu">
 <span class="sig-name descname"><span class="pre">selectStandardMenu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">widget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ui_modules/ui_functions.html#UIFunctions.selectStandardMenu"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#ui_modules.ui_functions.UIFunctions.selectStandardMenu" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ui_modules.ui_functions.UIFunctions.setStatus">
-<span class="sig-name descname"><span class="pre">setStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">status</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ui_modules/ui_functions.html#UIFunctions.setStatus"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#ui_modules.ui_functions.UIFunctions.setStatus" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Выделяет стандартное меню на панели верхнего меню.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>widget</strong> (<em>str</em>) – Имя объекта кнопки, которую следует выделить.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ui_modules.ui_functions.UIFunctions.setStyle">
-<span class="sig-name descname"><span class="pre">setStyle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg__1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PySide6.QtWidgets.QStyle</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/ui_modules/ui_functions.html#UIFunctions.setStyle"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#ui_modules.ui_functions.UIFunctions.setStyle" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">setStyle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">widget</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ui_modules/ui_functions.html#UIFunctions.setStyle"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#ui_modules.ui_functions.UIFunctions.setStyle" title="Link to this definition"></a></dt>
+<dd><p>Применяет стиль к виджету.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>widget</strong> (<em>QWidget</em>) – Виджет, к которому нужно применить стиль.</p></li>
+<li><p><strong>style</strong> (<em>str</em>) – Строка с CSS-стилями для применения к виджету.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ui_modules.ui_functions.UIFunctions.start_box_animation">
-<span class="sig-name descname"><span class="pre">start_box_animation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left_box_width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_box_width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ui_modules/ui_functions.html#UIFunctions.start_box_animation"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#ui_modules.ui_functions.UIFunctions.start_box_animation" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">start_box_animation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left_box_width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ui_modules/ui_functions.html#UIFunctions.start_box_animation"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#ui_modules.ui_functions.UIFunctions.start_box_animation" title="Link to this definition"></a></dt>
+<dd><p>Запускает анимацию изменения ширины дополнительных боковых панелей.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>left_box_width</strong> (<em>int</em>) – Текущая ширина левой дополнительной панели.</p></li>
+<li><p><strong>direction</strong> (<em>str</em>) – Направление анимации. «left» для левой панели</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ui_modules.ui_functions.UIFunctions.staticMetaObject">
-<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject(&quot;UIFunctions&quot;</span> <span class="pre">inherits</span> <span class="pre">&quot;MainWindow&quot;:</span> <span class="pre">)</span></em><a class="headerlink" href="#ui_modules.ui_functions.UIFunctions.staticMetaObject" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject(&quot;UIFunctions&quot;</span> <span class="pre">inherits</span> <span class="pre">&quot;SetupUI&quot;:</span> <span class="pre">)</span></em><a class="headerlink" href="#ui_modules.ui_functions.UIFunctions.staticMetaObject" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ui_modules.ui_functions.UIFunctions.theme">
 <span class="sig-name descname"><span class="pre">theme</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ui_modules/ui_functions.html#UIFunctions.theme"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#ui_modules.ui_functions.UIFunctions.theme" title="Link to this definition"></a></dt>
 <dd><p>Применяет тему стилей к пользовательскому интерфейсу из файла QSS.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>file (str): Путь к файлу QSS, содержащему стили.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Argument<span class="colon">:</span></dt>
+<dd class="field-odd"><p>file (str): Путь к файлу QSS, содержащему стили.</p>
 </dd>
-<dt>Returns:</dt><dd><p>None</p>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
-<dt>Raises:</dt><dd><p>FileNotFoundError: Если файл QSS не найден.
+<dt class="field-odd">Raise<span class="colon">:</span></dt>
+<dd class="field-odd"><p>FileNotFoundError: Если файл QSS не найден.
 IOError: Если возникает ошибка при чтении файла QSS.</p>
 </dd>
 </dl>
@@ -237,12 +270,24 @@ IOError: Если возникает ошибка при чтении файла
 <dl class="py method">
 <dt class="sig sig-object py" id="ui_modules.ui_functions.UIFunctions.toggleLeftBox">
 <span class="sig-name descname"><span class="pre">toggleLeftBox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enable</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ui_modules/ui_functions.html#UIFunctions.toggleLeftBox"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#ui_modules.ui_functions.UIFunctions.toggleLeftBox" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Переключает видимость левой дополнительной панели.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>enable</strong> (<em>bool</em>) – Флаг, указывающий, нужно ли включить панель (True) или выключить (False).</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ui_modules.ui_functions.UIFunctions.toggleMenu">
-<span class="sig-name descname"><span class="pre">toggleMenu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enable</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/ui_modules/ui_functions.html#UIFunctions.toggleMenu"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#ui_modules.ui_functions.UIFunctions.toggleMenu" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">toggleMenu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/ui_modules/ui_functions.html#UIFunctions.toggleMenu"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#ui_modules.ui_functions.UIFunctions.toggleMenu" title="Link to this definition"></a></dt>
+<dd><p>Переключает видимость бокового меню.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>enable</strong> (<em>bool</em>) – Флаг, указывающий, следует ли показать меню (True) или скрыть (False).</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 

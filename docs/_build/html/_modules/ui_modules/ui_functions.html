@@ -70,71 +70,26 @@
              
   <h1>Исходный код ui_modules.ui_functions</h1><div class="highlight"><pre>
 <span></span>
-<span class="kn">from</span> <span class="nn">main</span> <span class="kn">import</span> <span class="n">MainWindow</span><span class="p">,</span> <span class="n">Settings</span>
+<span class="kn">from</span> <span class="nn">Mainwindow</span> <span class="kn">import</span> <span class="n">SetupUI</span>
+<span class="kn">from</span> <span class="nn">ui_modules</span> <span class="kn">import</span> <span class="n">Settings</span>
 <span class="kn">from</span> <span class="nn">PySide6.QtWidgets</span> <span class="kn">import</span> <span class="n">QPushButton</span><span class="p">,</span> <span class="n">QGraphicsDropShadowEffect</span><span class="p">,</span> <span class="n">QSizeGrip</span>
 <span class="kn">from</span> <span class="nn">PySide6.QtCore</span> <span class="kn">import</span> <span class="n">QFile</span><span class="p">,</span> <span class="n">QTextStream</span><span class="p">,</span> <span class="n">QPropertyAnimation</span><span class="p">,</span> <span class="n">QEasingCurve</span><span class="p">,</span> <span class="n">QParallelAnimationGroup</span>
 <span class="kn">from</span> <span class="nn">PySide6.QtGui</span> <span class="kn">import</span> <span class="n">QColor</span>
 
 
-<span class="n">GLOBAL_STATE</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="n">GLOBAL_TITLE_BAR</span> <span class="o">=</span> <span class="kc">True</span>
-
-
 <div class="viewcode-block" id="UIFunctions">
 <a class="viewcode-back" href="../../ui_modules.html#ui_modules.ui_functions.UIFunctions">[документация]</a>
-<span class="k">class</span> <span class="nc">UIFunctions</span><span class="p">(</span><span class="n">MainWindow</span><span class="p">):</span>
-<div class="viewcode-block" id="UIFunctions.maximize_restore">
-<a class="viewcode-back" href="../../ui_modules.html#ui_modules.ui_functions.UIFunctions.maximize_restore">[документация]</a>
-    <span class="k">def</span> <span class="nf">maximize_restore</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">global</span> <span class="n">GLOBAL_STATE</span>
-        <span class="n">status</span> <span class="o">=</span> <span class="n">GLOBAL_STATE</span>
-        <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">showMaximized</span><span class="p">()</span>
-            <span class="n">GLOBAL_STATE</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">styleSheet</span><span class="o">.</span><span class="n">setContentsMargins</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">maximizeRestoreAppBtn</span><span class="o">.</span><span class="n">setToolTip</span><span class="p">(</span><span class="s2">&quot;Сделать окном&quot;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">maximizeRestoreAppBtn</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">QIcon</span><span class="p">(</span><span class="sa">u</span><span class="s2">&quot;:/icons/images/icons/icon_restore.png&quot;</span><span class="p">))</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">frame_size_grip</span><span class="o">.</span><span class="n">hide</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">left_grip</span><span class="o">.</span><span class="n">hide</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">right_grip</span><span class="o">.</span><span class="n">hide</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">top_grip</span><span class="o">.</span><span class="n">hide</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">bottom_grip</span><span class="o">.</span><span class="n">hide</span><span class="p">()</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">GLOBAL_STATE</span> <span class="o">=</span> <span class="kc">False</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">showNormal</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">styleSheet</span><span class="o">.</span><span class="n">setContentsMargins</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">maximizeRestoreAppBtn</span><span class="o">.</span><span class="n">setToolTip</span><span class="p">(</span><span class="s2">&quot;На весь экран&quot;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">maximizeRestoreAppBtn</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">QIcon</span><span class="p">(</span><span class="sa">u</span><span class="s2">&quot;:/icons/images/icons/icon_maximize.png&quot;</span><span class="p">))</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">frame_size_grip</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">left_grip</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">right_grip</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">top_grip</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">bottom_grip</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+<span class="k">class</span> <span class="nc">UIFunctions</span><span class="p">(</span><span class="n">SetupUI</span><span class="p">):</span>
 
-
-    <span class="c1"># RETURN STATUS</span>
-    <span class="c1"># ///////////////////////////////////////////////////////////////</span>
-<div class="viewcode-block" id="UIFunctions.returStatus">
-<a class="viewcode-back" href="../../ui_modules.html#ui_modules.ui_functions.UIFunctions.returStatus">[документация]</a>
-    <span class="k">def</span> <span class="nf">returStatus</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GLOBAL_STATE</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">GLOBAL_STATE</span></div>
-
-
-    <span class="c1"># SET STATUS</span>
-    <span class="c1"># ///////////////////////////////////////////////////////////////</span>
-<div class="viewcode-block" id="UIFunctions.setStatus">
-<a class="viewcode-back" href="../../ui_modules.html#ui_modules.ui_functions.UIFunctions.setStatus">[документация]</a>
-    <span class="k">def</span> <span class="nf">setStatus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">):</span>
-        <span class="k">global</span> <span class="n">GLOBAL_STATE</span>
-        <span class="n">GLOBAL_STATE</span> <span class="o">=</span> <span class="n">status</span></div>
-
-
-    <span class="c1"># TOGGLE MENU</span>
-    <span class="c1"># ///////////////////////////////////////////////////////////////</span>
 <div class="viewcode-block" id="UIFunctions.toggleMenu">
 <a class="viewcode-back" href="../../ui_modules.html#ui_modules.ui_functions.UIFunctions.toggleMenu">[документация]</a>
-    <span class="k">def</span> <span class="nf">toggleMenu</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">enable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">toggleMenu</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">enable</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Переключает видимость бокового меню.</span>
+
+<span class="sd">        :argument enable: Флаг, указывающий, следует ли показать меню (True) или скрыть (False).</span>
+<span class="sd">        :type enable: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">enable</span><span class="p">:</span>
             <span class="c1"># GET WIDTH</span>
             <span class="n">width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">leftMenuBg</span><span class="o">.</span><span class="n">width</span><span class="p">()</span>
@@ -156,11 +111,15 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">animation</span><span class="o">.</span><span class="n">start</span><span class="p">()</span></div>
 
 
-    <span class="c1"># TOGGLE LEFT BOX</span>
-    <span class="c1"># ///////////////////////////////////////////////////////////////</span>
 <div class="viewcode-block" id="UIFunctions.toggleLeftBox">
 <a class="viewcode-back" href="../../ui_modules.html#ui_modules.ui_functions.UIFunctions.toggleLeftBox">[документация]</a>
     <span class="k">def</span> <span class="nf">toggleLeftBox</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">enable</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">           Переключает видимость левой дополнительной панели.</span>
+
+<span class="sd">           :argument enable: Флаг, указывающий, нужно ли включить панель (True) или выключить (False).</span>
+<span class="sd">           :type enable: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">enable</span><span class="p">:</span>
             <span class="c1"># GET WIDTH</span>
             <span class="n">width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">extraLeftBox</span><span class="o">.</span><span class="n">width</span><span class="p">()</span>
@@ -174,46 +133,52 @@
             <span class="c1"># SET MAX WIDTH</span>
             <span class="k">if</span> <span class="n">width</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">widthExtended</span> <span class="o">=</span> <span class="n">maxExtend</span>
-                <span class="c1"># SELECT BTN</span>
-                <span class="c1"># self.ui.toggleLeftBox.setStyleSheet(style + color)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">widthExtended</span> <span class="o">=</span> <span class="n">standard</span>
-                <span class="c1"># RESET BTN</span>
-                <span class="c1"># self.ui.toggleLeftBox.setStyleSheet(style.replace(color, &#39;&#39;))</span>
 
-        <span class="n">UIFunctions</span><span class="o">.</span><span class="n">start_box_animation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="s2">&quot;left&quot;</span><span class="p">)</span></div>
+        <span class="n">UIFunctions</span><span class="o">.</span><span class="n">start_box_animation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="s2">&quot;left&quot;</span><span class="p">)</span></div>
 
 
-    <span class="c1"># TOGGLE RIGHT BOX</span>
-    <span class="c1"># ///////////////////////////////////////////////////////////////</span>
 
 <div class="viewcode-block" id="UIFunctions.start_box_animation">
 <a class="viewcode-back" href="../../ui_modules.html#ui_modules.ui_functions.UIFunctions.start_box_animation">[документация]</a>
-    <span class="k">def</span> <span class="nf">start_box_animation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">left_box_width</span><span class="p">,</span> <span class="n">right_box_width</span><span class="p">,</span> <span class="n">direction</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">start_box_animation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">left_box_width</span><span class="p">,</span> <span class="n">direction</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Запускает анимацию изменения ширины дополнительных боковых панелей.</span>
+
+<span class="sd">            :argument left_box_width: Текущая ширина левой дополнительной панели.</span>
+<span class="sd">            :type left_box_width: int</span>
+<span class="sd">            :argument direction: Направление анимации. &quot;left&quot; для левой панели</span>
+<span class="sd">            :type direction: str</span>
+<span class="sd">            &quot;&quot;&quot;</span>
         <span class="n">left_width</span> <span class="o">=</span> <span class="mi">0</span>
 
-        <span class="c1"># Check values</span>
         <span class="k">if</span> <span class="n">left_box_width</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">direction</span> <span class="o">==</span> <span class="s2">&quot;left&quot;</span><span class="p">:</span>
             <span class="n">left_width</span> <span class="o">=</span> <span class="n">Settings</span><span class="o">.</span><span class="n">LEFT_BOX_WIDTH</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">left_width</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="c1"># ANIMATION LEFT BOX        </span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">left_box</span> <span class="o">=</span> <span class="n">QPropertyAnimation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">extraLeftBox</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;minimumWidth&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">left_box</span><span class="o">.</span><span class="n">setDuration</span><span class="p">(</span><span class="n">Settings</span><span class="o">.</span><span class="n">TIME_ANIMATION</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">left_box</span><span class="o">.</span><span class="n">setStartValue</span><span class="p">(</span><span class="n">left_box_width</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">left_box</span><span class="o">.</span><span class="n">setEndValue</span><span class="p">(</span><span class="n">left_width</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">left_box</span><span class="o">.</span><span class="n">setEasingCurve</span><span class="p">(</span><span class="n">QEasingCurve</span><span class="o">.</span><span class="n">InOutQuart</span><span class="p">)</span>
 
-        <span class="c1"># GROUP ANIMATION</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">group</span> <span class="o">=</span> <span class="n">QParallelAnimationGroup</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">group</span><span class="o">.</span><span class="n">addAnimation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">left_box</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">group</span><span class="o">.</span><span class="n">start</span><span class="p">()</span></div>
 
 
-    <span class="c1"># START SELECTION</span>
 <div class="viewcode-block" id="UIFunctions.selectStandardMenu">
 <a class="viewcode-back" href="../../ui_modules.html#ui_modules.ui_functions.UIFunctions.selectStandardMenu">[документация]</a>
     <span class="k">def</span> <span class="nf">selectStandardMenu</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">widget</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Выделяет стандартное меню на панели верхнего меню.</span>
+
+<span class="sd">        :argument widget: Имя объекта кнопки, которую следует выделить.</span>
+<span class="sd">        :type widget: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">topMenu</span><span class="o">.</span><span class="n">findChildren</span><span class="p">(</span><span class="s1">&#39;QPushButton&#39;</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">w</span><span class="o">.</span><span class="n">objectName</span><span class="p">()</span> <span class="o">==</span> <span class="n">widget</span><span class="p">:</span>
                 <span class="n">w</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="n">UIFunctions</span><span class="o">.</span><span class="n">selectMenu</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">styleSheet</span><span class="p">()))</span></div>
@@ -225,13 +190,13 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Применяет тему стилей к пользовательскому интерфейсу из файла QSS.</span>
 
-<span class="sd">            Args:</span>
+<span class="sd">            :argument:</span>
 <span class="sd">                file (str): Путь к файлу QSS, содержащему стили.</span>
 
-<span class="sd">            Returns:</span>
+<span class="sd">            :returns:</span>
 <span class="sd">                None</span>
 
-<span class="sd">            Raises:</span>
+<span class="sd">            :raise:</span>
 <span class="sd">                FileNotFoundError: Если файл QSS не найден.</span>
 <span class="sd">                IOError: Если возникает ошибка при чтении файла QSS.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
@@ -249,35 +214,63 @@
             <span class="n">qss_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
 
-
 <div class="viewcode-block" id="UIFunctions.setStyle">
 <a class="viewcode-back" href="../../ui_modules.html#ui_modules.ui_functions.UIFunctions.setStyle">[документация]</a>
     <span class="k">def</span> <span class="nf">setStyle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">widget</span><span class="p">,</span> <span class="n">style</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Применяет стиль к виджету.</span>
+
+<span class="sd">        :argument widget: Виджет, к которому нужно применить стиль.</span>
+<span class="sd">        :type widget: QWidget</span>
+<span class="sd">        :argument style: Строка с CSS-стилями для применения к виджету.</span>
+<span class="sd">        :type style: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">widget</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="n">style</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="UIFunctions.resetStyle">
 <a class="viewcode-back" href="../../ui_modules.html#ui_modules.ui_functions.UIFunctions.resetStyle">[документация]</a>
     <span class="k">def</span> <span class="nf">resetStyle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">selectedBtnName</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Сбрасывает стиль всех кнопок в верхнем меню, кроме выбранной кнопки.</span>
+
+<span class="sd">        :argument selectedBtnName: Имя выбранной кнопки, стиль которой не нужно сбрасывать.</span>
+<span class="sd">        :type selectedBtnName: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">btn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">topMenu</span><span class="o">.</span><span class="n">findChildren</span><span class="p">(</span><span class="n">QPushButton</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">btn</span> <span class="o">!=</span> <span class="n">selectedBtnName</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">btn</span><span class="o">.</span><span class="n">objectName</span><span class="p">()</span> <span class="o">!=</span> <span class="n">selectedBtnName</span><span class="p">:</span>
                 <span class="n">btn</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="UIFunctions.selectMenu">
 <a class="viewcode-back" href="../../ui_modules.html#ui_modules.ui_functions.UIFunctions.selectMenu">[документация]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">selectMenu</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">selectMenu</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Возвращает строку со стилем для выделения пункта меню.</span>
+
+<span class="sd">        :return: Строка со стилем для выделения пункта меню.</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="s2">&quot;background-color: rgb(70, 70, 70)&quot;</span></div>
 
 
 <div class="viewcode-block" id="UIFunctions.addStyle">
 <a class="viewcode-back" href="../../ui_modules.html#ui_modules.ui_functions.UIFunctions.addStyle">[документация]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">addStyle</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">new_style</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">addStyle</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">new_style</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Добавляет новый стиль к существующему стилю виджета.</span>
+
+<span class="sd">        :argument widget: Виджет, к которому нужно добавить стиль.</span>
+<span class="sd">        :type widget: QWidget</span>
+<span class="sd">        :argument new_style: Новый стиль, который нужно добавить к существующему стилю виджета.</span>
+<span class="sd">        :type new_style: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">current_style</span> <span class="o">=</span> <span class="n">widget</span><span class="o">.</span><span class="n">styleSheet</span><span class="p">()</span>
         <span class="n">widget</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="n">current_style</span> <span class="o">+</span> <span class="n">new_style</span><span class="p">)</span></div>
 </div>
+
 
 </pre></div>
 

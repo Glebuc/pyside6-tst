@@ -105,7 +105,12 @@ class BaseModel(QSqlQueryModel):
             self.log.log_error("Ошибка выполнения запроса:", self.lastError().text())
 
     def check_and_create_tables(self):
+        """
+            Проверяет существование таблиц в базе данных и создает их, если необходимо.
 
+            :return: True, если все таблицы успешно созданы или уже существуют, False в случае ошибки.
+            :rtype: bool
+        """
         existing_tables = self.get_existing_tables()
         if not existing_tables:
             return False

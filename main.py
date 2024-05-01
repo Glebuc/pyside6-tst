@@ -26,6 +26,7 @@ from pages import BaseModel, Model_result, Save_data, View_result, Dialog_change
 from SettingApp import AppSettings
 
 from utils import get_translate_path, get_themes_path
+from ui_modules import Ui_MainWindow
 
 
 
@@ -49,7 +50,7 @@ class MainWindow(QMainWindow):
         title = "Aramid TsT Graph"
         self.setWindowTitle(title)
 
-        self.controller_setting = Controller_setting.ControllerSettings()
+        # self.controller_setting = Controller_setting.ControllerSettings()
 
         self.tableView = View_result.CustomTableView()
         widgets.verticalLayout_20.replaceWidget(widgets.resultView, self.tableView)
@@ -104,7 +105,7 @@ class MainWindow(QMainWindow):
         widgets.btn_note.clicked.connect(self.button_click)
 
         widgets.btn_config_DB.clicked.connect(self.open_dialog_config_db)
-        # widgets.btn_hot_keys.clicked.connect(self.open_dialog_keyword)
+        widgets.btn_hot_keys.clicked.connect(self.open_dialog_keyword)
         widgets.btn_extension_search.clicked.connect(self.open_dialog_extension_search)
 
         widgets.add_item_note_btn.clicked.connect(self.open_dialog_add_item_topic)
@@ -325,17 +326,17 @@ class MainWindow(QMainWindow):
         dialog.exec()
 
 
-    # def open_dialog_keyword(self) -> None:
-    #     """
-    #         Открывает диалоговое окно для отображения горячих клавиш в приложение.
-    #
-    #         :return:
-    #                 None
-    #     """
-    #     dialog = DialogsSetting.DialogKey(self)
-    #     if not dialog.isVisible():
-    #         self.log.log_info("Открыто диалоговое окно с горячими клавишами")
-    #     dialog.exec()
+    def open_dialog_keyword(self) -> None:
+        """
+            Открывает диалоговое окно для отображения горячих клавиш в приложение.
+
+            :return:
+                    None
+        """
+        dialog = DialogsSetting.DialogKey(self)
+        if not dialog.isVisible():
+            self.log.log_info("Открыто диалоговое окно с горячими клавишами")
+        dialog.exec()
 
     def open_dialog_extension_search(self):
         dialog = DialogsResult.DialogExtensionSearch(self)

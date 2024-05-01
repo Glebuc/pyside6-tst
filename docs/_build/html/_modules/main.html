@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>main &mdash; документация Aramid-TsT-Graph 0.0.1</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=ba58aea8"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/translations.js?v=29b1f277"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Aramid-TsT-Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" aria-label="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Меню навигации">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Меню навигации для мобильных устройств" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Aramid-TsT-Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Навигация по страницам">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Код модуля</a></li>
+      <li class="breadcrumb-item active">main</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Исходный код main</h1><div class="highlight"><pre>
+<span></span><span class="c1"># from PySide6.QtCore import *</span>
+<span class="c1"># from PySide6.QtGui import *</span>
+<span class="c1"># from PySide6.QtWidgets import *</span>
+<span class="c1">#from PySide6.QtCharts import *</span>
+<span class="c1">#</span>
+<span class="c1"># from . resources_rc import *</span>
+
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+
+<span class="kn">from</span> <span class="nn">PySide6.QtWidgets</span> <span class="kn">import</span> <span class="n">QDialog</span><span class="p">,</span> <span class="n">QFormLayout</span><span class="p">,</span> <span class="n">QVBoxLayout</span><span class="p">,</span> <span class="n">QPushButton</span><span class="p">,</span> \
+    <span class="n">QTableView</span><span class="p">,</span><span class="n">QMainWindow</span><span class="p">,</span> <span class="n">QWidget</span><span class="p">,</span> <span class="n">QHeaderView</span><span class="p">,</span> <span class="n">QMessageBox</span><span class="p">,</span> <span class="n">QGraphicsScene</span><span class="p">,</span> <span class="n">QGraphicsView</span><span class="p">,</span> <span class="n">QTreeWidgetItem</span>
+<span class="kn">from</span> <span class="nn">PySide6.QtGui</span> <span class="kn">import</span> <span class="n">QTransform</span><span class="p">,</span> <span class="n">QIcon</span>
+<span class="kn">from</span> <span class="nn">PySide6</span> <span class="kn">import</span> <span class="n">QtCore</span>
+<span class="kn">from</span> <span class="nn">PySide6.QtCore</span> <span class="kn">import</span> <span class="n">Qt</span><span class="p">,</span> <span class="n">QResource</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+<span class="kn">from</span> <span class="nn">loger</span> <span class="kn">import</span> <span class="n">Logger</span>
+<span class="kn">from</span> <span class="nn">Application</span> <span class="kn">import</span> <span class="n">Application</span>
+<span class="kn">from</span> <span class="nn">ui_modules</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">pages</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Model_result</span><span class="p">,</span> <span class="n">Save_data</span><span class="p">,</span> <span class="n">View_result</span><span class="p">,</span> <span class="n">Dialog_change_view</span><span class="p">,</span> <span class="n">DialogsSetting</span><span class="p">,</span>\
+    <span class="n">DialogsResult</span><span class="p">,</span><span class="n">Chart_view</span><span class="p">,</span> <span class="n">Model_chart</span><span class="p">,</span> <span class="n">Dialog_add_topic</span><span class="p">,</span> <span class="n">Dialog_add_note</span><span class="p">,</span> <span class="n">Model_notes</span><span class="p">,</span> <span class="n">Controller_setting</span>
+<span class="kn">from</span> <span class="nn">SettingApp</span> <span class="kn">import</span> <span class="n">AppSettings</span>
+
+<span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">get_translate_path</span><span class="p">,</span> <span class="n">get_themes_path</span>
+<span class="kn">from</span> <span class="nn">ui_modules</span> <span class="kn">import</span> <span class="n">Ui_MainWindow</span>
+
+
+
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;QT_FONT_DPI&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;96&quot;</span>  <span class="c1"># FIX Problem for High DPI and Scale above 100%</span>
+
+<span class="n">widgets</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<div class="viewcode-block" id="MainWindow">
+<a class="viewcode-back" href="../main.html#main.MainWindow">[документация]</a>
+<span class="k">class</span> <span class="nc">MainWindow</span><span class="p">(</span><span class="n">QMainWindow</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">):</span>
+        <span class="n">QMainWindow</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="n">app</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">ui</span> <span class="o">=</span> <span class="n">Ui_MainWindow</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">global</span> <span class="n">widgets</span>
+        <span class="n">widgets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ui</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span> <span class="o">=</span> <span class="n">Logger</span><span class="o">.</span><span class="n">get_instance</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">retranslateUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Aramid TsT Graph&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+
+        <span class="c1"># self.controller_setting = Controller_setting.ControllerSettings()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">tableView</span> <span class="o">=</span> <span class="n">View_result</span><span class="o">.</span><span class="n">CustomTableView</span><span class="p">()</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">verticalLayout_20</span><span class="o">.</span><span class="n">replaceWidget</span><span class="p">(</span><span class="n">widgets</span><span class="o">.</span><span class="n">resultView</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tableView</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_result</span> <span class="o">=</span> <span class="n">Model_result</span><span class="o">.</span><span class="n">ResultModel</span><span class="p">(</span><span class="s1">&#39;tests&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_chart</span> <span class="o">=</span> <span class="n">Model_chart</span><span class="o">.</span><span class="n">ChartModel</span><span class="p">(</span><span class="s1">&#39;tests&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">note_model</span> <span class="o">=</span> <span class="n">Model_notes</span><span class="o">.</span><span class="n">NoteModel</span><span class="p">(</span><span class="s1">&#39;sections&#39;</span><span class="p">)</span>
+
+        <span class="n">widgets</span><span class="o">.</span><span class="n">btn_change_view</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">open_column_selection_dialog</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setting</span> <span class="o">=</span> <span class="n">AppSettings</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scene</span> <span class="o">=</span> <span class="n">QGraphicsScene</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">view</span> <span class="o">=</span> <span class="n">Chart_view</span><span class="o">.</span><span class="n">ChartView</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scene</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chart</span> <span class="o">=</span> <span class="n">Chart_view</span><span class="o">.</span><span class="n">CustomChart</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chart</span><span class="o">.</span><span class="n">update_chart</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chart</span><span class="p">)</span>
+
+
+        <span class="c1">#Обработчики кнопок масштабирования графика</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">zoom_in_chart_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chart</span><span class="o">.</span><span class="n">zoom_in</span><span class="p">)</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">zoom_out_chart_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chart</span><span class="o">.</span><span class="n">zoom_out</span><span class="p">)</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">reset_chart_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chart</span><span class="o">.</span><span class="n">reset</span><span class="p">)</span>
+
+        <span class="n">widgets</span><span class="o">.</span><span class="n">graphicsView</span><span class="o">.</span><span class="n">setDragMode</span><span class="p">(</span><span class="n">QGraphicsView</span><span class="o">.</span><span class="n">ScrollHandDrag</span><span class="p">)</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">graphicsView</span><span class="o">.</span><span class="n">setChart</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chart</span><span class="p">)</span>
+
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">chart</span><span class="o">.</span><span class="n">save_chart_image</span><span class="p">(</span><span class="n">widgets</span><span class="o">.</span><span class="n">graphicsView</span><span class="p">,</span> <span class="s2">&quot;C:</span><span class="se">\\</span><span class="s2">Users</span><span class="se">\\</span><span class="s2">Admin</span><span class="se">\\</span><span class="s2">Desktop</span><span class="se">\\</span><span class="s2">ДИПЛОМ&quot;</span> <span class="p">)</span>
+
+        <span class="n">widgets</span><span class="o">.</span><span class="n">list_test_result</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="s2">&quot;Все тесты&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_result</span><span class="o">.</span><span class="n">execute_sql</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_result</span><span class="o">.</span><span class="n">LIST_TEST_SQL</span><span class="p">):</span>
+            <span class="n">widgets</span><span class="o">.</span><span class="n">list_test_result</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">widgets</span><span class="o">.</span><span class="n">list_test_chart</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+        <span class="n">test_name</span> <span class="o">=</span>  <span class="n">widgets</span><span class="o">.</span><span class="n">list_test_chart</span><span class="o">.</span><span class="n">currentText</span><span class="p">()</span>
+
+
+        <span class="n">widgets</span><span class="o">.</span><span class="n">list_test_result</span><span class="o">.</span><span class="n">currentIndexChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+            <span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_result</span><span class="o">.</span><span class="n">filter_data</span><span class="p">(</span><span class="n">combo_box</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">list_test_result</span><span class="p">,</span> <span class="n">table_view</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tableView</span><span class="p">))</span>
+
+        <span class="n">widgets</span><span class="o">.</span><span class="n">list_test_chart</span><span class="o">.</span><span class="n">activated</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">set_param_test_for_chart</span><span class="p">)</span>
+
+        <span class="n">widgets</span><span class="o">.</span><span class="n">btn_save_view</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">Save_data</span><span class="o">.</span><span class="n">save_data_to_csv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tableView</span><span class="p">))</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">toggleButton</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">UIFunctions</span><span class="o">.</span><span class="n">toggleMenu</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
+
+
+        <span class="n">widgets</span><span class="o">.</span><span class="n">resultView</span><span class="o">.</span><span class="n">horizontalHeader</span><span class="p">()</span><span class="o">.</span><span class="n">setSectionResizeMode</span><span class="p">(</span><span class="n">QHeaderView</span><span class="o">.</span><span class="n">Stretch</span><span class="p">)</span>
+
+
+
+        <span class="n">widgets</span><span class="o">.</span><span class="n">btn_report</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">button_click</span><span class="p">)</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">btn_bar</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">button_click</span><span class="p">)</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">btn_result</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">button_click</span><span class="p">)</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">btn_note</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">button_click</span><span class="p">)</span>
+
+        <span class="n">widgets</span><span class="o">.</span><span class="n">btn_config_DB</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">open_dialog_config_db</span><span class="p">)</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">btn_hot_keys</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">open_dialog_keyword</span><span class="p">)</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">btn_extension_search</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">open_dialog_extension_search</span><span class="p">)</span>
+
+        <span class="n">widgets</span><span class="o">.</span><span class="n">add_item_note_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">open_dialog_add_item_topic</span><span class="p">)</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">add_topic_note_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">open_dialog_add_topic</span><span class="p">)</span>
+
+
+        <span class="k">def</span> <span class="nf">openCloseLeftBox</span><span class="p">():</span>
+            <span class="n">UIFunctions</span><span class="o">.</span><span class="n">toggleLeftBox</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">widgets</span><span class="o">.</span><span class="n">toggleLeftBox</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">openCloseLeftBox</span><span class="p">)</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">extraCloseColumnBtn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">openCloseLeftBox</span><span class="p">)</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">comboBox_theme</span><span class="o">.</span><span class="n">currentTextChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">change_theme</span><span class="p">)</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">comboBox_language</span><span class="o">.</span><span class="n">currentTextChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">change_translation</span><span class="p">)</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">btn_save_settings</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">save_settings</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">stackedWidget</span><span class="o">.</span><span class="n">setCurrentWidget</span><span class="p">(</span><span class="n">widgets</span><span class="o">.</span><span class="n">report_page</span><span class="p">)</span>
+
+        <span class="n">record</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_result</span><span class="o">.</span><span class="n">record</span><span class="p">()</span>
+        <span class="n">column_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">record</span><span class="o">.</span><span class="n">fieldName</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">count</span><span class="p">())]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">column_selection_dialog</span> <span class="o">=</span> <span class="n">Dialog_change_view</span><span class="o">.</span><span class="n">ColumnSelectionDialog</span><span class="p">(</span><span class="n">column_names</span><span class="p">)</span>
+
+        <span class="c1"># словарь для хранения состояний флажков</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">checkbox_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">populate_tree_widget</span><span class="p">()</span>
+
+<div class="viewcode-block" id="MainWindow.save_settings">
+<a class="viewcode-back" href="../main.html#main.MainWindow.save_settings">[документация]</a>
+    <span class="k">def</span> <span class="nf">save_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Сохраняет текущие настройки приложения.</span>
+
+<span class="sd">        Получает текущие значения выбранных темы и языка из соответствующих ComboBox&#39;ов и сохраняет их в настройках приложения.</span>
+<span class="sd">        Если выбранная тема равна &quot;Светлая&quot;, она сохраняется как &quot;Light&quot;, если равна &quot;Темная&quot;, то как &quot;Dark&quot;.</span>
+<span class="sd">        Если выбранный язык равен &quot;Русский&quot;, он сохраняется как &quot;Russian&quot;, если равен &quot;Английский&quot;, то как &quot;English&quot;.</span>
+
+<span class="sd">        :returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">dict_setting</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">theme_text</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">comboBox_theme</span><span class="o">.</span><span class="n">currentText</span><span class="p">()</span>
+        <span class="n">language_text</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">comboBox_language</span><span class="o">.</span><span class="n">currentText</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">theme_text</span> <span class="o">==</span> <span class="s2">&quot;Светлая&quot;</span><span class="p">:</span>
+            <span class="n">dict_setting</span><span class="p">[</span><span class="s2">&quot;theme&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Light&quot;</span>
+        <span class="k">elif</span> <span class="n">theme_text</span> <span class="o">==</span> <span class="s2">&quot;Темная&quot;</span><span class="p">:</span>
+            <span class="n">dict_setting</span><span class="p">[</span><span class="s2">&quot;theme&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Dark&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">dict_setting</span><span class="p">[</span><span class="s2">&quot;theme&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">theme_text</span>
+
+        <span class="k">if</span> <span class="n">language_text</span> <span class="o">==</span> <span class="s2">&quot;Русский&quot;</span><span class="p">:</span>
+            <span class="n">dict_setting</span><span class="p">[</span><span class="s2">&quot;language&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Russian&quot;</span>
+        <span class="k">elif</span> <span class="n">language_text</span> <span class="o">==</span> <span class="s2">&quot;Английский&quot;</span><span class="p">:</span>
+            <span class="n">dict_setting</span><span class="p">[</span><span class="s2">&quot;language&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;English&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">dict_setting</span><span class="p">[</span><span class="s2">&quot;language&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">language_text</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">setting</span><span class="o">.</span><span class="n">set_setting_application</span><span class="p">(</span><span class="n">dict_setting</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MainWindow.get_text_from_combo_chart">
+<a class="viewcode-back" href="../main.html#main.MainWindow.get_text_from_combo_chart">[документация]</a>
+    <span class="k">def</span> <span class="nf">get_text_from_combo_chart</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Получает текущее значение из ComboBox.</span>
+
+<span class="sd">        :return:</span>
+<span class="sd">            str: Текущее выбранное значение из ComboBox.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">widgets</span><span class="o">.</span><span class="n">list_test_chart</span><span class="o">.</span><span class="n">currentText</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="MainWindow.populate_tree_widget">
+<a class="viewcode-back" href="../main.html#main.MainWindow.populate_tree_widget">[документация]</a>
+    <span class="k">def</span> <span class="nf">populate_tree_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Заполняет QTreeWidget данными из базы данных.</span>
+
+<span class="sd">        Получает данные из базы данных с помощью функции get_data_from_database</span>
+<span class="sd">        и добавляет их в QTreeWidget.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Очищаем QTreeWidget перед заполнением новыми данными</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">treeWidget</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+        <span class="c1"># Получаем данные из базы данных</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">note_model</span><span class="o">.</span><span class="n">get_data_from_database</span><span class="p">()</span>
+
+        <span class="c1"># Создаем элементы QTreeWidgetItem и добавляем их в QTreeWidget</span>
+        <span class="k">for</span> <span class="n">section_name</span><span class="p">,</span> <span class="n">article_titles</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">section_item</span> <span class="o">=</span> <span class="n">QTreeWidgetItem</span><span class="p">([</span><span class="n">section_name</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">treeWidget</span><span class="o">.</span><span class="n">addTopLevelItem</span><span class="p">(</span><span class="n">section_item</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">title</span> <span class="ow">in</span> <span class="n">article_titles</span><span class="p">:</span>
+                <span class="n">article_item</span> <span class="o">=</span> <span class="n">QTreeWidgetItem</span><span class="p">([</span><span class="n">title</span><span class="p">])</span>
+                <span class="n">section_item</span><span class="o">.</span><span class="n">addChild</span><span class="p">(</span><span class="n">article_item</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="MainWindow.get_param_test">
+<a class="viewcode-back" href="../main.html#main.MainWindow.get_param_test">[документация]</a>
+    <span class="k">def</span> <span class="nf">get_param_test</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Получает параметры теста на основе текущего выбранного значения в ComboBox.</span>
+
+<span class="sd">        :return:</span>
+<span class="sd">            List: Список параметров теста.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">test_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_text_from_combo_chart</span><span class="p">()</span>
+        <span class="n">parameters_query</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_chart</span><span class="o">.</span><span class="n">get_test_parameters</span><span class="p">(</span><span class="n">test_name</span><span class="p">)</span>
+        <span class="n">list_param</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">parameters_query</span><span class="p">:</span>
+            <span class="k">while</span> <span class="n">parameters_query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+                <span class="n">param</span> <span class="o">=</span> <span class="n">parameters_query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">list_param</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">list_param</span></div>
+
+
+
+<div class="viewcode-block" id="MainWindow.set_param_test_for_chart">
+<a class="viewcode-back" href="../main.html#main.MainWindow.set_param_test_for_chart">[документация]</a>
+    <span class="k">def</span> <span class="nf">set_param_test_for_chart</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Устанавливает параметры теста для ComboBox.</span>
+
+<span class="sd">        Очищает содержимое ComboBox и затем добавляет новые параметры.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">list_param_test</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="n">list_param</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_param_test</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">list_param</span><span class="p">:</span>
+            <span class="n">widgets</span><span class="o">.</span><span class="n">list_param_test</span><span class="o">.</span><span class="n">addItems</span><span class="p">(</span><span class="n">list_param</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="MainWindow.change_translation">
+<a class="viewcode-back" href="../main.html#main.MainWindow.change_translation">[документация]</a>
+    <span class="k">def</span> <span class="nf">change_translation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Изменяет язык приложения в зависимости от выбранного текста в ComboBox.</span>
+
+<span class="sd">        :param text: Текст текущего выбранного элемента в ComboBox. Должен быть &quot;Русский&quot; или &quot;Английский&quot;.</span>
+<span class="sd">        :return:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ru_translate</span> <span class="o">=</span> <span class="s1">&#39;:/translations/translations/ru.qm&#39;</span>
+        <span class="n">en_translate</span> <span class="o">=</span> <span class="s1">&#39;:/translations/translations/en.qm&#39;</span>
+        <span class="k">if</span> <span class="n">text</span> <span class="o">==</span> <span class="s2">&quot;Английский&quot;</span> <span class="ow">or</span> <span class="n">text</span> <span class="o">==</span> <span class="s2">&quot;English&quot;</span><span class="p">:</span>
+            <span class="n">app</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">en_translate</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">retranslateUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">text</span> <span class="o">==</span> <span class="s2">&quot;Русский&quot;</span> <span class="ow">or</span> <span class="n">text</span> <span class="o">==</span> <span class="s2">&quot;Russian&quot;</span><span class="p">:</span>
+            <span class="n">app</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">ru_translate</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">retranslateUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MainWindow.change_theme">
+<a class="viewcode-back" href="../main.html#main.MainWindow.change_theme">[документация]</a>
+    <span class="k">def</span> <span class="nf">change_theme</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">           Изменяет тему интерфейса в зависимости от выбранного текста в ComboBox.</span>
+
+<span class="sd">           :argument:</span>
+<span class="sd">               text (str): Текст текущего выбранного элемента в ComboBox. Должен быть &quot;Светлая&quot; или &quot;Темная&quot;.</span>
+
+<span class="sd">           :return:</span>
+<span class="sd">               None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">themeFile_light</span> <span class="o">=</span> <span class="s1">&#39;:/themes/themes/theme_light.qss&#39;</span>
+        <span class="n">themeFile_dark</span> <span class="o">=</span> <span class="s1">&#39;:/themes/themes/theme_dark.qss&#39;</span>
+        <span class="k">if</span> <span class="n">text</span> <span class="o">==</span> <span class="s2">&quot;Светлая&quot;</span> <span class="ow">or</span> <span class="n">text</span> <span class="o">==</span> <span class="s2">&quot;Light&quot;</span><span class="p">:</span>
+            <span class="n">UIFunctions</span><span class="o">.</span><span class="n">theme</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">themeFile_light</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">text</span> <span class="o">==</span> <span class="s2">&quot;Темная&quot;</span> <span class="ow">or</span> <span class="n">text</span> <span class="o">==</span> <span class="s2">&quot;Dark&quot;</span><span class="p">:</span>
+            <span class="n">UIFunctions</span><span class="o">.</span><span class="n">theme</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">themeFile_dark</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MainWindow.open_column_selection_dialog">
+<a class="viewcode-back" href="../main.html#main.MainWindow.open_column_selection_dialog">[документация]</a>
+    <span class="k">def</span> <span class="nf">open_column_selection_dialog</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">           Открывает диалоговое окно для выбора отображаемых столбцов в таблице.</span>
+
+<span class="sd">           Функция извлекает список всех видимых столбцов из модели данных таблицы и отображает диалоговое окно выбора столбцов.</span>
+<span class="sd">           После нажатия на кнопку &quot;Подтвердить&quot; диалогового окна функция проверяет, какие столбцы были выбраны пользователем, и соответственно</span>
+<span class="sd">           скрывает или отображает столбцы в таблице.</span>
+
+<span class="sd">           :return:</span>
+<span class="sd">               None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">visible_columns</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">model_result</span><span class="o">.</span><span class="n">headerData</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">Horizontal</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_result</span><span class="o">.</span><span class="n">columnCount</span><span class="p">())]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">column_selection_dialog</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span> <span class="o">==</span> <span class="n">QDialog</span><span class="o">.</span><span class="n">Accepted</span><span class="p">:</span>
+            <span class="n">selected_columns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">column_selection_dialog</span><span class="o">.</span><span class="n">get_selected_columns</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">column_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_result</span><span class="o">.</span><span class="n">columnCount</span><span class="p">()):</span>
+                <span class="n">column_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_result</span><span class="o">.</span><span class="n">headerData</span><span class="p">(</span><span class="n">column_index</span><span class="p">,</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">Horizontal</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">selected_columns</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">column_name</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">tableView</span><span class="o">.</span><span class="n">showColumn</span><span class="p">(</span><span class="n">column_index</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">tableView</span><span class="o">.</span><span class="n">hideColumn</span><span class="p">(</span><span class="n">column_index</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MainWindow.open_dialog_add_topic">
+<a class="viewcode-back" href="../main.html#main.MainWindow.open_dialog_add_topic">[документация]</a>
+    <span class="k">def</span> <span class="nf">open_dialog_add_topic</span> <span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Открывает диалоговое окно для добавления раздела в Заметках.</span>
+
+<span class="sd">            :return:</span>
+<span class="sd">                None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">dialog</span> <span class="o">=</span> <span class="n">Dialog_add_topic</span><span class="o">.</span><span class="n">DialogAddTopic</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">dialog</span><span class="o">.</span><span class="n">isVisible</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_info</span><span class="p">(</span><span class="s2">&quot;Открыто диалоговое окно для добавления раздела&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">dialog</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span> <span class="o">==</span> <span class="n">QDialog</span><span class="o">.</span><span class="n">Accepted</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">treeWidget</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">populate_tree_widget</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Ошибка открытия диалогового окна для добавления раздела&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MainWindow.open_dialog_add_item_topic">
+<a class="viewcode-back" href="../main.html#main.MainWindow.open_dialog_add_item_topic">[документация]</a>
+    <span class="k">def</span> <span class="nf">open_dialog_add_item_topic</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">           Открывает диалоговое окно для добавления статьи в Заметках .</span>
+
+<span class="sd">            :return:</span>
+<span class="sd">                None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">dialog</span> <span class="o">=</span> <span class="n">Dialog_add_note</span><span class="o">.</span><span class="n">DialogAddNote</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">dialog</span><span class="o">.</span><span class="n">isVisible</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_info</span><span class="p">(</span><span class="s2">&quot;Открыто диалоговое окно для добавления статьи&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">dialog</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span> <span class="o">==</span> <span class="n">QDialog</span><span class="o">.</span><span class="n">Accepted</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">treeWidget</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">populate_tree_widget</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Ошибка открытия диалогового окна для добавления статьи&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="MainWindow.open_dialog_config_db">
+<a class="viewcode-back" href="../main.html#main.MainWindow.open_dialog_config_db">[документация]</a>
+    <span class="k">def</span> <span class="nf">open_dialog_config_db</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Открывает диалоговое окно для настройки подключения к базе данных.</span>
+
+<span class="sd">            :return:</span>
+<span class="sd">                None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">dialog</span> <span class="o">=</span> <span class="n">DialogsSetting</span><span class="o">.</span><span class="n">DialogConfigDB</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">dialog</span><span class="o">.</span><span class="n">isVisible</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_info</span><span class="p">(</span><span class="s2">&quot;Открыто диалоговое окно с кофигом БД&quot;</span><span class="p">)</span>
+        <span class="n">dialog</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="MainWindow.open_dialog_keyword">
+<a class="viewcode-back" href="../main.html#main.MainWindow.open_dialog_keyword">[документация]</a>
+    <span class="k">def</span> <span class="nf">open_dialog_keyword</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Открывает диалоговое окно для отображения горячих клавиш в приложение.</span>
+
+<span class="sd">            :return:</span>
+<span class="sd">                    None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">dialog</span> <span class="o">=</span> <span class="n">DialogsSetting</span><span class="o">.</span><span class="n">DialogKey</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">dialog</span><span class="o">.</span><span class="n">isVisible</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_info</span><span class="p">(</span><span class="s2">&quot;Открыто диалоговое окно с горячими клавишами&quot;</span><span class="p">)</span>
+        <span class="n">dialog</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="MainWindow.open_dialog_extension_search">
+<a class="viewcode-back" href="../main.html#main.MainWindow.open_dialog_extension_search">[документация]</a>
+    <span class="k">def</span> <span class="nf">open_dialog_extension_search</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">dialog</span> <span class="o">=</span> <span class="n">DialogsResult</span><span class="o">.</span><span class="n">DialogExtensionSearch</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">dialog</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span> <span class="o">==</span> <span class="n">QDialog</span><span class="o">.</span><span class="n">Accepted</span><span class="p">:</span>
+            <span class="n">test_data</span><span class="p">,</span> <span class="n">user_data</span><span class="p">,</span> <span class="n">param_test</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span> <span class="o">=</span> <span class="n">dialog</span><span class="o">.</span><span class="n">get_filter_parameters</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model_result</span><span class="o">.</span><span class="n">apply_filter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tableView</span><span class="p">,</span> <span class="n">test_data</span><span class="p">,</span> <span class="n">user_data</span><span class="p">,</span> <span class="n">param_test</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span></div>
+
+
+
+
+<div class="viewcode-block" id="MainWindow.button_click">
+<a class="viewcode-back" href="../main.html#main.MainWindow.button_click">[документация]</a>
+    <span class="k">def</span> <span class="nf">button_click</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Обрабатывает событие нажатия на кнопки в боковом меню.</span>
+
+<span class="sd">        В зависимости от названия кнопки устанавливает соответствующую страницу в stackedWidget,</span>
+<span class="sd">        сбрасывает стиль всех кнопок и устанавливает стиль нажатой кнопки.</span>
+
+<span class="sd">        :return:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">btn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sender</span><span class="p">()</span>
+        <span class="n">btnName</span> <span class="o">=</span> <span class="n">btn</span><span class="o">.</span><span class="n">objectName</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">btnName</span> <span class="o">==</span> <span class="s2">&quot;btn_report&quot;</span><span class="p">:</span>
+            <span class="n">widgets</span><span class="o">.</span><span class="n">stackedWidget</span><span class="o">.</span><span class="n">setCurrentWidget</span><span class="p">(</span><span class="n">widgets</span><span class="o">.</span><span class="n">report_page</span><span class="p">)</span>
+            <span class="n">UIFunctions</span><span class="o">.</span><span class="n">resetStyle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">btnName</span><span class="p">)</span>
+            <span class="n">UIFunctions</span><span class="o">.</span><span class="n">addStyle</span><span class="p">(</span><span class="n">btn</span><span class="p">,</span> <span class="n">UIFunctions</span><span class="o">.</span><span class="n">selectMenu</span><span class="p">())</span>
+
+        <span class="k">if</span> <span class="n">btnName</span> <span class="o">==</span> <span class="s2">&quot;btn_bar&quot;</span><span class="p">:</span>
+            <span class="n">widgets</span><span class="o">.</span><span class="n">stackedWidget</span><span class="o">.</span><span class="n">setCurrentWidget</span><span class="p">(</span><span class="n">widgets</span><span class="o">.</span><span class="n">chart_page</span><span class="p">)</span>
+            <span class="n">UIFunctions</span><span class="o">.</span><span class="n">resetStyle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">btnName</span><span class="p">)</span>
+            <span class="n">UIFunctions</span><span class="o">.</span><span class="n">addStyle</span><span class="p">(</span><span class="n">btn</span><span class="p">,</span> <span class="n">UIFunctions</span><span class="o">.</span><span class="n">selectMenu</span><span class="p">())</span>
+
+        <span class="k">if</span> <span class="n">btnName</span> <span class="o">==</span> <span class="s2">&quot;btn_result&quot;</span><span class="p">:</span>
+            <span class="n">widgets</span><span class="o">.</span><span class="n">stackedWidget</span><span class="o">.</span><span class="n">setCurrentWidget</span><span class="p">(</span><span class="n">widgets</span><span class="o">.</span><span class="n">result_page</span><span class="p">)</span>
+            <span class="n">UIFunctions</span><span class="o">.</span><span class="n">resetStyle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">btnName</span><span class="p">)</span>
+            <span class="n">UIFunctions</span><span class="o">.</span><span class="n">addStyle</span><span class="p">(</span><span class="n">btn</span><span class="p">,</span> <span class="n">UIFunctions</span><span class="o">.</span><span class="n">selectMenu</span><span class="p">())</span>
+
+        <span class="k">if</span> <span class="n">btnName</span> <span class="o">==</span> <span class="s2">&quot;btn_note&quot;</span><span class="p">:</span>
+            <span class="n">widgets</span><span class="o">.</span><span class="n">stackedWidget</span><span class="o">.</span><span class="n">setCurrentWidget</span><span class="p">(</span><span class="n">widgets</span><span class="o">.</span><span class="n">note_page</span><span class="p">)</span>
+            <span class="n">UIFunctions</span><span class="o">.</span><span class="n">resetStyle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">btnName</span><span class="p">)</span>
+            <span class="n">UIFunctions</span><span class="o">.</span><span class="n">addStyle</span><span class="p">(</span><span class="n">btn</span><span class="p">,</span> <span class="n">UIFunctions</span><span class="o">.</span><span class="n">selectMenu</span><span class="p">())</span></div>
+</div>
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">Application</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">setWindowIcon</span><span class="p">(</span><span class="n">QIcon</span><span class="p">(</span><span class="sa">u</span><span class="s2">&quot;:/icons/images/icons/aramid.svg&quot;</span><span class="p">))</span>
+    <span class="n">window</span> <span class="o">=</span> <span class="n">MainWindow</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Авторские права 2024, Deryugin Gleb. </p>
+  </div>
+
+  Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">темы,</a>
+    предоставленной <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

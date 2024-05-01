@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QApplication, QDialog, QVBoxLayout, QLabel, QLineEdit, QPushButton, QMessageBox
 from PySide6.QtSql import QSqlQuery
 from .Model_notes import NoteModel
-from ui_modules import  Ui_MainWindow
+
 
 class DialogAddTopic(QDialog):
     """

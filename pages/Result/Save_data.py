@@ -6,7 +6,13 @@ from loger import Logger
 
 log = Logger.get_instance()
 
-def save_data_to_csv(table_view):
+def save_data_to_csv(table_view: QTableView):
+    """
+        Сохраняет данные из QTableView в файл CSV.
+
+        :argument table_view: QTableView, содержащая данные для сохранения.
+        :type table_view: QTableView
+    """
     model = table_view.model
 
     if not isinstance(model, QSqlQueryModel):

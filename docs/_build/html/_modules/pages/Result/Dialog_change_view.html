@@ -118,9 +118,9 @@
         <span class="n">layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">button</span><span class="p">)</span>
 
         <span class="c1"># Применение стилей для диалогового окна</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">get_themes_path</span><span class="p">(),</span> <span class="s1">&#39;theme_light.qss&#39;</span><span class="p">)),</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span> <span class="c1"># придумать что-то с путями для файлов приложения</span>
-            <span class="n">dialog_stylesheet</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="n">dialog_stylesheet</span><span class="p">)</span>
+        <span class="c1"># with open(os.path.abspath(os.path.join(get_themes_path(), &#39;theme_light.qss&#39;)), &#39;r&#39;) as f: # придумать что-то с путями для файлов приложения</span>
+        <span class="c1">#     dialog_stylesheet = f.read()</span>
+        <span class="c1"># self.setStyleSheet(dialog_stylesheet)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setMaximumSize</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
 
 <div class="viewcode-block" id="ColumnSelectionDialog.get_selected_columns">

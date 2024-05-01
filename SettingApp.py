@@ -1,6 +1,7 @@
 import os
 from PySide6.QtCore import QSettings
 from typing import Dict
+from loger import Logger
 
 class AppSettings(QSettings):
     """
@@ -31,6 +32,7 @@ class AppSettings(QSettings):
         self.config_dir = os.path.join(os.path.expanduser("~"), ".aramid-tst-graph")
         self.config_file = os.path.join(self.config_dir, "config.ini")
         os.makedirs(self.config_dir, exist_ok=True)
+        self.log = Logger.get_instance()
 
         super().__init__(self.config_file, QSettings.IniFormat)
 
@@ -57,6 +59,7 @@ class AppSettings(QSettings):
         for key, value in default_settings.items():
             if not self.contains(key):
                 self.setValue(key, value)
+        self.log.log_info("Установлены настройки по умолчанию")
 
     def get_setting(self, key: str) -> str:
         """
@@ -76,6 +79,7 @@ class AppSettings(QSettings):
         :return: None
         """
         self.setValue(key, value)
+        self.log.log_info(f"Добавлены новая настройка в файл конфигурации: {key}={value}")
 
     def set_setting_application(self, new_settings: Dict) -> None:
         """
@@ -89,6 +93,7 @@ class AppSettings(QSettings):
         """
         for key, value in new_settings.items():
             self.setValue(f"AppSettings/{key}", value)
+            self.log.log_info(f"Обновлены настройки в файле конифгурации - {new_settings}")
 
     def get_settings_by_tag(self, tag: str) -> Dict:
         """

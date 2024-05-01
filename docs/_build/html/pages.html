@@ -48,8 +48,29 @@
 <li><a class="reference internal" href="#">pages package</a><ul>
 <li><a class="reference internal" href="#subpackages">Subpackages</a></li>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#pages-basemodel-module">pages.BaseModel module</a></li>
-<li><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li><a class="reference internal" href="#module-pages.BaseModel">pages.BaseModel module</a><ul>
+<li><a class="reference internal" href="#pages.BaseModel.BaseModel"><code class="docutils literal notranslate"><span class="pre">BaseModel</span></code></a><ul>
+<li><a class="reference internal" href="#pages.BaseModel.BaseModel.ALL_RESULT_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.ALL_RESULT_SQL</span></code></a></li>
+<li><a class="reference internal" href="#pages.BaseModel.BaseModel.LIST_JSON_PARAM_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.LIST_JSON_PARAM_SQL</span></code></a></li>
+<li><a class="reference internal" href="#pages.BaseModel.BaseModel.LIST_TEST_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.LIST_TEST_SQL</span></code></a></li>
+<li><a class="reference internal" href="#pages.BaseModel.BaseModel.LIST_USER_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.LIST_USER_SQL</span></code></a></li>
+<li><a class="reference internal" href="#pages.BaseModel.BaseModel.MAX_DATE_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.MAX_DATE_SQL</span></code></a></li>
+<li><a class="reference internal" href="#pages.BaseModel.BaseModel.MIN_DATE_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.MIN_DATE_SQL</span></code></a></li>
+<li><a class="reference internal" href="#pages.BaseModel.BaseModel.NOTE_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.NOTE_SQL</span></code></a></li>
+<li><a class="reference internal" href="#pages.BaseModel.BaseModel.REPORT_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.REPORT_SQL</span></code></a></li>
+<li><a class="reference internal" href="#pages.BaseModel.BaseModel.SECTION_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.SECTION_SQL</span></code></a></li>
+<li><a class="reference internal" href="#pages.BaseModel.BaseModel.SETTING_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.SETTING_SQL</span></code></a></li>
+<li><a class="reference internal" href="#pages.BaseModel.BaseModel.TESTS_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.TESTS_SQL</span></code></a></li>
+<li><a class="reference internal" href="#pages.BaseModel.BaseModel.USERS_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.USERS_SQL</span></code></a></li>
+<li><a class="reference internal" href="#pages.BaseModel.BaseModel.check_and_create_tables"><code class="docutils literal notranslate"><span class="pre">BaseModel.check_and_create_tables()</span></code></a></li>
+<li><a class="reference internal" href="#pages.BaseModel.BaseModel.execute_sql"><code class="docutils literal notranslate"><span class="pre">BaseModel.execute_sql()</span></code></a></li>
+<li><a class="reference internal" href="#pages.BaseModel.BaseModel.get_existing_tables"><code class="docutils literal notranslate"><span class="pre">BaseModel.get_existing_tables()</span></code></a></li>
+<li><a class="reference internal" href="#pages.BaseModel.BaseModel.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">BaseModel.staticMetaObject</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-pages">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -86,25 +107,80 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="pages.Chart.html">pages.Chart package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="pages.Chart.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Chart.html#pages-chart-chart-view-module">pages.Chart.Chart_view module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Chart.html#pages-chart-model-chart-module">pages.Chart.Model_chart module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Chart.html#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Chart.html#module-pages.Chart.Chart_view">pages.Chart.Chart_view module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_view.ChartView"><code class="docutils literal notranslate"><span class="pre">ChartView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_view.ChartView.mouseMoveEvent"><code class="docutils literal notranslate"><span class="pre">ChartView.mouseMoveEvent()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_view.ChartView.mousePressEvent"><code class="docutils literal notranslate"><span class="pre">ChartView.mousePressEvent()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_view.ChartView.mouseReleaseEvent"><code class="docutils literal notranslate"><span class="pre">ChartView.mouseReleaseEvent()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_view.ChartView.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">ChartView.staticMetaObject</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_view.CustomChart"><code class="docutils literal notranslate"><span class="pre">CustomChart</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_view.CustomChart.reset"><code class="docutils literal notranslate"><span class="pre">CustomChart.reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_view.CustomChart.save_chart_image"><code class="docutils literal notranslate"><span class="pre">CustomChart.save_chart_image()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_view.CustomChart.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">CustomChart.staticMetaObject</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_view.CustomChart.update_chart"><code class="docutils literal notranslate"><span class="pre">CustomChart.update_chart()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_view.CustomChart.zoom_in"><code class="docutils literal notranslate"><span class="pre">CustomChart.zoom_in()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_view.CustomChart.zoom_out"><code class="docutils literal notranslate"><span class="pre">CustomChart.zoom_out()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Chart.html#module-pages.Chart.Model_chart">pages.Chart.Model_chart module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pages.Chart.html#pages.Chart.Model_chart.ChartModel"><code class="docutils literal notranslate"><span class="pre">ChartModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Model_chart.ChartModel.check_database_connection"><code class="docutils literal notranslate"><span class="pre">ChartModel.check_database_connection()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Model_chart.ChartModel.get_data_for_chart"><code class="docutils literal notranslate"><span class="pre">ChartModel.get_data_for_chart()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Model_chart.ChartModel.get_test_parameters"><code class="docutils literal notranslate"><span class="pre">ChartModel.get_test_parameters()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Model_chart.ChartModel.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">ChartModel.staticMetaObject</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Chart.html#module-pages.Chart">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="pages.Notes.html">pages.Notes package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#pages-notes-dialog-add-note-module">pages.Notes.Dialog_add_note module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#pages-notes-dialog-add-topic-module">pages.Notes.Dialog_add_topic module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#pages-notes-model-notes-module">pages.Notes.Model_notes module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#module-pages.Notes.Dialog_add_note">pages.Notes.Dialog_add_note module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_add_note.DialogAddNote"><code class="docutils literal notranslate"><span class="pre">DialogAddNote</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_add_note.DialogAddNote.get_article_text"><code class="docutils literal notranslate"><span class="pre">DialogAddNote.get_article_text()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_add_note.DialogAddNote.get_article_title"><code class="docutils literal notranslate"><span class="pre">DialogAddNote.get_article_title()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_add_note.DialogAddNote.get_selected_section"><code class="docutils literal notranslate"><span class="pre">DialogAddNote.get_selected_section()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_add_note.DialogAddNote.publish_article"><code class="docutils literal notranslate"><span class="pre">DialogAddNote.publish_article()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_add_note.DialogAddNote.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">DialogAddNote.staticMetaObject</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#module-pages.Notes.Dialog_add_topic">pages.Notes.Dialog_add_topic module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_add_topic.DialogAddTopic"><code class="docutils literal notranslate"><span class="pre">DialogAddTopic</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_add_topic.DialogAddTopic.add_section_to_database"><code class="docutils literal notranslate"><span class="pre">DialogAddTopic.add_section_to_database()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_add_topic.DialogAddTopic.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">DialogAddTopic.staticMetaObject</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#module-pages.Notes.Model_notes">pages.Notes.Model_notes module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pages.Notes.html#pages.Notes.Model_notes.NoteModel"><code class="docutils literal notranslate"><span class="pre">NoteModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Model_notes.NoteModel.add_note"><code class="docutils literal notranslate"><span class="pre">NoteModel.add_note()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Model_notes.NoteModel.add_section"><code class="docutils literal notranslate"><span class="pre">NoteModel.add_section()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Model_notes.NoteModel.get_data_from_database"><code class="docutils literal notranslate"><span class="pre">NoteModel.get_data_from_database()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Model_notes.NoteModel.get_section_id_by_name"><code class="docutils literal notranslate"><span class="pre">NoteModel.get_section_id_by_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Model_notes.NoteModel.get_section_names"><code class="docutils literal notranslate"><span class="pre">NoteModel.get_section_names()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Model_notes.NoteModel.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">NoteModel.staticMetaObject</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#pages-notes-noteview-module">pages.Notes.NoteView module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#module-pages.Notes">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="pages.Report.html">pages.Report package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="pages.Report.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Report.html#pages-report-reportmodel-module">pages.Report.ReportModel module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Report.html#pages-report-reportview-module">pages.Report.ReportView module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Report.html#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Report.html#module-pages.Report.ReportModel">pages.Report.ReportModel module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Report.html#module-pages.Report.ReportView">pages.Report.ReportView module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Report.html#module-pages.Report">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="pages.Result.html">pages.Result package</a><ul>
@@ -197,11 +273,128 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
 </section>
-<section id="pages-basemodel-module">
-<h2>pages.BaseModel module<a class="headerlink" href="#pages-basemodel-module" title="Link to this heading"></a></h2>
+<section id="module-pages.BaseModel">
+<span id="pages-basemodel-module"></span><h2>pages.BaseModel module<a class="headerlink" href="#module-pages.BaseModel" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pages.BaseModel.BaseModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pages.BaseModel.</span></span><span class="sig-name descname"><span class="pre">BaseModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/BaseModel.html#BaseModel"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.BaseModel.BaseModel" title="Link to this definition"></a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">QSqlQueryModel</span></code></p>
+<p>Базовая модель, данная модель является родительской для всех других моделей</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pages.BaseModel.BaseModel.ALL_RESULT_SQL">
+<span class="sig-name descname"><span class="pre">ALL_RESULT_SQL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">SELECT</span> <span class="pre">t.test_name,</span> <span class="pre">t.test_param,</span> <span class="pre">t.time_test,</span> <span class="pre">t.test_result,</span> <span class="pre">t.start_test,</span> <span class="pre">u.user_name\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">FROM</span> <span class="pre">tests</span> <span class="pre">as</span> <span class="pre">t\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">INNER</span> <span class="pre">JOIN</span> <span class="pre">users</span> <span class="pre">as</span> <span class="pre">u</span> <span class="pre">ON</span> <span class="pre">t.id_user_fk=u.user_id;\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#pages.BaseModel.BaseModel.ALL_RESULT_SQL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pages.BaseModel.BaseModel.LIST_JSON_PARAM_SQL">
+<span class="sig-name descname"><span class="pre">LIST_JSON_PARAM_SQL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">SELECT</span> <span class="pre">jsonb_object_keys(test_param)</span> <span class="pre">as</span> <span class="pre">keys\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">FROM</span> <span class="pre">tests</span> <span class="pre">group</span> <span class="pre">by</span> <span class="pre">keys;\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#pages.BaseModel.BaseModel.LIST_JSON_PARAM_SQL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pages.BaseModel.BaseModel.LIST_TEST_SQL">
+<span class="sig-name descname"><span class="pre">LIST_TEST_SQL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">SELECT</span> <span class="pre">test_name</span> <span class="pre">FROM</span> <span class="pre">tests</span> <span class="pre">GROUP</span> <span class="pre">BY</span> <span class="pre">test_name;\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#pages.BaseModel.BaseModel.LIST_TEST_SQL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pages.BaseModel.BaseModel.LIST_USER_SQL">
+<span class="sig-name descname"><span class="pre">LIST_USER_SQL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">SELECT</span> <span class="pre">user_name</span> <span class="pre">FROM</span> <span class="pre">users</span> <span class="pre">GROUP</span> <span class="pre">BY</span> <span class="pre">user_name;\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#pages.BaseModel.BaseModel.LIST_USER_SQL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pages.BaseModel.BaseModel.MAX_DATE_SQL">
+<span class="sig-name descname"><span class="pre">MAX_DATE_SQL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">SELECT</span> <span class="pre">MAX(start_test)</span> <span class="pre">FROM</span> <span class="pre">tests;\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#pages.BaseModel.BaseModel.MAX_DATE_SQL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pages.BaseModel.BaseModel.MIN_DATE_SQL">
+<span class="sig-name descname"><span class="pre">MIN_DATE_SQL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">SELECT</span> <span class="pre">MIN(start_test)</span> <span class="pre">FROM</span> <span class="pre">tests;\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#pages.BaseModel.BaseModel.MIN_DATE_SQL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pages.BaseModel.BaseModel.NOTE_SQL">
+<span class="sig-name descname"><span class="pre">NOTE_SQL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160;&#160; <span class="pre">CREATE</span> <span class="pre">TABLE</span> <span class="pre">IF</span> <span class="pre">NOT</span> <span class="pre">EXISTS</span> <span class="pre">notes</span> <span class="pre">(\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">id</span> <span class="pre">SERIAL</span> <span class="pre">PRIMARY</span> <span class="pre">KEY,\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">title</span> <span class="pre">TEXT</span> <span class="pre">NOT</span> <span class="pre">NULL</span> <span class="pre">UNIQUE,\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">content</span> <span class="pre">TEXT</span> <span class="pre">NOT</span> <span class="pre">NULL,\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">section_id</span> <span class="pre">INTEGER</span> <span class="pre">REFERENCES</span> <span class="pre">sections(id)\n</span>&#160;&#160;&#160; <span class="pre">)\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#pages.BaseModel.BaseModel.NOTE_SQL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pages.BaseModel.BaseModel.REPORT_SQL">
+<span class="sig-name descname"><span class="pre">REPORT_SQL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">CREATE</span> <span class="pre">TABLE</span> <span class="pre">IF</span> <span class="pre">NOT</span> <span class="pre">EXISTS</span> <span class="pre">report</span> <span class="pre">(\n</span>&#160;&#160;&#160; <span class="pre">\tid_report</span> <span class="pre">serial4</span> <span class="pre">NOT</span> <span class="pre">NULL,\n</span>&#160;&#160;&#160; <span class="pre">\tuser_id_fk</span> <span class="pre">int4</span> <span class="pre">NULL,\n</span>&#160;&#160;&#160; <span class="pre">\tforming_report</span> <span class="pre">timestamp</span> <span class="pre">NOT</span> <span class="pre">NULL,\n</span>&#160;&#160;&#160; <span class="pre">\ttitle_report</span> <span class="pre">varchar</span> <span class="pre">NOT</span> <span class="pre">NULL,\n</span>&#160;&#160;&#160; <span class="pre">\tCONSTRAINT</span> <span class="pre">report_pk</span> <span class="pre">PRIMARY</span> <span class="pre">KEY</span> <span class="pre">(id_report),\n</span>&#160;&#160;&#160; <span class="pre">\tCONSTRAINT</span> <span class="pre">report_fk</span> <span class="pre">FOREIGN</span> <span class="pre">KEY</span> <span class="pre">(user_id_fk)</span> <span class="pre">REFERENCES</span> <span class="pre">users(user_id)\n</span>&#160;&#160;&#160; <span class="pre">);\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#pages.BaseModel.BaseModel.REPORT_SQL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pages.BaseModel.BaseModel.SECTION_SQL">
+<span class="sig-name descname"><span class="pre">SECTION_SQL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160; <span class="pre">CREATE</span> <span class="pre">TABLE</span> <span class="pre">IF</span> <span class="pre">NOT</span> <span class="pre">EXISTS</span> <span class="pre">sections</span> <span class="pre">(\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">id</span> <span class="pre">SERIAL</span> <span class="pre">PRIMARY</span> <span class="pre">KEY,\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">name</span> <span class="pre">TEXT</span> <span class="pre">NOT</span> <span class="pre">NULL</span> <span class="pre">UNIQUE\n</span>&#160;&#160;&#160; <span class="pre">)\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#pages.BaseModel.BaseModel.SECTION_SQL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pages.BaseModel.BaseModel.SETTING_SQL">
+<span class="sig-name descname"><span class="pre">SETTING_SQL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160; <span class="pre">CREATE</span> <span class="pre">TABLE</span> <span class="pre">IF</span> <span class="pre">NOT</span> <span class="pre">EXISTS</span> <span class="pre">settings</span> <span class="pre">(\n</span>&#160;&#160;&#160; <span class="pre">\tsetting_id</span> <span class="pre">serial4</span> <span class="pre">NOT</span> <span class="pre">NULL,\n</span>&#160;&#160;&#160; <span class="pre">\ttheme</span> <span class="pre">varchar</span> <span class="pre">NOT</span> <span class="pre">NULL,\n</span>&#160;&#160;&#160; <span class="pre">\t&quot;language&quot;</span> <span class="pre">varchar</span> <span class="pre">NOT</span> <span class="pre">NULL,\n</span>&#160;&#160;&#160; <span class="pre">\t&quot;scale&quot;</span> <span class="pre">int4</span> <span class="pre">NOT</span> <span class="pre">NULL</span> <span class="pre">DEFAULT</span> <span class="pre">100,\n</span>&#160;&#160;&#160; <span class="pre">\tuser_id_fk</span> <span class="pre">int4</span> <span class="pre">NOT</span> <span class="pre">NULL,\n</span>&#160;&#160;&#160; <span class="pre">\tCONSTRAINT</span> <span class="pre">settings_pk</span> <span class="pre">PRIMARY</span> <span class="pre">KEY</span> <span class="pre">(setting_id),\n</span>&#160;&#160;&#160; <span class="pre">\tCONSTRAINT</span> <span class="pre">settings_fk</span> <span class="pre">FOREIGN</span> <span class="pre">KEY</span> <span class="pre">(user_id_fk)</span> <span class="pre">REFERENCES</span> <span class="pre">users(user_id));\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#pages.BaseModel.BaseModel.SETTING_SQL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pages.BaseModel.BaseModel.TESTS_SQL">
+<span class="sig-name descname"><span class="pre">TESTS_SQL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">CREATE</span> <span class="pre">TABLE</span> <span class="pre">IF</span> <span class="pre">NOT</span> <span class="pre">EXISTS</span> <span class="pre">tests</span> <span class="pre">(\n</span>&#160;&#160;&#160; <span class="pre">\ttest_name</span> <span class="pre">varchar</span> <span class="pre">NOT</span> <span class="pre">NULL,\n</span>&#160;&#160;&#160; <span class="pre">\ttest_param</span> <span class="pre">jsonb</span> <span class="pre">NULL,\n</span>&#160;&#160;&#160; <span class="pre">\ttest_note</span> <span class="pre">text</span> <span class="pre">NULL,\n</span>&#160;&#160;&#160; <span class="pre">\ttest_id</span> <span class="pre">serial4</span> <span class="pre">NOT</span> <span class="pre">NULL,\n</span>&#160;&#160;&#160; <span class="pre">\tid_user_fk</span> <span class="pre">int4</span> <span class="pre">NULL,\n</span>&#160;&#160;&#160; <span class="pre">\tstart_test</span> <span class="pre">timestamp</span> <span class="pre">NULL,\n</span>&#160;&#160;&#160; <span class="pre">\ttime_test</span> <span class="pre">time</span> <span class="pre">NULL,\n</span>&#160;&#160;&#160; <span class="pre">\ttest_result</span> <span class="pre">int4[],\n</span>&#160;&#160;&#160; <span class="pre">\tCONSTRAINT</span> <span class="pre">tests_pk</span> <span class="pre">PRIMARY</span> <span class="pre">KEY</span> <span class="pre">(test_id),\n</span>&#160;&#160;&#160; <span class="pre">\tCONSTRAINT</span> <span class="pre">tests_fk</span> <span class="pre">FOREIGN</span> <span class="pre">KEY</span> <span class="pre">(id_user_fk)</span> <span class="pre">REFERENCES</span> <span class="pre">users(user_id)\n</span>&#160;&#160;&#160; <span class="pre">);\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#pages.BaseModel.BaseModel.TESTS_SQL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pages.BaseModel.BaseModel.USERS_SQL">
+<span class="sig-name descname"><span class="pre">USERS_SQL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">CREATE</span> <span class="pre">TABLE</span> <span class="pre">IF</span> <span class="pre">NOT</span> <span class="pre">EXISTS</span> <span class="pre">users</span> <span class="pre">(\n</span>&#160;&#160;&#160; <span class="pre">\tuser_id</span> <span class="pre">serial4</span> <span class="pre">NOT</span> <span class="pre">NULL,\n</span>&#160;&#160;&#160; <span class="pre">\tuser_name</span> <span class="pre">varchar</span> <span class="pre">NOT</span> <span class="pre">NULL,\n</span>&#160;&#160;&#160; <span class="pre">\tfio_user</span> <span class="pre">varchar</span> <span class="pre">NULL,\n</span>&#160;&#160;&#160; <span class="pre">\temail_user</span> <span class="pre">varchar</span> <span class="pre">NULL,\n</span>&#160;&#160;&#160; <span class="pre">\tpassword_user</span> <span class="pre">varchar</span> <span class="pre">NULL,\n</span>&#160;&#160;&#160; <span class="pre">\tCONSTRAINT</span> <span class="pre">users_pk</span> <span class="pre">PRIMARY</span> <span class="pre">KEY</span> <span class="pre">(user_id)\n</span>&#160;&#160;&#160; <span class="pre">);\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#pages.BaseModel.BaseModel.USERS_SQL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.BaseModel.BaseModel.check_and_create_tables">
+<span class="sig-name descname"><span class="pre">check_and_create_tables</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/BaseModel.html#BaseModel.check_and_create_tables"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.BaseModel.BaseModel.check_and_create_tables" title="Link to this definition"></a></dt>
+<dd><p>Проверяет существование таблиц в базе данных и создает их, если необходимо.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True, если все таблицы успешно созданы или уже существуют, False в случае ошибки.</p>
+</dd>
+<dt class="field-even">Тип результата<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.BaseModel.BaseModel.execute_sql">
+<span class="sig-name descname"><span class="pre">execute_sql</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sql_query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span></span></span><a class="reference internal" href="_modules/pages/BaseModel.html#BaseModel.execute_sql"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.BaseModel.BaseModel.execute_sql" title="Link to this definition"></a></dt>
+<dd><p>Выполняет SQL-запрос и возвращает список значений из результата запроса.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Argument<span class="colon">:</span></dt>
+<dd class="field-odd"><p>sql_query (str): SQL-запрос для выполнения.
+params (tuple or dict, optional): Параметры запроса. По умолчанию None.</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>list: Список значений из результата запроса.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.BaseModel.BaseModel.get_existing_tables">
+<span class="sig-name descname"><span class="pre">get_existing_tables</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pages/BaseModel.html#BaseModel.get_existing_tables"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.BaseModel.BaseModel.get_existing_tables" title="Link to this definition"></a></dt>
+<dd><p>Получает список существующих таблиц в базе данных.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list or None: Список имен существующих таблиц в базе данных или None в случае ошибки.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>description:</dt><dd><p>Этот метод выполняет запрос к информационной схеме PostgreSQL
+для получения списка таблиц, существующих в базе данных. Затем он возвращает список имен этих таблиц.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pages.BaseModel.BaseModel.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject(&quot;BaseModel&quot;</span> <span class="pre">inherits</span> <span class="pre">&quot;QSqlQueryModel&quot;:</span> <span class="pre">)</span></em><a class="headerlink" href="#pages.BaseModel.BaseModel.staticMetaObject" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
+<section id="module-pages">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pages" title="Link to this heading"></a></h2>
 </section>
 </section>
 

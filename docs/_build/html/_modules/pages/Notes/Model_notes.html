@@ -78,6 +78,7 @@
 <span class="kn">from</span> <span class="nn">ui_modules</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">..BaseModel</span> <span class="kn">import</span> <span class="n">BaseModel</span>
 <span class="kn">from</span> <span class="nn">loger</span> <span class="kn">import</span> <span class="n">Logger</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
 
 
 <div class="viewcode-block" id="NoteModel">
@@ -194,7 +195,7 @@
         <span class="n">section_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_section_id_by_name</span><span class="p">(</span><span class="n">section_name</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">section_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_errorrint</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ошибка: Раздел </span><span class="si">{</span><span class="n">section_name</span><span class="si">}</span><span class="s2"> не найден.&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ошибка: Раздел </span><span class="si">{</span><span class="n">section_name</span><span class="si">}</span><span class="s2"> не найден.&quot;</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">False</span>
 
         <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">()</span>
@@ -208,6 +209,36 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Ошибка при выполнении запроса:&quot;</span> <span class="o">+</span> <span class="n">query</span><span class="o">.</span><span class="n">lastError</span><span class="p">()</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
             <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="NoteModel.get_article_data">
+<a class="viewcode-back" href="../../../pages.Notes.html#pages.Notes.Model_notes.NoteModel.get_article_data">[документация]</a>
+    <span class="k">def</span> <span class="nf">get_article_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">article_title</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Получает данные о статье из базы данных по её заголовку.</span>
+
+<span class="sd">            :argument:</span>
+<span class="sd">                article_title (str): Заголовок статьи, для которой нужно получить данные.</span>
+
+<span class="sd">            :returns:</span>
+<span class="sd">                dict: Словарь с данными о статье, включая заголовок (title) и содержимое (content).</span>
+<span class="sd">                      Если статья с указанным заголовком не найдена, возвращает пустой словарь.</span>
+<span class="sd">                      Если произошла ошибка при выполнении запроса к базе данных, возвращает пустой словарь.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">()</span>
+        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT title, content FROM notes WHERE title = :title&quot;</span><span class="p">)</span>
+        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:title&quot;</span><span class="p">,</span> <span class="n">article_title</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+                <span class="n">result</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">result</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Статья с таким заголовком не найдена&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Ошибка при выполнении запроса: &quot;</span><span class="o">+</span> <span class="n">query</span><span class="o">.</span><span class="n">lastError</span><span class="p">()</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">result</span></div>
 </div>
 
 </pre></div>

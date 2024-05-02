@@ -66,6 +66,8 @@
 <li><a class="reference internal" href="#module-pages.Setting.DialogsSetting">pages.Setting.DialogsSetting module</a><ul>
 <li><a class="reference internal" href="#pages.Setting.DialogsSetting.DialogConfigDB"><code class="docutils literal notranslate"><span class="pre">DialogConfigDB</span></code></a><ul>
 <li><a class="reference internal" href="#pages.Setting.DialogsSetting.DialogConfigDB.check_connection"><code class="docutils literal notranslate"><span class="pre">DialogConfigDB.check_connection()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Setting.DialogsSetting.DialogConfigDB.get_db_param"><code class="docutils literal notranslate"><span class="pre">DialogConfigDB.get_db_param()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Setting.DialogsSetting.DialogConfigDB.save_config_db"><code class="docutils literal notranslate"><span class="pre">DialogConfigDB.save_config_db()</span></code></a></li>
 <li><a class="reference internal" href="#pages.Setting.DialogsSetting.DialogConfigDB.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">DialogConfigDB.staticMetaObject</span></code></a></li>
 </ul>
 </li>
@@ -161,6 +163,34 @@
 полей QLineEdit. После этого она пытается установить соединение с базой данных PostgreSQL, используя
 полученные параметры. В случае успешного соединения выводит информационное сообщение об этом, а если
 соединение не удалось установить, выводит предупреждение с текстом ошибки.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Setting.DialogsSetting.DialogConfigDB.get_db_param">
+<span class="sig-name descname"><span class="pre">get_db_param</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="reference internal" href="_modules/pages/Setting/DialogsSetting.html#DialogConfigDB.get_db_param"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Setting.DialogsSetting.DialogConfigDB.get_db_param" title="Link to this definition"></a></dt>
+<dd><p>Получает параметры для подключения к базе данных из пользовательского ввода и возвращает их в виде словаря.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>dict: Словарь параметров для подключения к базе данных, включая хост, имя базы данных, пароль пользователя,</dt><dd><p>имя пользователя и порт.</p>
+</dd>
+</dl>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Setting.DialogsSetting.DialogConfigDB.save_config_db">
+<span class="sig-name descname"><span class="pre">save_config_db</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pages/Setting/DialogsSetting.html#DialogConfigDB.save_config_db"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Setting.DialogsSetting.DialogConfigDB.save_config_db" title="Link to this definition"></a></dt>
+<dd><p>Сохраняет параметры подключения к базе данных в настройках приложения.</p>
+<p>Получает параметры для подключения к базе данных с помощью функции get_db_param() и, если они присутствуют,
+передает их в метод set_setting_database() для сохранения в настройках приложения.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Результат<span class="colon">:</span></dt>
 <dd class="field-odd"><p>None</p>

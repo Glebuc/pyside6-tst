@@ -175,7 +175,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">check_and_create_tables</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ALL_RESULT_SQL</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lastError</span><span class="p">()</span><span class="o">.</span><span class="n">isValid</span><span class="p">():</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Ошибка выполнения запроса:&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lastError</span><span class="p">()</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Ошибка выполнения запроса:&quot;</span><span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">lastError</span><span class="p">()</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
 
 <div class="viewcode-block" id="BaseModel.check_and_create_tables">
 <a class="viewcode-back" href="../../pages.html#pages.BaseModel.BaseModel.check_and_create_tables">[документация]</a>

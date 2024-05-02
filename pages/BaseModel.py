@@ -102,7 +102,7 @@ class BaseModel(QSqlQueryModel):
         self.check_and_create_tables()
         self.setQuery(self.ALL_RESULT_SQL)
         if self.lastError().isValid():
-            self.log.log_error("Ошибка выполнения запроса:", self.lastError().text())
+            self.log.log_error("Ошибка выполнения запроса:"+ self.lastError().text())
 
     def check_and_create_tables(self):
         """

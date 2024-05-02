@@ -22,7 +22,8 @@ from loger import Logger
 from Application import Application
 from ui_modules import *
 from pages import BaseModel, Model_result, Save_data, View_result, Dialog_change_view, DialogsSetting,\
-    DialogsResult,Chart_view, Model_chart, Dialog_add_topic, Dialog_add_note, Model_notes, Controller_setting
+    DialogsResult,Chart_view, Model_chart, Dialog_add_topic,\
+    Dialog_add_note, Model_notes, Controller_setting, Dialog_article_view
 from SettingApp import AppSettings
 
 from utils import get_translate_path, get_themes_path
@@ -59,7 +60,7 @@ class MainWindow(QMainWindow):
         self.note_model = Model_notes.NoteModel('sections')
 
         widgets.btn_change_view.clicked.connect(self.open_column_selection_dialog)
-        self.setting = AppSettings()
+        self.setting = AppSettings.get_instance()
         self.scene = QGraphicsScene()
         self.view = Chart_view.ChartView(self.scene)
         self.chart = Chart_view.CustomChart()
@@ -120,10 +121,9 @@ class MainWindow(QMainWindow):
         widgets.comboBox_theme.currentTextChanged.connect(self.change_theme)
         widgets.comboBox_language.currentTextChanged.connect(self.change_translation)
         widgets.btn_save_settings.clicked.connect(self.save_settings)
-
-        self.show()
+        widgets.treeWidget.itemDoubleClicked.connect(self.get_item_and_parent_text)
         widgets.stackedWidget.setCurrentWidget(widgets.report_page)
-
+        self.show()
         record = self.model_result.record()
         column_names = [record.fieldName(i) for i in range(record.count())]
 
@@ -132,6 +132,33 @@ class MainWindow(QMainWindow):
         # словарь для хранения состояний флажков
         self.checkbox_dict = {}
         self.populate_tree_widget()
+
+    def get_item_and_parent_text(self, item, column):
+        """
+            Получает текст элемента и его родительского элемента в дереве элементов,
+            а затем отображает соответствующую статью в диалоговом окне.
+
+            :argument:
+                item (QTreeWidgetItem): Элемент, для которого нужно получить текст.
+                column (int): Индекс столбца элемента, содержащего текст.
+            :returns:
+                None: Если элемент не имеет родительского элемента.
+                None: Если не удалось получить данные о статье из базы данных.
+
+        """
+        item_text = item.text(column)
+        parent_item = item.parent()
+        if parent_item:
+            parent_text = parent_item.text(column)
+            # Получаем данные о статье из базы данных
+            article_data = self.note_model.get_article_data(item_text)
+            if article_data:
+                # Создаем новый диалоговый окно статьи и отображаем его
+                article_dialog = Dialog_article_view.ArticleDialog(article_data["title"], article_data["content"])
+                article_dialog.exec()
+        else:
+            return None
+
 
     def save_settings(self) -> None:
         """

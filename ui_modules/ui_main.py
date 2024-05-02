@@ -21,6 +21,7 @@ class Ui_MainWindow(object):
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(940, 560)
         MainWindow.setMinimumSize(QSize(940, 560))
+        MainWindow.setContextMenuPolicy(Qt.DefaultContextMenu)
         self.styleSheet = QWidget(MainWindow)
         self.styleSheet.setObjectName(u"styleSheet")
         font = QFont()
@@ -1088,6 +1089,7 @@ class Ui_MainWindow(object):
         self.change_view_chart_btn = QPushButton(self.frame_3)
         self.change_view_chart_btn.setObjectName(u"change_view_chart_btn")
         self.change_view_chart_btn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.change_view_chart_btn.setIcon(icon1)
 
         self.horizontalLayout_9.addWidget(self.change_view_chart_btn)
 
@@ -1204,6 +1206,8 @@ class Ui_MainWindow(object):
 
         self.resultView = QTableView(self.result_page)
         self.resultView.setObjectName(u"resultView")
+        self.resultView.viewport().setProperty("cursor", QCursor(Qt.PointingHandCursor))
+        self.resultView.setContextMenuPolicy(Qt.ActionsContextMenu)
         self.resultView.setSortingEnabled(True)
 
         self.verticalLayout_20.addWidget(self.resultView)
@@ -1258,6 +1262,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setContentsMargins(0, -1, 0, -1)
         self.pushButton_4 = QPushButton(self.frame_4)
         self.pushButton_4.setObjectName(u"pushButton_4")
+        self.pushButton_4.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.horizontalLayout.addWidget(self.pushButton_4)
 
@@ -1267,11 +1272,17 @@ class Ui_MainWindow(object):
 
         self.add_topic_note_btn = QPushButton(self.frame_4)
         self.add_topic_note_btn.setObjectName(u"add_topic_note_btn")
+        self.add_topic_note_btn.setCursor(QCursor(Qt.PointingHandCursor))
+        icon7 = QIcon()
+        icon7.addFile(u":/icons/images/icons/cil-plus.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.add_topic_note_btn.setIcon(icon7)
 
         self.horizontalLayout.addWidget(self.add_topic_note_btn)
 
         self.add_item_note_btn = QPushButton(self.frame_4)
         self.add_item_note_btn.setObjectName(u"add_item_note_btn")
+        self.add_item_note_btn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.add_item_note_btn.setIcon(icon7)
 
         self.horizontalLayout.addWidget(self.add_item_note_btn)
 
@@ -1285,7 +1296,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 858, 464))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 858, 414))
         self.verticalLayout_16 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_16.setObjectName(u"verticalLayout_16")
         self.treeWidget = QTreeWidget(self.scrollAreaWidgetContents)
@@ -1301,7 +1312,11 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_16.addWidget(self.treeWidget)
 
-        self.frame_6 = QFrame(self.scrollAreaWidgetContents)
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+
+        self.verticalLayout_14.addWidget(self.scrollArea)
+
+        self.frame_6 = QFrame(self.note_page)
         self.frame_6.setObjectName(u"frame_6")
         self.frame_6.setMinimumSize(QSize(0, 50))
         self.frame_6.setFrameShape(QFrame.StyledPanel)
@@ -1312,22 +1327,28 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_2.addItem(self.horizontalSpacer_5)
 
-        self.pushButton_5 = QPushButton(self.frame_6)
-        self.pushButton_5.setObjectName(u"pushButton_5")
+        self.edit_note_btn = QPushButton(self.frame_6)
+        self.edit_note_btn.setObjectName(u"edit_note_btn")
+        self.edit_note_btn.setEnabled(True)
+        self.edit_note_btn.setCursor(QCursor(Qt.PointingHandCursor))
+        icon8 = QIcon()
+        icon8.addFile(u":/icons/images/icons/cil-text.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.edit_note_btn.setIcon(icon8)
 
-        self.horizontalLayout_2.addWidget(self.pushButton_5)
+        self.horizontalLayout_2.addWidget(self.edit_note_btn)
 
-        self.pushButton_3 = QPushButton(self.frame_6)
-        self.pushButton_3.setObjectName(u"pushButton_3")
+        self.delete_note_btn = QPushButton(self.frame_6)
+        self.delete_note_btn.setObjectName(u"delete_note_btn")
+        self.delete_note_btn.setEnabled(True)
+        self.delete_note_btn.setCursor(QCursor(Qt.PointingHandCursor))
+        icon9 = QIcon()
+        icon9.addFile(u":/icons/images/icons/cil-x-circle.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.delete_note_btn.setIcon(icon9)
 
-        self.horizontalLayout_2.addWidget(self.pushButton_3)
+        self.horizontalLayout_2.addWidget(self.delete_note_btn)
 
 
-        self.verticalLayout_16.addWidget(self.frame_6)
-
-        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
-
-        self.verticalLayout_14.addWidget(self.scrollArea)
+        self.verticalLayout_14.addWidget(self.frame_6)
 
         self.stackedWidget.addWidget(self.note_page)
 
@@ -1393,7 +1414,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.comboBox_theme.setCurrentIndex(1)
-        self.stackedWidget.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1426,6 +1447,9 @@ class Ui_MainWindow(object):
 #if QT_CONFIG(shortcut)
         self.btn_result.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+E", None))
 #endif // QT_CONFIG(shortcut)
+#if QT_CONFIG(tooltip)
+        self.btn_note.setToolTip(QCoreApplication.translate("MainWindow", u"\u0417\u0430\u043c\u0435\u0442\u043a\u0438", None))
+#endif // QT_CONFIG(tooltip)
         self.btn_note.setText(QCoreApplication.translate("MainWindow", u"\u0417\u0430\u043c\u0435\u0442\u043a\u0438", None))
 #if QT_CONFIG(shortcut)
         self.btn_note.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+R", None))
@@ -1502,12 +1526,12 @@ class Ui_MainWindow(object):
         self.btn_change_view.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0430 \u043e\u0442\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u044f", None))
         self.btn_save_view.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c..", None))
         self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043f\u0440\u0430\u0432\u043e\u0447\u043d\u0438\u043a \u043f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u043e\u0432", None))
-        self.add_topic_note_btn.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0440\u0430\u0437\u0434\u0435\u043b ...", None))
-        self.add_item_note_btn.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0441\u0442\u0430\u0442\u044c\u044e ...", None))
+        self.add_topic_note_btn.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0440\u0430\u0437\u0434\u0435\u043b...", None))
+        self.add_item_note_btn.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0441\u0442\u0430\u0442\u044c\u044e...", None))
         ___qtreewidgetitem = self.treeWidget.headerItem()
         ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", u"\u0417\u0430\u043c\u0435\u0442\u043a\u0438", None));
-        self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"\u0420\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u0442\u044c...", None))
-        self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u0437\u0430\u043f\u0438\u0441\u044c ...", None))
+        self.edit_note_btn.setText(QCoreApplication.translate("MainWindow", u"\u0420\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u0442\u044c...", None))
+        self.delete_note_btn.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u0437\u0430\u043f\u0438\u0441\u044c...", None))
         self.creditsLabel.setText("")
         self.version.setText(QCoreApplication.translate("MainWindow", u"v0.0.1", None))
     # retranslateUi

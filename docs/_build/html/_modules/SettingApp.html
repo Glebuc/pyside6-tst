@@ -73,6 +73,7 @@
 <span class="kn">from</span> <span class="nn">PySide6.QtCore</span> <span class="kn">import</span> <span class="n">QSettings</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
 <span class="kn">from</span> <span class="nn">loger</span> <span class="kn">import</span> <span class="n">Logger</span>
+<span class="kn">from</span> <span class="nn">cryptography.fernet</span> <span class="kn">import</span> <span class="n">Fernet</span>
 
 <div class="viewcode-block" id="AppSettings">
 <a class="viewcode-back" href="../SettingApp.html#SettingApp.AppSettings">[документация]</a>
@@ -118,6 +119,7 @@
             <span class="s2">&quot;database/database&quot;</span><span class="p">:</span> <span class="s2">&quot;None&quot;</span><span class="p">,</span>
             <span class="s2">&quot;database/user&quot;</span><span class="p">:</span> <span class="s2">&quot;None&quot;</span><span class="p">,</span>
             <span class="s2">&quot;database/password&quot;</span><span class="p">:</span> <span class="s2">&quot;None&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;database/salt&quot;</span><span class="p">:</span> <span class="s2">&quot;f549eebfba38656a649719c910f054f229e5fc93&quot;</span><span class="p">,</span>
             <span class="s2">&quot;AppSettings/language&quot;</span><span class="p">:</span> <span class="s2">&quot;Russian&quot;</span><span class="p">,</span>
             <span class="s2">&quot;AppSettings/theme&quot;</span><span class="p">:</span> <span class="s2">&quot;Light&quot;</span><span class="p">,</span>
 
@@ -183,6 +185,23 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Обновлены настройки в файле конифгурации - </span><span class="si">{</span><span class="n">new_settings</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
 
+<div class="viewcode-block" id="AppSettings.set_setting_database">
+<a class="viewcode-back" href="../SettingApp.html#SettingApp.AppSettings.set_setting_database">[документация]</a>
+    <span class="k">def</span> <span class="nf">set_setting_database</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_settings</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Устанавливает новые значения для настроек приложения.</span>
+
+<span class="sd">        :param:</span>
+<span class="sd">            new_settings (Dict): Словарь, содержащий новые значения настроек в формате {ключ: значение}.</span>
+
+<span class="sd">        :return:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">new_settings</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;database/</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Обновлены настройки базы данных - </span><span class="si">{</span><span class="n">new_settings</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="AppSettings.get_settings_by_tag">
 <a class="viewcode-back" href="../SettingApp.html#SettingApp.AppSettings.get_settings_by_tag">[документация]</a>
     <span class="k">def</span> <span class="nf">get_settings_by_tag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
@@ -200,12 +219,61 @@
                 <span class="n">settings_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">settings_dict</span></div>
+
+
+<div class="viewcode-block" id="AppSettings.generate_key">
+<a class="viewcode-back" href="../SettingApp.html#SettingApp.AppSettings.generate_key">[документация]</a>
+    <span class="k">def</span> <span class="nf">generate_key</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Генерирует ключ для использования в шифровании методом Fernet.</span>
+
+<span class="sd">        :returns:</span>
+<span class="sd">            bytes: Сгенерированный ключ.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Fernet</span><span class="o">.</span><span class="n">generate_key</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="AppSettings.encrypt_string">
+<a class="viewcode-back" href="../SettingApp.html#SettingApp.AppSettings.encrypt_string">[документация]</a>
+    <span class="k">def</span> <span class="nf">encrypt_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Шифрует строку с использованием ключа методом Fernet.</span>
+
+<span class="sd">        :argument:</span>
+<span class="sd">            text (str): Строка для шифрования.</span>
+<span class="sd">            key (bytes): Ключ для шифрования.</span>
+
+<span class="sd">        :returns:</span>
+<span class="sd">            bytes: Зашифрованная строка.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cipher_suite</span> <span class="o">=</span> <span class="n">Fernet</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="n">encrypted_text</span> <span class="o">=</span> <span class="n">cipher_suite</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">encrypted_text</span></div>
+
+
+<div class="viewcode-block" id="AppSettings.decrypt_string">
+<a class="viewcode-back" href="../SettingApp.html#SettingApp.AppSettings.decrypt_string">[документация]</a>
+    <span class="k">def</span> <span class="nf">decrypt_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">encrypted_text</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Дешифрует строку, зашифрованную методом Fernet.</span>
+
+<span class="sd">        :argument:</span>
+<span class="sd">            encrypted_text (bytes): Зашифрованная строка.</span>
+<span class="sd">            key (bytes): Ключ для дешифрования.</span>
+
+<span class="sd">        :returns:</span>
+<span class="sd">            str: Расшифрованная строка.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cipher_suite</span> <span class="o">=</span> <span class="n">Fernet</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="n">decrypted_text</span> <span class="o">=</span> <span class="n">cipher_suite</span><span class="o">.</span><span class="n">decrypt</span><span class="p">(</span><span class="n">encrypted_text</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">decrypted_text</span></div>
 </div>
+
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">obj</span> <span class="o">=</span> <span class="n">AppSettings</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">get_settings_by_tag</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">print</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">generate_key</span><span class="p">()))</span>
 </pre></div>
 
            </div>

@@ -1608,7 +1608,7 @@ background-image: none;
                       <number>0</number>
                      </property>
                      <property name="currentIndex">
-                      <number>0</number>
+                      <number>2</number>
                      </property>
                      <widget class="QWidget" name="report_page">
                       <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -2127,6 +2127,9 @@ background-image: none;
                           </property>
                           <item>
                            <widget class="QPushButton" name="pushButton_4">
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
                             <property name="text">
                              <string>Справочник параметров</string>
                             </property>
@@ -2147,6 +2150,9 @@ background-image: none;
                           </item>
                           <item>
                            <widget class="QPushButton" name="add_topic_note_btn">
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
                             <property name="text">
                              <string>Добавить раздел...</string>
                             </property>
@@ -2158,6 +2164,9 @@ background-image: none;
                           </item>
                           <item>
                            <widget class="QPushButton" name="add_item_note_btn">
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
                             <property name="text">
                              <string>Добавить статью...</string>
                             </property>
@@ -2186,8 +2195,8 @@ background-image: none;
                            <rect>
                             <x>0</x>
                             <y>0</y>
-                            <width>313</width>
-                            <height>123</height>
+                            <width>92</width>
+                            <height>67</height>
                            </rect>
                           </property>
                           <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -2222,73 +2231,73 @@ background-image: none;
                              </column>
                             </widget>
                            </item>
-                           <item>
-                            <widget class="QFrame" name="frame_6">
-                             <property name="minimumSize">
-                              <size>
-                               <width>0</width>
-                               <height>50</height>
-                              </size>
-                             </property>
-                             <property name="frameShape">
-                              <enum>QFrame::StyledPanel</enum>
-                             </property>
-                             <property name="frameShadow">
-                              <enum>QFrame::Raised</enum>
-                             </property>
-                             <layout class="QHBoxLayout" name="horizontalLayout_2">
-                              <item>
-                               <spacer name="horizontalSpacer_5">
-                                <property name="orientation">
-                                 <enum>Qt::Horizontal</enum>
-                                </property>
-                                <property name="sizeHint" stdset="0">
-                                 <size>
-                                  <width>40</width>
-                                  <height>20</height>
-                                 </size>
-                                </property>
-                               </spacer>
-                              </item>
-                              <item>
-                               <widget class="QPushButton" name="edit_note_btn">
-                                <property name="enabled">
-                                 <bool>false</bool>
-                                </property>
-                                <property name="cursor">
-                                 <cursorShape>PointingHandCursor</cursorShape>
-                                </property>
-                                <property name="text">
-                                 <string>Редактировать...</string>
-                                </property>
-                                <property name="icon">
-                                 <iconset resource="resources.qrc">
-                                  <normaloff>:/icons/images/icons/cil-text.png</normaloff>:/icons/images/icons/cil-text.png</iconset>
-                                </property>
-                               </widget>
-                              </item>
-                              <item>
-                               <widget class="QPushButton" name="delete_note_btn">
-                                <property name="enabled">
-                                 <bool>false</bool>
-                                </property>
-                                <property name="cursor">
-                                 <cursorShape>PointingHandCursor</cursorShape>
-                                </property>
-                                <property name="text">
-                                 <string>Удалить запись...</string>
-                                </property>
-                                <property name="icon">
-                                 <iconset resource="resources.qrc">
-                                  <normaloff>:/icons/images/icons/cil-x-circle.png</normaloff>:/icons/images/icons/cil-x-circle.png</iconset>
-                                </property>
-                               </widget>
-                              </item>
-                             </layout>
-                            </widget>
-                           </item>
                           </layout>
                          </widget>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QFrame" name="frame_6">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>50</height>
+                          </size>
+                         </property>
+                         <property name="frameShape">
+                          <enum>QFrame::StyledPanel</enum>
+                         </property>
+                         <property name="frameShadow">
+                          <enum>QFrame::Raised</enum>
+                         </property>
+                         <layout class="QHBoxLayout" name="horizontalLayout_2">
+                          <item>
+                           <spacer name="horizontalSpacer_5">
+                            <property name="orientation">
+                             <enum>Qt::Horizontal</enum>
+                            </property>
+                            <property name="sizeHint" stdset="0">
+                             <size>
+                              <width>40</width>
+                              <height>20</height>
+                             </size>
+                            </property>
+                           </spacer>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="edit_note_btn">
+                            <property name="enabled">
+                             <bool>true</bool>
+                            </property>
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
+                            <property name="text">
+                             <string>Редактировать...</string>
+                            </property>
+                            <property name="icon">
+                             <iconset resource="resources.qrc">
+                              <normaloff>:/icons/images/icons/cil-text.png</normaloff>:/icons/images/icons/cil-text.png</iconset>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="delete_note_btn">
+                            <property name="enabled">
+                             <bool>true</bool>
+                            </property>
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
+                            <property name="text">
+                             <string>Удалить запись...</string>
+                            </property>
+                            <property name="icon">
+                             <iconset resource="resources.qrc">
+                              <normaloff>:/icons/images/icons/cil-x-circle.png</normaloff>:/icons/images/icons/cil-x-circle.png</iconset>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
                         </widget>
                        </item>
                       </layout>

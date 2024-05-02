@@ -50,6 +50,7 @@
 <li><a class="reference internal" href="#main.MainWindow.button_click"><code class="docutils literal notranslate"><span class="pre">MainWindow.button_click()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.change_theme"><code class="docutils literal notranslate"><span class="pre">MainWindow.change_theme()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.change_translation"><code class="docutils literal notranslate"><span class="pre">MainWindow.change_translation()</span></code></a></li>
+<li><a class="reference internal" href="#main.MainWindow.get_item_and_parent_text"><code class="docutils literal notranslate"><span class="pre">MainWindow.get_item_and_parent_text()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.get_param_test"><code class="docutils literal notranslate"><span class="pre">MainWindow.get_param_test()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.get_text_from_combo_chart"><code class="docutils literal notranslate"><span class="pre">MainWindow.get_text_from_combo_chart()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.open_column_selection_dialog"><code class="docutils literal notranslate"><span class="pre">MainWindow.open_column_selection_dialog()</span></code></a></li>
@@ -135,6 +136,23 @@
 </dd>
 <dt class="field-even">Результат<span class="colon">:</span></dt>
 <dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWindow.get_item_and_parent_text">
+<span class="sig-name descname"><span class="pre">get_item_and_parent_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWindow.get_item_and_parent_text"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#main.MainWindow.get_item_and_parent_text" title="Link to this definition"></a></dt>
+<dd><p>Получает текст элемента и его родительского элемента в дереве элементов,
+а затем отображает соответствующую статью в диалоговом окне.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Argument<span class="colon">:</span></dt>
+<dd class="field-odd"><p>item (QTreeWidgetItem): Элемент, для которого нужно получить текст.
+column (int): Индекс столбца элемента, содержащего текст.</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>None: Если элемент не имеет родительского элемента.
+None: Если не удалось получить данные о статье из базы данных.</p>
 </dd>
 </dl>
 </dd></dl>

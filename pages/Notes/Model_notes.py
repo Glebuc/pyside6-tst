@@ -7,6 +7,7 @@ from PySide6.QtUiTools import QUiLoader
 from ui_modules import *
 from ..BaseModel import BaseModel
 from loger import Logger
+from typing import Dict
 
 
 class NoteModel(BaseModel):
@@ -107,7 +108,7 @@ class NoteModel(BaseModel):
         section_id = self.get_section_id_by_name(section_name)
 
         if section_id is None:
-            self.log.log_errorrint(f"Ошибка: Раздел {section_name} не найден.")
+            self.log.log_error(f"Ошибка: Раздел {section_name} не найден.")
             return False
 
         query = QSqlQuery()
@@ -121,3 +122,30 @@ class NoteModel(BaseModel):
         else:
             self.log.log_error("Ошибка при выполнении запроса:" + query.lastError().text())
             return False
+
+    def get_article_data(self, article_title: str) -> Dict:
+        """
+            Получает данные о статье из базы данных по её заголовку.
+
+            :argument:
+                article_title (str): Заголовок статьи, для которой нужно получить данные.
+
+            :returns:
+                dict: Словарь с данными о статье, включая заголовок (title) и содержимое (content).
+                      Если статья с указанным заголовком не найдена, возвращает пустой словарь.
+                      Если произошла ошибка при выполнении запроса к базе данных, возвращает пустой словарь.
+
+        """
+        result = {}
+        query = QSqlQuery()
+        query.prepare("SELECT title, content FROM notes WHERE title = :title")
+        query.bindValue(":title", article_title)
+        if query.exec():
+            if query.next():
+                result['title'] = query.value(0)
+                result['content'] = query.value(1)
+            else:
+                self.log.log_error("Статья с таким заголовком не найдена")
+        else:
+            self.log.log_error("Ошибка при выполнении запроса: "+ query.lastError().text())
+        return result

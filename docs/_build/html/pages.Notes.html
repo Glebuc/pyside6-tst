@@ -70,6 +70,7 @@
 <li><a class="reference internal" href="#pages.Notes.Model_notes.NoteModel"><code class="docutils literal notranslate"><span class="pre">NoteModel</span></code></a><ul>
 <li><a class="reference internal" href="#pages.Notes.Model_notes.NoteModel.add_note"><code class="docutils literal notranslate"><span class="pre">NoteModel.add_note()</span></code></a></li>
 <li><a class="reference internal" href="#pages.Notes.Model_notes.NoteModel.add_section"><code class="docutils literal notranslate"><span class="pre">NoteModel.add_section()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Notes.Model_notes.NoteModel.get_article_data"><code class="docutils literal notranslate"><span class="pre">NoteModel.get_article_data()</span></code></a></li>
 <li><a class="reference internal" href="#pages.Notes.Model_notes.NoteModel.get_data_from_database"><code class="docutils literal notranslate"><span class="pre">NoteModel.get_data_from_database()</span></code></a></li>
 <li><a class="reference internal" href="#pages.Notes.Model_notes.NoteModel.get_section_id_by_name"><code class="docutils literal notranslate"><span class="pre">NoteModel.get_section_id_by_name()</span></code></a></li>
 <li><a class="reference internal" href="#pages.Notes.Model_notes.NoteModel.get_section_names"><code class="docutils literal notranslate"><span class="pre">NoteModel.get_section_names()</span></code></a></li>
@@ -244,6 +245,25 @@
 </dd>
 <dt class="field-odd">Тип результата<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Notes.Model_notes.NoteModel.get_article_data">
+<span class="sig-name descname"><span class="pre">get_article_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">article_title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="reference internal" href="_modules/pages/Notes/Model_notes.html#NoteModel.get_article_data"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Notes.Model_notes.NoteModel.get_article_data" title="Link to this definition"></a></dt>
+<dd><p>Получает данные о статье из базы данных по её заголовку.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Argument<span class="colon">:</span></dt>
+<dd class="field-odd"><p>article_title (str): Заголовок статьи, для которой нужно получить данные.</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>dict: Словарь с данными о статье, включая заголовок (title) и содержимое (content).</dt><dd><p>Если статья с указанным заголовком не найдена, возвращает пустой словарь.
+Если произошла ошибка при выполнении запроса к базе данных, возвращает пустой словарь.</p>
+</dd>
+</dl>
+</p>
 </dd>
 </dl>
 </dd></dl>

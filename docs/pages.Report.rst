@@ -4,6 +4,14 @@ pages.Report package
 Submodules
 ----------
 
+pages.Report.Controller\_report module
+--------------------------------------
+
+.. automodule:: pages.Report.Controller_report
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 pages.Report.ReportModel module
 -------------------------------
 

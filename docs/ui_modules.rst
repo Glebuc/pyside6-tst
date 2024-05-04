@@ -4,14 +4,6 @@ ui\_modules package
 Submodules
 ----------
 
-ui\_modules.app\_functions module
----------------------------------
-
-.. automodule:: ui_modules.app_functions
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 ui\_modules.app\_settings module
 --------------------------------
 

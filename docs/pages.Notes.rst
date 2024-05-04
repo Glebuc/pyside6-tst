@@ -20,18 +20,18 @@ pages.Notes.Dialog\_add\_topic module
    :undoc-members:
    :show-inheritance:
 
-pages.Notes.Model\_notes module
--------------------------------
+pages.Notes.Dialog\_article\_view module
+----------------------------------------
 
-.. automodule:: pages.Notes.Model_notes
+.. automodule:: pages.Notes.Dialog_article_view
    :members:
    :undoc-members:
    :show-inheritance:
 
-pages.Notes.NoteView module
----------------------------
+pages.Notes.Model\_notes module
+-------------------------------
 
-.. automodule:: pages.Notes.NoteView
+.. automodule:: pages.Notes.Model_notes
    :members:
    :undoc-members:
    :show-inheritance:

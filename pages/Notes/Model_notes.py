@@ -1,10 +1,7 @@
 from typing import List
 from PySide6.QtSql import QSqlDatabase, QSqlQuery, QSqlTableModel, QSqlQueryModel
-from PySide6.QtWidgets import QTableView, QVBoxLayout, QWidget, QHeaderView, QComboBox, QMessageBox
-from PySide6.QtCore import Qt, Slot
-from PySide6.QtUiTools import QUiLoader
 
-from ui_modules import *
+
 from ..BaseModel import BaseModel
 from loger import Logger
 from typing import Dict
@@ -149,3 +146,47 @@ class NoteModel(BaseModel):
         else:
             self.log.log_error("Ошибка при выполнении запроса: "+ query.lastError().text())
         return result
+
+    def update_article_data(self, old_title,  article_title: str, article_content: str) -> None:
+        """
+           Обновляет содержимое статьи в таблице 'notes'.
+
+           :argument:
+               article_title (str): Заголовок статьи, которую необходимо обновить.
+               article_content (str): Новое содержимое статьи.
+
+           :returns:
+               None
+           """
+        query = QSqlQuery()
+        query.prepare("UPDATE notes SET title = :title, content = :content WHERE title = :old_title")
+        query.bindValue(":old_title", old_title)
+        query.bindValue(":title", article_title)
+        query.bindValue(":content", article_content)
+        if query.exec():
+            self.log.log_info("Статья успешно обновлена")
+            return True
+        else:
+            self.log.log_error("Ошибка при выполнении запроса на обновление статьи: " + query.lastError().text())
+            return False
+
+    def update_topic_data(self, old_topic_title, topic_title: str) -> bool:
+        """
+        Обновляет название раздела в таблице 'sections'.
+
+        :argument:
+            topic_title (str): Новое название раздела.
+
+        :returns:
+            bool: True, если запрос выполнен успешно, иначе False.
+        """
+        query = QSqlQuery()
+        query.prepare("UPDATE sections SET name = :name WHERE name = :old_title")
+        query.bindValue(":name", topic_title)
+        query.bindValue(":old_title", old_topic_title)
+        if query.exec():
+            self.log.log_info("Название раздела успешно обновлено")
+            return True
+        else:
+            self.log.log_error("Ошибка при выполнении запроса на обновление раздела: " + query.lastError().text())
+            return False

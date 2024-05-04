@@ -4,6 +4,14 @@ pages.Setting package
 Submodules
 ----------
 
+pages.Setting.Controller\_setting module
+----------------------------------------
+
+.. automodule:: pages.Setting.Controller_setting
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 pages.Setting.Dialog\_config\_db module
 ---------------------------------------
 

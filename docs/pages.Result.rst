@@ -4,6 +4,14 @@ pages.Result package
 Submodules
 ----------
 
+pages.Result.Controller\_result module
+--------------------------------------
+
+.. automodule:: pages.Result.Controller_result
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 pages.Result.Dialog\_change\_view module
 ----------------------------------------
 

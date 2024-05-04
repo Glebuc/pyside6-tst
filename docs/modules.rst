@@ -5,6 +5,7 @@
    :maxdepth: 4
 
    Application
+   Mainwindow
    SettingApp
    loger
    main
@@ -12,4 +13,3 @@
    setup
    ui_modules
    utils
-   widgets

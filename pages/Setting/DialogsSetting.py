@@ -8,6 +8,7 @@ from .Dialog_keyword import Ui_Dialog as DialogKeyWord
 from SettingApp import AppSettings
 
 class DialogConfigDB(QDialog, DialogConfigDB):
+    """Диалоговое окно для редактирования конфигурации БД"""
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
@@ -32,6 +33,8 @@ class DialogConfigDB(QDialog, DialogConfigDB):
         dict_config_db['port'] = self.port_db_spin.value()
         if dict_config_db['host'] and dict_config_db['dbname'] and dict_config_db['user'] and dict_config_db['port']:
             return dict_config_db
+        else:
+            QMessageBox.warning(self, "Предупреждение", "Заполните все поля для настройки соединения с БД")
 
     def check_connection(self) -> None:
         """
@@ -46,6 +49,8 @@ class DialogConfigDB(QDialog, DialogConfigDB):
                 None
         """
         dict_db = self.get_db_param()
+        if dict_db is None:
+            return None
 
         try:
             connection = psycopg2.connect(
@@ -76,6 +81,7 @@ class DialogConfigDB(QDialog, DialogConfigDB):
 
 
 class DialogKey(QDialog, DialogKeyWord):
+    """Диалоговое окно для отображения таблицы с 'горячими' клавишами приложения"""
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)

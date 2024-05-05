@@ -9,6 +9,11 @@ class AppSettings(QSettings):
     Класс для работы с настройками приложения.
 
     Унаследован от QSettings для работы с файлами настроек.
+
+     .. code-block:: python
+
+           setting = AppSettings.get_instance()
+           setting.log_info("Информационное сообщение")
     """
     _instance = None
 

@@ -71,7 +71,7 @@ class NoteModel(BaseModel):
             self.log.log_error("Ошибка при выполнении запроса:" + query.lastError().text())
             return False
 
-    def get_section_id_by_name(self, section_name: str) -> int:
+    def get_section_id_by_name(self, section_name: str) -> None:
         """
         Получает идентификатор раздела по его имени.
 
@@ -147,7 +147,7 @@ class NoteModel(BaseModel):
             self.log.log_error("Ошибка при выполнении запроса: "+ query.lastError().text())
         return result
 
-    def update_article_data(self, old_title,  article_title: str, article_content: str) -> None:
+    def update_article_data(self, old_title,  article_title: str, article_content: str) -> bool:
         """
            Обновляет содержимое статьи в таблице 'notes'.
 
@@ -170,7 +170,7 @@ class NoteModel(BaseModel):
             self.log.log_error("Ошибка при выполнении запроса на обновление статьи: " + query.lastError().text())
             return False
 
-    def update_topic_data(self, old_topic_title, topic_title: str) -> bool:
+    def update_topic_data(self, old_topic_title: str, topic_title: str) -> bool:
         """
         Обновляет название раздела в таблице 'sections'.
 
@@ -189,4 +189,23 @@ class NoteModel(BaseModel):
             return True
         else:
             self.log.log_error("Ошибка при выполнении запроса на обновление раздела: " + query.lastError().text())
+            return False
+
+    def delete_topic_data(self, topic_title: str) -> bool:
+        """
+        Удаляет раздел из таблицы 'sections' в базе данных вместе со всеми связанными с ним записями в таблице 'notes'.
+
+        :arguments:
+            topic_title (str): Название раздела, который требуется удалить.
+        :returns:
+            bool: True, если запрос выполнен успешно, False в противном случае.
+        """
+        query = QSqlQuery()
+        query.prepare("DELETE FROM sections WHERE name = :name")
+        query.bindValue(":name", topic_title)
+        if query.exec():
+            self.log.log_info("Раздел и все связанные с ним записи успешно удалены")
+            return True
+        else:
+            self.log.log_error("Ошибка при выполнении запроса на удаление раздела: " + query.lastError().text())
             return False

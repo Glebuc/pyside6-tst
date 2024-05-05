@@ -6,6 +6,7 @@ from pages.Result import Model_result
 
 
 class CustomTableView(QTableView):
+    """Класс для отображения таблицы на странице Result"""
     def __init__(self, parent=None):
         super(CustomTableView, self).__init__(parent)
 

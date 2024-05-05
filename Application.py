@@ -14,9 +14,6 @@ class Application(QApplication):
         self.log = Logger.get_instance()
         self.app_settings = AppSettings.get_instance()
         self.app_connection_to_db()
-
-
-
         self.translator = QTranslator(self)
         self.setup()
 

@@ -94,7 +94,7 @@
 <span class="kn">from</span> <span class="nn">ui_modules</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">pages</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Model_result</span><span class="p">,</span> <span class="n">Save_data</span><span class="p">,</span> <span class="n">View_result</span><span class="p">,</span> <span class="n">Dialog_change_view</span><span class="p">,</span> <span class="n">DialogsSetting</span><span class="p">,</span>\
     <span class="n">DialogsResult</span><span class="p">,</span><span class="n">Chart_view</span><span class="p">,</span> <span class="n">Model_chart</span><span class="p">,</span> <span class="n">Dialog_add_topic</span><span class="p">,</span>\
-    <span class="n">Dialog_add_note</span><span class="p">,</span> <span class="n">Model_notes</span><span class="p">,</span> <span class="n">Controller_setting</span><span class="p">,</span> <span class="n">Dialog_article_view</span>
+    <span class="n">Dialog_add_note</span><span class="p">,</span> <span class="n">Model_notes</span><span class="p">,</span> <span class="n">Controller_setting</span><span class="p">,</span> <span class="n">Dialog_article_view</span><span class="p">,</span> <span class="n">Dialog_edit_note</span><span class="p">,</span> <span class="n">Dialog_edit_topic</span>
 <span class="kn">from</span> <span class="nn">SettingApp</span> <span class="kn">import</span> <span class="n">AppSettings</span>
 
 <span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">get_translate_path</span><span class="p">,</span> <span class="n">get_themes_path</span>
@@ -196,6 +196,9 @@
         <span class="n">widgets</span><span class="o">.</span><span class="n">btn_save_settings</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">save_settings</span><span class="p">)</span>
         <span class="n">widgets</span><span class="o">.</span><span class="n">treeWidget</span><span class="o">.</span><span class="n">itemDoubleClicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_item_and_parent_text</span><span class="p">)</span>
         <span class="n">widgets</span><span class="o">.</span><span class="n">stackedWidget</span><span class="o">.</span><span class="n">setCurrentWidget</span><span class="p">(</span><span class="n">widgets</span><span class="o">.</span><span class="n">report_page</span><span class="p">)</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">edit_note_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chose_dialog_for_edit</span><span class="p">)</span>
+
+
         <span class="bp">self</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
         <span class="n">record</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_result</span><span class="o">.</span><span class="n">record</span><span class="p">()</span>
         <span class="n">column_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">record</span><span class="o">.</span><span class="n">fieldName</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">count</span><span class="p">())]</span>
@@ -205,6 +208,87 @@
         <span class="c1"># словарь для хранения состояний флажков</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">checkbox_dict</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">populate_tree_widget</span><span class="p">()</span>
+
+<div class="viewcode-block" id="MainWindow.on_selection_changed">
+<a class="viewcode-back" href="../main.html#main.MainWindow.on_selection_changed">[документация]</a>
+    <span class="k">def</span> <span class="nf">on_selection_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Обработчик изменения выделения в QTreeWidget.</span>
+
+<span class="sd">            Проверяет, выбран ли элемент в QTreeWidget. Если элемент выбран, проверяет, является ли он элементом верхнего уровня или дочерним.</span>
+<span class="sd">            Если ни один элемент не выбран, показывает предупреждение через QMessageBox.</span>
+
+<span class="sd">            :returns:</span>
+<span class="sd">                bool: True, если выбран дочерний элемент. False, если выбран элемент верхнего уровня или ничего не выбрано.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+        <span class="n">selected_items</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">treeWidget</span><span class="o">.</span><span class="n">selectedItems</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">selected_items</span><span class="p">:</span>
+            <span class="n">selected_item</span> <span class="o">=</span> <span class="n">selected_items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">selected_item</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Выбран элемент вверхнего уровня </span><span class="si">{</span><span class="n">selected_item</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2"> для удаления или редактирования&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Выбран элемент </span><span class="si">{</span><span class="n">selected_item</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2"> для удаления или редактирования&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">QMessageBox</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;Внимание&quot;</span><span class="p">,</span> <span class="s1">&#39;Для &quot;Редактирование&quot; или &quot;Удаление&quot; выделите статью или раздел&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="MainWindow.chose_dialog_for_edit">
+<a class="viewcode-back" href="../main.html#main.MainWindow.chose_dialog_for_edit">[документация]</a>
+    <span class="k">def</span> <span class="nf">chose_dialog_for_edit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Выбирает диалоговое окно для редактирования, в зависимости от выбранного элемента в QTreeWidget.</span>
+
+<span class="sd">            Если элемент выбран и возвращается не None из метода on_selection_changed, открывает диалоговое окно для редактирования,</span>
+<span class="sd">            либо заголовка раздела, либо содержания статьи.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">selection_result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_selection_changed</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">selection_result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">selected_items</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">treeWidget</span><span class="o">.</span><span class="n">selectedItems</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">selected_items</span><span class="p">:</span>
+                <span class="n">selected_item</span> <span class="o">=</span> <span class="n">selected_items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">selection_result</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">dialog_edit_content_article</span><span class="p">(</span><span class="n">selected_item</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">dialog_edit_title_topic</span><span class="p">(</span><span class="n">selected_item</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="MainWindow.dialog_edit_title_topic">
+<a class="viewcode-back" href="../main.html#main.MainWindow.dialog_edit_title_topic">[документация]</a>
+    <span class="k">def</span> <span class="nf">dialog_edit_title_topic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Открывает диалоговое окно для редактирования заголовка раздела.</span>
+
+<span class="sd">            :arguments:</span>
+<span class="sd">                title (str): Заголовок статьи.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">dialog</span> <span class="o">=</span> <span class="n">Dialog_edit_topic</span><span class="o">.</span><span class="n">EditTopicDialog</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">dialog</span><span class="o">.</span><span class="n">isVisible</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_info</span><span class="p">(</span><span class="s2">&quot;Открыто диалоговое окно для редактирования раздела&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">dialog</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span> <span class="o">==</span> <span class="n">QDialog</span><span class="o">.</span><span class="n">Accepted</span><span class="p">:</span>
+                <span class="n">widgets</span><span class="o">.</span><span class="n">treeWidget</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">populate_tree_widget</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Ошибка открытия диалогового окна для редактирования раздела&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MainWindow.dialog_edit_content_article">
+<a class="viewcode-back" href="../main.html#main.MainWindow.dialog_edit_content_article">[документация]</a>
+    <span class="k">def</span> <span class="nf">dialog_edit_content_article</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
+        <span class="n">dialog</span> <span class="o">=</span> <span class="n">Dialog_edit_note</span><span class="o">.</span><span class="n">EditNoteDialog</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">dialog</span><span class="o">.</span><span class="n">isVisible</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_info</span><span class="p">(</span><span class="s2">&quot;Открыто диалоговое окно для редактирования статьи&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">dialog</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span> <span class="o">==</span> <span class="n">QDialog</span><span class="o">.</span><span class="n">Accepted</span><span class="p">:</span>
+                <span class="n">widgets</span><span class="o">.</span><span class="n">treeWidget</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">populate_tree_widget</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Ошибка открытия диалогового окна для редактирования статьи&quot;</span><span class="p">)</span></div>
+
 
 <div class="viewcode-block" id="MainWindow.get_item_and_parent_text">
 <a class="viewcode-back" href="../main.html#main.MainWindow.get_item_and_parent_text">[документация]</a>
@@ -228,7 +312,6 @@
             <span class="c1"># Получаем данные о статье из базы данных</span>
             <span class="n">article_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">note_model</span><span class="o">.</span><span class="n">get_article_data</span><span class="p">(</span><span class="n">item_text</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">article_data</span><span class="p">:</span>
-                <span class="c1"># Создаем новый диалоговый окно статьи и отображаем его</span>
                 <span class="n">article_dialog</span> <span class="o">=</span> <span class="n">Dialog_article_view</span><span class="o">.</span><span class="n">ArticleDialog</span><span class="p">(</span><span class="n">article_data</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="n">article_data</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">])</span>
                 <span class="n">article_dialog</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>

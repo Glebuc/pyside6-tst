@@ -1608,7 +1608,7 @@ background-image: none;
                       <number>0</number>
                      </property>
                      <property name="currentIndex">
-                      <number>2</number>
+                      <number>3</number>
                      </property>
                      <widget class="QWidget" name="report_page">
                       <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -2195,8 +2195,8 @@ background-image: none;
                            <rect>
                             <x>0</x>
                             <y>0</y>
-                            <width>92</width>
-                            <height>67</height>
+                            <width>858</width>
+                            <height>414</height>
                            </rect>
                           </property>
                           <layout class="QVBoxLayout" name="verticalLayout_16">

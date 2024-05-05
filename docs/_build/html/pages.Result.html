@@ -252,13 +252,43 @@
 <p>Модель для страницы результатов и манипулирования табличными значением</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pages.Result.Model_result.ResultModel.apply_filter">
-<span class="sig-name descname"><span class="pre">apply_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_view</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Result/Model_result.html#ResultModel.apply_filter"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Result.Model_result.ResultModel.apply_filter" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">apply_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_view</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QTableView</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param_test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pages/Result/Model_result.html#ResultModel.apply_filter"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Result.Model_result.ResultModel.apply_filter" title="Link to this definition"></a></dt>
+<dd><p>Применяет фильтр к данным и обновляет модель представления таблицы.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments<span class="colon">:</span></dt>
+<dd class="field-odd"><p>table_view (QTableView): Представление таблицы, к которому будет применен фильтр.
+test_data (str): Выбранные тесты для фильтрации.
+user_data (str): Выбранные пользователи для фильтрации.
+param_test (str): Выбранные параметры тестов для фильтрации.
+start_date (str): Начальная дата для фильтрации по дате теста.
+end_date (str): Конечная дата для фильтрации по дате теста.</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pages.Result.Model_result.ResultModel.filter_data">
 <span class="sig-name descname"><span class="pre">filter_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">combo_box</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QComboBox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table_view</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QTableView</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pages/Result/Model_result.html#ResultModel.filter_data"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Result.Model_result.ResultModel.filter_data" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><blockquote>
+<div><p>Применяет фильтр к данным и обновляет модель представления таблицы на основе выбранной опции в QComboBox.</p>
+</div></blockquote>
+<dl class="field-list">
+<dt class="field-odd">Arguments<span class="colon">:</span></dt>
+<dd class="field-odd"><blockquote>
+<div><p>combo_box (QComboBox): Выпадающий список, содержащий опции фильтрации.
+table_view (QTableView): Представление таблицы, которое будет обновлено после применения фильтра.</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pages.Result.Model_result.ResultModel.staticMetaObject">
@@ -288,6 +318,7 @@
 <dt class="sig sig-object py" id="pages.Result.View_result.CustomTableView">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pages.Result.View_result.</span></span><span class="sig-name descname"><span class="pre">CustomTableView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Result/View_result.html#CustomTableView"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Result.View_result.CustomTableView" title="Link to this definition"></a></dt>
 <dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">QTableView</span></code></p>
+<p>Класс для отображения таблицы на странице Result</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pages.Result.View_result.CustomTableView.staticMetaObject">
 <span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject(&quot;CustomTableView&quot;</span> <span class="pre">inherits</span> <span class="pre">&quot;QTableView&quot;:</span> <span class="pre">)</span></em><a class="headerlink" href="#pages.Result.View_result.CustomTableView.staticMetaObject" title="Link to this definition"></a></dt>

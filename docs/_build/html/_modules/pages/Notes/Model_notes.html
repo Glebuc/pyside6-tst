@@ -71,11 +71,8 @@
   <h1>Исходный код pages.Notes.Model_notes</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
 <span class="kn">from</span> <span class="nn">PySide6.QtSql</span> <span class="kn">import</span> <span class="n">QSqlDatabase</span><span class="p">,</span> <span class="n">QSqlQuery</span><span class="p">,</span> <span class="n">QSqlTableModel</span><span class="p">,</span> <span class="n">QSqlQueryModel</span>
-<span class="kn">from</span> <span class="nn">PySide6.QtWidgets</span> <span class="kn">import</span> <span class="n">QTableView</span><span class="p">,</span> <span class="n">QVBoxLayout</span><span class="p">,</span> <span class="n">QWidget</span><span class="p">,</span> <span class="n">QHeaderView</span><span class="p">,</span> <span class="n">QComboBox</span><span class="p">,</span> <span class="n">QMessageBox</span>
-<span class="kn">from</span> <span class="nn">PySide6.QtCore</span> <span class="kn">import</span> <span class="n">Qt</span><span class="p">,</span> <span class="n">Slot</span>
-<span class="kn">from</span> <span class="nn">PySide6.QtUiTools</span> <span class="kn">import</span> <span class="n">QUiLoader</span>
 
-<span class="kn">from</span> <span class="nn">ui_modules</span> <span class="kn">import</span> <span class="o">*</span>
+
 <span class="kn">from</span> <span class="nn">..BaseModel</span> <span class="kn">import</span> <span class="n">BaseModel</span>
 <span class="kn">from</span> <span class="nn">loger</span> <span class="kn">import</span> <span class="n">Logger</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
@@ -158,7 +155,7 @@
 
 <div class="viewcode-block" id="NoteModel.get_section_id_by_name">
 <a class="viewcode-back" href="../../../pages.Notes.html#pages.Notes.Model_notes.NoteModel.get_section_id_by_name">[документация]</a>
-    <span class="k">def</span> <span class="nf">get_section_id_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">get_section_id_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Получает идентификатор раздела по его имени.</span>
 
@@ -239,6 +236,78 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Ошибка при выполнении запроса: &quot;</span><span class="o">+</span> <span class="n">query</span><span class="o">.</span><span class="n">lastError</span><span class="p">()</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
         <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="NoteModel.update_article_data">
+<a class="viewcode-back" href="../../../pages.Notes.html#pages.Notes.Model_notes.NoteModel.update_article_data">[документация]</a>
+    <span class="k">def</span> <span class="nf">update_article_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">old_title</span><span class="p">,</span>  <span class="n">article_title</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">article_content</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">           Обновляет содержимое статьи в таблице &#39;notes&#39;.</span>
+
+<span class="sd">           :argument:</span>
+<span class="sd">               article_title (str): Заголовок статьи, которую необходимо обновить.</span>
+<span class="sd">               article_content (str): Новое содержимое статьи.</span>
+
+<span class="sd">           :returns:</span>
+<span class="sd">               None</span>
+<span class="sd">           &quot;&quot;&quot;</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">()</span>
+        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;UPDATE notes SET title = :title, content = :content WHERE title = :old_title&quot;</span><span class="p">)</span>
+        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:old_title&quot;</span><span class="p">,</span> <span class="n">old_title</span><span class="p">)</span>
+        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:title&quot;</span><span class="p">,</span> <span class="n">article_title</span><span class="p">)</span>
+        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:content&quot;</span><span class="p">,</span> <span class="n">article_content</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_info</span><span class="p">(</span><span class="s2">&quot;Статья успешно обновлена&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Ошибка при выполнении запроса на обновление статьи: &quot;</span> <span class="o">+</span> <span class="n">query</span><span class="o">.</span><span class="n">lastError</span><span class="p">()</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="NoteModel.update_topic_data">
+<a class="viewcode-back" href="../../../pages.Notes.html#pages.Notes.Model_notes.NoteModel.update_topic_data">[документация]</a>
+    <span class="k">def</span> <span class="nf">update_topic_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">old_topic_title</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">topic_title</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Обновляет название раздела в таблице &#39;sections&#39;.</span>
+
+<span class="sd">        :argument:</span>
+<span class="sd">            topic_title (str): Новое название раздела.</span>
+
+<span class="sd">        :returns:</span>
+<span class="sd">            bool: True, если запрос выполнен успешно, иначе False.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">()</span>
+        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;UPDATE sections SET name = :name WHERE name = :old_title&quot;</span><span class="p">)</span>
+        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:name&quot;</span><span class="p">,</span> <span class="n">topic_title</span><span class="p">)</span>
+        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:old_title&quot;</span><span class="p">,</span> <span class="n">old_topic_title</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_info</span><span class="p">(</span><span class="s2">&quot;Название раздела успешно обновлено&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Ошибка при выполнении запроса на обновление раздела: &quot;</span> <span class="o">+</span> <span class="n">query</span><span class="o">.</span><span class="n">lastError</span><span class="p">()</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="NoteModel.delete_topic_data">
+<a class="viewcode-back" href="../../../pages.Notes.html#pages.Notes.Model_notes.NoteModel.delete_topic_data">[документация]</a>
+    <span class="k">def</span> <span class="nf">delete_topic_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topic_title</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Удаляет раздел из таблицы &#39;sections&#39; в базе данных вместе со всеми связанными с ним записями в таблице &#39;notes&#39;.</span>
+
+<span class="sd">        :arguments:</span>
+<span class="sd">            topic_title (str): Название раздела, который требуется удалить.</span>
+<span class="sd">        :returns:</span>
+<span class="sd">            bool: True, если запрос выполнен успешно, False в противном случае.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">()</span>
+        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;DELETE FROM sections WHERE name = :name&quot;</span><span class="p">)</span>
+        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:name&quot;</span><span class="p">,</span> <span class="n">topic_title</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_info</span><span class="p">(</span><span class="s2">&quot;Раздел и все связанные с ним записи успешно удалены&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Ошибка при выполнении запроса на удаление раздела: &quot;</span> <span class="o">+</span> <span class="n">query</span><span class="o">.</span><span class="n">lastError</span><span class="p">()</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
 </div>
 
 </pre></div>

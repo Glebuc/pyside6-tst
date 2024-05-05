@@ -23,7 +23,7 @@ from Application import Application
 from ui_modules import *
 from pages import BaseModel, Model_result, Save_data, View_result, Dialog_change_view, DialogsSetting,\
     DialogsResult,Chart_view, Model_chart, Dialog_add_topic,\
-    Dialog_add_note, Model_notes, Controller_setting, Dialog_article_view
+    Dialog_add_note, Model_notes, Controller_setting, Dialog_article_view, Dialog_edit_note, Dialog_edit_topic
 from SettingApp import AppSettings
 
 from utils import get_translate_path, get_themes_path
@@ -123,6 +123,9 @@ class MainWindow(QMainWindow):
         widgets.btn_save_settings.clicked.connect(self.save_settings)
         widgets.treeWidget.itemDoubleClicked.connect(self.get_item_and_parent_text)
         widgets.stackedWidget.setCurrentWidget(widgets.report_page)
+        widgets.edit_note_btn.clicked.connect(self.chose_dialog_for_edit)
+
+
         self.show()
         record = self.model_result.record()
         column_names = [record.fieldName(i) for i in range(record.count())]
@@ -132,6 +135,75 @@ class MainWindow(QMainWindow):
         # словарь для хранения состояний флажков
         self.checkbox_dict = {}
         self.populate_tree_widget()
+
+    def on_selection_changed(self) -> bool:
+        """
+            Обработчик изменения выделения в QTreeWidget.
+
+            Проверяет, выбран ли элемент в QTreeWidget. Если элемент выбран, проверяет, является ли он элементом верхнего уровня или дочерним.
+            Если ни один элемент не выбран, показывает предупреждение через QMessageBox.
+
+            :returns:
+                bool: True, если выбран дочерний элемент. False, если выбран элемент верхнего уровня или ничего не выбрано.
+            """
+        selected_items = widgets.treeWidget.selectedItems()
+        if selected_items:
+            selected_item = selected_items[0]
+            if selected_item.parent() is None:
+                self.log.log_info(f"Выбран элемент вверхнего уровня {selected_item.text(0)} для удаления или редактирования")
+                return False
+            else:
+                self.log.log_info(f"Выбран элемент {selected_item.text(0)} для удаления или редактирования")
+                return True
+        else:
+            QMessageBox.warning(self, "Внимание", 'Для "Редактирование" или "Удаление" выделите статью или раздел')
+            return None
+
+    def chose_dialog_for_edit(self) -> None:
+        """
+            Выбирает диалоговое окно для редактирования, в зависимости от выбранного элемента в QTreeWidget.
+
+            Если элемент выбран и возвращается не None из метода on_selection_changed, открывает диалоговое окно для редактирования,
+            либо заголовка раздела, либо содержания статьи.
+
+        """
+        selection_result = self.on_selection_changed()
+        if selection_result is not None:
+            selected_items = widgets.treeWidget.selectedItems()
+            if selected_items:
+                selected_item = selected_items[0]
+                if selection_result:
+                    self.dialog_edit_content_article(selected_item.text(0))
+                else:
+                    self.dialog_edit_title_topic(selected_item.text(0))
+
+
+    def dialog_edit_title_topic(self, title):
+        """
+            Открывает диалоговое окно для редактирования заголовка раздела.
+
+            :arguments:
+                title (str): Заголовок статьи.
+
+        """
+        dialog = Dialog_edit_topic.EditTopicDialog(title)
+        if not dialog.isVisible():
+            self.log.log_info("Открыто диалоговое окно для редактирования раздела")
+            if dialog.exec() == QDialog.Accepted:
+                widgets.treeWidget.clear()
+                self.populate_tree_widget()
+        else:
+            self.log.log_error("Ошибка открытия диалогового окна для редактирования раздела")
+
+    def dialog_edit_content_article(self, title):
+        dialog = Dialog_edit_note.EditNoteDialog(title)
+        if not dialog.isVisible():
+            self.log.log_info("Открыто диалоговое окно для редактирования статьи")
+            if dialog.exec() == QDialog.Accepted:
+                widgets.treeWidget.clear()
+                self.populate_tree_widget()
+        else:
+            self.log.log_error("Ошибка открытия диалогового окна для редактирования статьи")
 
     def get_item_and_parent_text(self, item, column):
         """
@@ -153,7 +225,6 @@ class MainWindow(QMainWindow):
             # Получаем данные о статье из базы данных
             article_data = self.note_model.get_article_data(item_text)
             if article_data:
-                # Создаем новый диалоговый окно статьи и отображаем его
                 article_dialog = Dialog_article_view.ArticleDialog(article_data["title"], article_data["content"])
                 article_dialog.exec()
         else:

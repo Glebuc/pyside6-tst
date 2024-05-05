@@ -21,7 +21,7 @@ class ChartModel(BaseModel):
         """Проверяет наличие соединения с базой данных"""
         return QSqlDatabase.database().isValid()
 
-    def get_test_parameters(self, test_name: str) -> List:
+    def get_test_parameters(self, test_name: str) -> None:
         """
         Получает параметры теста по его имени
 
@@ -36,7 +36,7 @@ class ChartModel(BaseModel):
         query.prepare("SELECT test_param FROM tests WHERE test_param IS NOT NULL AND test_name = :test_name GROUP BY test_param;")
         query.bindValue(":test_name", test_name)
         if not query.exec():
-            self.log.log_error("Error executing query:", query.lastError().text())
+            self.log.log_error("Error executing query:"+ query.lastError().text())
             return None
         return query
 

@@ -50,9 +50,13 @@
 <li><a class="reference internal" href="#main.MainWindow.button_click"><code class="docutils literal notranslate"><span class="pre">MainWindow.button_click()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.change_theme"><code class="docutils literal notranslate"><span class="pre">MainWindow.change_theme()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.change_translation"><code class="docutils literal notranslate"><span class="pre">MainWindow.change_translation()</span></code></a></li>
+<li><a class="reference internal" href="#main.MainWindow.chose_dialog_for_edit"><code class="docutils literal notranslate"><span class="pre">MainWindow.chose_dialog_for_edit()</span></code></a></li>
+<li><a class="reference internal" href="#main.MainWindow.dialog_edit_content_article"><code class="docutils literal notranslate"><span class="pre">MainWindow.dialog_edit_content_article()</span></code></a></li>
+<li><a class="reference internal" href="#main.MainWindow.dialog_edit_title_topic"><code class="docutils literal notranslate"><span class="pre">MainWindow.dialog_edit_title_topic()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.get_item_and_parent_text"><code class="docutils literal notranslate"><span class="pre">MainWindow.get_item_and_parent_text()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.get_param_test"><code class="docutils literal notranslate"><span class="pre">MainWindow.get_param_test()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.get_text_from_combo_chart"><code class="docutils literal notranslate"><span class="pre">MainWindow.get_text_from_combo_chart()</span></code></a></li>
+<li><a class="reference internal" href="#main.MainWindow.on_selection_changed"><code class="docutils literal notranslate"><span class="pre">MainWindow.on_selection_changed()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.open_column_selection_dialog"><code class="docutils literal notranslate"><span class="pre">MainWindow.open_column_selection_dialog()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.open_dialog_add_item_topic"><code class="docutils literal notranslate"><span class="pre">MainWindow.open_dialog_add_item_topic()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.open_dialog_add_topic"><code class="docutils literal notranslate"><span class="pre">MainWindow.open_dialog_add_topic()</span></code></a></li>
@@ -141,6 +145,30 @@
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="main.MainWindow.chose_dialog_for_edit">
+<span class="sig-name descname"><span class="pre">chose_dialog_for_edit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/main.html#MainWindow.chose_dialog_for_edit"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#main.MainWindow.chose_dialog_for_edit" title="Link to this definition"></a></dt>
+<dd><p>Выбирает диалоговое окно для редактирования, в зависимости от выбранного элемента в QTreeWidget.</p>
+<p>Если элемент выбран и возвращается не None из метода on_selection_changed, открывает диалоговое окно для редактирования,
+либо заголовка раздела, либо содержания статьи.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWindow.dialog_edit_content_article">
+<span class="sig-name descname"><span class="pre">dialog_edit_content_article</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWindow.dialog_edit_content_article"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#main.MainWindow.dialog_edit_content_article" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWindow.dialog_edit_title_topic">
+<span class="sig-name descname"><span class="pre">dialog_edit_title_topic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWindow.dialog_edit_title_topic"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#main.MainWindow.dialog_edit_title_topic" title="Link to this definition"></a></dt>
+<dd><p>Открывает диалоговое окно для редактирования заголовка раздела.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments<span class="colon">:</span></dt>
+<dd class="field-odd"><p>title (str): Заголовок статьи.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="main.MainWindow.get_item_and_parent_text">
 <span class="sig-name descname"><span class="pre">get_item_and_parent_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWindow.get_item_and_parent_text"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#main.MainWindow.get_item_and_parent_text" title="Link to this definition"></a></dt>
 <dd><p>Получает текст элемента и его родительского элемента в дереве элементов,
@@ -175,6 +203,19 @@ None: Если не удалось получить данные о статье
 <dl class="field-list simple">
 <dt class="field-odd">Результат<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str: Текущее выбранное значение из ComboBox.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWindow.on_selection_changed">
+<span class="sig-name descname"><span class="pre">on_selection_changed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/main.html#MainWindow.on_selection_changed"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#main.MainWindow.on_selection_changed" title="Link to this definition"></a></dt>
+<dd><p>Обработчик изменения выделения в QTreeWidget.</p>
+<p>Проверяет, выбран ли элемент в QTreeWidget. Если элемент выбран, проверяет, является ли он элементом верхнего уровня или дочерним.
+Если ни один элемент не выбран, показывает предупреждение через QMessageBox.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool: True, если выбран дочерний элемент. False, если выбран элемент верхнего уровня или ничего не выбрано.</p>
 </dd>
 </dl>
 </dd></dl>

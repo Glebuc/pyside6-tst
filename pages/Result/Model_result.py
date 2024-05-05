@@ -34,7 +34,23 @@ class ResultModel(BaseModel):
         # self.setHeaderData(index_user_name, Qt.Horizontal, self.tr("Пользователь"))
         # self.setHeaderData(index_test_result, Qt.Horizontal, self.tr("Результат"))
 
-    def apply_filter(self,table_view,  test_data, user_data, param_test, start_date, end_date):
+    def apply_filter(self, table_view: QTableView,  test_data: str, user_data: str,
+                     param_test: str, start_date: str, end_date:str) -> None:
+        """
+            Применяет фильтр к данным и обновляет модель представления таблицы.
+
+            :arguments:
+                table_view (QTableView): Представление таблицы, к которому будет применен фильтр.
+                test_data (str): Выбранные тесты для фильтрации.
+                user_data (str): Выбранные пользователи для фильтрации.
+                param_test (str): Выбранные параметры тестов для фильтрации.
+                start_date (str): Начальная дата для фильтрации по дате теста.
+                end_date (str): Конечная дата для фильтрации по дате теста.
+
+            :returns:
+                None
+
+            """
         filters = []
         if test_data != "Все тесты" and test_data != "All tests":
             filters.append(f"test_name = '{test_data}'")
@@ -61,10 +77,16 @@ class ResultModel(BaseModel):
         table_view.setModel(self)
 
 
-
-
-
     def filter_data(self, combo_box: QComboBox, table_view: QTableView) -> None:
+        """
+            Применяет фильтр к данным и обновляет модель представления таблицы на основе выбранной опции в QComboBox.
+
+           :arguments:
+                combo_box (QComboBox): Выпадающий список, содержащий опции фильтрации.
+                table_view (QTableView): Представление таблицы, которое будет обновлено после применения фильтра.
+            :returns:
+                None
+            """
         selected_option = combo_box.currentText()
         query = QSqlQuery()
         if selected_option == "Все тесты":

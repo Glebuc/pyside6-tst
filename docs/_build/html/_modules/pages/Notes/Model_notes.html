@@ -308,6 +308,29 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Ошибка при выполнении запроса на удаление раздела: &quot;</span> <span class="o">+</span> <span class="n">query</span><span class="o">.</span><span class="n">lastError</span><span class="p">()</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
             <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="NoteModel.delete_note_data">
+<a class="viewcode-back" href="../../../pages.Notes.html#pages.Notes.Model_notes.NoteModel.delete_note_data">[документация]</a>
+    <span class="k">def</span> <span class="nf">delete_note_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note_title</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Удаляет запись из таблицы &#39;notes&#39; в базе данных.</span>
+
+<span class="sd">        :arguments:</span>
+<span class="sd">            note_title (str): Заголовок записи, которую требуется удалить.</span>
+
+<span class="sd">        :returns:</span>
+<span class="sd">            bool: True, если запрос выполнен успешно, False в противном случае.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">()</span>
+        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;DELETE FROM notes WHERE title = :title&quot;</span><span class="p">)</span>
+        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:title&quot;</span><span class="p">,</span> <span class="n">note_title</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_info</span><span class="p">(</span><span class="s2">&quot;Запись успешно удалена&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Ошибка при выполнении запроса на удаление записи: &quot;</span> <span class="o">+</span> <span class="n">query</span><span class="o">.</span><span class="n">lastError</span><span class="p">()</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
 </div>
 
 </pre></div>

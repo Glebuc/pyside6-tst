@@ -124,6 +124,7 @@ class MainWindow(QMainWindow):
         widgets.treeWidget.itemDoubleClicked.connect(self.get_item_and_parent_text)
         widgets.stackedWidget.setCurrentWidget(widgets.report_page)
         widgets.edit_note_btn.clicked.connect(self.chose_dialog_for_edit)
+        widgets.delete_note_btn.clicked.connect(self.delete_notes_or_topic)
 
 
         self.show()
@@ -177,6 +178,33 @@ class MainWindow(QMainWindow):
                 else:
                     self.dialog_edit_title_topic(selected_item.text(0))
 
+
+    def delete_notes_or_topic(self) -> None:
+        """
+            Удаляет выбранную запись или раздел из базы данных в зависимости от выделенного элемента в QTreeWidget.
+
+            Если элемент выбран и возвращается не None из метода on_selection_changed, отображает диалоговое окно с запросом подтверждения удаления.
+            При выборе опции "Да", удаляет запись из таблицы 'notes' или раздел из таблицы 'sections' в базе данных.
+
+            """
+        selection_result = self.on_selection_changed()
+        if selection_result is not None:
+            selected_items = widgets.treeWidget.selectedItems()
+            if selected_items:
+                selected_item = selected_items[0]
+                reply = QMessageBox.question(self, 'Удаление', 'Вы уверены, что хотите удалить запись?',
+                                             QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+                if reply == QMessageBox.Yes:
+                    if selection_result:
+                        self.note_model.delete_note_data(selected_item.text(0))
+                        widgets.treeWidget.clear()
+                        self.populate_tree_widget()
+                    else:
+                        self.note_model.delete_topic_data(selected_item.text(0))
+                        widgets.treeWidget.clear()
+                        self.populate_tree_widget()
+                else:
+                    print('Вы выбрали "Нет".')
 
     def dialog_edit_title_topic(self, title):
         """

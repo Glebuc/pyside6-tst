@@ -209,3 +209,23 @@ class NoteModel(BaseModel):
         else:
             self.log.log_error("Ошибка при выполнении запроса на удаление раздела: " + query.lastError().text())
             return False
+
+    def delete_note_data(self, note_title: str) -> bool:
+        """
+        Удаляет запись из таблицы 'notes' в базе данных.
+
+        :arguments:
+            note_title (str): Заголовок записи, которую требуется удалить.
+
+        :returns:
+            bool: True, если запрос выполнен успешно, False в противном случае.
+        """
+        query = QSqlQuery()
+        query.prepare("DELETE FROM notes WHERE title = :title")
+        query.bindValue(":title", note_title)
+        if query.exec():
+            self.log.log_info("Запись успешно удалена")
+            return True
+        else:
+            self.log.log_error("Ошибка при выполнении запроса на удаление записи: " + query.lastError().text())
+            return False

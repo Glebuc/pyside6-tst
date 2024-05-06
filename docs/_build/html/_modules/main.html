@@ -197,6 +197,7 @@
         <span class="n">widgets</span><span class="o">.</span><span class="n">treeWidget</span><span class="o">.</span><span class="n">itemDoubleClicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_item_and_parent_text</span><span class="p">)</span>
         <span class="n">widgets</span><span class="o">.</span><span class="n">stackedWidget</span><span class="o">.</span><span class="n">setCurrentWidget</span><span class="p">(</span><span class="n">widgets</span><span class="o">.</span><span class="n">report_page</span><span class="p">)</span>
         <span class="n">widgets</span><span class="o">.</span><span class="n">edit_note_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chose_dialog_for_edit</span><span class="p">)</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">delete_note_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delete_notes_or_topic</span><span class="p">)</span>
 
 
         <span class="bp">self</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -255,6 +256,36 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">dialog_edit_title_topic</span><span class="p">(</span><span class="n">selected_item</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span></div>
 
+
+
+<div class="viewcode-block" id="MainWindow.delete_notes_or_topic">
+<a class="viewcode-back" href="../main.html#main.MainWindow.delete_notes_or_topic">[документация]</a>
+    <span class="k">def</span> <span class="nf">delete_notes_or_topic</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Удаляет выбранную запись или раздел из базы данных в зависимости от выделенного элемента в QTreeWidget.</span>
+
+<span class="sd">            Если элемент выбран и возвращается не None из метода on_selection_changed, отображает диалоговое окно с запросом подтверждения удаления.</span>
+<span class="sd">            При выборе опции &quot;Да&quot;, удаляет запись из таблицы &#39;notes&#39; или раздел из таблицы &#39;sections&#39; в базе данных.</span>
+
+<span class="sd">            &quot;&quot;&quot;</span>
+        <span class="n">selection_result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_selection_changed</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">selection_result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">selected_items</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">treeWidget</span><span class="o">.</span><span class="n">selectedItems</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">selected_items</span><span class="p">:</span>
+                <span class="n">selected_item</span> <span class="o">=</span> <span class="n">selected_items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">reply</span> <span class="o">=</span> <span class="n">QMessageBox</span><span class="o">.</span><span class="n">question</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;Удаление&#39;</span><span class="p">,</span> <span class="s1">&#39;Вы уверены, что хотите удалить запись?&#39;</span><span class="p">,</span>
+                                             <span class="n">QMessageBox</span><span class="o">.</span><span class="n">Yes</span> <span class="o">|</span> <span class="n">QMessageBox</span><span class="o">.</span><span class="n">No</span><span class="p">,</span> <span class="n">QMessageBox</span><span class="o">.</span><span class="n">Yes</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">reply</span> <span class="o">==</span> <span class="n">QMessageBox</span><span class="o">.</span><span class="n">Yes</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">selection_result</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">note_model</span><span class="o">.</span><span class="n">delete_note_data</span><span class="p">(</span><span class="n">selected_item</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+                        <span class="n">widgets</span><span class="o">.</span><span class="n">treeWidget</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">populate_tree_widget</span><span class="p">()</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">note_model</span><span class="o">.</span><span class="n">delete_topic_data</span><span class="p">(</span><span class="n">selected_item</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+                        <span class="n">widgets</span><span class="o">.</span><span class="n">treeWidget</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">populate_tree_widget</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вы выбрали &quot;Нет&quot;.&#39;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="MainWindow.dialog_edit_title_topic">

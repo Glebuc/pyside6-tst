@@ -73,6 +73,7 @@ class BaseModel(QSqlQueryModel):
         section_id INTEGER REFERENCES sections(id)
     )
     """
+    #section_id INTEGER REFERENCES sections(id) ON DELETE CASCADE
 
     LIST_USER_SQL = """
         SELECT user_name FROM users GROUP BY user_name;

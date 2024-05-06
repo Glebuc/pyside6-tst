@@ -51,6 +51,7 @@
 <li><a class="reference internal" href="#main.MainWindow.change_theme"><code class="docutils literal notranslate"><span class="pre">MainWindow.change_theme()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.change_translation"><code class="docutils literal notranslate"><span class="pre">MainWindow.change_translation()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.chose_dialog_for_edit"><code class="docutils literal notranslate"><span class="pre">MainWindow.chose_dialog_for_edit()</span></code></a></li>
+<li><a class="reference internal" href="#main.MainWindow.delete_notes_or_topic"><code class="docutils literal notranslate"><span class="pre">MainWindow.delete_notes_or_topic()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.dialog_edit_content_article"><code class="docutils literal notranslate"><span class="pre">MainWindow.dialog_edit_content_article()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.dialog_edit_title_topic"><code class="docutils literal notranslate"><span class="pre">MainWindow.dialog_edit_title_topic()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.get_item_and_parent_text"><code class="docutils literal notranslate"><span class="pre">MainWindow.get_item_and_parent_text()</span></code></a></li>
@@ -150,6 +151,14 @@
 <dd><p>Выбирает диалоговое окно для редактирования, в зависимости от выбранного элемента в QTreeWidget.</p>
 <p>Если элемент выбран и возвращается не None из метода on_selection_changed, открывает диалоговое окно для редактирования,
 либо заголовка раздела, либо содержания статьи.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWindow.delete_notes_or_topic">
+<span class="sig-name descname"><span class="pre">delete_notes_or_topic</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/main.html#MainWindow.delete_notes_or_topic"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#main.MainWindow.delete_notes_or_topic" title="Link to this definition"></a></dt>
+<dd><p>Удаляет выбранную запись или раздел из базы данных в зависимости от выделенного элемента в QTreeWidget.</p>
+<p>Если элемент выбран и возвращается не None из метода on_selection_changed, отображает диалоговое окно с запросом подтверждения удаления.
+При выборе опции «Да», удаляет запись из таблицы „notes“ или раздел из таблицы „sections“ в базе данных.</p>
 </dd></dl>
 
 <dl class="py method">

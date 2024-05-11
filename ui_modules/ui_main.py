@@ -1271,6 +1271,9 @@ class Ui_MainWindow(object):
         self.pushButton_4 = QPushButton(self.frame_4)
         self.pushButton_4.setObjectName(u"pushButton_4")
         self.pushButton_4.setCursor(QCursor(Qt.PointingHandCursor))
+        icon7 = QIcon()
+        icon7.addFile(u":/icons/images/icons/cil-clipboard.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton_4.setIcon(icon7)
 
         self.horizontalLayout.addWidget(self.pushButton_4)
 
@@ -1281,16 +1284,16 @@ class Ui_MainWindow(object):
         self.add_topic_note_btn = QPushButton(self.frame_4)
         self.add_topic_note_btn.setObjectName(u"add_topic_note_btn")
         self.add_topic_note_btn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon7 = QIcon()
-        icon7.addFile(u":/icons/images/icons/cil-plus.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.add_topic_note_btn.setIcon(icon7)
+        icon8 = QIcon()
+        icon8.addFile(u":/icons/images/icons/cil-plus.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.add_topic_note_btn.setIcon(icon8)
 
         self.horizontalLayout.addWidget(self.add_topic_note_btn)
 
         self.add_item_note_btn = QPushButton(self.frame_4)
         self.add_item_note_btn.setObjectName(u"add_item_note_btn")
         self.add_item_note_btn.setCursor(QCursor(Qt.PointingHandCursor))
-        self.add_item_note_btn.setIcon(icon7)
+        self.add_item_note_btn.setIcon(icon8)
 
         self.horizontalLayout.addWidget(self.add_item_note_btn)
 
@@ -1315,8 +1318,10 @@ class Ui_MainWindow(object):
         __qtreewidgetitem.setForeground(0, brush);
         self.treeWidget.setHeaderItem(__qtreewidgetitem)
         self.treeWidget.setObjectName(u"treeWidget")
+        self.treeWidget.setFont(font)
         self.treeWidget.viewport().setProperty("cursor", QCursor(Qt.PointingHandCursor))
         self.treeWidget.setStyleSheet(u"color:#000")
+        self.treeWidget.setWordWrap(True)
 
         self.verticalLayout_16.addWidget(self.treeWidget)
 
@@ -1339,9 +1344,9 @@ class Ui_MainWindow(object):
         self.edit_note_btn.setObjectName(u"edit_note_btn")
         self.edit_note_btn.setEnabled(True)
         self.edit_note_btn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon8 = QIcon()
-        icon8.addFile(u":/icons/images/icons/cil-text.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.edit_note_btn.setIcon(icon8)
+        icon9 = QIcon()
+        icon9.addFile(u":/icons/images/icons/cil-text.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.edit_note_btn.setIcon(icon9)
 
         self.horizontalLayout_2.addWidget(self.edit_note_btn)
 
@@ -1349,9 +1354,9 @@ class Ui_MainWindow(object):
         self.delete_note_btn.setObjectName(u"delete_note_btn")
         self.delete_note_btn.setEnabled(True)
         self.delete_note_btn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon9 = QIcon()
-        icon9.addFile(u":/icons/images/icons/cil-x-circle.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.delete_note_btn.setIcon(icon9)
+        icon10 = QIcon()
+        icon10.addFile(u":/icons/images/icons/cil-x-circle.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.delete_note_btn.setIcon(icon10)
 
         self.horizontalLayout_2.addWidget(self.delete_note_btn)
 
@@ -1538,7 +1543,7 @@ class Ui_MainWindow(object):
         self.add_item_note_btn.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0441\u0442\u0430\u0442\u044c\u044e...", None))
         ___qtreewidgetitem = self.treeWidget.headerItem()
         ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", u"\u0417\u0430\u043c\u0435\u0442\u043a\u0438", None));
-        self.edit_note_btn.setText(QCoreApplication.translate("MainWindow", u"\u0420\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u0442\u044c...", None))
+        self.edit_note_btn.setText(QCoreApplication.translate("MainWindow", u"\u0420\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0437\u0430\u043f\u0438\u0441\u044c...", None))
         self.delete_note_btn.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u0437\u0430\u043f\u0438\u0441\u044c...", None))
         self.creditsLabel.setText("")
         self.version.setText(QCoreApplication.translate("MainWindow", u"v0.0.1", None))

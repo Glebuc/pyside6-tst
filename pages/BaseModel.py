@@ -70,10 +70,47 @@ class BaseModel(QSqlQueryModel):
         id SERIAL PRIMARY KEY,
         title TEXT NOT NULL UNIQUE,
         content TEXT NOT NULL,
-        section_id INTEGER REFERENCES sections(id)
+        section_id INTEGER REFERENCES sections(id) ON DELETE CASCADE
     )
     """
-    #section_id INTEGER REFERENCES sections(id) ON DELETE CASCADE
+
+    TEST_PARAMS = """
+    CREATE TABLE IF NOT EXISTS test_params (
+        param_test varchar NOT NULL,
+        param_description VARCHAR,
+        CONSTRAINT test_params_pk PRIMARY KEY (param_test)
+    );
+    """
+
+    FUNCTIONS_PARAMS = """
+    CREATE OR REPLACE FUNCTION add_new_params()
+    RETURNS TRIGGER AS $$
+    BEGIN
+        INSERT INTO test_params (param_test)
+        SELECT DISTINCT key
+        FROM jsonb_each_text(NEW.test_param)
+        ON CONFLICT (param_test) DO NOTHING;
+        RETURN NEW;
+    END;
+    $$ LANGUAGE plpgsql;
+    """
+
+    TRIGGER_PARAMS = """
+    DO
+    $$
+    BEGIN
+            IF NOT EXISTS (
+                SELECT 1 FROM pg_trigger
+                WHERE tgname = 'add_new_params_trigger' 
+                AND tgrelid = 'tests'::regclass
+            ) THEN
+                CREATE TRIGGER add_new_params_trigger
+                AFTER INSERT ON tests
+                FOR EACH ROW EXECUTE FUNCTION add_new_params();
+            END IF;
+    END;
+    $$
+    """
 
     LIST_USER_SQL = """
         SELECT user_name FROM users GROUP BY user_name;
@@ -123,7 +160,10 @@ class BaseModel(QSqlQueryModel):
             'report': self.REPORT_SQL,
             'settings': self.SETTING_SQL,
             'sections': self.SECTION_SQL,
-            'notes': self.NOTE_SQL
+            'notes': self.NOTE_SQL,
+            'test_params': self.TEST_PARAMS,
+            'add_new_params_function':self.FUNCTIONS_PARAMS,
+            'add_new_params_trigger':self.TRIGGER_PARAMS
         }
 
         query = QSqlQuery()
@@ -131,6 +171,10 @@ class BaseModel(QSqlQueryModel):
             if table_name not in existing_tables:
                 if not query.exec(sql_query):
                     self.log.log_error("Ошибка выполнения запроса:"+ query.lastError().text())
+                    return False
+            elif table_name == 'add_new_params_function':
+                if not query.exec(sql_query):
+                    self.log.log_error("Ошибка выполнения запроса:" + query.lastError().text())
                     return False
         return True
 

@@ -1405,41 +1405,6 @@ background-image: none;
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="btn_user_guide">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="sizeIncrement">
-                   <size>
-                    <width>0</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Segoe UI</family>
-                    <pointsize>10</pointsize>
-                    <italic>false</italic>
-                    <bold>false</bold>
-                    <stylestrategy>PreferDefault</stylestrategy>
-                   </font>
-                  </property>
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="text">
-                   <string>Руководство пользователя</string>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="resources.qrc">
-                    <normaloff>:/icons/images/icons/cil-user.png</normaloff>:/icons/images/icons/cil-user.png</iconset>
-                  </property>
-                 </widget>
-                </item>
-                <item>
                  <widget class="QPushButton" name="btn_hot_keys">
                   <property name="cursor">
                    <cursorShape>PointingHandCursor</cursorShape>
@@ -2126,7 +2091,7 @@ background-image: none;
                            <number>0</number>
                           </property>
                           <item>
-                           <widget class="QPushButton" name="pushButton_4">
+                           <widget class="QPushButton" name="test_params_btn">
                             <property name="cursor">
                              <cursorShape>PointingHandCursor</cursorShape>
                             </property>

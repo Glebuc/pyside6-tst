@@ -23,7 +23,8 @@ from Application import Application
 from ui_modules import *
 from pages import BaseModel, Model_result, Save_data, View_result, Dialog_change_view, DialogsSetting,\
     DialogsResult,Chart_view, Model_chart, Dialog_add_topic,\
-    Dialog_add_note, Model_notes, Controller_setting, Dialog_article_view, Dialog_edit_note, Dialog_edit_topic
+    Dialog_add_note, Model_notes, Controller_setting, Dialog_article_view, Dialog_edit_note,\
+    Dialog_edit_topic, Dialog_test_params
 from SettingApp import AppSettings
 
 from utils import get_translate_path, get_themes_path
@@ -125,6 +126,7 @@ class MainWindow(QMainWindow):
         widgets.stackedWidget.setCurrentWidget(widgets.report_page)
         widgets.edit_note_btn.clicked.connect(self.chose_dialog_for_edit)
         widgets.delete_note_btn.clicked.connect(self.delete_notes_or_topic)
+        widgets.test_params_btn.clicked.connect(self.dialog_test_params)
 
 
         self.show()
@@ -136,6 +138,7 @@ class MainWindow(QMainWindow):
         # словарь для хранения состояний флажков
         self.checkbox_dict = {}
         self.populate_tree_widget()
+
 
     def on_selection_changed(self) -> bool:
         """
@@ -205,6 +208,14 @@ class MainWindow(QMainWindow):
                         self.populate_tree_widget()
                 else:
                     print('Вы выбрали "Нет".')
+
+    def dialog_test_params(self):
+        dialog = Dialog_test_params.TestParamsDialog()
+        dialog.exec()
+        if not dialog.isVisible():
+            self.log.log_info("Открыто диалоговое окно для просмотра и редактирования параметров")
+        else:
+            self.log.log_error("Ошибка открытия  диалоговое окно для просмотра и редактирования параметров")
 
     def dialog_edit_title_topic(self, title):
         """

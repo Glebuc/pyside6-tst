@@ -1,8 +1,3 @@
-# from PySide6.QtCore import *
-# from PySide6.QtGui import *
-# from PySide6.QtWidgets import *
-#from PySide6.QtCharts import *
-#
 # from . resources_rc import *
 
 
@@ -10,8 +5,19 @@ import sys
 import os
 
 
-from PySide6.QtWidgets import QDialog, QFormLayout, QVBoxLayout, QPushButton, \
-    QTableView,QMainWindow, QWidget, QHeaderView, QMessageBox, QGraphicsScene, QGraphicsView, QTreeWidgetItem
+from PySide6.QtWidgets import (QDialog,
+                               QFormLayout,
+                               QVBoxLayout,
+                               QPushButton,
+                               QTableView,
+                               QMainWindow,
+                               QWidget,
+                               QHeaderView,
+                               QMessageBox,
+                               QGraphicsScene,
+                               QGraphicsView,
+                               QTreeWidgetItem,
+                               QFileDialog)
 from PySide6.QtGui import QTransform, QIcon
 from PySide6 import QtCore
 from PySide6.QtCore import Qt, QResource
@@ -21,10 +27,23 @@ from typing import List
 from loger import Logger
 from Application import Application
 from ui_modules import *
-from pages import BaseModel, Model_result, Save_data, View_result, Dialog_change_view, DialogsSetting,\
-    DialogsResult,Chart_view, Model_chart, Dialog_add_topic,\
-    Dialog_add_note, Model_notes, Controller_setting, Dialog_article_view, Dialog_edit_note,\
-    Dialog_edit_topic, Dialog_test_params
+from pages import (BaseModel,
+                   Model_result,
+                   Save_data,
+                   View_result,
+                   Dialog_change_view,
+                   DialogsSetting,
+                   DialogsResult,
+                   Chart_view,
+                   Model_chart,
+                   Dialog_add_topic,
+                   Dialog_add_note,
+                   Model_notes,
+                   Controller_setting,
+                   Dialog_article_view,
+                   Dialog_edit_note,
+                   Dialog_edit_topic,
+                   Dialog_test_params)
 from SettingApp import AppSettings
 
 from utils import get_translate_path, get_themes_path
@@ -127,6 +146,7 @@ class MainWindow(QMainWindow):
         widgets.edit_note_btn.clicked.connect(self.chose_dialog_for_edit)
         widgets.delete_note_btn.clicked.connect(self.delete_notes_or_topic)
         widgets.test_params_btn.clicked.connect(self.dialog_test_params)
+        widgets.import_data_btn.clicked.connect(self.open_dialog_for_import_data)
 
 
         self.show()
@@ -139,6 +159,19 @@ class MainWindow(QMainWindow):
         self.checkbox_dict = {}
         self.populate_tree_widget()
 
+    def open_dialog_for_import_data(self):
+        """Открывает файловое диалогое окно для импорта тестов из JSON файлов
+
+            :returns: List[str], возвращает список строк с путями до JSON-файлов
+        """
+        files, _ = QFileDialog.getOpenFileNames(
+            None,
+            "Выберите файлы",
+            "",  # Фильтры для файлов, здесь оставлено пустым для выбора всех файлов
+            "JSON Файлы (*.json)"  # Фильтр для JSON файлов
+        )
+        print(files)
+        return files
 
     def on_selection_changed(self) -> bool:
         """
@@ -177,7 +210,7 @@ class MainWindow(QMainWindow):
             if selected_items:
                 selected_item = selected_items[0]
                 if selection_result:
-                    self.dialog_edit_content_article(selected_item.text(0))
+                    self.dialog_edit_content_article(selected_item.text(0), "Вот")
                 else:
                     self.dialog_edit_title_topic(selected_item.text(0))
 
@@ -209,7 +242,11 @@ class MainWindow(QMainWindow):
                 else:
                     print('Вы выбрали "Нет".')
 
-    def dialog_test_params(self):
+    def dialog_test_params(self) -> None:
+        """
+
+        :return:
+        """
         dialog = Dialog_test_params.TestParamsDialog()
         dialog.exec()
         if not dialog.isVisible():
@@ -217,7 +254,7 @@ class MainWindow(QMainWindow):
         else:
             self.log.log_error("Ошибка открытия  диалоговое окно для просмотра и редактирования параметров")
 
-    def dialog_edit_title_topic(self, title):
+    def dialog_edit_title_topic(self, title) -> None:
         """
             Открывает диалоговое окно для редактирования заголовка раздела.
 
@@ -234,8 +271,8 @@ class MainWindow(QMainWindow):
         else:
             self.log.log_error("Ошибка открытия диалогового окна для редактирования раздела")
 
-    def dialog_edit_content_article(self, title):
-        dialog = Dialog_edit_note.EditNoteDialog(title)
+    def dialog_edit_content_article(self, title, content):
+        dialog = Dialog_edit_note.EditNoteDialog(title, content)
         if not dialog.isVisible():
             self.log.log_info("Открыто диалоговое окно для редактирования статьи")
             if dialog.exec() == QDialog.Accepted:

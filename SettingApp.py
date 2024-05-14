@@ -2,7 +2,7 @@ import os
 from PySide6.QtCore import QSettings
 from typing import Dict
 from loger import Logger
-from cryptography.fernet import Fernet
+# from cryptography.fernet import Fernet
 
 class AppSettings(QSettings):
     """
@@ -132,44 +132,44 @@ class AppSettings(QSettings):
 
         return settings_dict
 
-    def generate_key(self) -> bytes:
-        """
-        Генерирует ключ для использования в шифровании методом Fernet.
-
-        :returns:
-            bytes: Сгенерированный ключ.
-        """
-        return Fernet.generate_key()
-
-    def encrypt_string(self, text: str, key: bytes) -> bytes:
-        """
-        Шифрует строку с использованием ключа методом Fernet.
-
-        :argument:
-            text (str): Строка для шифрования.
-            key (bytes): Ключ для шифрования.
-
-        :returns:
-            bytes: Зашифрованная строка.
-        """
-        cipher_suite = Fernet(key)
-        encrypted_text = cipher_suite.encrypt(text.encode())
-        return encrypted_text
-
-    def decrypt_string(self, encrypted_text, key):
-        """
-        Дешифрует строку, зашифрованную методом Fernet.
-
-        :argument:
-            encrypted_text (bytes): Зашифрованная строка.
-            key (bytes): Ключ для дешифрования.
-
-        :returns:
-            str: Расшифрованная строка.
-        """
-        cipher_suite = Fernet(key)
-        decrypted_text = cipher_suite.decrypt(encrypted_text).decode()
-        return decrypted_text
+    # def generate_key(self) -> bytes:
+    #     """
+    #     Генерирует ключ для использования в шифровании методом Fernet.
+    #
+    #     :returns:
+    #         bytes: Сгенерированный ключ.
+    #     """
+    #     return Fernet.generate_key()
+    #
+    # def encrypt_string(self, text: str, key: bytes) -> bytes:
+    #     """
+    #     Шифрует строку с использованием ключа методом Fernet.
+    #
+    #     :argument:
+    #         text (str): Строка для шифрования.
+    #         key (bytes): Ключ для шифрования.
+    #
+    #     :returns:
+    #         bytes: Зашифрованная строка.
+    #     """
+    #     cipher_suite = Fernet(key)
+    #     encrypted_text = cipher_suite.encrypt(text.encode())
+    #     return encrypted_text
+    #
+    # def decrypt_string(self, encrypted_text, key):
+    #     """
+    #     Дешифрует строку, зашифрованную методом Fernet.
+    #
+    #     :argument:
+    #         encrypted_text (bytes): Зашифрованная строка.
+    #         key (bytes): Ключ для дешифрования.
+    #
+    #     :returns:
+    #         str: Расшифрованная строка.
+    #     """
+    #     cipher_suite = Fernet(key)
+    #     decrypted_text = cipher_suite.decrypt(encrypted_text).decode()
+    #     return decrypted_text
 
 
 if __name__ == '__main__':

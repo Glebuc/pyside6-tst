@@ -1573,7 +1573,7 @@ background-image: none;
                       <number>0</number>
                      </property>
                      <property name="currentIndex">
-                      <number>3</number>
+                      <number>2</number>
                      </property>
                      <widget class="QWidget" name="report_page">
                       <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -1935,7 +1935,7 @@ background-image: none;
                           <item>
                            <widget class="QComboBox" name="list_test_result">
                             <property name="cursor">
-                             <cursorShape>PointingHandCursor</cursorShape>
+                             <cursorShape>ArrowCursor</cursorShape>
                             </property>
                             <property name="frame">
                              <bool>false</bool>
@@ -2000,9 +2000,26 @@ background-image: none;
                           <enum>QFrame::Plain</enum>
                          </property>
                          <layout class="QHBoxLayout" name="horizontalLayout_8">
+                          <property name="leftMargin">
+                           <number>0</number>
+                          </property>
                           <property name="rightMargin">
                            <number>0</number>
                           </property>
+                          <item>
+                           <widget class="QPushButton" name="import_data_btn">
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
+                            <property name="text">
+                             <string>Импорт данных...</string>
+                            </property>
+                            <property name="icon">
+                             <iconset resource="resources.qrc">
+                              <normaloff>:/icons/images/icons/cil-cloud-upload.png</normaloff>:/icons/images/icons/cil-cloud-upload.png</iconset>
+                            </property>
+                           </widget>
+                          </item>
                           <item>
                            <spacer name="horizontalSpacer_2">
                             <property name="orientation">
@@ -2039,7 +2056,7 @@ background-image: none;
                              <cursorShape>PointingHandCursor</cursorShape>
                             </property>
                             <property name="text">
-                             <string>Сохранить..</string>
+                             <string>Сохранить в CSV..</string>
                             </property>
                             <property name="icon">
                              <iconset resource="resources.qrc">
@@ -2165,7 +2182,7 @@ background-image: none;
                             <x>0</x>
                             <y>0</y>
                             <width>858</width>
-                            <height>414</height>
+                            <height>416</height>
                            </rect>
                           </property>
                           <layout class="QVBoxLayout" name="verticalLayout_16">

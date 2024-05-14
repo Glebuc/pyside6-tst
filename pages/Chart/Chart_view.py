@@ -4,26 +4,27 @@ from PySide6.QtCharts import QChart, QLineSeries, QValueAxis
 from PySide6.QtGui import QPainter, QMouseEvent
 import random
 
-from loger import Logger
+# from loger import Logger
 
 class CustomChart(QChart):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.log = Logger.get_instance()
+        # self.log = Logger.get_instance()
 
         self.series = QLineSeries()
-        self.addSeries(self.series)
+        # self.addSeries(self.series)
 
         self.axis_x = QValueAxis()
         self.axis_x.setTickCount(10)
-        self.addAxis(self.axis_x, Qt.AlignBottom)
-        self.series.attachAxis(self.axis_x)
+        #self.addAxis(self.axis_x, Qt.AlignBottom)
+        #self.series.attachAxis(self.axis_x)
 
         self.axis_y = QValueAxis()
-        self.addAxis(self.axis_y, Qt.AlignLeft)
-        self.series.attachAxis(self.axis_y)
+        #self.addAxis(self.axis_y, Qt.AlignLeft)
+        #self.series.attachAxis(self.axis_y)
         self.legend().hide()
+
 
     def save_chart_image(self, graphics_view, file_path):
         """
@@ -45,7 +46,7 @@ class CustomChart(QChart):
             self.log.log_info("График успешно сохранен в" + file_path)
             return True
         else:
-            self.log.log_error("Не удалось сохранить график в "+ file_path)
+#            self.log.log_error("Не удалось сохранить график в "+ file_path)
             return False
 
 

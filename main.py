@@ -43,7 +43,8 @@ from pages import (BaseModel,
                    Dialog_article_view,
                    Dialog_edit_note,
                    Dialog_edit_topic,
-                   Dialog_test_params)
+                   Dialog_test_params,
+                   Parser_json)
 from SettingApp import AppSettings
 
 from utils import get_translate_path, get_themes_path
@@ -158,6 +159,15 @@ class MainWindow(QMainWindow):
         # словарь для хранения состояний флажков
         self.checkbox_dict = {}
         self.populate_tree_widget()
+
+    def parse_json_data(self):
+        """"""
+        files = self.open_dialog_for_import_data()
+        for file in files:
+            with open(file, 'r') as f:
+                json_data = f.read()
+                parser = Parser_json.JSONParser(json_data)
+                parser.parse()
 
     def open_dialog_for_import_data(self):
         """Открывает файловое диалогое окно для импорта тестов из JSON файлов

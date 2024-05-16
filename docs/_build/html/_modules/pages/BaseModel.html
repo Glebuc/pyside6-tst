@@ -143,10 +143,47 @@
 <span class="s2">        id SERIAL PRIMARY KEY,</span>
 <span class="s2">        title TEXT NOT NULL UNIQUE,</span>
 <span class="s2">        content TEXT NOT NULL,</span>
-<span class="s2">        section_id INTEGER REFERENCES sections(id)</span>
+<span class="s2">        section_id INTEGER REFERENCES sections(id) ON DELETE CASCADE</span>
 <span class="s2">    )</span>
 <span class="s2">    &quot;&quot;&quot;</span>
-    <span class="c1">#section_id INTEGER REFERENCES sections(id) ON DELETE CASCADE</span>
+
+    <span class="n">TEST_PARAMS</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    CREATE TABLE IF NOT EXISTS test_params (</span>
+<span class="s2">        param_test varchar NOT NULL,</span>
+<span class="s2">        param_description VARCHAR,</span>
+<span class="s2">        CONSTRAINT test_params_pk PRIMARY KEY (param_test)</span>
+<span class="s2">    );</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="n">FUNCTIONS_PARAMS</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    CREATE OR REPLACE FUNCTION add_new_params()</span>
+<span class="s2">    RETURNS TRIGGER AS $$</span>
+<span class="s2">    BEGIN</span>
+<span class="s2">        INSERT INTO test_params (param_test)</span>
+<span class="s2">        SELECT DISTINCT key</span>
+<span class="s2">        FROM jsonb_each_text(NEW.test_param)</span>
+<span class="s2">        ON CONFLICT (param_test) DO NOTHING;</span>
+<span class="s2">        RETURN NEW;</span>
+<span class="s2">    END;</span>
+<span class="s2">    $$ LANGUAGE plpgsql;</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="n">TRIGGER_PARAMS</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    DO</span>
+<span class="s2">    $$</span>
+<span class="s2">    BEGIN</span>
+<span class="s2">            IF NOT EXISTS (</span>
+<span class="s2">                SELECT 1 FROM pg_trigger</span>
+<span class="s2">                WHERE tgname = &#39;add_new_params_trigger&#39; </span>
+<span class="s2">                AND tgrelid = &#39;tests&#39;::regclass</span>
+<span class="s2">            ) THEN</span>
+<span class="s2">                CREATE TRIGGER add_new_params_trigger</span>
+<span class="s2">                AFTER INSERT ON tests</span>
+<span class="s2">                FOR EACH ROW EXECUTE FUNCTION add_new_params();</span>
+<span class="s2">            END IF;</span>
+<span class="s2">    END;</span>
+<span class="s2">    $$</span>
+<span class="s2">    &quot;&quot;&quot;</span>
 
     <span class="n">LIST_USER_SQL</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">        SELECT user_name FROM users GROUP BY user_name;</span>
@@ -198,7 +235,10 @@
             <span class="s1">&#39;report&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">REPORT_SQL</span><span class="p">,</span>
             <span class="s1">&#39;settings&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">SETTING_SQL</span><span class="p">,</span>
             <span class="s1">&#39;sections&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">SECTION_SQL</span><span class="p">,</span>
-            <span class="s1">&#39;notes&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">NOTE_SQL</span>
+            <span class="s1">&#39;notes&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">NOTE_SQL</span><span class="p">,</span>
+            <span class="s1">&#39;test_params&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">TEST_PARAMS</span><span class="p">,</span>
+            <span class="s1">&#39;add_new_params_function&#39;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">FUNCTIONS_PARAMS</span><span class="p">,</span>
+            <span class="s1">&#39;add_new_params_trigger&#39;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">TRIGGER_PARAMS</span>
         <span class="p">}</span>
 
         <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">()</span>
@@ -206,6 +246,10 @@
             <span class="k">if</span> <span class="n">table_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">existing_tables</span><span class="p">:</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">(</span><span class="n">sql_query</span><span class="p">):</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Ошибка выполнения запроса:&quot;</span><span class="o">+</span> <span class="n">query</span><span class="o">.</span><span class="n">lastError</span><span class="p">()</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+                    <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">elif</span> <span class="n">table_name</span> <span class="o">==</span> <span class="s1">&#39;add_new_params_function&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">(</span><span class="n">sql_query</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Ошибка выполнения запроса:&quot;</span> <span class="o">+</span> <span class="n">query</span><span class="o">.</span><span class="n">lastError</span><span class="p">()</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
                     <span class="k">return</span> <span class="kc">False</span>
         <span class="k">return</span> <span class="kc">True</span></div>
 

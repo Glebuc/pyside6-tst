@@ -16,5 +16,21 @@
       "NP": 14,
       "other_parameters2": ""
     }
+  },
+  "IMB Sendrecev": {
+    "complete": true,
+    "result_test": "Результат теста IMB Sendrecev",
+    "config": {
+      "param1": 10,
+      "param2": 20
+    }
+  },
+  "IMB PingPong": {
+    "complete": true,
+    "result_test": "Результат теста IMB PingPong",
+    "config": {
+      "param1": 15,
+      "param2": 25
+    }
   }
 }

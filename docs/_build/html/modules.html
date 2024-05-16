@@ -90,9 +90,6 @@
 <li class="toctree-l1"><a class="reference internal" href="Mainwindow.html">Mainwindow module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SettingApp.html">SettingApp module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="SettingApp.html#SettingApp.AppSettings"><code class="docutils literal notranslate"><span class="pre">AppSettings</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="SettingApp.html#SettingApp.AppSettings.decrypt_string"><code class="docutils literal notranslate"><span class="pre">AppSettings.decrypt_string()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="SettingApp.html#SettingApp.AppSettings.encrypt_string"><code class="docutils literal notranslate"><span class="pre">AppSettings.encrypt_string()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="SettingApp.html#SettingApp.AppSettings.generate_key"><code class="docutils literal notranslate"><span class="pre">AppSettings.generate_key()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="SettingApp.html#SettingApp.AppSettings.get_instance"><code class="docutils literal notranslate"><span class="pre">AppSettings.get_instance()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="SettingApp.html#SettingApp.AppSettings.get_setting"><code class="docutils literal notranslate"><span class="pre">AppSettings.get_setting()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="SettingApp.html#SettingApp.AppSettings.get_settings_by_tag"><code class="docutils literal notranslate"><span class="pre">AppSettings.get_settings_by_tag()</span></code></a></li>
@@ -130,6 +127,7 @@
 <li class="toctree-l3"><a class="reference internal" href="main.html#main.MainWindow.delete_notes_or_topic"><code class="docutils literal notranslate"><span class="pre">MainWindow.delete_notes_or_topic()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="main.html#main.MainWindow.dialog_edit_content_article"><code class="docutils literal notranslate"><span class="pre">MainWindow.dialog_edit_content_article()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="main.html#main.MainWindow.dialog_edit_title_topic"><code class="docutils literal notranslate"><span class="pre">MainWindow.dialog_edit_title_topic()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="main.html#main.MainWindow.dialog_test_params"><code class="docutils literal notranslate"><span class="pre">MainWindow.dialog_test_params()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="main.html#main.MainWindow.get_item_and_parent_text"><code class="docutils literal notranslate"><span class="pre">MainWindow.get_item_and_parent_text()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="main.html#main.MainWindow.get_param_test"><code class="docutils literal notranslate"><span class="pre">MainWindow.get_param_test()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="main.html#main.MainWindow.get_text_from_combo_chart"><code class="docutils literal notranslate"><span class="pre">MainWindow.get_text_from_combo_chart()</span></code></a></li>
@@ -139,7 +137,9 @@
 <li class="toctree-l3"><a class="reference internal" href="main.html#main.MainWindow.open_dialog_add_topic"><code class="docutils literal notranslate"><span class="pre">MainWindow.open_dialog_add_topic()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="main.html#main.MainWindow.open_dialog_config_db"><code class="docutils literal notranslate"><span class="pre">MainWindow.open_dialog_config_db()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="main.html#main.MainWindow.open_dialog_extension_search"><code class="docutils literal notranslate"><span class="pre">MainWindow.open_dialog_extension_search()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="main.html#main.MainWindow.open_dialog_for_import_data"><code class="docutils literal notranslate"><span class="pre">MainWindow.open_dialog_for_import_data()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="main.html#main.MainWindow.open_dialog_keyword"><code class="docutils literal notranslate"><span class="pre">MainWindow.open_dialog_keyword()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="main.html#main.MainWindow.parse_json_data"><code class="docutils literal notranslate"><span class="pre">MainWindow.parse_json_data()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="main.html#main.MainWindow.populate_tree_widget"><code class="docutils literal notranslate"><span class="pre">MainWindow.populate_tree_widget()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="main.html#main.MainWindow.save_settings"><code class="docutils literal notranslate"><span class="pre">MainWindow.save_settings()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="main.html#main.MainWindow.set_param_test_for_chart"><code class="docutils literal notranslate"><span class="pre">MainWindow.set_param_test_for_chart()</span></code></a></li>
@@ -201,6 +201,7 @@
 <li class="toctree-l2"><a class="reference internal" href="pages.html#module-pages.BaseModel">pages.BaseModel module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pages.html#pages.BaseModel.BaseModel"><code class="docutils literal notranslate"><span class="pre">BaseModel</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="pages.html#pages.BaseModel.BaseModel.ALL_RESULT_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.ALL_RESULT_SQL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.html#pages.BaseModel.BaseModel.FUNCTIONS_PARAMS"><code class="docutils literal notranslate"><span class="pre">BaseModel.FUNCTIONS_PARAMS</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pages.html#pages.BaseModel.BaseModel.LIST_JSON_PARAM_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.LIST_JSON_PARAM_SQL</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pages.html#pages.BaseModel.BaseModel.LIST_TEST_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.LIST_TEST_SQL</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pages.html#pages.BaseModel.BaseModel.LIST_USER_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.LIST_USER_SQL</span></code></a></li>
@@ -211,6 +212,8 @@
 <li class="toctree-l4"><a class="reference internal" href="pages.html#pages.BaseModel.BaseModel.SECTION_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.SECTION_SQL</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pages.html#pages.BaseModel.BaseModel.SETTING_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.SETTING_SQL</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pages.html#pages.BaseModel.BaseModel.TESTS_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.TESTS_SQL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.html#pages.BaseModel.BaseModel.TEST_PARAMS"><code class="docutils literal notranslate"><span class="pre">BaseModel.TEST_PARAMS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.html#pages.BaseModel.BaseModel.TRIGGER_PARAMS"><code class="docutils literal notranslate"><span class="pre">BaseModel.TRIGGER_PARAMS</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pages.html#pages.BaseModel.BaseModel.USERS_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.USERS_SQL</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pages.html#pages.BaseModel.BaseModel.check_and_create_tables"><code class="docutils literal notranslate"><span class="pre">BaseModel.check_and_create_tables()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pages.html#pages.BaseModel.BaseModel.execute_sql"><code class="docutils literal notranslate"><span class="pre">BaseModel.execute_sql()</span></code></a></li>

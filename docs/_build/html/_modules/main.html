@@ -69,20 +69,26 @@
            <div itemprop="articleBody">
              
   <h1>Исходный код main</h1><div class="highlight"><pre>
-<span></span><span class="c1"># from PySide6.QtCore import *</span>
-<span class="c1"># from PySide6.QtGui import *</span>
-<span class="c1"># from PySide6.QtWidgets import *</span>
-<span class="c1">#from PySide6.QtCharts import *</span>
-<span class="c1">#</span>
-<span class="c1"># from . resources_rc import *</span>
+<span></span><span class="c1"># from . resources_rc import *</span>
 
 
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
 
-<span class="kn">from</span> <span class="nn">PySide6.QtWidgets</span> <span class="kn">import</span> <span class="n">QDialog</span><span class="p">,</span> <span class="n">QFormLayout</span><span class="p">,</span> <span class="n">QVBoxLayout</span><span class="p">,</span> <span class="n">QPushButton</span><span class="p">,</span> \
-    <span class="n">QTableView</span><span class="p">,</span><span class="n">QMainWindow</span><span class="p">,</span> <span class="n">QWidget</span><span class="p">,</span> <span class="n">QHeaderView</span><span class="p">,</span> <span class="n">QMessageBox</span><span class="p">,</span> <span class="n">QGraphicsScene</span><span class="p">,</span> <span class="n">QGraphicsView</span><span class="p">,</span> <span class="n">QTreeWidgetItem</span>
+<span class="kn">from</span> <span class="nn">PySide6.QtWidgets</span> <span class="kn">import</span> <span class="p">(</span><span class="n">QDialog</span><span class="p">,</span>
+                               <span class="n">QFormLayout</span><span class="p">,</span>
+                               <span class="n">QVBoxLayout</span><span class="p">,</span>
+                               <span class="n">QPushButton</span><span class="p">,</span>
+                               <span class="n">QTableView</span><span class="p">,</span>
+                               <span class="n">QMainWindow</span><span class="p">,</span>
+                               <span class="n">QWidget</span><span class="p">,</span>
+                               <span class="n">QHeaderView</span><span class="p">,</span>
+                               <span class="n">QMessageBox</span><span class="p">,</span>
+                               <span class="n">QGraphicsScene</span><span class="p">,</span>
+                               <span class="n">QGraphicsView</span><span class="p">,</span>
+                               <span class="n">QTreeWidgetItem</span><span class="p">,</span>
+                               <span class="n">QFileDialog</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">PySide6.QtGui</span> <span class="kn">import</span> <span class="n">QTransform</span><span class="p">,</span> <span class="n">QIcon</span>
 <span class="kn">from</span> <span class="nn">PySide6</span> <span class="kn">import</span> <span class="n">QtCore</span>
 <span class="kn">from</span> <span class="nn">PySide6.QtCore</span> <span class="kn">import</span> <span class="n">Qt</span><span class="p">,</span> <span class="n">QResource</span>
@@ -92,9 +98,24 @@
 <span class="kn">from</span> <span class="nn">loger</span> <span class="kn">import</span> <span class="n">Logger</span>
 <span class="kn">from</span> <span class="nn">Application</span> <span class="kn">import</span> <span class="n">Application</span>
 <span class="kn">from</span> <span class="nn">ui_modules</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">pages</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Model_result</span><span class="p">,</span> <span class="n">Save_data</span><span class="p">,</span> <span class="n">View_result</span><span class="p">,</span> <span class="n">Dialog_change_view</span><span class="p">,</span> <span class="n">DialogsSetting</span><span class="p">,</span>\
-    <span class="n">DialogsResult</span><span class="p">,</span><span class="n">Chart_view</span><span class="p">,</span> <span class="n">Model_chart</span><span class="p">,</span> <span class="n">Dialog_add_topic</span><span class="p">,</span>\
-    <span class="n">Dialog_add_note</span><span class="p">,</span> <span class="n">Model_notes</span><span class="p">,</span> <span class="n">Controller_setting</span><span class="p">,</span> <span class="n">Dialog_article_view</span><span class="p">,</span> <span class="n">Dialog_edit_note</span><span class="p">,</span> <span class="n">Dialog_edit_topic</span>
+<span class="kn">from</span> <span class="nn">pages</span> <span class="kn">import</span> <span class="p">(</span><span class="n">BaseModel</span><span class="p">,</span>
+                   <span class="n">Model_result</span><span class="p">,</span>
+                   <span class="n">Save_data</span><span class="p">,</span>
+                   <span class="n">View_result</span><span class="p">,</span>
+                   <span class="n">Dialog_change_view</span><span class="p">,</span>
+                   <span class="n">DialogsSetting</span><span class="p">,</span>
+                   <span class="n">DialogsResult</span><span class="p">,</span>
+                   <span class="n">Chart_view</span><span class="p">,</span>
+                   <span class="n">Model_chart</span><span class="p">,</span>
+                   <span class="n">Dialog_add_topic</span><span class="p">,</span>
+                   <span class="n">Dialog_add_note</span><span class="p">,</span>
+                   <span class="n">Model_notes</span><span class="p">,</span>
+                   <span class="n">Controller_setting</span><span class="p">,</span>
+                   <span class="n">Dialog_article_view</span><span class="p">,</span>
+                   <span class="n">Dialog_edit_note</span><span class="p">,</span>
+                   <span class="n">Dialog_edit_topic</span><span class="p">,</span>
+                   <span class="n">Dialog_test_params</span><span class="p">,</span>
+                   <span class="n">Parser_json</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">SettingApp</span> <span class="kn">import</span> <span class="n">AppSettings</span>
 
 <span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">get_translate_path</span><span class="p">,</span> <span class="n">get_themes_path</span>
@@ -198,6 +219,8 @@
         <span class="n">widgets</span><span class="o">.</span><span class="n">stackedWidget</span><span class="o">.</span><span class="n">setCurrentWidget</span><span class="p">(</span><span class="n">widgets</span><span class="o">.</span><span class="n">report_page</span><span class="p">)</span>
         <span class="n">widgets</span><span class="o">.</span><span class="n">edit_note_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chose_dialog_for_edit</span><span class="p">)</span>
         <span class="n">widgets</span><span class="o">.</span><span class="n">delete_note_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delete_notes_or_topic</span><span class="p">)</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">test_params_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dialog_test_params</span><span class="p">)</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">import_data_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parse_json_data</span><span class="p">)</span>
 
 
         <span class="bp">self</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -209,6 +232,37 @@
         <span class="c1"># словарь для хранения состояний флажков</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">checkbox_dict</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">populate_tree_widget</span><span class="p">()</span>
+
+<div class="viewcode-block" id="MainWindow.parse_json_data">
+<a class="viewcode-back" href="../main.html#main.MainWindow.parse_json_data">[документация]</a>
+    <span class="k">def</span> <span class="nf">parse_json_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Данная функция передает</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">files</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">open_dialog_for_import_data</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">json_data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+                <span class="n">parser</span> <span class="o">=</span> <span class="n">Parser_json</span><span class="o">.</span><span class="n">JSONParser</span><span class="p">(</span><span class="n">json_data</span><span class="p">)</span>
+                <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="MainWindow.open_dialog_for_import_data">
+<a class="viewcode-back" href="../main.html#main.MainWindow.open_dialog_for_import_data">[документация]</a>
+    <span class="k">def</span> <span class="nf">open_dialog_for_import_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Открывает файловое диалогое окно для импорта тестов из JSON файлов</span>
+
+<span class="sd">            :returns: List[str], возвращает список строк с путями до JSON-файлов</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">files</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">QFileDialog</span><span class="o">.</span><span class="n">getOpenFileNames</span><span class="p">(</span>
+            <span class="kc">None</span><span class="p">,</span>
+            <span class="s2">&quot;Выберите файлы&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1"># Фильтры для файлов, здесь оставлено пустым для выбора всех файлов</span>
+            <span class="s2">&quot;JSON Файлы (*.json)&quot;</span>  <span class="c1"># Фильтр для JSON файлов</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">files</span></div>
+
 
 <div class="viewcode-block" id="MainWindow.on_selection_changed">
 <a class="viewcode-back" href="../main.html#main.MainWindow.on_selection_changed">[документация]</a>
@@ -252,7 +306,7 @@
             <span class="k">if</span> <span class="n">selected_items</span><span class="p">:</span>
                 <span class="n">selected_item</span> <span class="o">=</span> <span class="n">selected_items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
                 <span class="k">if</span> <span class="n">selection_result</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">dialog_edit_content_article</span><span class="p">(</span><span class="n">selected_item</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">dialog_edit_content_article</span><span class="p">(</span><span class="n">selected_item</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="s2">&quot;Вот&quot;</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">dialog_edit_title_topic</span><span class="p">(</span><span class="n">selected_item</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span></div>
 
@@ -288,9 +342,24 @@
                     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вы выбрали &quot;Нет&quot;.&#39;</span><span class="p">)</span></div>
 
 
+<div class="viewcode-block" id="MainWindow.dialog_test_params">
+<a class="viewcode-back" href="../main.html#main.MainWindow.dialog_test_params">[документация]</a>
+    <span class="k">def</span> <span class="nf">dialog_test_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">dialog</span> <span class="o">=</span> <span class="n">Dialog_test_params</span><span class="o">.</span><span class="n">TestParamsDialog</span><span class="p">()</span>
+        <span class="n">dialog</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">dialog</span><span class="o">.</span><span class="n">isVisible</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_info</span><span class="p">(</span><span class="s2">&quot;Открыто диалоговое окно для просмотра и редактирования параметров&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Ошибка открытия  диалоговое окно для просмотра и редактирования параметров&quot;</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="MainWindow.dialog_edit_title_topic">
 <a class="viewcode-back" href="../main.html#main.MainWindow.dialog_edit_title_topic">[документация]</a>
-    <span class="k">def</span> <span class="nf">dialog_edit_title_topic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">dialog_edit_title_topic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Открывает диалоговое окно для редактирования заголовка раздела.</span>
 
@@ -310,8 +379,8 @@
 
 <div class="viewcode-block" id="MainWindow.dialog_edit_content_article">
 <a class="viewcode-back" href="../main.html#main.MainWindow.dialog_edit_content_article">[документация]</a>
-    <span class="k">def</span> <span class="nf">dialog_edit_content_article</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
-        <span class="n">dialog</span> <span class="o">=</span> <span class="n">Dialog_edit_note</span><span class="o">.</span><span class="n">EditNoteDialog</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">dialog_edit_content_article</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">content</span><span class="p">):</span>
+        <span class="n">dialog</span> <span class="o">=</span> <span class="n">Dialog_edit_note</span><span class="o">.</span><span class="n">EditNoteDialog</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">dialog</span><span class="o">.</span><span class="n">isVisible</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_info</span><span class="p">(</span><span class="s2">&quot;Открыто диалоговое окно для редактирования статьи&quot;</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">dialog</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span> <span class="o">==</span> <span class="n">QDialog</span><span class="o">.</span><span class="n">Accepted</span><span class="p">:</span>

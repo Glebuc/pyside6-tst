@@ -47,9 +47,6 @@
               <div class="local-toc"><ul>
 <li><a class="reference internal" href="#">SettingApp module</a><ul>
 <li><a class="reference internal" href="#SettingApp.AppSettings"><code class="docutils literal notranslate"><span class="pre">AppSettings</span></code></a><ul>
-<li><a class="reference internal" href="#SettingApp.AppSettings.decrypt_string"><code class="docutils literal notranslate"><span class="pre">AppSettings.decrypt_string()</span></code></a></li>
-<li><a class="reference internal" href="#SettingApp.AppSettings.encrypt_string"><code class="docutils literal notranslate"><span class="pre">AppSettings.encrypt_string()</span></code></a></li>
-<li><a class="reference internal" href="#SettingApp.AppSettings.generate_key"><code class="docutils literal notranslate"><span class="pre">AppSettings.generate_key()</span></code></a></li>
 <li><a class="reference internal" href="#SettingApp.AppSettings.get_instance"><code class="docutils literal notranslate"><span class="pre">AppSettings.get_instance()</span></code></a></li>
 <li><a class="reference internal" href="#SettingApp.AppSettings.get_setting"><code class="docutils literal notranslate"><span class="pre">AppSettings.get_setting()</span></code></a></li>
 <li><a class="reference internal" href="#SettingApp.AppSettings.get_settings_by_tag"><code class="docutils literal notranslate"><span class="pre">AppSettings.get_settings_by_tag()</span></code></a></li>
@@ -102,47 +99,6 @@
 </pre></div>
 </div>
 </div></blockquote>
-<dl class="py method">
-<dt class="sig sig-object py" id="SettingApp.AppSettings.decrypt_string">
-<span class="sig-name descname"><span class="pre">decrypt_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encrypted_text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/SettingApp.html#AppSettings.decrypt_string"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#SettingApp.AppSettings.decrypt_string" title="Link to this definition"></a></dt>
-<dd><p>Дешифрует строку, зашифрованную методом Fernet.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Argument<span class="colon">:</span></dt>
-<dd class="field-odd"><p>encrypted_text (bytes): Зашифрованная строка.
-key (bytes): Ключ для дешифрования.</p>
-</dd>
-<dt class="field-even">Результат<span class="colon">:</span></dt>
-<dd class="field-even"><p>str: Расшифрованная строка.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="SettingApp.AppSettings.encrypt_string">
-<span class="sig-name descname"><span class="pre">encrypt_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bytes</span></span></span><a class="reference internal" href="_modules/SettingApp.html#AppSettings.encrypt_string"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#SettingApp.AppSettings.encrypt_string" title="Link to this definition"></a></dt>
-<dd><p>Шифрует строку с использованием ключа методом Fernet.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Argument<span class="colon">:</span></dt>
-<dd class="field-odd"><p>text (str): Строка для шифрования.
-key (bytes): Ключ для шифрования.</p>
-</dd>
-<dt class="field-even">Результат<span class="colon">:</span></dt>
-<dd class="field-even"><p>bytes: Зашифрованная строка.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="SettingApp.AppSettings.generate_key">
-<span class="sig-name descname"><span class="pre">generate_key</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bytes</span></span></span><a class="reference internal" href="_modules/SettingApp.html#AppSettings.generate_key"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#SettingApp.AppSettings.generate_key" title="Link to this definition"></a></dt>
-<dd><p>Генерирует ключ для использования в шифровании методом Fernet.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Результат<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bytes: Сгенерированный ключ.</p>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="SettingApp.AppSettings.get_instance">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_instance</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/SettingApp.html#AppSettings.get_instance"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#SettingApp.AppSettings.get_instance" title="Link to this definition"></a></dt>

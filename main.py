@@ -18,7 +18,7 @@ from PySide6.QtWidgets import (QDialog,
                                QGraphicsView,
                                QTreeWidgetItem,
                                QFileDialog)
-from PySide6.QtGui import QTransform, QIcon
+from PySide6.QtGui import QTransform, QIcon, QFont
 from PySide6 import QtCore
 from PySide6.QtCore import Qt, QResource
 
@@ -149,6 +149,10 @@ class MainWindow(QMainWindow):
         widgets.test_params_btn.clicked.connect(self.dialog_test_params)
         widgets.import_data_btn.clicked.connect(self.parse_json_data)
 
+        font = QFont()
+        font.setPointSize(20)
+        widgets.treeWidget.setFont(font)
+
 
         self.show()
         record = self.model_result.record()
@@ -161,10 +165,12 @@ class MainWindow(QMainWindow):
         self.populate_tree_widget()
 
     def parse_json_data(self):
-        """"""
+        """
+            Данная функция передает
+        """
         files = self.open_dialog_for_import_data()
         for file in files:
-            with open(file, 'r') as f:
+            with open(file, 'r', encoding='utf-8') as f:
                 json_data = f.read()
                 parser = Parser_json.JSONParser(json_data)
                 parser.parse()

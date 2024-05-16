@@ -75,7 +75,7 @@
 <span class="kn">from</span> <span class="nn">PySide6.QtGui</span> <span class="kn">import</span> <span class="n">QPainter</span><span class="p">,</span> <span class="n">QMouseEvent</span>
 <span class="kn">import</span> <span class="nn">random</span>
 
-<span class="kn">from</span> <span class="nn">loger</span> <span class="kn">import</span> <span class="n">Logger</span>
+<span class="c1"># from loger import Logger</span>
 
 <div class="viewcode-block" id="CustomChart">
 <a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.CustomChart">[документация]</a>
@@ -83,20 +83,21 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">log</span> <span class="o">=</span> <span class="n">Logger</span><span class="o">.</span><span class="n">get_instance</span><span class="p">()</span>
+        <span class="c1"># self.log = Logger.get_instance()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">series</span> <span class="o">=</span> <span class="n">QLineSeries</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">addSeries</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">series</span><span class="p">)</span>
+        <span class="c1"># self.addSeries(self.series)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">axis_x</span> <span class="o">=</span> <span class="n">QValueAxis</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">axis_x</span><span class="o">.</span><span class="n">setTickCount</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">addAxis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axis_x</span><span class="p">,</span> <span class="n">Qt</span><span class="o">.</span><span class="n">AlignBottom</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">series</span><span class="o">.</span><span class="n">attachAxis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axis_x</span><span class="p">)</span>
+        <span class="c1">#self.addAxis(self.axis_x, Qt.AlignBottom)</span>
+        <span class="c1">#self.series.attachAxis(self.axis_x)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">axis_y</span> <span class="o">=</span> <span class="n">QValueAxis</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">addAxis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axis_y</span><span class="p">,</span> <span class="n">Qt</span><span class="o">.</span><span class="n">AlignLeft</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">series</span><span class="o">.</span><span class="n">attachAxis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axis_y</span><span class="p">)</span>
+        <span class="c1">#self.addAxis(self.axis_y, Qt.AlignLeft)</span>
+        <span class="c1">#self.series.attachAxis(self.axis_y)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span><span class="o">.</span><span class="n">hide</span><span class="p">()</span>
+
 
 <div class="viewcode-block" id="CustomChart.save_chart_image">
 <a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.CustomChart.save_chart_image">[документация]</a>
@@ -120,7 +121,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_info</span><span class="p">(</span><span class="s2">&quot;График успешно сохранен в&quot;</span> <span class="o">+</span> <span class="n">file_path</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Не удалось сохранить график в &quot;</span><span class="o">+</span> <span class="n">file_path</span><span class="p">)</span>
+<span class="c1">#            self.log.log_error(&quot;Не удалось сохранить график в &quot;+ file_path)</span>
             <span class="k">return</span> <span class="kc">False</span></div>
 
 

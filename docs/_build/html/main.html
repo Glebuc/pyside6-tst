@@ -54,6 +54,7 @@
 <li><a class="reference internal" href="#main.MainWindow.delete_notes_or_topic"><code class="docutils literal notranslate"><span class="pre">MainWindow.delete_notes_or_topic()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.dialog_edit_content_article"><code class="docutils literal notranslate"><span class="pre">MainWindow.dialog_edit_content_article()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.dialog_edit_title_topic"><code class="docutils literal notranslate"><span class="pre">MainWindow.dialog_edit_title_topic()</span></code></a></li>
+<li><a class="reference internal" href="#main.MainWindow.dialog_test_params"><code class="docutils literal notranslate"><span class="pre">MainWindow.dialog_test_params()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.get_item_and_parent_text"><code class="docutils literal notranslate"><span class="pre">MainWindow.get_item_and_parent_text()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.get_param_test"><code class="docutils literal notranslate"><span class="pre">MainWindow.get_param_test()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.get_text_from_combo_chart"><code class="docutils literal notranslate"><span class="pre">MainWindow.get_text_from_combo_chart()</span></code></a></li>
@@ -63,7 +64,9 @@
 <li><a class="reference internal" href="#main.MainWindow.open_dialog_add_topic"><code class="docutils literal notranslate"><span class="pre">MainWindow.open_dialog_add_topic()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.open_dialog_config_db"><code class="docutils literal notranslate"><span class="pre">MainWindow.open_dialog_config_db()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.open_dialog_extension_search"><code class="docutils literal notranslate"><span class="pre">MainWindow.open_dialog_extension_search()</span></code></a></li>
+<li><a class="reference internal" href="#main.MainWindow.open_dialog_for_import_data"><code class="docutils literal notranslate"><span class="pre">MainWindow.open_dialog_for_import_data()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.open_dialog_keyword"><code class="docutils literal notranslate"><span class="pre">MainWindow.open_dialog_keyword()</span></code></a></li>
+<li><a class="reference internal" href="#main.MainWindow.parse_json_data"><code class="docutils literal notranslate"><span class="pre">MainWindow.parse_json_data()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.populate_tree_widget"><code class="docutils literal notranslate"><span class="pre">MainWindow.populate_tree_widget()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.save_settings"><code class="docutils literal notranslate"><span class="pre">MainWindow.save_settings()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.set_param_test_for_chart"><code class="docutils literal notranslate"><span class="pre">MainWindow.set_param_test_for_chart()</span></code></a></li>
@@ -163,16 +166,26 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="main.MainWindow.dialog_edit_content_article">
-<span class="sig-name descname"><span class="pre">dialog_edit_content_article</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWindow.dialog_edit_content_article"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#main.MainWindow.dialog_edit_content_article" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">dialog_edit_content_article</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWindow.dialog_edit_content_article"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#main.MainWindow.dialog_edit_content_article" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="main.MainWindow.dialog_edit_title_topic">
-<span class="sig-name descname"><span class="pre">dialog_edit_title_topic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWindow.dialog_edit_title_topic"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#main.MainWindow.dialog_edit_title_topic" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">dialog_edit_title_topic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/main.html#MainWindow.dialog_edit_title_topic"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#main.MainWindow.dialog_edit_title_topic" title="Link to this definition"></a></dt>
 <dd><p>Открывает диалоговое окно для редактирования заголовка раздела.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Arguments<span class="colon">:</span></dt>
 <dd class="field-odd"><p>title (str): Заголовок статьи.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWindow.dialog_test_params">
+<span class="sig-name descname"><span class="pre">dialog_test_params</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/main.html#MainWindow.dialog_test_params"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#main.MainWindow.dialog_test_params" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
 </dd>
 </dl>
 </dd></dl>
@@ -284,6 +297,17 @@ None: Если не удалось получить данные о статье
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="main.MainWindow.open_dialog_for_import_data">
+<span class="sig-name descname"><span class="pre">open_dialog_for_import_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWindow.open_dialog_for_import_data"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#main.MainWindow.open_dialog_for_import_data" title="Link to this definition"></a></dt>
+<dd><p>Открывает файловое диалогое окно для импорта тестов из JSON файлов</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[str], возвращает список строк с путями до JSON-файлов</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="main.MainWindow.open_dialog_keyword">
 <span class="sig-name descname"><span class="pre">open_dialog_keyword</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/main.html#MainWindow.open_dialog_keyword"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#main.MainWindow.open_dialog_keyword" title="Link to this definition"></a></dt>
 <dd><p>Открывает диалоговое окно для отображения горячих клавиш в приложение.</p>
@@ -292,6 +316,12 @@ None: Если не удалось получить данные о статье
 <dd class="field-odd"><p>None</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWindow.parse_json_data">
+<span class="sig-name descname"><span class="pre">parse_json_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWindow.parse_json_data"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#main.MainWindow.parse_json_data" title="Link to this definition"></a></dt>
+<dd><p>Данная функция передает</p>
 </dd></dl>
 
 <dl class="py method">

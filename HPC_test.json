@@ -1,0 +1,20 @@
+{
+  "TestName": {
+    "complete": true,
+    "result_test": "Строка результата теста",
+    "config": {
+      "n": 12,
+      "NP": 14,
+      "other_parameters": ""
+    }
+  },
+   "TestName2": {
+    "complete": false,
+    "result_test": "Строка результата теста 2",
+    "config": {
+      "n": 12,
+      "NP": 14,
+      "other_parameters2": ""
+    }
+  }
+}

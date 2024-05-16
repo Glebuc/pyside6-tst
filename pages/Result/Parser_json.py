@@ -3,7 +3,7 @@ from pprint import pprint
 
 class JSONParser:
 
-    def __init__(self, json_data):
+    def __init__ (self, json_data):
         self.json_data = json_data
 
     def parse(self):

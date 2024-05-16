@@ -147,7 +147,7 @@ class MainWindow(QMainWindow):
         widgets.edit_note_btn.clicked.connect(self.chose_dialog_for_edit)
         widgets.delete_note_btn.clicked.connect(self.delete_notes_or_topic)
         widgets.test_params_btn.clicked.connect(self.dialog_test_params)
-        widgets.import_data_btn.clicked.connect(self.open_dialog_for_import_data)
+        widgets.import_data_btn.clicked.connect(self.parse_json_data)
 
 
         self.show()

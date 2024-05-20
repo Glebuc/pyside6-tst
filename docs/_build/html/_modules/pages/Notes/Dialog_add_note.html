@@ -70,7 +70,8 @@
              
   <h1>Исходный код pages.Notes.Dialog_add_note</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">PySide6.QtWidgets</span> <span class="kn">import</span> <span class="n">QApplication</span><span class="p">,</span> <span class="n">QDialog</span><span class="p">,</span> <span class="n">QVBoxLayout</span><span class="p">,</span> <span class="n">QLabel</span><span class="p">,</span> <span class="n">QComboBox</span><span class="p">,</span> <span class="n">QTextEdit</span><span class="p">,</span> <span class="n">QPushButton</span><span class="p">,</span>\
-    <span class="n">QLineEdit</span><span class="p">,</span> <span class="n">QMessageBox</span>
+    <span class="n">QLineEdit</span><span class="p">,</span> <span class="n">QMessageBox</span><span class="p">,</span> <span class="n">QTabWidget</span>
+
 
 <span class="kn">from</span> <span class="nn">.Model_notes</span> <span class="kn">import</span> <span class="n">NoteModel</span>
 
@@ -81,7 +82,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;Добавление статьи&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tr</span><span class="p">(</span><span class="s2">&quot;Добавление записи&quot;</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">note_model</span> <span class="o">=</span> <span class="n">NoteModel</span><span class="p">(</span><span class="s2">&quot;sections&quot;</span><span class="p">)</span>
         <span class="n">layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">select_label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="s2">&quot;Выберите раздел:&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
@@ -95,11 +96,24 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">section_combo</span><span class="o">.</span><span class="n">addItems</span><span class="p">(</span><span class="n">NoteModel</span><span class="o">.</span><span class="n">get_section_names</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
         <span class="n">label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="s2">&quot;Введите текст статьи:&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
         <span class="n">layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+        <span class="n">tab_widget</span> <span class="o">=</span> <span class="n">QTabWidget</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">text_edit</span> <span class="o">=</span> <span class="n">QTextEdit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="n">layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">text_edit</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">view_text_edit</span> <span class="o">=</span> <span class="n">QTextEdit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">view_text_edit</span><span class="o">.</span><span class="n">setReadOnly</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">tab_widget</span><span class="o">.</span><span class="n">addTab</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">text_edit</span><span class="p">,</span> <span class="s2">&quot;Редактирование&quot;</span><span class="p">)</span>
+        <span class="n">tab_widget</span><span class="o">.</span><span class="n">addTab</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view_text_edit</span><span class="p">,</span> <span class="s2">&quot;Предпросмотр&quot;</span><span class="p">)</span>
+        <span class="n">layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">tab_widget</span><span class="p">)</span>
         <span class="n">publish_button</span> <span class="o">=</span> <span class="n">QPushButton</span><span class="p">(</span><span class="s2">&quot;Опубликовать&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
         <span class="n">publish_button</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">publish_article</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">text_edit</span><span class="o">.</span><span class="n">textChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_text_changed</span><span class="p">)</span>
         <span class="n">layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">publish_button</span><span class="p">)</span>
+
+<div class="viewcode-block" id="DialogAddNote.current_text_changed">
+<a class="viewcode-back" href="../../../pages.Notes.html#pages.Notes.Dialog_add_note.DialogAddNote.current_text_changed">[документация]</a>
+    <span class="k">def</span> <span class="nf">current_text_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">text_edit</span><span class="o">.</span><span class="n">toPlainText</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">view_text_edit</span><span class="o">.</span><span class="n">setMarkdown</span><span class="p">(</span><span class="n">text</span><span class="p">)</span></div>
+
 
 <div class="viewcode-block" id="DialogAddNote.get_selected_section">
 <a class="viewcode-back" href="../../../pages.Notes.html#pages.Notes.Dialog_add_note.DialogAddNote.get_selected_section">[документация]</a>

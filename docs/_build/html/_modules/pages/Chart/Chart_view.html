@@ -71,63 +71,81 @@
   <h1>Исходный код pages.Chart.Chart_view</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">PySide6.QtCore</span> <span class="kn">import</span> <span class="n">Qt</span>
 <span class="kn">from</span> <span class="nn">PySide6.QtWidgets</span> <span class="kn">import</span> <span class="n">QApplication</span><span class="p">,</span> <span class="n">QMainWindow</span><span class="p">,</span> <span class="n">QVBoxLayout</span><span class="p">,</span> <span class="n">QWidget</span><span class="p">,</span> <span class="n">QGraphicsView</span>
-<span class="kn">from</span> <span class="nn">PySide6.QtCharts</span> <span class="kn">import</span> <span class="n">QChart</span><span class="p">,</span> <span class="n">QLineSeries</span><span class="p">,</span> <span class="n">QValueAxis</span>
+<span class="kn">from</span> <span class="nn">PySide6.QtCharts</span> <span class="kn">import</span> <span class="n">QChart</span><span class="p">,</span> <span class="n">QLineSeries</span><span class="p">,</span> <span class="n">QValueAxis</span><span class="p">,</span> <span class="n">QDateTimeAxis</span>
 <span class="kn">from</span> <span class="nn">PySide6.QtGui</span> <span class="kn">import</span> <span class="n">QPainter</span><span class="p">,</span> <span class="n">QMouseEvent</span>
+<span class="kn">from</span> <span class="nn">PySide6.QtSql</span> <span class="kn">import</span> <span class="n">QSqlQuery</span>
 <span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">array</span>
 
 <span class="c1"># from loger import Logger</span>
 
-<div class="viewcode-block" id="CustomChart">
-<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.CustomChart">[документация]</a>
-<span class="k">class</span> <span class="nc">CustomChart</span><span class="p">(</span><span class="n">QChart</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="TestChart">
+<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.TestChart">[документация]</a>
+<span class="k">class</span> <span class="nc">TestChart</span><span class="p">(</span><span class="n">QChart</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">test_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="c1"># self.log = Logger.get_instance()</span>
-
+        <span class="c1"># Создание серии данных для графика</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">series</span> <span class="o">=</span> <span class="n">QLineSeries</span><span class="p">()</span>
-        <span class="c1"># self.addSeries(self.series)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">axis_x</span> <span class="o">=</span> <span class="n">QValueAxis</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">axis_x</span><span class="o">.</span><span class="n">setTickCount</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-        <span class="c1">#self.addAxis(self.axis_x, Qt.AlignBottom)</span>
-        <span class="c1">#self.series.attachAxis(self.axis_x)</span>
-
+        <span class="c1"># Создание осей X и Y</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axis_x</span> <span class="o">=</span> <span class="n">QDateTimeAxis</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">axis_y</span> <span class="o">=</span> <span class="n">QValueAxis</span><span class="p">()</span>
-        <span class="c1">#self.addAxis(self.axis_y, Qt.AlignLeft)</span>
-        <span class="c1">#self.series.attachAxis(self.axis_y)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span><span class="o">.</span><span class="n">hide</span><span class="p">()</span>
+
+        <span class="c1"># Настройка оси X</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axis_x</span><span class="o">.</span><span class="n">setFormat</span><span class="p">(</span><span class="s2">&quot;dd.MM.yyyy&quot;</span><span class="p">)</span>  <span class="c1"># Установка формата даты на оси X</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axis_x</span><span class="o">.</span><span class="n">setTitleText</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">)</span>  <span class="c1"># Установка заголовка для оси X</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">addAxis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axis_x</span><span class="p">,</span> <span class="n">Qt</span><span class="o">.</span><span class="n">AlignBottom</span><span class="p">)</span>  <span class="c1"># Добавление оси X на график</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">series</span><span class="o">.</span><span class="n">attachAxis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axis_x</span><span class="p">)</span>  <span class="c1"># Привязка серии данных к оси X</span>
+
+        <span class="c1"># Настройка оси Y</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axis_y</span><span class="o">.</span><span class="n">setTitleText</span><span class="p">(</span><span class="s2">&quot;Test Result&quot;</span><span class="p">)</span>  <span class="c1"># Установка заголовка для оси Y</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">addAxis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axis_y</span><span class="p">,</span> <span class="n">Qt</span><span class="o">.</span><span class="n">AlignLeft</span><span class="p">)</span>  <span class="c1"># Добавление оси Y на график</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">series</span><span class="o">.</span><span class="n">attachAxis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axis_y</span><span class="p">)</span>  <span class="c1"># Привязка серии данных к оси Y</span>
+
+        <span class="c1"># Добавление серии данных на график</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">addSeries</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">series</span><span class="p">)</span>
+
+        <span class="c1"># Установка заголовка графика</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setTitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test Results for &#39;</span><span class="si">{</span><span class="n">test_name</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Загрузка данных из базы данных и отображение на графике</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">load_test_results</span><span class="p">(</span><span class="n">test_name</span><span class="p">)</span>
+
+<div class="viewcode-block" id="TestChart.load_test_results">
+<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.TestChart.load_test_results">[документация]</a>
+    <span class="k">def</span> <span class="nf">load_test_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">test_name</span><span class="p">):</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">()</span>
+        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT start_test, test_result FROM tests WHERE test_name = ? ORDER BY start_test;&quot;</span><span class="p">)</span>
+        <span class="n">query</span><span class="o">.</span><span class="n">addBindValue</span><span class="p">(</span><span class="n">test_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Failed to execute query&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="c1"># Очищаем существующие данные серии перед загрузкой новых данных</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">series</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+        <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+            <span class="n">start_test</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Не нужно вызывать toDateTime()</span>
+            <span class="c1"># Получаем массив данных типа _int4 из PostgreSQL</span>
+            <span class="n">test_result_array</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">test_result_array</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="c1"># Если данные представлены в виде строки, преобразуем их в список целых чисел</span>
+                <span class="n">test_result_list</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">test_result_array</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Если данные уже являются массивом целых чисел, не требуется дополнительных преобразований</span>
+                <span class="n">test_result_list</span> <span class="o">=</span> <span class="n">test_result_array</span>
+
+            <span class="c1"># Добавляем каждое значение из списка в серию данных</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">test_result_list</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">series</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">start_test</span><span class="o">.</span><span class="n">toMSecsSinceEpoch</span><span class="p">()</span> <span class="o">+</span> <span class="n">i</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="CustomChart.save_chart_image">
-<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.CustomChart.save_chart_image">[документация]</a>
-    <span class="k">def</span> <span class="nf">save_chart_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graphics_view</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Сохраняет график в виде изображения.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            graphics_view (QGraphicsView): Объект QGraphicsView, в котором находится график.</span>
-<span class="sd">            file_path (str): Путь к файлу, в который нужно сохранить изображение.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            bool: True, если сохранение прошло успешно, в противном случае False.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">chart_view</span> <span class="o">=</span> <span class="n">graphics_view</span>
-        <span class="n">chart_view</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">toSize</span><span class="p">())</span>  <span class="c1"># Размер QGraphicsView соответствует размеру графика</span>
-        <span class="n">image</span> <span class="o">=</span> <span class="n">chart_view</span><span class="o">.</span><span class="n">grab</span><span class="p">()</span>
-
-        <span class="c1"># Проверяем, удалось ли сохранить изображение</span>
-        <span class="k">if</span> <span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_info</span><span class="p">(</span><span class="s2">&quot;График успешно сохранен в&quot;</span> <span class="o">+</span> <span class="n">file_path</span><span class="p">)</span>
-            <span class="k">return</span> <span class="kc">True</span>
-        <span class="k">else</span><span class="p">:</span>
-<span class="c1">#            self.log.log_error(&quot;Не удалось сохранить график в &quot;+ file_path)</span>
-            <span class="k">return</span> <span class="kc">False</span></div>
-
-
-
-<div class="viewcode-block" id="CustomChart.zoom_in">
-<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.CustomChart.zoom_in">[документация]</a>
+<div class="viewcode-block" id="TestChart.zoom_in">
+<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.TestChart.zoom_in">[документация]</a>
     <span class="k">def</span> <span class="nf">zoom_in</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Увеличивает масштаб видимости на 1.1 раза.</span>
@@ -138,8 +156,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">zoom</span><span class="p">(</span><span class="mf">1.1</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="CustomChart.zoom_out">
-<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.CustomChart.zoom_out">[документация]</a>
+<div class="viewcode-block" id="TestChart.zoom_out">
+<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.TestChart.zoom_out">[документация]</a>
     <span class="k">def</span> <span class="nf">zoom_out</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Уменьшает масштаб видимости на 0.9 раза.</span>
@@ -150,8 +168,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">zoom</span><span class="p">(</span><span class="mf">0.9</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="CustomChart.reset">
-<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.CustomChart.reset">[документация]</a>
+<div class="viewcode-block" id="TestChart.reset">
+<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.TestChart.reset">[документация]</a>
     <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Сбрасывает вид в его начальное состояние.</span>
@@ -160,66 +178,6 @@
 <span class="sd">                None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">zoomReset</span><span class="p">()</span></div>
-
-
-
-<div class="viewcode-block" id="CustomChart.update_chart">
-<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.CustomChart.update_chart">[документация]</a>
-    <span class="k">def</span> <span class="nf">update_chart</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">series</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
-            <span class="n">y</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">series</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">axis_x</span><span class="o">.</span><span class="n">setRange</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">axis_y</span><span class="o">.</span><span class="n">setRange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span></div>
-</div>
-
-
-
-
-<div class="viewcode-block" id="ChartView">
-<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.ChartView">[документация]</a>
-<span class="k">class</span> <span class="nc">ChartView</span><span class="p">(</span><span class="n">QGraphicsView</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">scene</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setMouseTracking</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setDragMode</span><span class="p">(</span><span class="n">QGraphicsView</span><span class="o">.</span><span class="n">ScrollHandDrag</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setRenderHint</span><span class="p">(</span><span class="n">QPainter</span><span class="o">.</span><span class="n">Antialiasing</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">pan</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">last_pan_point</span> <span class="o">=</span> <span class="kc">None</span>
-
-<div class="viewcode-block" id="ChartView.mousePressEvent">
-<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.ChartView.mousePressEvent">[документация]</a>
-    <span class="k">def</span> <span class="nf">mousePressEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QMouseEvent</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="p">()</span> <span class="o">==</span> <span class="n">Qt</span><span class="o">.</span><span class="n">RightButton</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">pan</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">last_pan_point</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">pos</span><span class="p">()</span>
-
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">mousePressEvent</span><span class="p">(</span><span class="n">event</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="ChartView.mouseReleaseEvent">
-<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.ChartView.mouseReleaseEvent">[документация]</a>
-    <span class="k">def</span> <span class="nf">mouseReleaseEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QMouseEvent</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="p">()</span> <span class="o">==</span> <span class="n">Qt</span><span class="o">.</span><span class="n">RightButton</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">pan</span> <span class="o">=</span> <span class="kc">False</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">last_pan_point</span> <span class="o">=</span> <span class="kc">None</span>
-
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">mouseReleaseEvent</span><span class="p">(</span><span class="n">event</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="ChartView.mouseMoveEvent">
-<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.ChartView.mouseMoveEvent">[документация]</a>
-    <span class="k">def</span> <span class="nf">mouseMoveEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QMouseEvent</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pan</span><span class="p">:</span>
-            <span class="n">delta</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">pos</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_pan_point</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">horizontalScrollBar</span><span class="p">()</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">horizontalScrollBar</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">()</span> <span class="o">-</span> <span class="n">delta</span><span class="o">.</span><span class="n">x</span><span class="p">())</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">verticalScrollBar</span><span class="p">()</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">verticalScrollBar</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">()</span> <span class="o">-</span> <span class="n">delta</span><span class="o">.</span><span class="n">y</span><span class="p">())</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">last_pan_point</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">pos</span><span class="p">()</span>
-
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">mouseMoveEvent</span><span class="p">(</span><span class="n">event</span><span class="p">)</span></div>
 </div>
 
 </pre></div>

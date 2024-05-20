@@ -89,7 +89,7 @@
                                <span class="n">QGraphicsView</span><span class="p">,</span>
                                <span class="n">QTreeWidgetItem</span><span class="p">,</span>
                                <span class="n">QFileDialog</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">PySide6.QtGui</span> <span class="kn">import</span> <span class="n">QTransform</span><span class="p">,</span> <span class="n">QIcon</span>
+<span class="kn">from</span> <span class="nn">PySide6.QtGui</span> <span class="kn">import</span> <span class="n">QTransform</span><span class="p">,</span> <span class="n">QIcon</span><span class="p">,</span> <span class="n">QFont</span>
 <span class="kn">from</span> <span class="nn">PySide6</span> <span class="kn">import</span> <span class="n">QtCore</span>
 <span class="kn">from</span> <span class="nn">PySide6.QtCore</span> <span class="kn">import</span> <span class="n">Qt</span><span class="p">,</span> <span class="n">QResource</span>
 
@@ -97,6 +97,7 @@
 
 <span class="kn">from</span> <span class="nn">loger</span> <span class="kn">import</span> <span class="n">Logger</span>
 <span class="kn">from</span> <span class="nn">Application</span> <span class="kn">import</span> <span class="n">Application</span>
+<span class="kn">from</span> <span class="nn">pages.Chart.Chart_view</span> <span class="kn">import</span> <span class="n">TestChart</span>
 <span class="kn">from</span> <span class="nn">ui_modules</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">pages</span> <span class="kn">import</span> <span class="p">(</span><span class="n">BaseModel</span><span class="p">,</span>
                    <span class="n">Model_result</span><span class="p">,</span>
@@ -134,7 +135,6 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">):</span>
         <span class="n">QMainWindow</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="n">app</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">ui</span> <span class="o">=</span> <span class="n">Ui_MainWindow</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="k">global</span> <span class="n">widgets</span>
@@ -154,26 +154,21 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">note_model</span> <span class="o">=</span> <span class="n">Model_notes</span><span class="o">.</span><span class="n">NoteModel</span><span class="p">(</span><span class="s1">&#39;sections&#39;</span><span class="p">)</span>
 
         <span class="n">widgets</span><span class="o">.</span><span class="n">btn_change_view</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">open_column_selection_dialog</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setting</span> <span class="o">=</span> <span class="n">AppSettings</span><span class="o">.</span><span class="n">get_instance</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">scene</span> <span class="o">=</span> <span class="n">QGraphicsScene</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">view</span> <span class="o">=</span> <span class="n">Chart_view</span><span class="o">.</span><span class="n">ChartView</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scene</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">chart</span> <span class="o">=</span> <span class="n">Chart_view</span><span class="o">.</span><span class="n">CustomChart</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">chart</span><span class="o">.</span><span class="n">update_chart</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chart</span><span class="p">)</span>
+        <span class="n">setting</span> <span class="o">=</span> <span class="n">AppSettings</span><span class="o">.</span><span class="n">get_instance</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_translation</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_theme</span><span class="p">()</span>
+        <span class="n">test_chart</span> <span class="o">=</span> <span class="n">TestChart</span><span class="p">(</span><span class="s2">&quot;IMB&quot;</span><span class="p">)</span>
 
 
         <span class="c1">#Обработчики кнопок масштабирования графика</span>
-        <span class="n">widgets</span><span class="o">.</span><span class="n">zoom_in_chart_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chart</span><span class="o">.</span><span class="n">zoom_in</span><span class="p">)</span>
-        <span class="n">widgets</span><span class="o">.</span><span class="n">zoom_out_chart_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chart</span><span class="o">.</span><span class="n">zoom_out</span><span class="p">)</span>
-        <span class="n">widgets</span><span class="o">.</span><span class="n">reset_chart_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chart</span><span class="o">.</span><span class="n">reset</span><span class="p">)</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">zoom_in_chart_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">test_chart</span><span class="o">.</span><span class="n">zoom_in</span><span class="p">)</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">zoom_out_chart_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">test_chart</span><span class="o">.</span><span class="n">zoom_out</span><span class="p">)</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">reset_chart_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">test_chart</span><span class="o">.</span><span class="n">reset</span><span class="p">)</span>
 
         <span class="n">widgets</span><span class="o">.</span><span class="n">graphicsView</span><span class="o">.</span><span class="n">setDragMode</span><span class="p">(</span><span class="n">QGraphicsView</span><span class="o">.</span><span class="n">ScrollHandDrag</span><span class="p">)</span>
-        <span class="n">widgets</span><span class="o">.</span><span class="n">graphicsView</span><span class="o">.</span><span class="n">setChart</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chart</span><span class="p">)</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">graphicsView</span><span class="o">.</span><span class="n">setChart</span><span class="p">(</span><span class="n">test_chart</span><span class="p">)</span>
 
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">chart</span><span class="o">.</span><span class="n">save_chart_image</span><span class="p">(</span><span class="n">widgets</span><span class="o">.</span><span class="n">graphicsView</span><span class="p">,</span> <span class="s2">&quot;C:</span><span class="se">\\</span><span class="s2">Users</span><span class="se">\\</span><span class="s2">Admin</span><span class="se">\\</span><span class="s2">Desktop</span><span class="se">\\</span><span class="s2">ДИПЛОМ&quot;</span> <span class="p">)</span>
-
-        <span class="n">widgets</span><span class="o">.</span><span class="n">list_test_result</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="s2">&quot;Все тесты&quot;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_result</span><span class="o">.</span><span class="n">execute_sql</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_result</span><span class="o">.</span><span class="n">LIST_TEST_SQL</span><span class="p">):</span>
             <span class="n">widgets</span><span class="o">.</span><span class="n">list_test_result</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
             <span class="n">widgets</span><span class="o">.</span><span class="n">list_test_chart</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
@@ -202,7 +197,6 @@
         <span class="n">widgets</span><span class="o">.</span><span class="n">btn_config_DB</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">open_dialog_config_db</span><span class="p">)</span>
         <span class="n">widgets</span><span class="o">.</span><span class="n">btn_hot_keys</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">open_dialog_keyword</span><span class="p">)</span>
         <span class="n">widgets</span><span class="o">.</span><span class="n">btn_extension_search</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">open_dialog_extension_search</span><span class="p">)</span>
-
         <span class="n">widgets</span><span class="o">.</span><span class="n">add_item_note_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">open_dialog_add_item_topic</span><span class="p">)</span>
         <span class="n">widgets</span><span class="o">.</span><span class="n">add_topic_note_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">open_dialog_add_topic</span><span class="p">)</span>
 
@@ -221,6 +215,12 @@
         <span class="n">widgets</span><span class="o">.</span><span class="n">delete_note_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delete_notes_or_topic</span><span class="p">)</span>
         <span class="n">widgets</span><span class="o">.</span><span class="n">test_params_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dialog_test_params</span><span class="p">)</span>
         <span class="n">widgets</span><span class="o">.</span><span class="n">import_data_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parse_json_data</span><span class="p">)</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">save_chart_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">open_dialog_for_save_chart</span><span class="p">)</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">save_report_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">open_dialog_for_save_report</span><span class="p">)</span>
+
+        <span class="n">font</span> <span class="o">=</span> <span class="n">QFont</span><span class="p">()</span>
+        <span class="n">font</span><span class="o">.</span><span class="n">setPointSize</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">treeWidget</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
 
 
         <span class="bp">self</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -232,6 +232,97 @@
         <span class="c1"># словарь для хранения состояний флажков</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">checkbox_dict</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">populate_tree_widget</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="MainWindow.set_combo_value">
+<a class="viewcode-back" href="../main.html#main.MainWindow.set_combo_value">[документация]</a>
+    <span class="k">def</span> <span class="nf">set_combo_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comboBox</span><span class="p">,</span> <span class="n">possible_values</span><span class="p">:</span> <span class="n">List</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">           Устанавливает текущее значение в QComboBox, если одно из возможных значений найдено.</span>
+
+<span class="sd">           :parametrs:</span>
+<span class="sd">           comboBox (QComboBox): Комбобокс, в котором необходимо установить значение.</span>
+<span class="sd">           possible_values (list): Список строк, содержащий возможные значения для установки.</span>
+
+<span class="sd">           :returns:</span>
+<span class="sd">           None</span>
+<span class="sd">           &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">possible_values</span><span class="p">:</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="n">comboBox</span><span class="o">.</span><span class="n">findText</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">index</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="n">comboBox</span><span class="o">.</span><span class="n">setCurrentIndex</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+                <span class="k">break</span></div>
+
+
+
+<div class="viewcode-block" id="MainWindow.init_theme">
+<a class="viewcode-back" href="../main.html#main.MainWindow.init_theme">[документация]</a>
+    <span class="k">def</span> <span class="nf">init_theme</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Инициализирует установку темы в начале запуска приложения, смотрит на данные из конфига и ставит тему</span>
+<span class="sd">         по этим данным</span>
+<span class="sd">        :return:</span>
+<span class="sd">            None</span>
+<span class="sd">              &quot;&quot;&quot;</span>
+        <span class="n">themeFile_light</span> <span class="o">=</span> <span class="s1">&#39;:/themes/themes/theme_light.qss&#39;</span>
+        <span class="n">themeFile_dark</span> <span class="o">=</span> <span class="s1">&#39;:/themes/themes/theme_dark.qss&#39;</span>
+        <span class="n">theme</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">app_settings</span><span class="o">.</span><span class="n">get_setting</span><span class="p">(</span><span class="s2">&quot;AppSettings/theme&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">theme</span> <span class="o">==</span> <span class="s2">&quot;Light&quot;</span><span class="p">:</span>
+            <span class="n">UIFunctions</span><span class="o">.</span><span class="n">theme</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">themeFile_light</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_combo_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">comboBox_language</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Light&quot;</span><span class="p">,</span> <span class="s2">&quot;Светлая&quot;</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="n">theme</span> <span class="o">==</span> <span class="s2">&quot;Dark&quot;</span><span class="p">:</span>
+            <span class="n">UIFunctions</span><span class="o">.</span><span class="n">theme</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">themeFile_dark</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_combo_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">comboBox_language</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Dark&quot;</span><span class="p">,</span> <span class="s2">&quot;Темная&quot;</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="MainWindow.init_translation">
+<a class="viewcode-back" href="../main.html#main.MainWindow.init_translation">[документация]</a>
+    <span class="k">def</span> <span class="nf">init_translation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Инициализирует установку языка в начале запуска приложения, смотрит на данные из конфига и ставит язык</span>
+<span class="sd">         по этим данным</span>
+<span class="sd">        :return:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ru_translate</span> <span class="o">=</span> <span class="s1">&#39;:/translations/translations/ru.qm&#39;</span>
+        <span class="n">en_translate</span> <span class="o">=</span> <span class="s1">&#39;:/translations/translations/en.qm&#39;</span>
+        <span class="n">language</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">app_settings</span><span class="o">.</span><span class="n">get_setting</span><span class="p">(</span><span class="s2">&quot;AppSettings/language&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">language</span> <span class="o">==</span> <span class="s2">&quot;English&quot;</span><span class="p">:</span>
+            <span class="n">app</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">en_translate</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">retranslateUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">list_test_result</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="s2">&quot;All tests&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_combo_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">comboBox_language</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;English&quot;</span><span class="p">,</span> <span class="s2">&quot;Английский&quot;</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="n">language</span> <span class="o">==</span> <span class="s2">&quot;Russian&quot;</span><span class="p">:</span>
+            <span class="n">app</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">ru_translate</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">retranslateUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">list_test_result</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="s2">&quot;Все тесты&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_combo_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">comboBox_language</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Russian&quot;</span><span class="p">,</span> <span class="s2">&quot;Русский&quot;</span><span class="p">])</span></div>
+
+
+
+<div class="viewcode-block" id="MainWindow.open_dialog_for_save_report">
+<a class="viewcode-back" href="../main.html#main.MainWindow.open_dialog_for_save_report">[документация]</a>
+    <span class="k">def</span> <span class="nf">open_dialog_for_save_report</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Открывает файловое диалогое окно для сохранения отчета</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">files</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">QFileDialog</span><span class="o">.</span><span class="n">getSaveFileName</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;Save File&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;All Files (*)&quot;</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">files</span></div>
+
+
+<div class="viewcode-block" id="MainWindow.open_dialog_for_save_chart">
+<a class="viewcode-back" href="../main.html#main.MainWindow.open_dialog_for_save_chart">[документация]</a>
+    <span class="k">def</span> <span class="nf">open_dialog_for_save_chart</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Открывает файловое диалогое окно для сохранения изображения графика</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">files</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">QFileDialog</span><span class="o">.</span><span class="n">getSaveFileName</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;Save File&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;All Files (*)&quot;</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">files</span></div>
+
 
 <div class="viewcode-block" id="MainWindow.parse_json_data">
 <a class="viewcode-back" href="../main.html#main.MainWindow.parse_json_data">[документация]</a>
@@ -306,7 +397,8 @@
             <span class="k">if</span> <span class="n">selected_items</span><span class="p">:</span>
                 <span class="n">selected_item</span> <span class="o">=</span> <span class="n">selected_items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
                 <span class="k">if</span> <span class="n">selection_result</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">dialog_edit_content_article</span><span class="p">(</span><span class="n">selected_item</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="s2">&quot;Вот&quot;</span><span class="p">)</span>
+                    <span class="n">article_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">note_model</span><span class="o">.</span><span class="n">get_article_data</span><span class="p">(</span><span class="n">selected_item</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">dialog_edit_content_article</span><span class="p">(</span><span class="n">selected_item</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">article_data</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">])</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">dialog_edit_title_topic</span><span class="p">(</span><span class="n">selected_item</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span></div>
 
@@ -450,7 +542,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">dict_setting</span><span class="p">[</span><span class="s2">&quot;language&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">language_text</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">setting</span><span class="o">.</span><span class="n">set_setting_application</span><span class="p">(</span><span class="n">dict_setting</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">app_settings</span><span class="o">.</span><span class="n">set_setting_application</span><span class="p">(</span><span class="n">dict_setting</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="MainWindow.get_text_from_combo_chart">
@@ -541,9 +633,11 @@
         <span class="k">if</span> <span class="n">text</span> <span class="o">==</span> <span class="s2">&quot;Английский&quot;</span> <span class="ow">or</span> <span class="n">text</span> <span class="o">==</span> <span class="s2">&quot;English&quot;</span><span class="p">:</span>
             <span class="n">app</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">en_translate</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">retranslateUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">list_test_result</span><span class="o">.</span><span class="n">setItemText</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="s2">&quot;All tests&quot;</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">text</span> <span class="o">==</span> <span class="s2">&quot;Русский&quot;</span> <span class="ow">or</span> <span class="n">text</span> <span class="o">==</span> <span class="s2">&quot;Russian&quot;</span><span class="p">:</span>
             <span class="n">app</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">ru_translate</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">retranslateUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">retranslateUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">list_test_result</span><span class="o">.</span><span class="n">setItemText</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Все тесты&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="MainWindow.change_theme">
@@ -641,7 +735,8 @@
         <span class="n">dialog</span> <span class="o">=</span> <span class="n">DialogsSetting</span><span class="o">.</span><span class="n">DialogConfigDB</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">dialog</span><span class="o">.</span><span class="n">isVisible</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_info</span><span class="p">(</span><span class="s2">&quot;Открыто диалоговое окно с кофигом БД&quot;</span><span class="p">)</span>
-        <span class="n">dialog</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span></div>
+        <span class="k">if</span> <span class="n">dialog</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span> <span class="o">==</span> <span class="n">QDialog</span><span class="o">.</span><span class="n">Accepted</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">restart_app</span><span class="p">()</span></div>
 
 
 

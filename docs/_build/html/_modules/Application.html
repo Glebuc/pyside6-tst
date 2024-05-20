@@ -74,6 +74,8 @@
 <span class="kn">from</span> <span class="nn">PySide6.QtCore</span> <span class="kn">import</span> <span class="n">QTranslator</span><span class="p">,</span> <span class="n">QLocale</span><span class="p">,</span> <span class="n">QEvent</span><span class="p">,</span> <span class="n">QObject</span>
 <span class="kn">from</span> <span class="nn">loger</span> <span class="kn">import</span> <span class="n">Logger</span>
 <span class="kn">from</span> <span class="nn">SettingApp</span> <span class="kn">import</span> <span class="n">AppSettings</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
 
 
 
@@ -86,9 +88,17 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">log</span> <span class="o">=</span> <span class="n">Logger</span><span class="o">.</span><span class="n">get_instance</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">app_settings</span> <span class="o">=</span> <span class="n">AppSettings</span><span class="o">.</span><span class="n">get_instance</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">app_settings</span><span class="o">.</span><span class="n">get_setting</span><span class="p">(</span><span class="s2">&quot;ApplicationSettings/language&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">app_connection_to_db</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">translator</span> <span class="o">=</span> <span class="n">QTranslator</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Application.restart_app">
+<a class="viewcode-back" href="../Application.html#Application.Application.restart_app">[документация]</a>
+    <span class="k">def</span> <span class="nf">restart_app</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">QApplication</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">execl</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">,</span> <span class="o">*</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span></div>
+
 
 <div class="viewcode-block" id="Application.setup">
 <a class="viewcode-back" href="../Application.html#Application.Application.setup">[документация]</a>
@@ -99,6 +109,7 @@
 <span class="sd">        :param lang: Строка, указывающая язык для перевода.</span>
 <span class="sd">        :return: Экземпляр класса, настроенный с заданным языком (если указан).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">set_translation</span><span class="p">(</span><span class="n">lang</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 

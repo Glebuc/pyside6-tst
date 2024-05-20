@@ -27,11 +27,11 @@ class DialogConfigDB(QDialog, DialogConfigDB):
         """
         dict_config_db = {}
         dict_config_db['host'] = self.host_db_edit.text()
-        dict_config_db['dbname'] = self.name_db_edit.text()
+        dict_config_db['database'] = self.name_db_edit.text()
         dict_config_db['password'] = self.password_db_edit.text()
         dict_config_db['user'] = self.user_db_edit.text()
         dict_config_db['port'] = self.port_db_spin.value()
-        if dict_config_db['host'] and dict_config_db['dbname'] and dict_config_db['user'] and dict_config_db['port']:
+        if dict_config_db['host'] and dict_config_db['database'] and dict_config_db['user'] and dict_config_db['port']:
             return dict_config_db
         else:
             QMessageBox.warning(self, "Предупреждение", "Заполните все поля для настройки соединения с БД")
@@ -55,7 +55,7 @@ class DialogConfigDB(QDialog, DialogConfigDB):
         try:
             connection = psycopg2.connect(
                 host=dict_db['host'],
-                dbname=dict_db['dbname'],
+                dbname=dict_db['database'],
                 user=dict_db['user'],
                 password=dict_db['password'],
                 port=dict_db['port']
@@ -78,6 +78,7 @@ class DialogConfigDB(QDialog, DialogConfigDB):
         db_params = self.get_db_param()
         if db_params:
             self.setting.set_setting_database(db_params)
+        self.accept()
 
 
 class DialogKey(QDialog, DialogKeyWord):

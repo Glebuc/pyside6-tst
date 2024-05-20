@@ -102,11 +102,11 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">dict_config_db</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">dict_config_db</span><span class="p">[</span><span class="s1">&#39;host&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">host_db_edit</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
-        <span class="n">dict_config_db</span><span class="p">[</span><span class="s1">&#39;dbname&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name_db_edit</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+        <span class="n">dict_config_db</span><span class="p">[</span><span class="s1">&#39;database&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name_db_edit</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
         <span class="n">dict_config_db</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">password_db_edit</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
         <span class="n">dict_config_db</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_db_edit</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
         <span class="n">dict_config_db</span><span class="p">[</span><span class="s1">&#39;port&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">port_db_spin</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">dict_config_db</span><span class="p">[</span><span class="s1">&#39;host&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">dict_config_db</span><span class="p">[</span><span class="s1">&#39;dbname&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">dict_config_db</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">dict_config_db</span><span class="p">[</span><span class="s1">&#39;port&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">dict_config_db</span><span class="p">[</span><span class="s1">&#39;host&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">dict_config_db</span><span class="p">[</span><span class="s1">&#39;database&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">dict_config_db</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">dict_config_db</span><span class="p">[</span><span class="s1">&#39;port&#39;</span><span class="p">]:</span>
             <span class="k">return</span> <span class="n">dict_config_db</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">QMessageBox</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;Предупреждение&quot;</span><span class="p">,</span> <span class="s2">&quot;Заполните все поля для настройки соединения с БД&quot;</span><span class="p">)</span></div>
@@ -133,7 +133,7 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="n">connection</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
                 <span class="n">host</span><span class="o">=</span><span class="n">dict_db</span><span class="p">[</span><span class="s1">&#39;host&#39;</span><span class="p">],</span>
-                <span class="n">dbname</span><span class="o">=</span><span class="n">dict_db</span><span class="p">[</span><span class="s1">&#39;dbname&#39;</span><span class="p">],</span>
+                <span class="n">dbname</span><span class="o">=</span><span class="n">dict_db</span><span class="p">[</span><span class="s1">&#39;database&#39;</span><span class="p">],</span>
                 <span class="n">user</span><span class="o">=</span><span class="n">dict_db</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">],</span>
                 <span class="n">password</span><span class="o">=</span><span class="n">dict_db</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">],</span>
                 <span class="n">port</span><span class="o">=</span><span class="n">dict_db</span><span class="p">[</span><span class="s1">&#39;port&#39;</span><span class="p">]</span>
@@ -158,7 +158,8 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">db_params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_db_param</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">db_params</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">setting</span><span class="o">.</span><span class="n">set_setting_database</span><span class="p">(</span><span class="n">db_params</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setting</span><span class="o">.</span><span class="n">set_setting_database</span><span class="p">(</span><span class="n">db_params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span></div>
 </div>
 
 

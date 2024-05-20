@@ -3,6 +3,8 @@ from PySide6.QtSql import QSqlDatabase
 from PySide6.QtCore import QTranslator, QLocale, QEvent, QObject
 from loger import Logger
 from SettingApp import AppSettings
+import os
+import sys
 
 
 
@@ -17,6 +19,10 @@ class Application(QApplication):
         self.app_connection_to_db()
         self.translator = QTranslator(self)
         self.setup()
+
+    def restart_app(self):
+        QApplication.quit()
+        os.execl(sys.executable, sys.executable, *sys.argv)
 
     def setup(self, lang=None) -> 'self':
         """

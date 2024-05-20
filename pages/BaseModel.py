@@ -109,7 +109,7 @@ class BaseModel(QSqlQueryModel):
             ) THEN
                 CREATE TRIGGER add_new_params_trigger
                 AFTER INSERT ON tests
-                FOR EACH ROW EXECUTE FUNCTION add_new_params();
+                FOR EACH ROW EXECUTE PROCEDURE add_new_params();
             END IF;
     END;
     $$

@@ -26,6 +26,7 @@ from typing import List
 
 from loger import Logger
 from Application import Application
+from pages.Chart.Chart_view import TestChart
 from ui_modules import *
 from pages import (BaseModel,
                    Model_result,
@@ -82,23 +83,17 @@ class MainWindow(QMainWindow):
         widgets.btn_change_view.clicked.connect(self.open_column_selection_dialog)
         setting = AppSettings.get_instance()
         self.init_translation()
-        self.scene = QGraphicsScene()
-        self.view = Chart_view.ChartView(self.scene)
-        self.chart = Chart_view.CustomChart()
-        self.chart.update_chart()
-        self.scene.addItem(self.chart)
+        self.init_theme()
+        test_chart = TestChart("IMB")
 
 
         #Обработчики кнопок масштабирования графика
-        widgets.zoom_in_chart_btn.clicked.connect(self.chart.zoom_in)
-        widgets.zoom_out_chart_btn.clicked.connect(self.chart.zoom_out)
-        widgets.reset_chart_btn.clicked.connect(self.chart.reset)
+        widgets.zoom_in_chart_btn.clicked.connect(test_chart.zoom_in)
+        widgets.zoom_out_chart_btn.clicked.connect(test_chart.zoom_out)
+        widgets.reset_chart_btn.clicked.connect(test_chart.reset)
 
         widgets.graphicsView.setDragMode(QGraphicsView.ScrollHandDrag)
-        widgets.graphicsView.setChart(self.chart)
-
-
-        self.chart.save_chart_image(widgets.graphicsView, "C:\\Users\\Admin\\Desktop\\ДИПЛОМ" )
+        widgets.graphicsView.setChart(test_chart)
 
 
         for i in self.model_result.execute_sql(self.model_result.LIST_TEST_SQL):
@@ -129,7 +124,6 @@ class MainWindow(QMainWindow):
         widgets.btn_config_DB.clicked.connect(self.open_dialog_config_db)
         widgets.btn_hot_keys.clicked.connect(self.open_dialog_keyword)
         widgets.btn_extension_search.clicked.connect(self.open_dialog_extension_search)
-
         widgets.add_item_note_btn.clicked.connect(self.open_dialog_add_item_topic)
         widgets.add_topic_note_btn.clicked.connect(self.open_dialog_add_topic)
 
@@ -166,6 +160,42 @@ class MainWindow(QMainWindow):
         self.checkbox_dict = {}
         self.populate_tree_widget()
 
+
+    def set_combo_value(self, comboBox, possible_values: List):
+        """
+           Устанавливает текущее значение в QComboBox, если одно из возможных значений найдено.
+
+           :parametrs:
+           comboBox (QComboBox): Комбобокс, в котором необходимо установить значение.
+           possible_values (list): Список строк, содержащий возможные значения для установки.
+
+           :returns:
+           None
+           """
+        for value in possible_values:
+            index = comboBox.findText(value)
+            if index != -1:
+                comboBox.setCurrentIndex(index)
+                break
+
+
+    def init_theme(self) -> None:
+        """
+            Инициализирует установку темы в начале запуска приложения, смотрит на данные из конфига и ставит тему
+         по этим данным
+        :return:
+            None
+              """
+        themeFile_light = ':/themes/themes/theme_light.qss'
+        themeFile_dark = ':/themes/themes/theme_dark.qss'
+        theme = self.app.app_settings.get_setting("AppSettings/theme")
+        if theme == "Light":
+            UIFunctions.theme(self, themeFile_light)
+            self.set_combo_value(self.ui.comboBox_language, ["Light", "Светлая"])
+        elif theme == "Dark":
+            UIFunctions.theme(self, themeFile_dark)
+            self.set_combo_value(self.ui.comboBox_language, ["Dark", "Темная"])
+
     def init_translation(self) -> None:
         """
         Инициализирует установку языка в начале запуска приложения, смотрит на данные из конфига и ставит язык
@@ -180,10 +210,12 @@ class MainWindow(QMainWindow):
             app.setup(en_translate)
             self.ui.retranslateUi(self)
             self.ui.list_test_result.addItem("All tests")
+            self.set_combo_value(self.ui.comboBox_language, ["English", "Английский"])
         elif language == "Russian":
             app.setup(ru_translate)
             self.ui.retranslateUi(self)
             self.ui.list_test_result.addItem("Все тесты")
+            self.set_combo_value(self.ui.comboBox_language, ["Russian", "Русский"])
 
 
     def open_dialog_for_save_report(self):
@@ -556,7 +588,8 @@ class MainWindow(QMainWindow):
         dialog = DialogsSetting.DialogConfigDB(self)
         if not dialog.isVisible():
             self.log.log_info("Открыто диалоговое окно с кофигом БД")
-        dialog.exec()
+        if dialog.exec() == QDialog.Accepted:
+            self.app.restart_app()
 
 
     def open_dialog_keyword(self) -> None:

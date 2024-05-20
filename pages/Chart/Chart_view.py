@@ -1,53 +1,71 @@
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QWidget, QGraphicsView
-from PySide6.QtCharts import QChart, QLineSeries, QValueAxis
+from PySide6.QtCharts import QChart, QLineSeries, QValueAxis, QDateTimeAxis
 from PySide6.QtGui import QPainter, QMouseEvent
+from PySide6.QtSql import QSqlQuery
 import random
+import json
+import array
 
 # from loger import Logger
 
-class CustomChart(QChart):
-    def __init__(self, *args, **kwargs):
+class TestChart(QChart):
+    def __init__(self, test_name, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        # self.log = Logger.get_instance()
-
+        # Создание серии данных для графика
         self.series = QLineSeries()
-        # self.addSeries(self.series)
 
-        self.axis_x = QValueAxis()
-        self.axis_x.setTickCount(10)
-        #self.addAxis(self.axis_x, Qt.AlignBottom)
-        #self.series.attachAxis(self.axis_x)
-
+        # Создание осей X и Y
+        self.axis_x = QDateTimeAxis()
         self.axis_y = QValueAxis()
-        #self.addAxis(self.axis_y, Qt.AlignLeft)
-        #self.series.attachAxis(self.axis_y)
-        self.legend().hide()
 
+        # Настройка оси X
+        self.axis_x.setFormat("dd.MM.yyyy")  # Установка формата даты на оси X
+        self.axis_x.setTitleText("Date")  # Установка заголовка для оси X
+        self.addAxis(self.axis_x, Qt.AlignBottom)  # Добавление оси X на график
+        self.series.attachAxis(self.axis_x)  # Привязка серии данных к оси X
 
-    def save_chart_image(self, graphics_view, file_path):
-        """
-        Сохраняет график в виде изображения.
+        # Настройка оси Y
+        self.axis_y.setTitleText("Test Result")  # Установка заголовка для оси Y
+        self.addAxis(self.axis_y, Qt.AlignLeft)  # Добавление оси Y на график
+        self.series.attachAxis(self.axis_y)  # Привязка серии данных к оси Y
 
-        Args:
-            graphics_view (QGraphicsView): Объект QGraphicsView, в котором находится график.
-            file_path (str): Путь к файлу, в который нужно сохранить изображение.
+        # Добавление серии данных на график
+        self.addSeries(self.series)
 
-        Returns:
-            bool: True, если сохранение прошло успешно, в противном случае False.
-        """
-        chart_view = graphics_view
-        chart_view.resize(self.size().toSize())  # Размер QGraphicsView соответствует размеру графика
-        image = chart_view.grab()
+        # Установка заголовка графика
+        self.setTitle(f"Test Results for '{test_name}'")
 
-        # Проверяем, удалось ли сохранить изображение
-        if image.save(file_path):
-            self.log.log_info("График успешно сохранен в" + file_path)
-            return True
-        else:
-#            self.log.log_error("Не удалось сохранить график в "+ file_path)
-            return False
+        # Загрузка данных из базы данных и отображение на графике
+        self.load_test_results(test_name)
+
+    def load_test_results(self, test_name):
+        query = QSqlQuery()
+        query.prepare("SELECT start_test, test_result FROM tests WHERE test_name = ? ORDER BY start_test;")
+        query.addBindValue(test_name)
+        if not query.exec():
+            print("Failed to execute query")
+            return
+
+        # Очищаем существующие данные серии перед загрузкой новых данных
+        self.series.clear()
+
+        while query.next():
+            start_test = query.value(0)  # Не нужно вызывать toDateTime()
+            # Получаем массив данных типа _int4 из PostgreSQL
+            test_result_array = query.value(1)
+
+            if isinstance(test_result_array, str):
+                # Если данные представлены в виде строки, преобразуем их в список целых чисел
+                test_result_list = [int(x) for x in test_result_array.strip('{}').split(',')]
+            else:
+                # Если данные уже являются массивом целых чисел, не требуется дополнительных преобразований
+                test_result_list = test_result_array
+
+            # Добавляем каждое значение из списка в серию данных
+            for i, value in enumerate(test_result_list):
+                self.series.append(start_test.toMSecsSinceEpoch() + i, value)
 
 
     def zoom_in(self):
@@ -76,48 +94,3 @@ class CustomChart(QChart):
                 None
         """
         self.zoomReset()
-
-
-    def update_chart(self):
-        self.series.clear()
-        for x in range(-10, 11):
-            y = random.randint(0, 50)
-            self.series.append(x, y)
-
-        self.axis_x.setRange(-10, 11)
-        self.axis_y.setRange(0, 50)
-
-
-
-class ChartView(QGraphicsView):
-    def __init__(self, scene):
-        super().__init__(scene)
-        self.setMouseTracking(True)
-        self.setDragMode(QGraphicsView.ScrollHandDrag)
-        self.setRenderHint(QPainter.Antialiasing)
-
-        self.pan = False
-        self.last_pan_point = None
-
-    def mousePressEvent(self, event: QMouseEvent):
-        if event.button() == Qt.RightButton:
-            self.pan = True
-            self.last_pan_point = event.pos()
-
-        super().mousePressEvent(event)
-
-    def mouseReleaseEvent(self, event: QMouseEvent):
-        if event.button() == Qt.RightButton:
-            self.pan = False
-            self.last_pan_point = None
-
-        super().mouseReleaseEvent(event)
-
-    def mouseMoveEvent(self, event: QMouseEvent):
-        if self.pan:
-            delta = event.pos() - self.last_pan_point
-            self.horizontalScrollBar().setValue(self.horizontalScrollBar().value() - delta.x())
-            self.verticalScrollBar().setValue(self.verticalScrollBar().value() - delta.y())
-            self.last_pan_point = event.pos()
-
-        super().mouseMoveEvent(event)

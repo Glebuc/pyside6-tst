@@ -58,6 +58,8 @@
 <li><a class="reference internal" href="#main.MainWindow.get_item_and_parent_text"><code class="docutils literal notranslate"><span class="pre">MainWindow.get_item_and_parent_text()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.get_param_test"><code class="docutils literal notranslate"><span class="pre">MainWindow.get_param_test()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.get_text_from_combo_chart"><code class="docutils literal notranslate"><span class="pre">MainWindow.get_text_from_combo_chart()</span></code></a></li>
+<li><a class="reference internal" href="#main.MainWindow.init_theme"><code class="docutils literal notranslate"><span class="pre">MainWindow.init_theme()</span></code></a></li>
+<li><a class="reference internal" href="#main.MainWindow.init_translation"><code class="docutils literal notranslate"><span class="pre">MainWindow.init_translation()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.on_selection_changed"><code class="docutils literal notranslate"><span class="pre">MainWindow.on_selection_changed()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.open_column_selection_dialog"><code class="docutils literal notranslate"><span class="pre">MainWindow.open_column_selection_dialog()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.open_dialog_add_item_topic"><code class="docutils literal notranslate"><span class="pre">MainWindow.open_dialog_add_item_topic()</span></code></a></li>
@@ -65,10 +67,13 @@
 <li><a class="reference internal" href="#main.MainWindow.open_dialog_config_db"><code class="docutils literal notranslate"><span class="pre">MainWindow.open_dialog_config_db()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.open_dialog_extension_search"><code class="docutils literal notranslate"><span class="pre">MainWindow.open_dialog_extension_search()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.open_dialog_for_import_data"><code class="docutils literal notranslate"><span class="pre">MainWindow.open_dialog_for_import_data()</span></code></a></li>
+<li><a class="reference internal" href="#main.MainWindow.open_dialog_for_save_chart"><code class="docutils literal notranslate"><span class="pre">MainWindow.open_dialog_for_save_chart()</span></code></a></li>
+<li><a class="reference internal" href="#main.MainWindow.open_dialog_for_save_report"><code class="docutils literal notranslate"><span class="pre">MainWindow.open_dialog_for_save_report()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.open_dialog_keyword"><code class="docutils literal notranslate"><span class="pre">MainWindow.open_dialog_keyword()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.parse_json_data"><code class="docutils literal notranslate"><span class="pre">MainWindow.parse_json_data()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.populate_tree_widget"><code class="docutils literal notranslate"><span class="pre">MainWindow.populate_tree_widget()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.save_settings"><code class="docutils literal notranslate"><span class="pre">MainWindow.save_settings()</span></code></a></li>
+<li><a class="reference internal" href="#main.MainWindow.set_combo_value"><code class="docutils literal notranslate"><span class="pre">MainWindow.set_combo_value()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.set_param_test_for_chart"><code class="docutils literal notranslate"><span class="pre">MainWindow.set_param_test_for_chart()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">MainWindow.staticMetaObject</span></code></a></li>
 </ul>
@@ -230,6 +235,36 @@ None: Если не удалось получить данные о статье
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="main.MainWindow.init_theme">
+<span class="sig-name descname"><span class="pre">init_theme</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/main.html#MainWindow.init_theme"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#main.MainWindow.init_theme" title="Link to this definition"></a></dt>
+<dd><blockquote>
+<div><blockquote>
+<div><p>Инициализирует установку темы в начале запуска приложения, смотрит на данные из конфига и ставит тему</p>
+</div></blockquote>
+<p>по этим данным</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWindow.init_translation">
+<span class="sig-name descname"><span class="pre">init_translation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/main.html#MainWindow.init_translation"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#main.MainWindow.init_translation" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Инициализирует установку языка в начале запуска приложения, смотрит на данные из конфига и ставит язык</dt><dd><p>по этим данным</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="main.MainWindow.on_selection_changed">
 <span class="sig-name descname"><span class="pre">on_selection_changed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/main.html#MainWindow.on_selection_changed"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#main.MainWindow.on_selection_changed" title="Link to this definition"></a></dt>
 <dd><p>Обработчик изменения выделения в QTreeWidget.</p>
@@ -308,6 +343,18 @@ None: Если не удалось получить данные о статье
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="main.MainWindow.open_dialog_for_save_chart">
+<span class="sig-name descname"><span class="pre">open_dialog_for_save_chart</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWindow.open_dialog_for_save_chart"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#main.MainWindow.open_dialog_for_save_chart" title="Link to this definition"></a></dt>
+<dd><p>Открывает файловое диалогое окно для сохранения изображения графика</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWindow.open_dialog_for_save_report">
+<span class="sig-name descname"><span class="pre">open_dialog_for_save_report</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWindow.open_dialog_for_save_report"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#main.MainWindow.open_dialog_for_save_report" title="Link to this definition"></a></dt>
+<dd><p>Открывает файловое диалогое окно для сохранения отчета</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="main.MainWindow.open_dialog_keyword">
 <span class="sig-name descname"><span class="pre">open_dialog_keyword</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/main.html#MainWindow.open_dialog_keyword"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#main.MainWindow.open_dialog_keyword" title="Link to this definition"></a></dt>
 <dd><p>Открывает диалоговое окно для отображения горячих клавиш в приложение.</p>
@@ -344,6 +391,24 @@ None: Если не удалось получить данные о статье
 <dd class="field-odd"><p>None</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWindow.set_combo_value">
+<span class="sig-name descname"><span class="pre">set_combo_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comboBox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">possible_values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWindow.set_combo_value"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#main.MainWindow.set_combo_value" title="Link to this definition"></a></dt>
+<dd><p>Устанавливает текущее значение в QComboBox, если одно из возможных значений найдено.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parametrs<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>comboBox (QComboBox): Комбобокс, в котором необходимо установить значение.
+possible_values (list): Список строк, содержащий возможные значения для установки.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+<p>None</p>
 </dd></dl>
 
 <dl class="py method">

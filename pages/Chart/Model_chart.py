@@ -21,6 +21,19 @@ class ChartModel(BaseModel):
         """Проверяет наличие соединения с базой данных"""
         return QSqlDatabase.database().isValid()
 
+    def load_test_results(self, test_name):
+        query = QSqlQuery()
+        query.prepare("SELECT start_test, test_result FROM tests WHERE test_name = ?")
+        query.addBindValue(test_name)
+        if not query.exec():
+            print("Failed to execute query")
+            return
+
+        while query.next():
+            start_test = query.value(0)
+            test_result = query.value(1)
+            self.series.append(start_test.toMSecsSinceEpoch(), test_result)
+
     def get_test_parameters(self, test_name: str) -> None:
         """
         Получает параметры теста по его имени

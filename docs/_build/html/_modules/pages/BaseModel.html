@@ -78,7 +78,10 @@
 
 <span class="kn">from</span> <span class="nn">loger</span> <span class="kn">import</span> <span class="n">Logger</span>
 
+<span class="kn">from</span> <span class="nn">SettingApp</span> <span class="kn">import</span> <span class="n">AppSettings</span>
 
+<span class="n">setting</span> <span class="o">=</span> <span class="n">AppSettings</span><span class="o">.</span><span class="n">get_instance</span><span class="p">()</span>
+<span class="n">setting</span><span class="o">.</span><span class="n">get_setting</span><span class="p">(</span><span class="s2">&quot;AppSettings/language&quot;</span><span class="p">)</span>
 
 
 
@@ -179,7 +182,7 @@
 <span class="s2">            ) THEN</span>
 <span class="s2">                CREATE TRIGGER add_new_params_trigger</span>
 <span class="s2">                AFTER INSERT ON tests</span>
-<span class="s2">                FOR EACH ROW EXECUTE FUNCTION add_new_params();</span>
+<span class="s2">                FOR EACH ROW EXECUTE PROCEDURE add_new_params();</span>
 <span class="s2">            END IF;</span>
 <span class="s2">    END;</span>
 <span class="s2">    $$</span>
@@ -197,11 +200,30 @@
     <span class="n">MIN_DATE_SQL</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">        SELECT MIN(start_test) FROM tests;</span>
 <span class="s2">    &quot;&quot;&quot;</span>
-    <span class="n">ALL_RESULT_SQL</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">        SELECT t.test_name, t.test_param, t.time_test, t.test_result, t.start_test, u.user_name</span>
-<span class="s2">        FROM tests as t</span>
-<span class="s2">        INNER JOIN users as u ON t.id_user_fk=u.user_id;</span>
-<span class="s2">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">setting</span><span class="o">.</span><span class="n">get_setting</span><span class="p">(</span><span class="s2">&quot;AppSettings/language&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Russian&quot;</span><span class="p">:</span>
+        <span class="n">ALL_RESULT_SQL</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            SELECT </span>
+<span class="s2">                t.test_name AS Название, </span>
+<span class="s2">                t.test_param AS Параметры, </span>
+<span class="s2">                t.time_test AS &quot;Время выполнения&quot;, </span>
+<span class="s2">                t.test_result AS Результат, </span>
+<span class="s2">                t.start_test AS &quot;Дата выполнения&quot;, </span>
+<span class="s2">                u.user_name AS Пользователь</span>
+<span class="s2">            FROM tests AS t</span>
+<span class="s2">            INNER JOIN users AS u ON t.id_user_fk = u.user_id;</span>
+<span class="s2">        &quot;&quot;&quot;</span>
+    <span class="k">elif</span> <span class="n">setting</span><span class="o">.</span><span class="n">get_setting</span><span class="p">(</span><span class="s2">&quot;AppSettings/language&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;English&quot;</span><span class="p">:</span>
+        <span class="n">ALL_RESULT_SQL</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                    SELECT </span>
+<span class="s2">                        t.test_name AS &quot;Name test&quot;, </span>
+<span class="s2">                        t.test_param AS &quot;Parametrs&quot;, </span>
+<span class="s2">                        t.time_test AS &quot;Execution time&quot;, </span>
+<span class="s2">                        t.test_result AS &quot;Result&quot;, </span>
+<span class="s2">                        t.start_test AS &quot;Launch date&quot;, </span>
+<span class="s2">                        u.user_name AS &quot;User&quot;</span>
+<span class="s2">                    FROM tests AS t</span>
+<span class="s2">                    INNER JOIN users AS u ON t.id_user_fk = u.user_id;</span>
+<span class="s2">                &quot;&quot;&quot;</span>
     <span class="n">LIST_JSON_PARAM_SQL</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">        SELECT jsonb_object_keys(test_param) as keys</span>
 <span class="s2">        FROM tests group by keys;</span>

@@ -97,6 +97,22 @@
         <span class="k">return</span> <span class="n">QSqlDatabase</span><span class="o">.</span><span class="n">database</span><span class="p">()</span><span class="o">.</span><span class="n">isValid</span><span class="p">()</span></div>
 
 
+<div class="viewcode-block" id="ChartModel.load_test_results">
+<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Model_chart.ChartModel.load_test_results">[документация]</a>
+    <span class="k">def</span> <span class="nf">load_test_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">test_name</span><span class="p">):</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">()</span>
+        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT start_test, test_result FROM tests WHERE test_name = ?&quot;</span><span class="p">)</span>
+        <span class="n">query</span><span class="o">.</span><span class="n">addBindValue</span><span class="p">(</span><span class="n">test_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Failed to execute query&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+            <span class="n">start_test</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">test_result</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">series</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">start_test</span><span class="o">.</span><span class="n">toMSecsSinceEpoch</span><span class="p">(),</span> <span class="n">test_result</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="ChartModel.get_test_parameters">
 <a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Model_chart.ChartModel.get_test_parameters">[документация]</a>
     <span class="k">def</span> <span class="nf">get_test_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">test_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>

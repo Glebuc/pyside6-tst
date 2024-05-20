@@ -1,5 +1,6 @@
 from PySide6.QtWidgets import QApplication, QDialog, QVBoxLayout, QLabel, QComboBox, QTextEdit, QPushButton,\
-    QLineEdit, QMessageBox
+    QLineEdit, QMessageBox, QTabWidget
+
 
 from .Model_notes import NoteModel
 
@@ -8,7 +9,7 @@ class DialogAddNote(QDialog):
         super().__init__()
 
         self.resize(500, 500)
-        self.setWindowTitle("Добавление статьи")
+        self.setWindowTitle(self.tr("Добавление записи"))
         self.note_model = NoteModel("sections")
         layout = QVBoxLayout(self)
         select_label = QLabel("Выберите раздел:", self)
@@ -22,11 +23,21 @@ class DialogAddNote(QDialog):
         self.section_combo.addItems(NoteModel.get_section_names(self))
         label = QLabel("Введите текст статьи:", self)
         layout.addWidget(label)
+        tab_widget = QTabWidget()
         self.text_edit = QTextEdit(self)
-        layout.addWidget(self.text_edit)
+        self.view_text_edit = QTextEdit(self)
+        self.view_text_edit.setReadOnly(True)
+        tab_widget.addTab(self.text_edit, "Редактирование")
+        tab_widget.addTab(self.view_text_edit, "Предпросмотр")
+        layout.addWidget(tab_widget)
         publish_button = QPushButton("Опубликовать", self)
         publish_button.clicked.connect(self.publish_article)
+        self.text_edit.textChanged.connect(self.current_text_changed)
         layout.addWidget(publish_button)
+
+    def current_text_changed(self):
+        text = self.text_edit.toPlainText()
+        self.view_text_edit.setMarkdown(text)
 
     def get_selected_section(self) -> str:
         """

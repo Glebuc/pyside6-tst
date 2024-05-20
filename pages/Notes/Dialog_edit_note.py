@@ -1,4 +1,12 @@
-from PySide6.QtWidgets import QApplication, QDialog, QVBoxLayout, QLabel, QLineEdit, QTextEdit, QPushButton, QMessageBox
+from PySide6.QtWidgets import (QApplication,
+                               QDialog,
+                               QVBoxLayout,
+                               QLabel,
+                               QLineEdit,
+                               QTextEdit,
+                               QPushButton,
+                               QMessageBox,
+                               QTabWidget)
 from PySide6.QtGui import QFont
 
 import sys
@@ -23,10 +31,18 @@ class EditNoteDialog(QDialog):
         self.setWindowTitle("Редактирование статьи")
         self.resize(500, 500)
         self.title_line_edit = QLineEdit(title)
-        self.text_text_edit = QTextEdit(text)
+        tab_widget = QTabWidget()
+        self.text_edit = QTextEdit()
+        self.text_edit.setPlainText(text)
+        self.view_text_edit = QTextEdit()
+        self.view_text_edit.setMarkdown(text)
+        self.view_text_edit.setReadOnly(True)
+        tab_widget.addTab(self.text_edit, "Редактирование")
+        tab_widget.addTab(self.view_text_edit, "Предпросмотр")
+
         font = QFont()
         font.setPointSize(14)
-        self.text_text_edit.setFont(font)
+        self.text_edit.setFont(font)
         self.title_line_edit.setFont(font)
         self.save_button = QPushButton("Сохранить")
         self.save_button.clicked.connect(self.update_article)
@@ -35,7 +51,7 @@ class EditNoteDialog(QDialog):
         layout.addWidget(QLabel("Заголовок статьи:"))
         layout.addWidget(self.title_line_edit)
         layout.addWidget(QLabel("Текст статьи:"))
-        layout.addWidget(self.text_text_edit)
+        layout.addWidget(tab_widget)
         layout.addWidget(self.save_button)
         self.setLayout(layout)
 
@@ -46,7 +62,7 @@ class EditNoteDialog(QDialog):
             Если заголовок или текст статьи пустые, выводит предупреждение через QMessageBox.
         """
         title = self.title_line_edit.text().strip()
-        text = self.text_text_edit.toPlainText().strip()
+        text = self.text_edit.toPlainText().strip()
         if not title or not text:
             QMessageBox.warning(self, "Внимание", "Поля заголовка и текста не должны быть пустыми.")
             return

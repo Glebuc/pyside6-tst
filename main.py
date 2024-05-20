@@ -61,7 +61,6 @@ class MainWindow(QMainWindow):
     def __init__(self, app):
         QMainWindow.__init__(self)
         self.app = app
-
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         global widgets
@@ -81,7 +80,8 @@ class MainWindow(QMainWindow):
         self.note_model = Model_notes.NoteModel('sections')
 
         widgets.btn_change_view.clicked.connect(self.open_column_selection_dialog)
-        self.setting = AppSettings.get_instance()
+        setting = AppSettings.get_instance()
+        self.init_translation()
         self.scene = QGraphicsScene()
         self.view = Chart_view.ChartView(self.scene)
         self.chart = Chart_view.CustomChart()
@@ -100,7 +100,7 @@ class MainWindow(QMainWindow):
 
         self.chart.save_chart_image(widgets.graphicsView, "C:\\Users\\Admin\\Desktop\\ДИПЛОМ" )
 
-        widgets.list_test_result.addItem("Все тесты")
+
         for i in self.model_result.execute_sql(self.model_result.LIST_TEST_SQL):
             widgets.list_test_result.addItem(i)
             widgets.list_test_chart.addItem(i)
@@ -148,6 +148,8 @@ class MainWindow(QMainWindow):
         widgets.delete_note_btn.clicked.connect(self.delete_notes_or_topic)
         widgets.test_params_btn.clicked.connect(self.dialog_test_params)
         widgets.import_data_btn.clicked.connect(self.parse_json_data)
+        widgets.save_chart_btn.clicked.connect(self.open_dialog_for_save_chart)
+        widgets.save_report_btn.clicked.connect(self.open_dialog_for_save_report)
 
         font = QFont()
         font.setPointSize(20)
@@ -163,6 +165,44 @@ class MainWindow(QMainWindow):
         # словарь для хранения состояний флажков
         self.checkbox_dict = {}
         self.populate_tree_widget()
+
+    def init_translation(self) -> None:
+        """
+        Инициализирует установку языка в начале запуска приложения, смотрит на данные из конфига и ставит язык
+         по этим данным
+        :return:
+            None
+        """
+        ru_translate = ':/translations/translations/ru.qm'
+        en_translate = ':/translations/translations/en.qm'
+        language = self.app.app_settings.get_setting("AppSettings/language")
+        if language == "English":
+            app.setup(en_translate)
+            self.ui.retranslateUi(self)
+            self.ui.list_test_result.addItem("All tests")
+        elif language == "Russian":
+            app.setup(ru_translate)
+            self.ui.retranslateUi(self)
+            self.ui.list_test_result.addItem("Все тесты")
+
+
+    def open_dialog_for_save_report(self):
+        """
+            Открывает файловое диалогое окно для сохранения отчета
+        """
+        files, _ = QFileDialog.getSaveFileName(
+            self, "Save File", "", "All Files (*)"
+        )
+        return files
+
+    def open_dialog_for_save_chart(self):
+        """
+            Открывает файловое диалогое окно для сохранения изображения графика
+        """
+        files, _ = QFileDialog.getSaveFileName(
+            self, "Save File", "", "All Files (*)"
+        )
+        return files
 
     def parse_json_data(self):
         """
@@ -226,7 +266,8 @@ class MainWindow(QMainWindow):
             if selected_items:
                 selected_item = selected_items[0]
                 if selection_result:
-                    self.dialog_edit_content_article(selected_item.text(0), "Вот")
+                    article_data = self.note_model.get_article_data(selected_item.text(0))
+                    self.dialog_edit_content_article(selected_item.text(0), article_data["content"])
                 else:
                     self.dialog_edit_title_topic(selected_item.text(0))
 
@@ -352,7 +393,7 @@ class MainWindow(QMainWindow):
         else:
             dict_setting["language"] = language_text
 
-        self.setting.set_setting_application(dict_setting)
+        self.app.app_settings.set_setting_application(dict_setting)
 
     def get_text_from_combo_chart(self) -> str:
         """
@@ -428,9 +469,11 @@ class MainWindow(QMainWindow):
         if text == "Английский" or text == "English":
             app.setup(en_translate)
             self.ui.retranslateUi(self)
+            self.ui.list_test_result.setItemText(0,"All tests")
         elif text == "Русский" or text == "Russian":
             app.setup(ru_translate)
             self.ui.retranslateUi(self)
+            self.ui.list_test_result.setItemText(0, "Все тесты")
 
     def change_theme(self, text: str) -> None:
         """

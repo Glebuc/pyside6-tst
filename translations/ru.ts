@@ -1,263 +1,273 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1">
+<TS version="2.1" language="en_GB" sourcelanguage="ru_RU">
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../main.ui" line="21"/>
+        <location filename="../main.ui" line="24"/>
         <source>MainWindow</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../main.ui" line="767"/>
+        <location filename="../main.ui" line="815"/>
         <source>Меню</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../main.ui" line="824"/>
-        <location filename="../main.ui" line="838"/>
+        <location filename="../main.ui" line="818"/>
+        <source>Ctrl+Space</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../main.ui" line="875"/>
+        <location filename="../main.ui" line="881"/>
         <source>Отчеты</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../main.ui" line="874"/>
-        <location filename="../main.ui" line="888"/>
+        <location filename="../main.ui" line="890"/>
+        <source>Ctrl+Q</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../main.ui" line="920"/>
+        <location filename="../main.ui" line="926"/>
         <source>Графики</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../main.ui" line="918"/>
-        <location filename="../main.ui" line="933"/>
+        <location filename="../main.ui" line="929"/>
+        <source>Ctrl+W</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../main.ui" line="959"/>
+        <location filename="../main.ui" line="968"/>
         <source>Результаты</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
+        <location filename="../main.ui" line="971"/>
+        <source>Ctrl+E</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../main.ui" line="987"/>
         <location filename="../main.ui" line="990"/>
-        <location filename="../main.ui" line="1005"/>
+        <location filename="../main.ui" line="2218"/>
+        <source>Заметки</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../main.ui" line="993"/>
+        <source>Ctrl+R</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../main.ui" line="1050"/>
+        <location filename="../main.ui" line="1065"/>
         <source>Настройки</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../main.ui" line="1135"/>
+        <location filename="../main.ui" line="1068"/>
+        <source>Ctrl+T</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../main.ui" line="1198"/>
         <source>Настройки приложения</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../main.ui" line="1157"/>
-        <location filename="../main.ui" line="1712"/>
+        <location filename="../main.ui" line="1220"/>
         <source>Закрыть</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../main.ui" line="1221"/>
-        <source>Масштаб</source>
-        <translation type="unfinished"></translation>
+        <location filename="../main.ui" line="1583"/>
+        <source>Список отчетов</source>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../main.ui" line="1232"/>
-        <source>50%</source>
-        <translation type="unfinished"></translation>
+        <location filename="../main.ui" line="1596"/>
+        <source>Показать отчет...</source>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../main.ui" line="1237"/>
-        <source>75%</source>
-        <translation type="unfinished"></translation>
+        <location filename="../main.ui" line="1610"/>
+        <source>Сохранить отчет...</source>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../main.ui" line="1242"/>
-        <source>100%</source>
-        <translation type="unfinished"></translation>
+        <location filename="../main.ui" line="1660"/>
+        <source>Тест:</source>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../main.ui" line="1247"/>
-        <source>125%</source>
-        <translation type="unfinished"></translation>
+        <location filename="../main.ui" line="1685"/>
+        <source>Параметры теста:</source>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../main.ui" line="1252"/>
-        <source>150%</source>
-        <translation type="unfinished"></translation>
+        <location filename="../main.ui" line="1724"/>
+        <source>Настройки отображения графика</source>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../main.ui" line="1266"/>
+        <location filename="../main.ui" line="1828"/>
+        <source>Уменьшить масштаб</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../main.ui" line="1834"/>
+        <source>Ctrl+-</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../main.ui" line="1844"/>
+        <source>Увеличить масштаб</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../main.ui" line="1850"/>
+        <source>Ctrl+=</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../main.ui" line="1860"/>
+        <source>Сбросить масштабирование</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../main.ui" line="1866"/>
+        <source>Ctrl+/</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../main.ui" line="1889"/>
+        <source>Сохранить график</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../main.ui" line="1895"/>
+        <source>Ctrl+S</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../main.ui" line="1939"/>
+        <source>Тест: </source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../main.ui" line="2067"/>
+        <source>Сохранить в CSV..</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../main.ui" line="2124"/>
+        <source>Справочник параметров</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../main.ui" line="2151"/>
+        <source>Добавить раздел...</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../main.ui" line="2165"/>
+        <source>Добавить статью...</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../main.ui" line="2280"/>
+        <source>Редактировать запись...</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../main.ui" line="2297"/>
+        <source>Удалить запись...</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../main.ui" line="1290"/>
         <source>Тема приложения</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../main.ui" line="1300"/>
+        <location filename="../main.ui" line="1327"/>
         <source>Светлая</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../main.ui" line="1305"/>
+        <location filename="../main.ui" line="1332"/>
         <source>Темная</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../main.ui" line="1313"/>
+        <location filename="../main.ui" line="1346"/>
         <source>Язык приложения</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../main.ui" line="1321"/>
-        <source>English</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main.ui" line="1326"/>
+        <location filename="../main.ui" line="1357"/>
         <source>Русский</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../main.ui" line="1334"/>
+        <location filename="../main.ui" line="1362"/>
+        <source>Английский</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../main.ui" line="1376"/>
         <source>Конфигурация БД</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../main.ui" line="1358"/>
-        <source>Проверка соединение с БД</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main.ui" line="1372"/>
+        <location filename="../main.ui" line="1386"/>
         <source>Настройка соединения с БД</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../main.ui" line="1383"/>
+        <location filename="../main.ui" line="1403"/>
         <source>Дополнительно</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../main.ui" line="1393"/>
-        <source>Руководство пользователя</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main.ui" line="1407"/>
+        <location filename="../main.ui" line="1413"/>
         <source>Горячие клавиши в приложение</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../main.ui" line="1433"/>
+        <location filename="../main.ui" line="1439"/>
         <source>Сохранить настройки</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../main.ui" line="1443"/>
+        <location filename="../main.ui" line="1452"/>
         <source>Версия приложения Aramid TsT Graph v0.0.1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../main.ui" line="1575"/>
-        <source>Aramid TsT Graph</source>
-        <translation type="unfinished"></translation>
+        <location filename="../main.ui" line="1972"/>
+        <source>Расширеннный поиск</source>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../main.ui" line="1633"/>
-        <source>Скрыть</source>
-        <translation type="unfinished"></translation>
+        <location filename="../main.ui" line="2023"/>
+        <source>Импорт данных...</source>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../main.ui" line="1677"/>
-        <source>Развернуть</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main.ui" line="1825"/>
-        <source>Страница отчетов</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main.ui" line="1943"/>
-        <source>FILE BOX</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main.ui" line="1976"/>
-        <source>Type here</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main.ui" line="2281"/>
-        <location filename="../main.ui" line="2291"/>
-        <location filename="../main.ui" line="2296"/>
-        <location filename="../main.ui" line="2301"/>
-        <location filename="../main.ui" line="2306"/>
-        <location filename="../main.ui" line="2311"/>
-        <location filename="../main.ui" line="2316"/>
-        <location filename="../main.ui" line="2321"/>
-        <location filename="../main.ui" line="2326"/>
-        <location filename="../main.ui" line="2331"/>
-        <location filename="../main.ui" line="2336"/>
-        <location filename="../main.ui" line="2341"/>
-        <location filename="../main.ui" line="2346"/>
-        <location filename="../main.ui" line="2351"/>
-        <location filename="../main.ui" line="2356"/>
-        <location filename="../main.ui" line="2361"/>
-        <source>New Row</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main.ui" line="2366"/>
-        <source>0</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main.ui" line="2371"/>
-        <source>1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main.ui" line="2376"/>
-        <source>2</source>
-        <translation type="unfinished"></translation>
+        <location filename="../main.ui" line="2053"/>
+        <source>Настройка отображения</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="../main.ui" line="2381"/>
-        <source>3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main.ui" line="2386"/>
-        <source>Test</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main.ui" line="2391"/>
-        <source>Text</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main.ui" line="2396"/>
-        <source>Cell</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main.ui" line="2401"/>
-        <source>Line</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main.ui" line="2453"/>
-        <source>Расширеннный поиск</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main.ui" line="2501"/>
-        <location filename="../main.ui" line="2504"/>
-        <source>Настройка отображения</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main.ui" line="2515"/>
-        <source>Сохранить..</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main.ui" line="2599"/>
         <source>v0.0.1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 </TS>

@@ -13,6 +13,7 @@ class Application(QApplication):
         super().__init__(argv)
         self.log = Logger.get_instance()
         self.app_settings = AppSettings.get_instance()
+        self.app_settings.get_setting("ApplicationSettings/language")
         self.app_connection_to_db()
         self.translator = QTranslator(self)
         self.setup()
@@ -24,6 +25,7 @@ class Application(QApplication):
         :param lang: Строка, указывающая язык для перевода.
         :return: Экземпляр класса, настроенный с заданным языком (если указан).
         """
+
         self.set_translation(lang)
         return self
 

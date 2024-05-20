@@ -16,7 +16,7 @@ class ArticleDialog(QDialog):
         self.setMinimumSize(500, 500)
         layout = QVBoxLayout()
         self.text_browser = QTextBrowser()
-        self.text_browser.setText(content)
+        self.text_browser.setMarkdown(content)
         font = QFont()
         font.setPointSize(14)
         self.text_browser.setFont(font)

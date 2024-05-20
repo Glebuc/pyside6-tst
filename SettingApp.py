@@ -13,7 +13,7 @@ class AppSettings(QSettings):
      .. code-block:: python
 
            setting = AppSettings.get_instance()
-           setting.log_info("Информационное сообщение")
+           setting.get_setting(param)
     """
     _instance = None
 

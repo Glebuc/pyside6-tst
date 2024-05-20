@@ -7,7 +7,10 @@ from typing import Optional, Dict, Tuple, Union, List
 
 from loger import Logger
 
+from SettingApp import AppSettings
 
+setting = AppSettings.get_instance()
+setting.get_setting("AppSettings/language")
 
 
 
@@ -124,11 +127,30 @@ class BaseModel(QSqlQueryModel):
     MIN_DATE_SQL = """
         SELECT MIN(start_test) FROM tests;
     """
-    ALL_RESULT_SQL = """
-        SELECT t.test_name, t.test_param, t.time_test, t.test_result, t.start_test, u.user_name
-        FROM tests as t
-        INNER JOIN users as u ON t.id_user_fk=u.user_id;
-    """
+    if setting.get_setting("AppSettings/language") == "Russian":
+        ALL_RESULT_SQL = """
+            SELECT 
+                t.test_name AS Название, 
+                t.test_param AS Параметры, 
+                t.time_test AS "Время выполнения", 
+                t.test_result AS Результат, 
+                t.start_test AS "Дата выполнения", 
+                u.user_name AS Пользователь
+            FROM tests AS t
+            INNER JOIN users AS u ON t.id_user_fk = u.user_id;
+        """
+    elif setting.get_setting("AppSettings/language") == "English":
+        ALL_RESULT_SQL = """
+                    SELECT 
+                        t.test_name AS "Name test", 
+                        t.test_param AS "Parametrs", 
+                        t.time_test AS "Execution time", 
+                        t.test_result AS "Result", 
+                        t.start_test AS "Launch date", 
+                        u.user_name AS "User"
+                    FROM tests AS t
+                    INNER JOIN users AS u ON t.id_user_fk = u.user_id;
+                """
     LIST_JSON_PARAM_SQL = """
         SELECT jsonb_object_keys(test_param) as keys
         FROM tests group by keys;

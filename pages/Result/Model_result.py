@@ -15,24 +15,6 @@ class ResultModel(BaseModel):
         self.displayed_columns = []
         self.visible_columns = []
 
-        # index_test_name = self.record().indexOf("test_name")
-        # index_test_param = self.record().indexOf("test_param")
-        # index_test_note = self.record().indexOf("test_note")
-        # index_test_id = self.record().indexOf("test_id")
-        # index_start_test = self.record().indexOf("start_test")
-        # index_time_test = self.record().indexOf("time_test")
-        # index_user_name = self.record().indexOf("user_name")
-        # index_test_result = self.record().indexOf("test_result")
-        #
-        # # Используем индексы полей для установки новых заголовков столбцов
-        # self.setHeaderData(index_test_name, Qt.Horizontal, self.tr("Название теста"))
-        # self.setHeaderData(index_test_param, Qt.Horizontal, self.tr("Параметры теста"))
-        # self.setHeaderData(index_test_note, Qt.Horizontal, self.tr("Заметка"))
-        # self.setHeaderData(index_test_id, Qt.Horizontal, self.tr("ID Теста"))
-        # self.setHeaderData(index_start_test, Qt.Horizontal, self.tr("Дата выполнения"))
-        # self.setHeaderData(index_time_test, Qt.Horizontal, self.tr("Время выполнения"))
-        # self.setHeaderData(index_user_name, Qt.Horizontal, self.tr("Пользователь"))
-        # self.setHeaderData(index_test_result, Qt.Horizontal, self.tr("Результат"))
 
     def apply_filter(self, table_view: QTableView,  test_data: str, user_data: str,
                      param_test: str, start_date: str, end_date:str) -> None:
@@ -89,7 +71,7 @@ class ResultModel(BaseModel):
             """
         selected_option = combo_box.currentText()
         query = QSqlQuery()
-        if selected_option == "Все тесты":
+        if selected_option == "Все тесты" or selected_option == "All tests":
             self.setQuery(QSqlQuery(BaseModel.ALL_RESULT_SQL))
         else:
             query.prepare(f"""

@@ -220,6 +220,7 @@ class BaseModel(QSqlQueryModel):
         else:
             self.log.log_error("Ошибка выполнения запроса:"+ query.lastError().text())
             return None
+
     def execute_sql(self, sql_query: str, params: Optional[Union[Tuple, Dict]] = None) -> List:
         """
         Выполняет SQL-запрос и возвращает список значений из результата запроса.

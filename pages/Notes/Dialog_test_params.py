@@ -41,16 +41,49 @@ class TestParamsDialog(QDialog):
     """
         Диалоговое окно для редактирования параметров тестов.
     """
-
-    def __init__(self):
+    def __init__(self, language=""):
         super().__init__()
-        self.setWindowTitle("Параметры тестов")
+
+        self.labels = {
+            "Русский": {
+                "window_title": "Параметры тестов",
+                "header_param": "Параметр теста",
+                "header_desc": "Описание параметра",
+                "save_button_text": "Сохранить изменения",
+                "error_title": "Ошибка",
+                "error_message": "Ошибка сохранения изменений в БД.",
+                "success_title": "Успех",
+                "success_message": "Изменения сохранены в БД."
+            },
+            "English": {
+                "window_title": "Test Parameters",
+                "header_param": "Test Parameter",
+                "header_desc": "Parameter Description",
+                "save_button_text": "Save Changes",
+                "error_title": "Error",
+                "error_message": "Error saving changes to the database.",
+                "success_title": "Success",
+                "success_message": "Changes saved to the database."
+            }
+        }
+
+        # Приведение language к стандартному виду
+        if language.lower() in ["русский", "russian"]:
+            self.language = "Русский"
+        elif language.lower() in ["английский", "english"]:
+            self.language = "English"
+        else:
+            self.language = "Русский"  # Язык по умолчанию
+
+        # Установка заголовка окна
+        self.setWindowTitle(self.labels[self.language]["window_title"])
+
         layout = QVBoxLayout(self)
         self.model = QSqlTableModel()
         self.model.setTable("test_params")
         self.model.select()
-        self.model.setHeaderData(0, Qt.Horizontal, "Параметр теста")
-        self.model.setHeaderData(1, Qt.Horizontal, "Описание параметра")
+        self.model.setHeaderData(0, Qt.Horizontal, self.labels[self.language]["header_param"])
+        self.model.setHeaderData(1, Qt.Horizontal, self.labels[self.language]["header_desc"])
 
         self.table_view = QTableView()
         self.table_view.setModel(self.model)
@@ -60,7 +93,7 @@ class TestParamsDialog(QDialog):
         self.table_view.setItemDelegateForColumn(0, delegate)
 
         layout.addWidget(self.table_view)
-        save_button = QPushButton("Сохранить изменения")
+        save_button = QPushButton(self.labels[self.language]["save_button_text"])
         save_button.clicked.connect(self.save_changes)
         layout.addWidget(save_button)
 
@@ -73,6 +106,14 @@ class TestParamsDialog(QDialog):
                 None
         """
         if not self.model.submitAll():
-            QMessageBox.warning(self, "Ошибка", "Ошибка сохранения изменений в БД.")
+            QMessageBox.warning(
+                self,
+                self.labels[self.language]["error_title"],
+                self.labels[self.language]["error_message"]
+            )
             return
-        QMessageBox.information(self, "Успех", "Измененеия сохранены в БД.")
+        QMessageBox.information(
+            self,
+            self.labels[self.language]["success_title"],
+            self.labels[self.language]["success_message"]
+        )

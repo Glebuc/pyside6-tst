@@ -160,8 +160,10 @@ class MainWindow(QMainWindow):
         self.checkbox_dict = {}
         self.populate_tree_widget()
 
+    def get_text_from_language_box(self) -> str:
+        return self.ui.comboBox_language.currentText()
 
-    def set_combo_value(self, comboBox, possible_values: List):
+    def set_combo_value(self, comboBox, possible_values: List) -> None:
         """
            Устанавливает текущее значение в QComboBox, если одно из возможных значений найдено.
 
@@ -177,7 +179,6 @@ class MainWindow(QMainWindow):
             if index != -1:
                 comboBox.setCurrentIndex(index)
                 break
-
 
     def init_theme(self) -> None:
         """
@@ -281,7 +282,10 @@ class MainWindow(QMainWindow):
                 self.log.log_info(f"Выбран элемент {selected_item.text(0)} для удаления или редактирования")
                 return True
         else:
-            QMessageBox.warning(self, "Внимание", 'Для "Редактирование" или "Удаление" выделите статью или раздел')
+            if self.get_text_from_language_box() in ["Русский", "Russian"]:
+                QMessageBox.warning(self, "Внимание", 'Для "Редактирование" или "Удаление" выделите статью или раздел')
+            else:
+                QMessageBox.warning(self, "Warning", 'For "Edit" or "Delete", select an article or section')
             return None
 
     def chose_dialog_for_edit(self) -> None:
@@ -317,8 +321,12 @@ class MainWindow(QMainWindow):
             selected_items = widgets.treeWidget.selectedItems()
             if selected_items:
                 selected_item = selected_items[0]
-                reply = QMessageBox.question(self, 'Удаление', 'Вы уверены, что хотите удалить запись?',
+                if self.get_text_from_language_box() in ["Русский", "Russian"]:
+                    reply = QMessageBox.question(self, 'Удаление', 'Вы уверены, что хотите удалить запись?',
                                              QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+                else:
+                    reply = QMessageBox.question(self, 'Removal', 'Are you sure you want to delete the record?',
+                                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
                 if reply == QMessageBox.Yes:
                     if selection_result:
                         self.note_model.delete_note_data(selected_item.text(0))
@@ -336,7 +344,7 @@ class MainWindow(QMainWindow):
 
         :return:
         """
-        dialog = Dialog_test_params.TestParamsDialog()
+        dialog = Dialog_test_params.TestParamsDialog(self.get_text_from_language_box())
         dialog.exec()
         if not dialog.isVisible():
             self.log.log_info("Открыто диалоговое окно для просмотра и редактирования параметров")
@@ -351,7 +359,7 @@ class MainWindow(QMainWindow):
                 title (str): Заголовок статьи.
 
         """
-        dialog = Dialog_edit_topic.EditTopicDialog(title)
+        dialog = Dialog_edit_topic.EditTopicDialog(title, self.get_text_from_language_box())
         if not dialog.isVisible():
             self.log.log_info("Открыто диалоговое окно для редактирования раздела")
             if dialog.exec() == QDialog.Accepted:
@@ -361,7 +369,7 @@ class MainWindow(QMainWindow):
             self.log.log_error("Ошибка открытия диалогового окна для редактирования раздела")
 
     def dialog_edit_content_article(self, title, content):
-        dialog = Dialog_edit_note.EditNoteDialog(title, content)
+        dialog = Dialog_edit_note.EditNoteDialog(title, content, self.get_text_from_language_box())
         if not dialog.isVisible():
             self.log.log_info("Открыто диалоговое окно для редактирования статьи")
             if dialog.exec() == QDialog.Accepted:
@@ -552,7 +560,7 @@ class MainWindow(QMainWindow):
             :return:
                 None
         """
-        dialog = Dialog_add_topic.DialogAddTopic()
+        dialog = Dialog_add_topic.DialogAddTopic(self.get_text_from_language_box())
         if not dialog.isVisible():
             self.log.log_info("Открыто диалоговое окно для добавления раздела")
             if dialog.exec() == QDialog.Accepted:
@@ -568,7 +576,7 @@ class MainWindow(QMainWindow):
             :return:
                 None
         """
-        dialog = Dialog_add_note.DialogAddNote()
+        dialog = Dialog_add_note.DialogAddNote(self.get_text_from_language_box())
         if not dialog.isVisible():
             self.log.log_info("Открыто диалоговое окно для добавления статьи")
             if dialog.exec() == QDialog.Accepted:

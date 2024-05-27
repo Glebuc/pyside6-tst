@@ -63,39 +63,27 @@ class IMBParser(BaseTestParser):
     def parse_result(self, result_test):
         return {"parsed_result": f"IMB parsed: {result_test}"}  # Пример парсинга
 
+
 class JSONParser:
     def __init__(self, json_data):
-        self.json_data = json_data
-        self.parsers = [HPCGParser, HPLParser, IMBParser]
+        self.json_data = json.loads(json_data)
 
     def parse(self):
-        dict_test_data = {}
-        try:
-            parsed_data = json.loads(self.json_data)
-            for test_name, test_data in parsed_data.items():
-                if test_name == 'parametr':
-                    continue
-                if not test_data.get("complete", False):
-                    continue
-                list_params = [
-                    (key, value)
-                    for key, value in test_data.get('config', {}).items()
-                    if value
-                ]
-                dict_test_data[test_name] = {
-                    "parameters": list_params,
-                    "complete": test_data["complete"]
-                }
-                for parser_cls in self.parsers:
-                    if parser_cls.matches(test_name):
-                        result_test = test_data.get("result_test", "")
-                        parsed_result = parser_cls().parse_result(result_test)
-                        dict_test_data[test_name]["parsed_result"] = parsed_result
-                        break
+        parsed_tests = []
+        cluster_name = self.json_data["parametr"]["hpc"]["cluster_name"]
 
-            pprint(dict_test_data)
-            return dict_test_data
-        except json.JSONDecodeError:
-            print("JSON parsing error")
-            return None
+        for key, value in self.json_data.items():
+            if key in ["datetime", "parametr"]:
+                continue
+
+            if isinstance(value, dict) and value.get("complete") and value.get("result_test", "").strip():
+                test_result = {
+                    "test_name": key,
+                    "result_test": value["result_test"],
+                    "config": value["config"],
+                    "cluster_name": cluster_name
+                }
+                parsed_tests.append(test_result)
+
+        return parsed_tests
 

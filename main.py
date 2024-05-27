@@ -45,7 +45,8 @@ from pages import (BaseModel,
                    Dialog_edit_note,
                    Dialog_edit_topic,
                    Dialog_test_params,
-                   Parser_json)
+                   Parser_json,
+                   PDFGenerator)
 from SettingApp import AppSettings
 
 from utils import get_translate_path, get_themes_path
@@ -239,27 +240,48 @@ class MainWindow(QMainWindow):
 
     def parse_json_data(self):
         """
-            Данная функция передает
+        Данная функция вызывает диалоговое окно для выбора JSON-файлов,
+        парсит их и генерирует PDF-отчеты.
         """
         files = self.open_dialog_for_import_data()
         for file in files:
             with open(file, 'r', encoding='utf-8') as f:
                 json_data = f.read()
                 parser = Parser_json.JSONParser(json_data)
-                parser.parse()
+                test_results = parser.parse()
+                if test_results:
+                    message_box = QMessageBox()
+                    if self.ui.comboBox_language.currentText() == "Русский":
+                        message_box.setWindowTitle("Создать отчет?")
+                        message_box.setText("Создать отчет о тестировании?")
+                        message_box.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+                        message_box.button(QMessageBox.Yes).setText("Да")
+                        message_box.button(QMessageBox.No).setText("Нет")
+                    else:
+                        message_box.setWindowTitle("Create report?")
+                        message_box.setText("Create a test report?")
+                        message_box.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+
+                    choice = message_box.exec()
+                    if choice == QMessageBox.Yes:
+                        pdf_filename = file.replace('.json', '.pdf')
+                        pdf_generator = PDFGenerator.PDFGenerator(pdf_filename)
+                        pdf_generator.generate("Отчёт о тестировании",
+                                               f"Тесты запущены на {test_results[0]['cluster_name']}",
+                                               test_results)
+                        print(f"PDF создан: {pdf_filename}")
 
     def open_dialog_for_import_data(self):
-        """Открывает файловое диалогое окно для импорта тестов из JSON файлов
+        """Открывает файловое диалоговое окно для импорта тестов из JSON файлов
 
-            :returns: List[str], возвращает список строк с путями до JSON-файлов
+        :returns: List[str], возвращает список строк с путями до JSON-файлов
         """
         files, _ = QFileDialog.getOpenFileNames(
             None,
             "Выберите файлы",
-            "",  # Фильтры для файлов, здесь оставлено пустым для выбора всех файлов
+            "",  # Начальный каталог, можно оставить пустым
             "JSON Файлы (*.json)"  # Фильтр для JSON файлов
         )
-        print(files)
         return files
 
     def on_selection_changed(self) -> bool:

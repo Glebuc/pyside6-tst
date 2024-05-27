@@ -50,16 +50,6 @@ class BaseModel(QSqlQueryModel):
     	CONSTRAINT report_fk FOREIGN KEY (user_id_fk) REFERENCES users(user_id)
     );
         """
-    SETTING_SQL = """
-    CREATE TABLE IF NOT EXISTS settings (
-    	setting_id serial4 NOT NULL,
-    	theme varchar NOT NULL,
-    	"language" varchar NOT NULL,
-    	"scale" int4 NOT NULL DEFAULT 100,
-    	user_id_fk int4 NOT NULL,
-    	CONSTRAINT settings_pk PRIMARY KEY (setting_id),
-    	CONSTRAINT settings_fk FOREIGN KEY (user_id_fk) REFERENCES users(user_id));
-    """
 
     SECTION_SQL = """
     CREATE TABLE IF NOT EXISTS sections (
@@ -180,7 +170,6 @@ class BaseModel(QSqlQueryModel):
             'users': self.USERS_SQL,
             'tests': self.TESTS_SQL,
             'report': self.REPORT_SQL,
-            'settings': self.SETTING_SQL,
             'sections': self.SECTION_SQL,
             'notes': self.NOTE_SQL,
             'test_params': self.TEST_PARAMS,

@@ -85,7 +85,8 @@ class MainWindow(QMainWindow):
         setting = AppSettings.get_instance()
         self.init_translation()
         self.init_theme()
-        test_chart = TestChart("IMB")
+        test_chart = TestChart("HPCG")
+        test_chart.populate_chart_with_data(num_series=3)
 
 
         #Обработчики кнопок масштабирования графика

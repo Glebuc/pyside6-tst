@@ -38,10 +38,10 @@
    <item>
     <widget class="QFrame" name="frame">
      <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+      <enum>QFrame::Shape::StyledPanel</enum>
      </property>
      <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
+      <enum>QFrame::Shadow::Raised</enum>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
@@ -50,20 +50,20 @@
          <string>Горячие клавиши</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignCenter</set>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QTableWidget" name="tableWidget">
         <property name="editTriggers">
-         <set>QAbstractItemView::NoEditTriggers</set>
+         <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
         </property>
         <property name="sortingEnabled">
          <bool>false</bool>
         </property>
         <property name="rowCount">
-         <number>4</number>
+         <number>8</number>
         </property>
         <attribute name="horizontalHeaderMinimumSectionSize">
          <number>100</number>
@@ -83,6 +83,26 @@
         <attribute name="verticalHeaderStretchLastSection">
          <bool>true</bool>
         </attribute>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
         <row>
          <property name="text">
           <string/>
@@ -173,13 +193,77 @@
         </item>
         <item row="3" column="0">
          <property name="text">
-          <string>Ctrl+'Space'</string>
+          <string>'Ctrl'+'W'</string>
          </property>
          <property name="textAlignment">
           <set>AlignCenter</set>
          </property>
         </item>
         <item row="3" column="1">
+         <property name="text">
+          <string>Открыть вкладку &quot;Графики&quot;</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item row="4" column="0">
+         <property name="text">
+          <string>'Ctrl'+'E'</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item row="4" column="1">
+         <property name="text">
+          <string>Открыть вкладку &quot;Результаты&quot;</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item row="5" column="0">
+         <property name="text">
+          <string>'Ctrl'+'R'</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item row="5" column="1">
+         <property name="text">
+          <string>Открыть вкладку &quot;Заметки&quot;</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item row="6" column="0">
+         <property name="text">
+          <string>'Ctrl'+'T'</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item row="6" column="1">
+         <property name="text">
+          <string>Открыть вкладку &quot;Настройки&quot;</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item row="7" column="0">
+         <property name="text">
+          <string>Ctrl+'Space'</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item row="7" column="1">
          <property name="text">
           <string>Развернуть/Свернуть меню</string>
          </property>

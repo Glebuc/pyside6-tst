@@ -89,28 +89,27 @@
 <a class="viewcode-back" href="../../pages.html#pages.BaseModel.BaseModel">[документация]</a>
 <span class="k">class</span> <span class="nc">BaseModel</span><span class="p">(</span><span class="n">QSqlQueryModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Базовая модель, данная модель является родительской для всех других моделей&quot;&quot;&quot;</span>
-    <span class="n">USERS_SQL</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">        CREATE TABLE IF NOT EXISTS users (</span>
-<span class="s2">    	user_id serial4 NOT NULL,</span>
-<span class="s2">    	user_name varchar NOT NULL,</span>
-<span class="s2">    	fio_user varchar NULL,</span>
-<span class="s2">    	email_user varchar NULL,</span>
-<span class="s2">    	password_user varchar NULL,</span>
-<span class="s2">    	CONSTRAINT users_pk PRIMARY KEY (user_id)</span>
-<span class="s2">    );</span>
-<span class="s2">        &quot;&quot;&quot;</span>
+    <span class="c1"># USERS_SQL = &quot;&quot;&quot;</span>
+    <span class="c1">#     CREATE TABLE IF NOT EXISTS users (</span>
+    <span class="c1"># 	user_id serial4 NOT NULL,</span>
+    <span class="c1"># 	user_name varchar NOT NULL,</span>
+    <span class="c1"># 	fio_user varchar NULL,</span>
+    <span class="c1"># 	email_user varchar NULL,</span>
+    <span class="c1"># 	password_user varchar NULL,</span>
+    <span class="c1"># 	CONSTRAINT users_pk PRIMARY KEY (user_id)</span>
+    <span class="c1"># );</span>
+    <span class="c1">#     &quot;&quot;&quot;</span>
     <span class="n">TESTS_SQL</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">        CREATE TABLE IF NOT EXISTS tests (</span>
-<span class="s2">    	test_name varchar NOT NULL,</span>
-<span class="s2">    	test_param jsonb NULL,</span>
-<span class="s2">    	test_note text NULL,</span>
-<span class="s2">    	test_id serial4 NOT NULL,</span>
-<span class="s2">    	id_user_fk int4 NULL,</span>
-<span class="s2">    	start_test timestamp NULL,</span>
-<span class="s2">    	time_test time NULL,</span>
-<span class="s2">    	test_result int4[],</span>
-<span class="s2">    	CONSTRAINT tests_pk PRIMARY KEY (test_id),</span>
-<span class="s2">    	CONSTRAINT tests_fk FOREIGN KEY (id_user_fk) REFERENCES users(user_id)</span>
+<span class="s2">        test_note text NULL,</span>
+<span class="s2">        test_id serial4 NOT NULL,</span>
+<span class="s2">        start_test timestamp NULL,</span>
+<span class="s2">        time_test time NULL,</span>
+<span class="s2">        test_param jsonb NULL,</span>
+<span class="s2">        test_result text NULL,</span>
+<span class="s2">        machine varchar NULL,</span>
+<span class="s2">        version_os varchar NULL,</span>
+<span class="s2">        CONSTRAINT tests_pk PRIMARY KEY (test_id)</span>
 <span class="s2">    );</span>
 <span class="s2">        &quot;&quot;&quot;</span>
     <span class="n">REPORT_SQL</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
@@ -123,16 +122,6 @@
 <span class="s2">    	CONSTRAINT report_fk FOREIGN KEY (user_id_fk) REFERENCES users(user_id)</span>
 <span class="s2">    );</span>
 <span class="s2">        &quot;&quot;&quot;</span>
-    <span class="n">SETTING_SQL</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">    CREATE TABLE IF NOT EXISTS settings (</span>
-<span class="s2">    	setting_id serial4 NOT NULL,</span>
-<span class="s2">    	theme varchar NOT NULL,</span>
-<span class="s2">    	&quot;language&quot; varchar NOT NULL,</span>
-<span class="s2">    	&quot;scale&quot; int4 NOT NULL DEFAULT 100,</span>
-<span class="s2">    	user_id_fk int4 NOT NULL,</span>
-<span class="s2">    	CONSTRAINT settings_pk PRIMARY KEY (setting_id),</span>
-<span class="s2">    	CONSTRAINT settings_fk FOREIGN KEY (user_id_fk) REFERENCES users(user_id));</span>
-<span class="s2">    &quot;&quot;&quot;</span>
 
     <span class="n">SECTION_SQL</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">    CREATE TABLE IF NOT EXISTS sections (</span>
@@ -207,10 +196,10 @@
 <span class="s2">                t.test_param AS Параметры, </span>
 <span class="s2">                t.time_test AS &quot;Время выполнения&quot;, </span>
 <span class="s2">                t.test_result AS Результат, </span>
-<span class="s2">                t.start_test AS &quot;Дата выполнения&quot;, </span>
-<span class="s2">                u.user_name AS Пользователь</span>
+<span class="s2">                t.start_test AS &quot;Дата выполнения&quot;,</span>
+<span class="s2">                t.version_os AS &quot;Версия ОС&quot;,</span>
+<span class="s2">                t.machine AS &quot;Выч. система&quot;</span>
 <span class="s2">            FROM tests AS t</span>
-<span class="s2">            INNER JOIN users AS u ON t.id_user_fk = u.user_id;</span>
 <span class="s2">        &quot;&quot;&quot;</span>
     <span class="k">elif</span> <span class="n">setting</span><span class="o">.</span><span class="n">get_setting</span><span class="p">(</span><span class="s2">&quot;AppSettings/language&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;English&quot;</span><span class="p">:</span>
         <span class="n">ALL_RESULT_SQL</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
@@ -219,10 +208,10 @@
 <span class="s2">                        t.test_param AS &quot;Parametrs&quot;, </span>
 <span class="s2">                        t.time_test AS &quot;Execution time&quot;, </span>
 <span class="s2">                        t.test_result AS &quot;Result&quot;, </span>
-<span class="s2">                        t.start_test AS &quot;Launch date&quot;, </span>
-<span class="s2">                        u.user_name AS &quot;User&quot;</span>
+<span class="s2">                        t.start_test AS &quot;Launch date&quot;,</span>
+<span class="s2">                        t.version_os AS &quot;Vesion OS&quot;,</span>
+<span class="s2">                        t.machine AS &quot;Machine&quot;</span>
 <span class="s2">                    FROM tests AS t</span>
-<span class="s2">                    INNER JOIN users AS u ON t.id_user_fk = u.user_id;</span>
 <span class="s2">                &quot;&quot;&quot;</span>
     <span class="n">LIST_JSON_PARAM_SQL</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">        SELECT jsonb_object_keys(test_param) as keys</span>
@@ -252,10 +241,8 @@
 
         <span class="c1"># Создание таблиц при необходимости</span>
         <span class="n">tables_to_create</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s1">&#39;users&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">USERS_SQL</span><span class="p">,</span>
             <span class="s1">&#39;tests&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">TESTS_SQL</span><span class="p">,</span>
             <span class="s1">&#39;report&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">REPORT_SQL</span><span class="p">,</span>
-            <span class="s1">&#39;settings&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">SETTING_SQL</span><span class="p">,</span>
             <span class="s1">&#39;sections&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">SECTION_SQL</span><span class="p">,</span>
             <span class="s1">&#39;notes&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">NOTE_SQL</span><span class="p">,</span>
             <span class="s1">&#39;test_params&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">TEST_PARAMS</span><span class="p">,</span>
@@ -298,6 +285,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Ошибка выполнения запроса:&quot;</span><span class="o">+</span> <span class="n">query</span><span class="o">.</span><span class="n">lastError</span><span class="p">()</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
             <span class="k">return</span> <span class="kc">None</span></div>
+
 
 <div class="viewcode-block" id="BaseModel.execute_sql">
 <a class="viewcode-back" href="../../pages.html#pages.BaseModel.BaseModel.execute_sql">[документация]</a>

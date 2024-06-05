@@ -64,6 +64,8 @@ class IMBParser(BaseTestParser):
         return {"parsed_result": f"IMB parsed: {result_test}"}  # Пример парсинга
 
 
+import json
+
 class JSONParser:
     def __init__(self, json_data):
         self.json_data = json.loads(json_data)
@@ -71,6 +73,8 @@ class JSONParser:
     def parse(self):
         parsed_tests = []
         cluster_name = self.json_data["parametr"]["hpc"]["cluster_name"]
+        version_os = self.json_data["parametr"]["hpc"]["version_os"]
+        start_test = self.json_data["datetime"]
 
         for key, value in self.json_data.items():
             if key in ["datetime", "parametr"]:
@@ -81,7 +85,9 @@ class JSONParser:
                     "test_name": key,
                     "result_test": value["result_test"],
                     "config": value["config"],
-                    "cluster_name": cluster_name
+                    "start_test": start_test,
+                    "cluster_name": cluster_name,
+                    "version_os": version_os
                 }
                 parsed_tests.append(test_result)
 

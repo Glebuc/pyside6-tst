@@ -69,16 +69,13 @@
            <div itemprop="articleBody">
              
   <h1>Исходный код pages.Chart.Chart_view</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">PySide6.QtCore</span> <span class="kn">import</span> <span class="n">Qt</span>
+<span></span><span class="kn">from</span> <span class="nn">PySide6.QtCore</span> <span class="kn">import</span> <span class="n">Qt</span><span class="p">,</span> <span class="n">QDateTime</span>
 <span class="kn">from</span> <span class="nn">PySide6.QtWidgets</span> <span class="kn">import</span> <span class="n">QApplication</span><span class="p">,</span> <span class="n">QMainWindow</span><span class="p">,</span> <span class="n">QVBoxLayout</span><span class="p">,</span> <span class="n">QWidget</span><span class="p">,</span> <span class="n">QGraphicsView</span>
 <span class="kn">from</span> <span class="nn">PySide6.QtCharts</span> <span class="kn">import</span> <span class="n">QChart</span><span class="p">,</span> <span class="n">QLineSeries</span><span class="p">,</span> <span class="n">QValueAxis</span><span class="p">,</span> <span class="n">QDateTimeAxis</span>
-<span class="kn">from</span> <span class="nn">PySide6.QtGui</span> <span class="kn">import</span> <span class="n">QPainter</span><span class="p">,</span> <span class="n">QMouseEvent</span>
-<span class="kn">from</span> <span class="nn">PySide6.QtSql</span> <span class="kn">import</span> <span class="n">QSqlQuery</span>
+<span class="kn">from</span> <span class="nn">PySide6.QtGui</span> <span class="kn">import</span> <span class="n">QPainter</span>
 <span class="kn">import</span> <span class="nn">random</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">array</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
 
-<span class="c1"># from loger import Logger</span>
 
 <div class="viewcode-block" id="TestChart">
 <a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.TestChart">[документация]</a>
@@ -86,62 +83,69 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">test_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="c1"># Создание серии данных для графика</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">series</span> <span class="o">=</span> <span class="n">QLineSeries</span><span class="p">()</span>
-
         <span class="c1"># Создание осей X и Y</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">axis_x</span> <span class="o">=</span> <span class="n">QDateTimeAxis</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">axis_y</span> <span class="o">=</span> <span class="n">QValueAxis</span><span class="p">()</span>
 
         <span class="c1"># Настройка оси X</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">axis_x</span><span class="o">.</span><span class="n">setFormat</span><span class="p">(</span><span class="s2">&quot;dd.MM.yyyy&quot;</span><span class="p">)</span>  <span class="c1"># Установка формата даты на оси X</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">axis_x</span><span class="o">.</span><span class="n">setTitleText</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">)</span>  <span class="c1"># Установка заголовка для оси X</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axis_x</span><span class="o">.</span><span class="n">setTitleText</span><span class="p">(</span><span class="s2">&quot;Дата&quot;</span><span class="p">)</span>  <span class="c1"># Установка заголовка для оси X</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">addAxis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axis_x</span><span class="p">,</span> <span class="n">Qt</span><span class="o">.</span><span class="n">AlignBottom</span><span class="p">)</span>  <span class="c1"># Добавление оси X на график</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">series</span><span class="o">.</span><span class="n">attachAxis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axis_x</span><span class="p">)</span>  <span class="c1"># Привязка серии данных к оси X</span>
 
         <span class="c1"># Настройка оси Y</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">axis_y</span><span class="o">.</span><span class="n">setTitleText</span><span class="p">(</span><span class="s2">&quot;Test Result&quot;</span><span class="p">)</span>  <span class="c1"># Установка заголовка для оси Y</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axis_y</span><span class="o">.</span><span class="n">setTitleText</span><span class="p">(</span><span class="s2">&quot;Результат теста&quot;</span><span class="p">)</span>  <span class="c1"># Установка заголовка для оси Y</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">addAxis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axis_y</span><span class="p">,</span> <span class="n">Qt</span><span class="o">.</span><span class="n">AlignLeft</span><span class="p">)</span>  <span class="c1"># Добавление оси Y на график</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">series</span><span class="o">.</span><span class="n">attachAxis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axis_y</span><span class="p">)</span>  <span class="c1"># Привязка серии данных к оси Y</span>
-
-        <span class="c1"># Добавление серии данных на график</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">addSeries</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">series</span><span class="p">)</span>
 
         <span class="c1"># Установка заголовка графика</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setTitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test Results for &#39;</span><span class="si">{</span><span class="n">test_name</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setTitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Результат теста &#39;</span><span class="si">{</span><span class="n">test_name</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
 
-        <span class="c1"># Загрузка данных из базы данных и отображение на графике</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">load_test_results</span><span class="p">(</span><span class="n">test_name</span><span class="p">)</span>
+        <span class="c1"># Словарь для хранения серий по их именам</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">series_dict</span> <span class="o">=</span> <span class="p">{}</span>
 
-<div class="viewcode-block" id="TestChart.load_test_results">
-<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.TestChart.load_test_results">[документация]</a>
-    <span class="k">def</span> <span class="nf">load_test_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">test_name</span><span class="p">):</span>
-        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">()</span>
-        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT start_test, test_result FROM tests WHERE test_name = ? ORDER BY start_test;&quot;</span><span class="p">)</span>
-        <span class="n">query</span><span class="o">.</span><span class="n">addBindValue</span><span class="p">(</span><span class="n">test_name</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Failed to execute query&quot;</span><span class="p">)</span>
-            <span class="k">return</span>
+<div class="viewcode-block" id="TestChart.add_series">
+<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.TestChart.add_series">[документация]</a>
+    <span class="k">def</span> <span class="nf">add_series</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="n">series</span> <span class="o">=</span> <span class="n">QLineSeries</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">date</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">series</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">toMSecsSinceEpoch</span><span class="p">(),</span> <span class="n">value</span><span class="p">)</span>
 
-        <span class="c1"># Очищаем существующие данные серии перед загрузкой новых данных</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">series</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="c1"># Добавление серии данных на график</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">addSeries</span><span class="p">(</span><span class="n">series</span><span class="p">)</span>
+        <span class="n">series</span><span class="o">.</span><span class="n">attachAxis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axis_x</span><span class="p">)</span>
+        <span class="n">series</span><span class="o">.</span><span class="n">attachAxis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axis_y</span><span class="p">)</span>
 
-        <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
-            <span class="n">start_test</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Не нужно вызывать toDateTime()</span>
-            <span class="c1"># Получаем массив данных типа _int4 из PostgreSQL</span>
-            <span class="n">test_result_array</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># Сохранение серии в словарь</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">series_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">series</span></div>
 
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">test_result_array</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-                <span class="c1"># Если данные представлены в виде строки, преобразуем их в список целых чисел</span>
-                <span class="n">test_result_list</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">test_result_array</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)]</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="c1"># Если данные уже являются массивом целых чисел, не требуется дополнительных преобразований</span>
-                <span class="n">test_result_list</span> <span class="o">=</span> <span class="n">test_result_array</span>
 
-            <span class="c1"># Добавляем каждое значение из списка в серию данных</span>
-            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">test_result_list</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">series</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">start_test</span><span class="o">.</span><span class="n">toMSecsSinceEpoch</span><span class="p">()</span> <span class="o">+</span> <span class="n">i</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
+<div class="viewcode-block" id="TestChart.toggle_series_visibility">
+<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.TestChart.toggle_series_visibility">[документация]</a>
+    <span class="k">def</span> <span class="nf">toggle_series_visibility</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Переключает видимость серии данных с указанным именем.</span>
 
+<span class="sd">        :param name: Имя серии данных.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">series_dict</span><span class="p">:</span>
+            <span class="n">series</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">series_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+            <span class="n">series</span><span class="o">.</span><span class="n">setVisible</span><span class="p">(</span><span class="ow">not</span> <span class="n">series</span><span class="o">.</span><span class="n">isVisible</span><span class="p">())</span></div>
+
+
+<div class="viewcode-block" id="TestChart.populate_chart_with_data">
+<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.TestChart.populate_chart_with_data">[документация]</a>
+    <span class="k">def</span> <span class="nf">populate_chart_with_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_series</span><span class="o">=</span><span class="mi">15</span><span class="p">):</span>
+        <span class="n">current_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+        <span class="n">start_date</span> <span class="o">=</span> <span class="n">current_date</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">day</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Генерация данных для каждой серии</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_series</span><span class="p">):</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">day</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">((</span><span class="n">current_date</span> <span class="o">-</span> <span class="n">start_date</span><span class="p">)</span><span class="o">.</span><span class="n">days</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">date</span> <span class="o">=</span> <span class="n">start_date</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">day</span><span class="p">)</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">QDateTime</span><span class="p">(</span><span class="n">date</span><span class="p">),</span> <span class="n">value</span><span class="p">))</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_series</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Series </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="TestChart.zoom_in">

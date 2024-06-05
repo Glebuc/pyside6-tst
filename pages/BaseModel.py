@@ -16,28 +16,27 @@ setting.get_setting("AppSettings/language")
 
 class BaseModel(QSqlQueryModel):
     """Базовая модель, данная модель является родительской для всех других моделей"""
-    USERS_SQL = """
-        CREATE TABLE IF NOT EXISTS users (
-    	user_id serial4 NOT NULL,
-    	user_name varchar NOT NULL,
-    	fio_user varchar NULL,
-    	email_user varchar NULL,
-    	password_user varchar NULL,
-    	CONSTRAINT users_pk PRIMARY KEY (user_id)
-    );
-        """
+    # USERS_SQL = """
+    #     CREATE TABLE IF NOT EXISTS users (
+    # 	user_id serial4 NOT NULL,
+    # 	user_name varchar NOT NULL,
+    # 	fio_user varchar NULL,
+    # 	email_user varchar NULL,
+    # 	password_user varchar NULL,
+    # 	CONSTRAINT users_pk PRIMARY KEY (user_id)
+    # );
+    #     """
     TESTS_SQL = """
         CREATE TABLE IF NOT EXISTS tests (
-    	test_name varchar NOT NULL,
-    	test_param jsonb NULL,
-    	test_note text NULL,
-    	test_id serial4 NOT NULL,
-    	id_user_fk int4 NULL,
-    	start_test timestamp NULL,
-    	time_test time NULL,
-    	test_result int4[],
-    	CONSTRAINT tests_pk PRIMARY KEY (test_id),
-    	CONSTRAINT tests_fk FOREIGN KEY (id_user_fk) REFERENCES users(user_id)
+        test_note text NULL,
+        test_id serial4 NOT NULL,
+        start_test timestamp NULL,
+        time_test time NULL,
+        test_param jsonb NULL,
+        test_result text NULL,
+        machine varchar NULL,
+        version_os varchar NULL,
+        CONSTRAINT tests_pk PRIMARY KEY (test_id)
     );
         """
     REPORT_SQL = """
@@ -124,10 +123,10 @@ class BaseModel(QSqlQueryModel):
                 t.test_param AS Параметры, 
                 t.time_test AS "Время выполнения", 
                 t.test_result AS Результат, 
-                t.start_test AS "Дата выполнения", 
-                u.user_name AS Пользователь
+                t.start_test AS "Дата выполнения",
+                t.version_os AS "Версия ОС",
+                t.machine AS "Выч. система"
             FROM tests AS t
-            INNER JOIN users AS u ON t.id_user_fk = u.user_id;
         """
     elif setting.get_setting("AppSettings/language") == "English":
         ALL_RESULT_SQL = """
@@ -136,10 +135,10 @@ class BaseModel(QSqlQueryModel):
                         t.test_param AS "Parametrs", 
                         t.time_test AS "Execution time", 
                         t.test_result AS "Result", 
-                        t.start_test AS "Launch date", 
-                        u.user_name AS "User"
+                        t.start_test AS "Launch date",
+                        t.version_os AS "Vesion OS",
+                        t.machine AS "Machine"
                     FROM tests AS t
-                    INNER JOIN users AS u ON t.id_user_fk = u.user_id;
                 """
     LIST_JSON_PARAM_SQL = """
         SELECT jsonb_object_keys(test_param) as keys
@@ -167,7 +166,6 @@ class BaseModel(QSqlQueryModel):
 
         # Создание таблиц при необходимости
         tables_to_create = {
-            'users': self.USERS_SQL,
             'tests': self.TESTS_SQL,
             'report': self.REPORT_SQL,
             'sections': self.SECTION_SQL,

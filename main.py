@@ -1,6 +1,5 @@
 # from . resources_rc import *
-
-
+import json
 import sys
 import os
 
@@ -106,7 +105,8 @@ class MainWindow(QMainWindow):
 
 
         widgets.list_test_result.currentIndexChanged.connect(
-            lambda: self.model_result.filter_data(combo_box=widgets.list_test_result, table_view=self.tableView))
+            lambda: self.model_result.filter_data(combo_box=widgets.list_test_result, table_view=self.tableView,
+                                                  language=self.get_text_from_language_box()))
 
         widgets.list_test_chart.activated.connect(self.set_param_test_for_chart)
 
@@ -250,6 +250,20 @@ class MainWindow(QMainWindow):
                 json_data = f.read()
                 parser = Parser_json.JSONParser(json_data)
                 test_results = parser.parse()
+                if test_results:
+                    for result in test_results:
+                        test_name = result.get("test_name")
+                        start_test = result.get("start_test")
+                        test_param = result.get("config")
+                        test_result = result.get("result_test")
+                        machine = result.get("cluster_name")
+                        version_os = result.get("version_os")
+                        test_param_str = json.dumps(test_param)
+
+                        success = self.model_result.insert_data(test_name, start_test, test_param_str, test_result, machine,
+                                                         version_os)
+                        if not success:
+                            print(f"Failed to insert data for test: {test_name}")
                 if test_results:
                     message_box = QMessageBox()
                     if self.ui.comboBox_language.currentText() == "Русский":

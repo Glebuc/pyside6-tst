@@ -84,23 +84,47 @@
 <span class="sd">    и при подтверждении сохраняет раздел в базу данных.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Инициализация диалогового окна добавления раздела.</span>
 
 <span class="sd">        Создает элементы интерфейса (поле ввода, кнопку подтверждения) и настраивает обработчики событий.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">note_model</span> <span class="o">=</span> <span class="n">NoteModel</span><span class="p">(</span><span class="s2">&quot;sections&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;Добавление раздела&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Словарь меток на разных языках</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;Русский&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;window_title&quot;</span><span class="p">:</span> <span class="s2">&quot;Добавление раздела&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;label_text&quot;</span><span class="p">:</span> <span class="s2">&quot;Введите название раздела:&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;button_text&quot;</span><span class="p">:</span> <span class="s2">&quot;Подтвердить&quot;</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;English&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;window_title&quot;</span><span class="p">:</span> <span class="s2">&quot;Add Section&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;label_text&quot;</span><span class="p">:</span> <span class="s2">&quot;Enter section name:&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;button_text&quot;</span><span class="p">:</span> <span class="s2">&quot;Confirm&quot;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="n">language</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;русский&quot;</span><span class="p">,</span> <span class="s2">&quot;russian&quot;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">language</span> <span class="o">=</span> <span class="s2">&quot;Русский&quot;</span>
+        <span class="k">elif</span> <span class="n">language</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;английский&quot;</span><span class="p">,</span> <span class="s2">&quot;english&quot;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">language</span> <span class="o">=</span> <span class="s2">&quot;English&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">language</span> <span class="o">=</span> <span class="s2">&quot;Русский&quot;</span> 
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">language</span><span class="p">][</span><span class="s2">&quot;window_title&quot;</span><span class="p">])</span>
         <span class="n">layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="n">label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="s2">&quot;Введите название раздела:&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">language</span><span class="p">][</span><span class="s2">&quot;label_text&quot;</span><span class="p">],</span> <span class="bp">self</span><span class="p">)</span>
         <span class="n">layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">line_edit</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">line_edit</span><span class="p">)</span>
-        <span class="n">button</span> <span class="o">=</span> <span class="n">QPushButton</span><span class="p">(</span><span class="s2">&quot;Подтвердить&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="n">button</span> <span class="o">=</span> <span class="n">QPushButton</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">language</span><span class="p">][</span><span class="s2">&quot;button_text&quot;</span><span class="p">],</span> <span class="bp">self</span><span class="p">)</span>
         <span class="n">button</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">add_section_to_database</span><span class="p">)</span>
         <span class="n">layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">button</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">note_model</span> <span class="o">=</span> <span class="n">NoteModel</span><span class="p">(</span><span class="s2">&quot;sections&quot;</span><span class="p">)</span>
+
+
 
 <div class="viewcode-block" id="DialogAddTopic.add_section_to_database">
 <a class="viewcode-back" href="../../../pages.Notes.html#pages.Notes.Dialog_add_topic.DialogAddTopic.add_section_to_database">[документация]</a>

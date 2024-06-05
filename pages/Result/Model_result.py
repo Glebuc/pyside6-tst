@@ -15,6 +15,26 @@ class ResultModel(BaseModel):
         self.displayed_columns = []
         self.visible_columns = []
 
+    def insert_data(self, test_name, start_test, test_param, test_result, machine, version_os):
+        query = QSqlQuery()
+        query.prepare("""
+            INSERT INTO tests (test_name, start_test, test_param, test_result, machine, version_os)
+            VALUES (:test_name, :start_test, :test_param, :test_result, :machine, :version_os)
+        """)
+
+        query.bindValue(":test_name", test_name)
+        query.bindValue(":start_test", start_test)
+        query.bindValue(":test_param", test_param)
+        query.bindValue(":test_result", test_result)
+        query.bindValue(":machine", machine)
+        query.bindValue(":version_os", version_os)
+
+        if not query.exec():
+            print(query.lastQuery())
+            print(f"Error inserting data: {query.lastError().text()}")
+            return False
+
+        return True
 
     def apply_filter(self, table_view: QTableView,  test_data: str, user_data: str,
                      param_test: str, start_date: str, end_date:str) -> None:
@@ -49,10 +69,9 @@ class ResultModel(BaseModel):
                             t.test_param,
                             t.time_test,
                             t.test_result,
-                            t.start_test,
-                            u.user_name
+                            t.start_test
                        FROM tests as t
-                       INNER JOIN users as u ON t.id_user_fk = u.user_id {where_clause}"""
+                        {where_clause}"""
         self.setQuery(query)
         if self.rowCount() == 0:
             # Если строк нет, выводим предупреждение
@@ -64,7 +83,7 @@ class ResultModel(BaseModel):
         table_view.setModel(self)
 
 
-    def filter_data(self, combo_box: QComboBox, table_view: QTableView) -> None:
+    def filter_data(self, combo_box: QComboBox, table_view: QTableView, language="Russian") -> None:
         """
             Применяет фильтр к данным и обновляет модель представления таблицы на основе выбранной опции в QComboBox.
 
@@ -75,18 +94,40 @@ class ResultModel(BaseModel):
                 None
             """
         selected_option = combo_box.currentText()
+        print(selected_option)
         query = QSqlQuery()
         if selected_option == "Все тесты" or selected_option == "All tests":
             self.setQuery(QSqlQuery(BaseModel.ALL_RESULT_SQL))
         else:
-            query.prepare(f"""
-                SELECT t.test_name, t.test_param, t.time_test, t.test_result, t.start_test, u.user_name
-                FROM tests as t
-                INNER JOIN users as u ON t.id_user_fk = u.user_id
-                WHERE t.test_name = :selected_option
-            """)
+            if language in ["Русский", "Russian"]:
+                query.prepare(f"""
+                        SELECT
+                            t.test_name AS Название, 
+                            t.test_param AS Параметры, 
+                            t.time_test AS "Время выполнения", 
+                            t.test_result AS Результат, 
+                            t.start_test AS "Дата выполнения",
+                            t.version_os AS "Версия ОС",
+                            t.machine AS "Выч. система"
+                        FROM tests as t
+                        WHERE t.test_name = :selected_option
+                    """)
+            else:
+                query.prepare(f"""
+                                   SELECT
+                                        t.test_name AS "Name test", 
+                                        t.test_param AS "Parametrs", 
+                                        t.time_test AS "Execution time", 
+                                        t.test_result AS "Result", 
+                                        t.start_test AS "Launch date",
+                                        t.version_os AS "Vesion OS",
+                                        t.machine AS "Machine"
+                                   FROM tests as t
+                                   WHERE t.test_name = :selected_option
+                               """)
             query.bindValue(":selected_option", selected_option)
-            query.exec_()
+            query.exec()
+            print(query.lastQuery())
             self.setQuery(query)
         table_view.setModel(self)
 

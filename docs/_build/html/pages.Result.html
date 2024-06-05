@@ -76,6 +76,7 @@
 <li><a class="reference internal" href="#pages.Result.Model_result.ResultModel"><code class="docutils literal notranslate"><span class="pre">ResultModel</span></code></a><ul>
 <li><a class="reference internal" href="#pages.Result.Model_result.ResultModel.apply_filter"><code class="docutils literal notranslate"><span class="pre">ResultModel.apply_filter()</span></code></a></li>
 <li><a class="reference internal" href="#pages.Result.Model_result.ResultModel.filter_data"><code class="docutils literal notranslate"><span class="pre">ResultModel.filter_data()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Result.Model_result.ResultModel.insert_data"><code class="docutils literal notranslate"><span class="pre">ResultModel.insert_data()</span></code></a></li>
 <li><a class="reference internal" href="#pages.Result.Model_result.ResultModel.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">ResultModel.staticMetaObject</span></code></a></li>
 </ul>
 </li>
@@ -86,6 +87,13 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#module-pages.Result.View_result">pages.Result.View_result module</a><ul>
+<li><a class="reference internal" href="#pages.Result.View_result.CheckBoxDelegate"><code class="docutils literal notranslate"><span class="pre">CheckBoxDelegate</span></code></a><ul>
+<li><a class="reference internal" href="#pages.Result.View_result.CheckBoxDelegate.editorEvent"><code class="docutils literal notranslate"><span class="pre">CheckBoxDelegate.editorEvent()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Result.View_result.CheckBoxDelegate.getCheckBoxRect"><code class="docutils literal notranslate"><span class="pre">CheckBoxDelegate.getCheckBoxRect()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Result.View_result.CheckBoxDelegate.paint"><code class="docutils literal notranslate"><span class="pre">CheckBoxDelegate.paint()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Result.View_result.CheckBoxDelegate.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">CheckBoxDelegate.staticMetaObject</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#pages.Result.View_result.CustomTableView"><code class="docutils literal notranslate"><span class="pre">CustomTableView</span></code></a><ul>
 <li><a class="reference internal" href="#pages.Result.View_result.CustomTableView.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">CustomTableView.staticMetaObject</span></code></a></li>
 </ul>
@@ -271,7 +279,7 @@ end_date (str): Конечная дата для фильтрации по да�
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pages.Result.Model_result.ResultModel.filter_data">
-<span class="sig-name descname"><span class="pre">filter_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">combo_box</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QComboBox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table_view</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QTableView</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pages/Result/Model_result.html#ResultModel.filter_data"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Result.Model_result.ResultModel.filter_data" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">filter_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">combo_box</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QComboBox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table_view</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QTableView</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">language</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Russian'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pages/Result/Model_result.html#ResultModel.filter_data"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Result.Model_result.ResultModel.filter_data" title="Link to this definition"></a></dt>
 <dd><blockquote>
 <div><p>Применяет фильтр к данным и обновляет модель представления таблицы на основе выбранной опции в QComboBox.</p>
 </div></blockquote>
@@ -289,6 +297,11 @@ table_view (QTableView): Представление таблицы, которо
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Result.Model_result.ResultModel.insert_data">
+<span class="sig-name descname"><span class="pre">insert_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_result</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">machine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version_os</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Result/Model_result.html#ResultModel.insert_data"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Result.Model_result.ResultModel.insert_data" title="Link to this definition"></a></dt>
+<dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pages.Result.Model_result.ResultModel.staticMetaObject">
@@ -314,6 +327,32 @@ table_view (QTableView): Представление таблицы, которо
 </section>
 <section id="module-pages.Result.View_result">
 <span id="pages-result-view-result-module"></span><h2>pages.Result.View_result module<a class="headerlink" href="#module-pages.Result.View_result" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pages.Result.View_result.CheckBoxDelegate">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pages.Result.View_result.</span></span><span class="sig-name descname"><span class="pre">CheckBoxDelegate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Result/View_result.html#CheckBoxDelegate"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Result.View_result.CheckBoxDelegate" title="Link to this definition"></a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">QStyledItemDelegate</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Result.View_result.CheckBoxDelegate.editorEvent">
+<span class="sig-name descname"><span class="pre">editorEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PySide6.QtCore.QEvent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PySide6.QtCore.QAbstractItemModel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PySide6.QtWidgets.QStyleOptionViewItem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PySide6.QtCore.QModelIndex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QPersistentModelIndex</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/pages/Result/View_result.html#CheckBoxDelegate.editorEvent"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Result.View_result.CheckBoxDelegate.editorEvent" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Result.View_result.CheckBoxDelegate.getCheckBoxRect">
+<span class="sig-name descname"><span class="pre">getCheckBoxRect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Result/View_result.html#CheckBoxDelegate.getCheckBoxRect"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Result.View_result.CheckBoxDelegate.getCheckBoxRect" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Result.View_result.CheckBoxDelegate.paint">
+<span class="sig-name descname"><span class="pre">paint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">painter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PySide6.QtGui.QPainter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PySide6.QtWidgets.QStyleOptionViewItem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PySide6.QtCore.QModelIndex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QPersistentModelIndex</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pages/Result/View_result.html#CheckBoxDelegate.paint"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Result.View_result.CheckBoxDelegate.paint" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pages.Result.View_result.CheckBoxDelegate.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject(&quot;CheckBoxDelegate&quot;</span> <span class="pre">inherits</span> <span class="pre">&quot;QStyledItemDelegate&quot;:</span> <span class="pre">)</span></em><a class="headerlink" href="#pages.Result.View_result.CheckBoxDelegate.staticMetaObject" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="pages.Result.View_result.CustomTableView">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pages.Result.View_result.</span></span><span class="sig-name descname"><span class="pre">CustomTableView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Result/View_result.html#CustomTableView"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Result.View_result.CustomTableView" title="Link to this definition"></a></dt>

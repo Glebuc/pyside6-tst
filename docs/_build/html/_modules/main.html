@@ -70,8 +70,7 @@
              
   <h1>Исходный код main</h1><div class="highlight"><pre>
 <span></span><span class="c1"># from . resources_rc import *</span>
-
-
+<span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
@@ -116,7 +115,8 @@
                    <span class="n">Dialog_edit_note</span><span class="p">,</span>
                    <span class="n">Dialog_edit_topic</span><span class="p">,</span>
                    <span class="n">Dialog_test_params</span><span class="p">,</span>
-                   <span class="n">Parser_json</span><span class="p">)</span>
+                   <span class="n">Parser_json</span><span class="p">,</span>
+                   <span class="n">PDFGenerator</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">SettingApp</span> <span class="kn">import</span> <span class="n">AppSettings</span>
 
 <span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">get_translate_path</span><span class="p">,</span> <span class="n">get_themes_path</span>
@@ -157,7 +157,8 @@
         <span class="n">setting</span> <span class="o">=</span> <span class="n">AppSettings</span><span class="o">.</span><span class="n">get_instance</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">init_translation</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">init_theme</span><span class="p">()</span>
-        <span class="n">test_chart</span> <span class="o">=</span> <span class="n">TestChart</span><span class="p">(</span><span class="s2">&quot;IMB&quot;</span><span class="p">)</span>
+        <span class="n">test_chart</span> <span class="o">=</span> <span class="n">TestChart</span><span class="p">(</span><span class="s2">&quot;HPCG&quot;</span><span class="p">)</span>
+        <span class="n">test_chart</span><span class="o">.</span><span class="n">populate_chart_with_data</span><span class="p">(</span><span class="n">num_series</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 
 
         <span class="c1">#Обработчики кнопок масштабирования графика</span>
@@ -177,7 +178,8 @@
 
 
         <span class="n">widgets</span><span class="o">.</span><span class="n">list_test_result</span><span class="o">.</span><span class="n">currentIndexChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
-            <span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_result</span><span class="o">.</span><span class="n">filter_data</span><span class="p">(</span><span class="n">combo_box</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">list_test_result</span><span class="p">,</span> <span class="n">table_view</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tableView</span><span class="p">))</span>
+            <span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_result</span><span class="o">.</span><span class="n">filter_data</span><span class="p">(</span><span class="n">combo_box</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">list_test_result</span><span class="p">,</span> <span class="n">table_view</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tableView</span><span class="p">,</span>
+                                                  <span class="n">language</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_text_from_language_box</span><span class="p">()))</span>
 
         <span class="n">widgets</span><span class="o">.</span><span class="n">list_test_chart</span><span class="o">.</span><span class="n">activated</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">set_param_test_for_chart</span><span class="p">)</span>
 
@@ -233,10 +235,15 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">checkbox_dict</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">populate_tree_widget</span><span class="p">()</span>
 
+<div class="viewcode-block" id="MainWindow.get_text_from_language_box">
+<a class="viewcode-back" href="../main.html#main.MainWindow.get_text_from_language_box">[документация]</a>
+    <span class="k">def</span> <span class="nf">get_text_from_language_box</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">comboBox_language</span><span class="o">.</span><span class="n">currentText</span><span class="p">()</span></div>
+
 
 <div class="viewcode-block" id="MainWindow.set_combo_value">
 <a class="viewcode-back" href="../main.html#main.MainWindow.set_combo_value">[документация]</a>
-    <span class="k">def</span> <span class="nf">set_combo_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comboBox</span><span class="p">,</span> <span class="n">possible_values</span><span class="p">:</span> <span class="n">List</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">set_combo_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comboBox</span><span class="p">,</span> <span class="n">possible_values</span><span class="p">:</span> <span class="n">List</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">           Устанавливает текущее значение в QComboBox, если одно из возможных значений найдено.</span>
 
@@ -252,7 +259,6 @@
             <span class="k">if</span> <span class="n">index</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
                 <span class="n">comboBox</span><span class="o">.</span><span class="n">setCurrentIndex</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
                 <span class="k">break</span></div>
-
 
 
 <div class="viewcode-block" id="MainWindow.init_theme">
@@ -328,30 +334,65 @@
 <a class="viewcode-back" href="../main.html#main.MainWindow.parse_json_data">[документация]</a>
     <span class="k">def</span> <span class="nf">parse_json_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Данная функция передает</span>
+<span class="sd">        Данная функция вызывает диалоговое окно для выбора JSON-файлов,</span>
+<span class="sd">        парсит их и генерирует PDF-отчеты.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">files</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">open_dialog_for_import_data</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
             <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
                 <span class="n">json_data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
                 <span class="n">parser</span> <span class="o">=</span> <span class="n">Parser_json</span><span class="o">.</span><span class="n">JSONParser</span><span class="p">(</span><span class="n">json_data</span><span class="p">)</span>
-                <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">()</span></div>
+                <span class="n">test_results</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">test_results</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">test_results</span><span class="p">:</span>
+                        <span class="n">test_name</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;test_name&quot;</span><span class="p">)</span>
+                        <span class="n">start_test</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;start_test&quot;</span><span class="p">)</span>
+                        <span class="n">test_param</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;config&quot;</span><span class="p">)</span>
+                        <span class="n">test_result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;result_test&quot;</span><span class="p">)</span>
+                        <span class="n">machine</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;cluster_name&quot;</span><span class="p">)</span>
+                        <span class="n">version_os</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;version_os&quot;</span><span class="p">)</span>
+                        <span class="n">test_param_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">test_param</span><span class="p">)</span>
+
+                        <span class="n">success</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_result</span><span class="o">.</span><span class="n">insert_data</span><span class="p">(</span><span class="n">test_name</span><span class="p">,</span> <span class="n">start_test</span><span class="p">,</span> <span class="n">test_param_str</span><span class="p">,</span> <span class="n">test_result</span><span class="p">,</span> <span class="n">machine</span><span class="p">,</span>
+                                                         <span class="n">version_os</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="ow">not</span> <span class="n">success</span><span class="p">:</span>
+                            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to insert data for test: </span><span class="si">{</span><span class="n">test_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">test_results</span><span class="p">:</span>
+                    <span class="n">message_box</span> <span class="o">=</span> <span class="n">QMessageBox</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">comboBox_language</span><span class="o">.</span><span class="n">currentText</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;Русский&quot;</span><span class="p">:</span>
+                        <span class="n">message_box</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;Создать отчет?&quot;</span><span class="p">)</span>
+                        <span class="n">message_box</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Создать отчет о тестировании?&quot;</span><span class="p">)</span>
+                        <span class="n">message_box</span><span class="o">.</span><span class="n">setStandardButtons</span><span class="p">(</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Yes</span> <span class="o">|</span> <span class="n">QMessageBox</span><span class="o">.</span><span class="n">No</span><span class="p">)</span>
+                        <span class="n">message_box</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Yes</span><span class="p">)</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Да&quot;</span><span class="p">)</span>
+                        <span class="n">message_box</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">No</span><span class="p">)</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Нет&quot;</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">message_box</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;Create report?&quot;</span><span class="p">)</span>
+                        <span class="n">message_box</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Create a test report?&quot;</span><span class="p">)</span>
+                        <span class="n">message_box</span><span class="o">.</span><span class="n">setStandardButtons</span><span class="p">(</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Yes</span> <span class="o">|</span> <span class="n">QMessageBox</span><span class="o">.</span><span class="n">No</span><span class="p">)</span>
+
+                    <span class="n">choice</span> <span class="o">=</span> <span class="n">message_box</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="n">QMessageBox</span><span class="o">.</span><span class="n">Yes</span><span class="p">:</span>
+                        <span class="n">pdf_filename</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.json&#39;</span><span class="p">,</span> <span class="s1">&#39;.pdf&#39;</span><span class="p">)</span>
+                        <span class="n">pdf_generator</span> <span class="o">=</span> <span class="n">PDFGenerator</span><span class="o">.</span><span class="n">PDFGenerator</span><span class="p">(</span><span class="n">pdf_filename</span><span class="p">)</span>
+                        <span class="n">pdf_generator</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="s2">&quot;Отчёт о тестировании&quot;</span><span class="p">,</span>
+                                               <span class="sa">f</span><span class="s2">&quot;Тесты запущены на </span><span class="si">{</span><span class="n">test_results</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;cluster_name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                                               <span class="n">test_results</span><span class="p">)</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PDF создан: </span><span class="si">{</span><span class="n">pdf_filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="MainWindow.open_dialog_for_import_data">
 <a class="viewcode-back" href="../main.html#main.MainWindow.open_dialog_for_import_data">[документация]</a>
     <span class="k">def</span> <span class="nf">open_dialog_for_import_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Открывает файловое диалогое окно для импорта тестов из JSON файлов</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Открывает файловое диалоговое окно для импорта тестов из JSON файлов</span>
 
-<span class="sd">            :returns: List[str], возвращает список строк с путями до JSON-файлов</span>
+<span class="sd">        :returns: List[str], возвращает список строк с путями до JSON-файлов</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">files</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">QFileDialog</span><span class="o">.</span><span class="n">getOpenFileNames</span><span class="p">(</span>
             <span class="kc">None</span><span class="p">,</span>
             <span class="s2">&quot;Выберите файлы&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1"># Фильтры для файлов, здесь оставлено пустым для выбора всех файлов</span>
+            <span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1"># Начальный каталог, можно оставить пустым</span>
             <span class="s2">&quot;JSON Файлы (*.json)&quot;</span>  <span class="c1"># Фильтр для JSON файлов</span>
         <span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">files</span></div>
 
 
@@ -377,7 +418,10 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Выбран элемент </span><span class="si">{</span><span class="n">selected_item</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2"> для удаления или редактирования&quot;</span><span class="p">)</span>
                 <span class="k">return</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">QMessageBox</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;Внимание&quot;</span><span class="p">,</span> <span class="s1">&#39;Для &quot;Редактирование&quot; или &quot;Удаление&quot; выделите статью или раздел&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_text_from_language_box</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;Русский&quot;</span><span class="p">,</span> <span class="s2">&quot;Russian&quot;</span><span class="p">]:</span>
+                <span class="n">QMessageBox</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;Внимание&quot;</span><span class="p">,</span> <span class="s1">&#39;Для &quot;Редактирование&quot; или &quot;Удаление&quot; выделите статью или раздел&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">QMessageBox</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;Warning&quot;</span><span class="p">,</span> <span class="s1">&#39;For &quot;Edit&quot; or &quot;Delete&quot;, select an article or section&#39;</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">None</span></div>
 
 
@@ -419,8 +463,12 @@
             <span class="n">selected_items</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">treeWidget</span><span class="o">.</span><span class="n">selectedItems</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">selected_items</span><span class="p">:</span>
                 <span class="n">selected_item</span> <span class="o">=</span> <span class="n">selected_items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-                <span class="n">reply</span> <span class="o">=</span> <span class="n">QMessageBox</span><span class="o">.</span><span class="n">question</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;Удаление&#39;</span><span class="p">,</span> <span class="s1">&#39;Вы уверены, что хотите удалить запись?&#39;</span><span class="p">,</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_text_from_language_box</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;Русский&quot;</span><span class="p">,</span> <span class="s2">&quot;Russian&quot;</span><span class="p">]:</span>
+                    <span class="n">reply</span> <span class="o">=</span> <span class="n">QMessageBox</span><span class="o">.</span><span class="n">question</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;Удаление&#39;</span><span class="p">,</span> <span class="s1">&#39;Вы уверены, что хотите удалить запись?&#39;</span><span class="p">,</span>
                                              <span class="n">QMessageBox</span><span class="o">.</span><span class="n">Yes</span> <span class="o">|</span> <span class="n">QMessageBox</span><span class="o">.</span><span class="n">No</span><span class="p">,</span> <span class="n">QMessageBox</span><span class="o">.</span><span class="n">Yes</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">reply</span> <span class="o">=</span> <span class="n">QMessageBox</span><span class="o">.</span><span class="n">question</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;Removal&#39;</span><span class="p">,</span> <span class="s1">&#39;Are you sure you want to delete the record?&#39;</span><span class="p">,</span>
+                                                 <span class="n">QMessageBox</span><span class="o">.</span><span class="n">Yes</span> <span class="o">|</span> <span class="n">QMessageBox</span><span class="o">.</span><span class="n">No</span><span class="p">,</span> <span class="n">QMessageBox</span><span class="o">.</span><span class="n">Yes</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">reply</span> <span class="o">==</span> <span class="n">QMessageBox</span><span class="o">.</span><span class="n">Yes</span><span class="p">:</span>
                     <span class="k">if</span> <span class="n">selection_result</span><span class="p">:</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">note_model</span><span class="o">.</span><span class="n">delete_note_data</span><span class="p">(</span><span class="n">selected_item</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
@@ -441,7 +489,7 @@
 
 <span class="sd">        :return:</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">dialog</span> <span class="o">=</span> <span class="n">Dialog_test_params</span><span class="o">.</span><span class="n">TestParamsDialog</span><span class="p">()</span>
+        <span class="n">dialog</span> <span class="o">=</span> <span class="n">Dialog_test_params</span><span class="o">.</span><span class="n">TestParamsDialog</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_text_from_language_box</span><span class="p">())</span>
         <span class="n">dialog</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">dialog</span><span class="o">.</span><span class="n">isVisible</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_info</span><span class="p">(</span><span class="s2">&quot;Открыто диалоговое окно для просмотра и редактирования параметров&quot;</span><span class="p">)</span>
@@ -459,7 +507,7 @@
 <span class="sd">                title (str): Заголовок статьи.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">dialog</span> <span class="o">=</span> <span class="n">Dialog_edit_topic</span><span class="o">.</span><span class="n">EditTopicDialog</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+        <span class="n">dialog</span> <span class="o">=</span> <span class="n">Dialog_edit_topic</span><span class="o">.</span><span class="n">EditTopicDialog</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_text_from_language_box</span><span class="p">())</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">dialog</span><span class="o">.</span><span class="n">isVisible</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_info</span><span class="p">(</span><span class="s2">&quot;Открыто диалоговое окно для редактирования раздела&quot;</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">dialog</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span> <span class="o">==</span> <span class="n">QDialog</span><span class="o">.</span><span class="n">Accepted</span><span class="p">:</span>
@@ -472,7 +520,7 @@
 <div class="viewcode-block" id="MainWindow.dialog_edit_content_article">
 <a class="viewcode-back" href="../main.html#main.MainWindow.dialog_edit_content_article">[документация]</a>
     <span class="k">def</span> <span class="nf">dialog_edit_content_article</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">content</span><span class="p">):</span>
-        <span class="n">dialog</span> <span class="o">=</span> <span class="n">Dialog_edit_note</span><span class="o">.</span><span class="n">EditNoteDialog</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+        <span class="n">dialog</span> <span class="o">=</span> <span class="n">Dialog_edit_note</span><span class="o">.</span><span class="n">EditNoteDialog</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_text_from_language_box</span><span class="p">())</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">dialog</span><span class="o">.</span><span class="n">isVisible</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_info</span><span class="p">(</span><span class="s2">&quot;Открыто диалоговое окно для редактирования статьи&quot;</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">dialog</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span> <span class="o">==</span> <span class="n">QDialog</span><span class="o">.</span><span class="n">Accepted</span><span class="p">:</span>
@@ -693,7 +741,7 @@
 <span class="sd">            :return:</span>
 <span class="sd">                None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">dialog</span> <span class="o">=</span> <span class="n">Dialog_add_topic</span><span class="o">.</span><span class="n">DialogAddTopic</span><span class="p">()</span>
+        <span class="n">dialog</span> <span class="o">=</span> <span class="n">Dialog_add_topic</span><span class="o">.</span><span class="n">DialogAddTopic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_text_from_language_box</span><span class="p">())</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">dialog</span><span class="o">.</span><span class="n">isVisible</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_info</span><span class="p">(</span><span class="s2">&quot;Открыто диалоговое окно для добавления раздела&quot;</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">dialog</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span> <span class="o">==</span> <span class="n">QDialog</span><span class="o">.</span><span class="n">Accepted</span><span class="p">:</span>
@@ -712,7 +760,7 @@
 <span class="sd">            :return:</span>
 <span class="sd">                None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">dialog</span> <span class="o">=</span> <span class="n">Dialog_add_note</span><span class="o">.</span><span class="n">DialogAddNote</span><span class="p">()</span>
+        <span class="n">dialog</span> <span class="o">=</span> <span class="n">Dialog_add_note</span><span class="o">.</span><span class="n">DialogAddNote</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_text_from_language_box</span><span class="p">())</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">dialog</span><span class="o">.</span><span class="n">isVisible</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_info</span><span class="p">(</span><span class="s2">&quot;Открыто диалоговое окно для добавления статьи&quot;</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">dialog</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span> <span class="o">==</span> <span class="n">QDialog</span><span class="o">.</span><span class="n">Accepted</span><span class="p">:</span>

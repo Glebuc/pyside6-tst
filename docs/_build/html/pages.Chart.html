@@ -49,9 +49,11 @@
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-pages.Chart.Chart_view">pages.Chart.Chart_view module</a><ul>
 <li><a class="reference internal" href="#pages.Chart.Chart_view.TestChart"><code class="docutils literal notranslate"><span class="pre">TestChart</span></code></a><ul>
-<li><a class="reference internal" href="#pages.Chart.Chart_view.TestChart.load_test_results"><code class="docutils literal notranslate"><span class="pre">TestChart.load_test_results()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Chart.Chart_view.TestChart.add_series"><code class="docutils literal notranslate"><span class="pre">TestChart.add_series()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Chart.Chart_view.TestChart.populate_chart_with_data"><code class="docutils literal notranslate"><span class="pre">TestChart.populate_chart_with_data()</span></code></a></li>
 <li><a class="reference internal" href="#pages.Chart.Chart_view.TestChart.reset"><code class="docutils literal notranslate"><span class="pre">TestChart.reset()</span></code></a></li>
 <li><a class="reference internal" href="#pages.Chart.Chart_view.TestChart.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">TestChart.staticMetaObject</span></code></a></li>
+<li><a class="reference internal" href="#pages.Chart.Chart_view.TestChart.toggle_series_visibility"><code class="docutils literal notranslate"><span class="pre">TestChart.toggle_series_visibility()</span></code></a></li>
 <li><a class="reference internal" href="#pages.Chart.Chart_view.TestChart.zoom_in"><code class="docutils literal notranslate"><span class="pre">TestChart.zoom_in()</span></code></a></li>
 <li><a class="reference internal" href="#pages.Chart.Chart_view.TestChart.zoom_out"><code class="docutils literal notranslate"><span class="pre">TestChart.zoom_out()</span></code></a></li>
 </ul>
@@ -110,8 +112,13 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pages.Chart.Chart_view.</span></span><span class="sig-name descname"><span class="pre">TestChart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Chart/Chart_view.html#TestChart"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Chart.Chart_view.TestChart" title="Link to this definition"></a></dt>
 <dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">QChart</span></code></p>
 <dl class="py method">
-<dt class="sig sig-object py" id="pages.Chart.Chart_view.TestChart.load_test_results">
-<span class="sig-name descname"><span class="pre">load_test_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Chart/Chart_view.html#TestChart.load_test_results"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Chart.Chart_view.TestChart.load_test_results" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="pages.Chart.Chart_view.TestChart.add_series">
+<span class="sig-name descname"><span class="pre">add_series</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Chart/Chart_view.html#TestChart.add_series"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Chart.Chart_view.TestChart.add_series" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Chart.Chart_view.TestChart.populate_chart_with_data">
+<span class="sig-name descname"><span class="pre">populate_chart_with_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_series</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Chart/Chart_view.html#TestChart.populate_chart_with_data"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Chart.Chart_view.TestChart.populate_chart_with_data" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -129,6 +136,17 @@
 <dt class="sig sig-object py" id="pages.Chart.Chart_view.TestChart.staticMetaObject">
 <span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject(&quot;TestChart&quot;</span> <span class="pre">inherits</span> <span class="pre">&quot;QChart&quot;:</span> <span class="pre">)</span></em><a class="headerlink" href="#pages.Chart.Chart_view.TestChart.staticMetaObject" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Chart.Chart_view.TestChart.toggle_series_visibility">
+<span class="sig-name descname"><span class="pre">toggle_series_visibility</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Chart/Chart_view.html#TestChart.toggle_series_visibility"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Chart.Chart_view.TestChart.toggle_series_visibility" title="Link to this definition"></a></dt>
+<dd><p>Переключает видимость серии данных с указанным именем.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> – Имя серии данных.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pages.Chart.Chart_view.TestChart.zoom_in">

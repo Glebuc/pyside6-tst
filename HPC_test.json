@@ -1,5 +1,5 @@
 {"datetime": "2024-05-21 15:49:28",
-  "parametr": {"hpc": {"cluster_name": "Aramid Test Cluster"}},
+  "parametr": {"hpc": {"cluster_name": "Aramid Test Cluster", "version_os": "Aramid 3.4"}},
   "HPL": {
     "complete": true,
     "result_test": "\\n============================================ HPlinpack 2.3 - High-\nperformance Linpack test - December 2, 2018 Written by A. Petit and R. Clint Whaley,\nLaboratory of Innovative Computing, UTK, Modified by Peter Luschek,\nLaboratory of Innovative Computing, UTK, modified by Julien Langou,\nUniversity of Colorado, Denver.n\\n=============\n===== The following is an explanation of the input/output parameters:\\n\\nT/V: Shutdown time / encoded variant-\nT.\\n\\nN: The order of the coefficient matrix A.\\n\\nNB: Partition blocking coefficient\\\\n\\nP: The number of rows\nof the process.\\n\\nQ: The number of columns of the process.\\n\\nTime: The time in seconds spent solving a linear system-\n.\\n\\Pflops: the speed of solving a linear system.\\n\\n\\n\\n Commands The following parameter values\nwill be used:\\n\\n\\n\\nn: 64\\N\\nnb: 256\\N\\N nPMAP: line by line mapping process\\N\\n 2\\\\n\\pd 2\\\\n\\nPFACT:\nYes\\n\\nNBMIN: 4\\n\\nNDIV\\N\\nRFACT: Yes\\N\\nBCAST: 1ringM\\N\\nDEPTH: 0\\n\\nSWAP: Spread-roll (long-\n)\\N\\nL1 transposed\\N\\Nu companies: in transposed form\\N\\nEQUIL: Yes\\n\\nALIGN: 8 double\nprecision words\\n\\n\\n\\n- --\\n\\n\\n - that matrix a is randomly generated for each test.\\n\\n -\nThe\nfollowing scaled\nremaining check will be calculated:\\n\\n\n| | Ax-b| |_00 / ( eps * ( | | × | |_00 * | | A | |_00 + | | b | |_00 ) * N )\\n\\n - The relative accuracy of the machine (eps)\nis assumed to be equal\n1.110223e-16\\n\\n- Computational tests are successful if the scaled residuals are less\nthan 16.0\\n\\n\\n\\n====\n==\\n\\nT/In\nN NB P Q\nGflops\\n\\n-\nTime --\\n\\nWR01R2R4 64 256 2 2\n0.00\n5.6753e-\n02\\n\\nHPL_pdgesv() start time Tue, May 21, at 16:10:57 2024\\\\n\\nHPL_pdgesv() end time Tue, May 21, at\n16:10:57 2024\\\\n\\n-\n--------------------------\n| Ax- b_o0/(eps*(| |A| |_00*×_00+b||_00)*N)= 1.63999530e-02 ... CONTINUE\\\nn\\n====== =====\\ 1 testing has been completed with\nthe following results: completed",
@@ -9,7 +9,7 @@
       "other_parameters": ""
     }
   },
-   "TestName2": {
+   "IMB PingPong": {
     "complete": false,
     "result_test": "Строка результата теста 2",
     "config": {

@@ -58,6 +58,7 @@
 <li><a class="reference internal" href="#main.MainWindow.get_item_and_parent_text"><code class="docutils literal notranslate"><span class="pre">MainWindow.get_item_and_parent_text()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.get_param_test"><code class="docutils literal notranslate"><span class="pre">MainWindow.get_param_test()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.get_text_from_combo_chart"><code class="docutils literal notranslate"><span class="pre">MainWindow.get_text_from_combo_chart()</span></code></a></li>
+<li><a class="reference internal" href="#main.MainWindow.get_text_from_language_box"><code class="docutils literal notranslate"><span class="pre">MainWindow.get_text_from_language_box()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.init_theme"><code class="docutils literal notranslate"><span class="pre">MainWindow.init_theme()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.init_translation"><code class="docutils literal notranslate"><span class="pre">MainWindow.init_translation()</span></code></a></li>
 <li><a class="reference internal" href="#main.MainWindow.on_selection_changed"><code class="docutils literal notranslate"><span class="pre">MainWindow.on_selection_changed()</span></code></a></li>
@@ -235,6 +236,11 @@ None: Если не удалось получить данные о статье
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="main.MainWindow.get_text_from_language_box">
+<span class="sig-name descname"><span class="pre">get_text_from_language_box</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/main.html#MainWindow.get_text_from_language_box"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#main.MainWindow.get_text_from_language_box" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="main.MainWindow.init_theme">
 <span class="sig-name descname"><span class="pre">init_theme</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/main.html#MainWindow.init_theme"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#main.MainWindow.init_theme" title="Link to this definition"></a></dt>
 <dd><blockquote>
@@ -334,7 +340,7 @@ None: Если не удалось получить данные о статье
 <dl class="py method">
 <dt class="sig sig-object py" id="main.MainWindow.open_dialog_for_import_data">
 <span class="sig-name descname"><span class="pre">open_dialog_for_import_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWindow.open_dialog_for_import_data"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#main.MainWindow.open_dialog_for_import_data" title="Link to this definition"></a></dt>
-<dd><p>Открывает файловое диалогое окно для импорта тестов из JSON файлов</p>
+<dd><p>Открывает файловое диалоговое окно для импорта тестов из JSON файлов</p>
 <dl class="field-list simple">
 <dt class="field-odd">Результат<span class="colon">:</span></dt>
 <dd class="field-odd"><p>List[str], возвращает список строк с путями до JSON-файлов</p>
@@ -368,7 +374,8 @@ None: Если не удалось получить данные о статье
 <dl class="py method">
 <dt class="sig sig-object py" id="main.MainWindow.parse_json_data">
 <span class="sig-name descname"><span class="pre">parse_json_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWindow.parse_json_data"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#main.MainWindow.parse_json_data" title="Link to this definition"></a></dt>
-<dd><p>Данная функция передает</p>
+<dd><p>Данная функция вызывает диалоговое окно для выбора JSON-файлов,
+парсит их и генерирует PDF-отчеты.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -395,7 +402,7 @@ None: Если не удалось получить данные о статье
 
 <dl class="py method">
 <dt class="sig sig-object py" id="main.MainWindow.set_combo_value">
-<span class="sig-name descname"><span class="pre">set_combo_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comboBox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">possible_values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWindow.set_combo_value"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#main.MainWindow.set_combo_value" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_combo_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comboBox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">possible_values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/main.html#MainWindow.set_combo_value"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#main.MainWindow.set_combo_value" title="Link to this definition"></a></dt>
 <dd><p>Устанавливает текущее значение в QComboBox, если одно из возможных значений найдено.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parametrs<span class="colon">:</span></dt>

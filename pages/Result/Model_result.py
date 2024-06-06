@@ -1,8 +1,5 @@
 from PySide6.QtSql import QSqlDatabase, QSqlQuery, QSqlTableModel, QSqlQueryModel
-from PySide6.QtWidgets import QTableView, QVBoxLayout, QWidget, QHeaderView, QComboBox, QMessageBox
-from PySide6.QtCore import Qt, Slot
-from ui_modules import *
-from PySide6.QtUiTools import QUiLoader
+from PySide6.QtWidgets import QTableView, QComboBox, QMessageBox
 
 from ..BaseModel import BaseModel
 
@@ -15,12 +12,40 @@ class ResultModel(BaseModel):
         self.displayed_columns = []
         self.visible_columns = []
 
-    def insert_data(self, test_name, start_test, test_param, test_result, machine, version_os):
+    def select_all_data(self) -> None:
+        """
+        Выборка всех данных из таблицы 'tests' и обновляет модель результатами.
+
+        :return: None
+        """
+        self.setQuery(self.ALL_RESULT_SQL)
+
+    def delete_all_data(self) -> None:
+        """
+       Очистка таблицы 'tests' и обновляет модель результатами.
+
+        :return: None
+        """
+        self.setQuery(self.TRUNCATE_DATA_TEST)
+
+    def insert_data(self, test_name: str, start_test: str, test_param: str, test_result: str,
+                    machine: str, version_os: str) -> bool:
+        """
+        Вставляет новую запись в таблицу 'tests'.
+
+        :param test_name: Название теста.
+        :param start_test: Дата и время начала теста.
+        :param test_param: Параметры теста.
+        :param test_result: Результат теста.
+        :param machine: Выч. Система на которой проводился тест.
+        :param version_os: Версия операционной системы.
+        :return: True, если вставка прошла успешно, False в противном случае.
+        """
         query = QSqlQuery()
         query.prepare("""
-            INSERT INTO tests (test_name, start_test, test_param, test_result, machine, version_os)
-            VALUES (:test_name, :start_test, :test_param, :test_result, :machine, :version_os)
-        """)
+               INSERT INTO tests (test_name, start_test, test_param, test_result, machine, version_os)
+               VALUES (:test_name, :start_test, :test_param, :test_result, :machine, :version_os)
+           """)
 
         query.bindValue(":test_name", test_name)
         query.bindValue(":start_test", start_test)
@@ -31,7 +56,7 @@ class ResultModel(BaseModel):
 
         if not query.exec():
             print(query.lastQuery())
-            print(f"Error inserting data: {query.lastError().text()}")
+            print(f"Ошибка при вставке данных: {query.lastError().text()}")
             return False
 
         return True

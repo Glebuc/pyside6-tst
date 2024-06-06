@@ -246,45 +246,92 @@ class MainWindow(QMainWindow):
         """
         files = self.open_dialog_for_import_data()
         for file in files:
-            with open(file, 'r', encoding='utf-8') as f:
-                json_data = f.read()
-                parser = Parser_json.JSONParser(json_data)
-                test_results = parser.parse()
-                if test_results:
-                    for result in test_results:
-                        test_name = result.get("test_name")
-                        start_test = result.get("start_test")
-                        test_param = result.get("config")
-                        test_result = result.get("result_test")
-                        machine = result.get("cluster_name")
-                        version_os = result.get("version_os")
-                        test_param_str = json.dumps(test_param)
+            json_data = self.read_json_file(file)
+            test_results = self.parse_json(json_data)
+            if test_results:
+                self.insert_test_results(test_results)
+                self.prompt_generate_report(file, test_results)
 
-                        success = self.model_result.insert_data(test_name, start_test, test_param_str, test_result, machine,
-                                                         version_os)
-                        if not success:
-                            print(f"Failed to insert data for test: {test_name}")
-                if test_results:
-                    message_box = QMessageBox()
-                    if self.ui.comboBox_language.currentText() == "Русский":
-                        message_box.setWindowTitle("Создать отчет?")
-                        message_box.setText("Создать отчет о тестировании?")
-                        message_box.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
-                        message_box.button(QMessageBox.Yes).setText("Да")
-                        message_box.button(QMessageBox.No).setText("Нет")
-                    else:
-                        message_box.setWindowTitle("Create report?")
-                        message_box.setText("Create a test report?")
-                        message_box.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+    def open_dialog_for_import_data(self) -> List[str]:
+        """
+        Открывает диалоговое окно для выбора JSON-файлов.
 
-                    choice = message_box.exec()
-                    if choice == QMessageBox.Yes:
-                        pdf_filename = file.replace('.json', '.pdf')
-                        pdf_generator = PDFGenerator.PDFGenerator(pdf_filename)
-                        pdf_generator.generate("Отчёт о тестировании",
-                                               f"Тесты запущены на {test_results[0]['cluster_name']}",
-                                               test_results)
-                        print(f"PDF создан: {pdf_filename}")
+        :return: Список выбранных файлов.
+        """
+        files, _ = QFileDialog.getOpenFileNames(self, "Выберите JSON файлы", "", "JSON Files (*.json)")
+        return files
+
+    def read_json_file(self, file: str) -> str:
+        """
+        Читает содержимое JSON-файла.
+
+        :param file: Путь к файлу.
+        :return: Содержимое файла в виде строки.
+        """
+        with open(file, 'r', encoding='utf-8') as f:
+            return f.read()
+
+    def parse_json(self, json_data: str) -> List[dict]:
+        """
+        Парсит JSON-данные.
+
+        :param json_data: JSON-данные в виде строки.
+        :return: Список результатов тестов.
+        """
+        parser = Parser_json.JSONParser(json_data)
+        return parser.parse()
+
+    def insert_test_results(self, test_results: List[dict]) -> None:
+        """
+        Вставляет результаты тестов в базу данных.
+
+        :param test_results: Список результатов тестов.
+        :return: None
+        """
+        for result in test_results:
+            test_name = result.get("test_name")
+            start_test = result.get("start_test")
+            test_param = result.get("config")
+            test_result = result.get("result_test")
+            machine = result.get("cluster_name")
+            version_os = result.get("version_os")
+            test_param_str = json.dumps(test_param)
+
+            success = self.model_result.insert_data(test_name, start_test, test_param_str, test_result, machine,
+                                                    version_os)
+            self.model_result.select_all_data()
+            self.tableView.setModel(self.model_result)
+            if not success:
+                print(f"Failed to insert data for test: {test_name}")
+
+    def prompt_generate_report(self, file: str, test_results: List[dict]) -> None:
+        """
+        Спрашивает пользователя, хочет ли он создать отчет, и генерирует его в случае согласия.
+
+        :param file: Путь к исходному JSON-файлу.
+        :param test_results: Список результатов тестов.
+        :return: None
+        """
+        message_box = QMessageBox()
+        if self.ui.comboBox_language.currentText() == "Русский":
+            message_box.setWindowTitle("Создать отчет?")
+            message_box.setText("Создать отчет о тестировании?")
+            message_box.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+            message_box.button(QMessageBox.Yes).setText("Да")
+            message_box.button(QMessageBox.No).setText("Нет")
+        else:
+            message_box.setWindowTitle("Create report?")
+            message_box.setText("Create a test report?")
+            message_box.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+
+        choice = message_box.exec()
+        if choice == QMessageBox.Yes:
+            save_path, _ = QFileDialog.getSaveFileName(self, "Сохранить отчет как", "", "PDF Files (*.pdf)")
+            if save_path:
+                pdf_generator = PDFGenerator.PDFGenerator(save_path)
+                pdf_generator.generate("Отчёт о тестировании", f"Тесты запущены на {test_results[0]['cluster_name']}",
+                                       test_results)
+                print(f"PDF создан: {save_path}")
 
     def open_dialog_for_import_data(self):
         """Открывает файловое диалоговое окно для импорта тестов из JSON файлов
@@ -695,5 +742,6 @@ if __name__ == "__main__":
     app = Application(sys.argv)
     app.setWindowIcon(QIcon(u":/icons/images/icons/aramid.svg"))
     window = MainWindow(app)
+    window.setWindowTitle("Aramid TsT Graph")
     result = app.exec()
     sys.exit(result)

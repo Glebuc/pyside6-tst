@@ -3,7 +3,7 @@ from Mainwindow import SetupUI
 from ui_modules import Settings
 from PySide6.QtWidgets import QPushButton, QGraphicsDropShadowEffect, QSizeGrip
 from PySide6.QtCore import QFile, QTextStream, QPropertyAnimation, QEasingCurve, QParallelAnimationGroup
-from PySide6.QtGui import QColor
+
 
 
 class UIFunctions(SetupUI):

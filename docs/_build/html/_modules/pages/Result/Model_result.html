@@ -70,10 +70,7 @@
              
   <h1>Исходный код pages.Result.Model_result</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">PySide6.QtSql</span> <span class="kn">import</span> <span class="n">QSqlDatabase</span><span class="p">,</span> <span class="n">QSqlQuery</span><span class="p">,</span> <span class="n">QSqlTableModel</span><span class="p">,</span> <span class="n">QSqlQueryModel</span>
-<span class="kn">from</span> <span class="nn">PySide6.QtWidgets</span> <span class="kn">import</span> <span class="n">QTableView</span><span class="p">,</span> <span class="n">QVBoxLayout</span><span class="p">,</span> <span class="n">QWidget</span><span class="p">,</span> <span class="n">QHeaderView</span><span class="p">,</span> <span class="n">QComboBox</span><span class="p">,</span> <span class="n">QMessageBox</span>
-<span class="kn">from</span> <span class="nn">PySide6.QtCore</span> <span class="kn">import</span> <span class="n">Qt</span><span class="p">,</span> <span class="n">Slot</span>
-<span class="kn">from</span> <span class="nn">ui_modules</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">PySide6.QtUiTools</span> <span class="kn">import</span> <span class="n">QUiLoader</span>
+<span class="kn">from</span> <span class="nn">PySide6.QtWidgets</span> <span class="kn">import</span> <span class="n">QTableView</span><span class="p">,</span> <span class="n">QComboBox</span><span class="p">,</span> <span class="n">QMessageBox</span>
 
 <span class="kn">from</span> <span class="nn">..BaseModel</span> <span class="kn">import</span> <span class="n">BaseModel</span>
 
@@ -88,14 +85,48 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">displayed_columns</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">visible_columns</span> <span class="o">=</span> <span class="p">[]</span>
 
+<div class="viewcode-block" id="ResultModel.select_all_data">
+<a class="viewcode-back" href="../../../pages.Result.html#pages.Result.Model_result.ResultModel.select_all_data">[документация]</a>
+    <span class="k">def</span> <span class="nf">select_all_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Выборка всех данных из таблицы &#39;tests&#39; и обновляет модель результатами.</span>
+
+<span class="sd">        :return: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ALL_RESULT_SQL</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ResultModel.delete_all_data">
+<a class="viewcode-back" href="../../../pages.Result.html#pages.Result.Model_result.ResultModel.delete_all_data">[документация]</a>
+    <span class="k">def</span> <span class="nf">delete_all_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">       Очистка таблицы &#39;tests&#39; и обновляет модель результатами.</span>
+
+<span class="sd">        :return: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">TRUNCATE_DATA_TEST</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="ResultModel.insert_data">
 <a class="viewcode-back" href="../../../pages.Result.html#pages.Result.Model_result.ResultModel.insert_data">[документация]</a>
-    <span class="k">def</span> <span class="nf">insert_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">test_name</span><span class="p">,</span> <span class="n">start_test</span><span class="p">,</span> <span class="n">test_param</span><span class="p">,</span> <span class="n">test_result</span><span class="p">,</span> <span class="n">machine</span><span class="p">,</span> <span class="n">version_os</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">insert_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">test_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">start_test</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">test_param</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">test_result</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                    <span class="n">machine</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">version_os</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Вставляет новую запись в таблицу &#39;tests&#39;.</span>
+
+<span class="sd">        :param test_name: Название теста.</span>
+<span class="sd">        :param start_test: Дата и время начала теста.</span>
+<span class="sd">        :param test_param: Параметры теста.</span>
+<span class="sd">        :param test_result: Результат теста.</span>
+<span class="sd">        :param machine: Выч. Система на которой проводился тест.</span>
+<span class="sd">        :param version_os: Версия операционной системы.</span>
+<span class="sd">        :return: True, если вставка прошла успешно, False в противном случае.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">()</span>
         <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">            INSERT INTO tests (test_name, start_test, test_param, test_result, machine, version_os)</span>
-<span class="s2">            VALUES (:test_name, :start_test, :test_param, :test_result, :machine, :version_os)</span>
-<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+<span class="s2">               INSERT INTO tests (test_name, start_test, test_param, test_result, machine, version_os)</span>
+<span class="s2">               VALUES (:test_name, :start_test, :test_param, :test_result, :machine, :version_os)</span>
+<span class="s2">           &quot;&quot;&quot;</span><span class="p">)</span>
 
         <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:test_name&quot;</span><span class="p">,</span> <span class="n">test_name</span><span class="p">)</span>
         <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:start_test&quot;</span><span class="p">,</span> <span class="n">start_test</span><span class="p">)</span>
@@ -106,7 +137,7 @@
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">lastQuery</span><span class="p">())</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error inserting data: </span><span class="si">{</span><span class="n">query</span><span class="o">.</span><span class="n">lastError</span><span class="p">()</span><span class="o">.</span><span class="n">text</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ошибка при вставке данных: </span><span class="si">{</span><span class="n">query</span><span class="o">.</span><span class="n">lastError</span><span class="p">()</span><span class="o">.</span><span class="n">text</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">False</span>
 
         <span class="k">return</span> <span class="kc">True</span></div>

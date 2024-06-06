@@ -70,10 +70,6 @@
              
   <h1>Исходный код pages.BaseModel</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">PySide6.QtSql</span> <span class="kn">import</span> <span class="n">QSqlDatabase</span><span class="p">,</span> <span class="n">QSqlQuery</span><span class="p">,</span> <span class="n">QSqlTableModel</span><span class="p">,</span> <span class="n">QSqlQueryModel</span>
-<span class="kn">from</span> <span class="nn">PySide6.QtWidgets</span> <span class="kn">import</span> <span class="n">QTableView</span><span class="p">,</span> <span class="n">QVBoxLayout</span><span class="p">,</span> <span class="n">QWidget</span><span class="p">,</span> <span class="n">QHeaderView</span><span class="p">,</span> <span class="n">QComboBox</span><span class="p">,</span> <span class="n">QMessageBox</span>
-<span class="kn">from</span> <span class="nn">PySide6.QtCore</span> <span class="kn">import</span> <span class="n">Qt</span><span class="p">,</span> <span class="n">Slot</span>
-<span class="kn">from</span> <span class="nn">ui_modules</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">PySide6.QtUiTools</span> <span class="kn">import</span> <span class="n">QUiLoader</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">List</span>
 
 <span class="kn">from</span> <span class="nn">loger</span> <span class="kn">import</span> <span class="n">Logger</span>
@@ -115,11 +111,10 @@
     <span class="n">REPORT_SQL</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">        CREATE TABLE IF NOT EXISTS report (</span>
 <span class="s2">    	id_report serial4 NOT NULL,</span>
-<span class="s2">    	user_id_fk int4 NULL,</span>
 <span class="s2">    	forming_report timestamp NOT NULL,</span>
 <span class="s2">    	title_report varchar NOT NULL,</span>
-<span class="s2">    	CONSTRAINT report_pk PRIMARY KEY (id_report),</span>
-<span class="s2">    	CONSTRAINT report_fk FOREIGN KEY (user_id_fk) REFERENCES users(user_id)</span>
+<span class="s2">    	report bytea NOT NULL,</span>
+<span class="s2">    	CONSTRAINT report_pk PRIMARY KEY (id_report)</span>
 <span class="s2">    );</span>
 <span class="s2">        &quot;&quot;&quot;</span>
 
@@ -177,9 +172,6 @@
 <span class="s2">    $$</span>
 <span class="s2">    &quot;&quot;&quot;</span>
 
-    <span class="n">LIST_USER_SQL</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">        SELECT user_name FROM users GROUP BY user_name;</span>
-<span class="s2">    &quot;&quot;&quot;</span>
     <span class="n">LIST_TEST_SQL</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">        SELECT test_name FROM tests GROUP BY test_name;</span>
 <span class="s2">    &quot;&quot;&quot;</span>
@@ -191,15 +183,15 @@
 <span class="s2">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">setting</span><span class="o">.</span><span class="n">get_setting</span><span class="p">(</span><span class="s2">&quot;AppSettings/language&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Russian&quot;</span><span class="p">:</span>
         <span class="n">ALL_RESULT_SQL</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">            SELECT </span>
-<span class="s2">                t.test_name AS Название, </span>
-<span class="s2">                t.test_param AS Параметры, </span>
-<span class="s2">                t.time_test AS &quot;Время выполнения&quot;, </span>
-<span class="s2">                t.test_result AS Результат, </span>
-<span class="s2">                t.start_test AS &quot;Дата выполнения&quot;,</span>
-<span class="s2">                t.version_os AS &quot;Версия ОС&quot;,</span>
-<span class="s2">                t.machine AS &quot;Выч. система&quot;</span>
-<span class="s2">            FROM tests AS t</span>
+<span class="s2">                SELECT </span>
+<span class="s2">                    t.test_name AS &quot;Название&quot;, </span>
+<span class="s2">                    t.test_param AS &quot;Параметры&quot;, </span>
+<span class="s2">                    t.time_test AS &quot;Время выполнения&quot;, </span>
+<span class="s2">                    t.test_result AS Результат, </span>
+<span class="s2">                    t.start_test AS &quot;Дата выполнения&quot;,</span>
+<span class="s2">                    t.version_os AS &quot;Версия ОС&quot;,</span>
+<span class="s2">                    t.machine AS &quot;Выч.система&quot;</span>
+<span class="s2">                FROM tests AS t</span>
 <span class="s2">        &quot;&quot;&quot;</span>
     <span class="k">elif</span> <span class="n">setting</span><span class="o">.</span><span class="n">get_setting</span><span class="p">(</span><span class="s2">&quot;AppSettings/language&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;English&quot;</span><span class="p">:</span>
         <span class="n">ALL_RESULT_SQL</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
@@ -216,6 +208,14 @@
     <span class="n">LIST_JSON_PARAM_SQL</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">        SELECT jsonb_object_keys(test_param) as keys</span>
 <span class="s2">        FROM tests group by keys;</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="n">TRUNCATE_DATA_TEST</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        TRUNCATE TABLE tests;</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="n">TRUNCATE_DATA_REPORT</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        TRUNCATE TABLE report;</span>
 <span class="s2">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">):</span>

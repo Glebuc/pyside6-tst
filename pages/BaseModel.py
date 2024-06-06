@@ -1,8 +1,4 @@
 from PySide6.QtSql import QSqlDatabase, QSqlQuery, QSqlTableModel, QSqlQueryModel
-from PySide6.QtWidgets import QTableView, QVBoxLayout, QWidget, QHeaderView, QComboBox, QMessageBox
-from PySide6.QtCore import Qt, Slot
-from ui_modules import *
-from PySide6.QtUiTools import QUiLoader
 from typing import Optional, Dict, Tuple, Union, List
 
 from loger import Logger
@@ -42,11 +38,10 @@ class BaseModel(QSqlQueryModel):
     REPORT_SQL = """
         CREATE TABLE IF NOT EXISTS report (
     	id_report serial4 NOT NULL,
-    	user_id_fk int4 NULL,
     	forming_report timestamp NOT NULL,
     	title_report varchar NOT NULL,
-    	CONSTRAINT report_pk PRIMARY KEY (id_report),
-    	CONSTRAINT report_fk FOREIGN KEY (user_id_fk) REFERENCES users(user_id)
+    	report bytea NOT NULL,
+    	CONSTRAINT report_pk PRIMARY KEY (id_report)
     );
         """
 
@@ -104,9 +99,6 @@ class BaseModel(QSqlQueryModel):
     $$
     """
 
-    LIST_USER_SQL = """
-        SELECT user_name FROM users GROUP BY user_name;
-    """
     LIST_TEST_SQL = """
         SELECT test_name FROM tests GROUP BY test_name;
     """
@@ -118,15 +110,15 @@ class BaseModel(QSqlQueryModel):
     """
     if setting.get_setting("AppSettings/language") == "Russian":
         ALL_RESULT_SQL = """
-            SELECT 
-                t.test_name AS Название, 
-                t.test_param AS Параметры, 
-                t.time_test AS "Время выполнения", 
-                t.test_result AS Результат, 
-                t.start_test AS "Дата выполнения",
-                t.version_os AS "Версия ОС",
-                t.machine AS "Выч. система"
-            FROM tests AS t
+                SELECT 
+                    t.test_name AS "Название", 
+                    t.test_param AS "Параметры", 
+                    t.time_test AS "Время выполнения", 
+                    t.test_result AS Результат, 
+                    t.start_test AS "Дата выполнения",
+                    t.version_os AS "Версия ОС",
+                    t.machine AS "Выч.система"
+                FROM tests AS t
         """
     elif setting.get_setting("AppSettings/language") == "English":
         ALL_RESULT_SQL = """
@@ -143,6 +135,14 @@ class BaseModel(QSqlQueryModel):
     LIST_JSON_PARAM_SQL = """
         SELECT jsonb_object_keys(test_param) as keys
         FROM tests group by keys;
+    """
+
+    TRUNCATE_DATA_TEST = """
+        TRUNCATE TABLE tests;
+    """
+
+    TRUNCATE_DATA_REPORT = """
+        TRUNCATE TABLE report;
     """
 
     def __init__(self, table_name):

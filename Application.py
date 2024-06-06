@@ -1,6 +1,6 @@
-from PySide6.QtWidgets import QApplication, QWidget, QMessageBox
+from PySide6.QtWidgets import QApplication
 from PySide6.QtSql import QSqlDatabase
-from PySide6.QtCore import QTranslator, QLocale, QEvent, QObject
+from PySide6.QtCore import QTranslator
 from loger import Logger
 from SettingApp import AppSettings
 import os

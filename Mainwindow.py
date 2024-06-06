@@ -1,8 +1,6 @@
 from PySide6.QtWidgets import QDialog, QFormLayout, QVBoxLayout, QPushButton, \
     QTableView,QMainWindow, QWidget, QHeaderView, QMessageBox, QGraphicsScene, QGraphicsView, QTreeWidgetItem
-from PySide6.QtGui import QTransform, QIcon
-from PySide6 import QtCore
-from PySide6.QtCore import Qt, QResource
+from PySide6.QtGui import QIcon
 
 
 import sys

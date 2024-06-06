@@ -47,13 +47,7 @@
               <div class="local-toc"><ul>
 <li><a class="reference internal" href="#">pages.Result package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-pages.Result.Controller_result">pages.Result.Controller_result module</a><ul>
-<li><a class="reference internal" href="#pages.Result.Controller_result.MainWindow"><code class="docutils literal notranslate"><span class="pre">MainWindow</span></code></a><ul>
-<li><a class="reference internal" href="#pages.Result.Controller_result.MainWindow.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">MainWindow.staticMetaObject</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li><a class="reference internal" href="#pages-result-controller-result-module">pages.Result.Controller_result module</a></li>
 <li><a class="reference internal" href="#module-pages.Result.Dialog_change_view">pages.Result.Dialog_change_view module</a><ul>
 <li><a class="reference internal" href="#pages.Result.Dialog_change_view.ColumnSelectionDialog"><code class="docutils literal notranslate"><span class="pre">ColumnSelectionDialog</span></code></a><ul>
 <li><a class="reference internal" href="#pages.Result.Dialog_change_view.ColumnSelectionDialog.get_selected_columns"><code class="docutils literal notranslate"><span class="pre">ColumnSelectionDialog.get_selected_columns()</span></code></a></li>
@@ -75,8 +69,10 @@
 <li><a class="reference internal" href="#module-pages.Result.Model_result">pages.Result.Model_result module</a><ul>
 <li><a class="reference internal" href="#pages.Result.Model_result.ResultModel"><code class="docutils literal notranslate"><span class="pre">ResultModel</span></code></a><ul>
 <li><a class="reference internal" href="#pages.Result.Model_result.ResultModel.apply_filter"><code class="docutils literal notranslate"><span class="pre">ResultModel.apply_filter()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Result.Model_result.ResultModel.delete_all_data"><code class="docutils literal notranslate"><span class="pre">ResultModel.delete_all_data()</span></code></a></li>
 <li><a class="reference internal" href="#pages.Result.Model_result.ResultModel.filter_data"><code class="docutils literal notranslate"><span class="pre">ResultModel.filter_data()</span></code></a></li>
 <li><a class="reference internal" href="#pages.Result.Model_result.ResultModel.insert_data"><code class="docutils literal notranslate"><span class="pre">ResultModel.insert_data()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Result.Model_result.ResultModel.select_all_data"><code class="docutils literal notranslate"><span class="pre">ResultModel.select_all_data()</span></code></a></li>
 <li><a class="reference internal" href="#pages.Result.Model_result.ResultModel.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">ResultModel.staticMetaObject</span></code></a></li>
 </ul>
 </li>
@@ -142,19 +138,8 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
 </section>
-<section id="module-pages.Result.Controller_result">
-<span id="pages-result-controller-result-module"></span><h2>pages.Result.Controller_result module<a class="headerlink" href="#module-pages.Result.Controller_result" title="Link to this heading"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="pages.Result.Controller_result.MainWindow">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pages.Result.Controller_result.</span></span><span class="sig-name descname"><span class="pre">MainWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Result/Controller_result.html#MainWindow"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Result.Controller_result.MainWindow" title="Link to this definition"></a></dt>
-<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">QMainWindow</span></code></p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="pages.Result.Controller_result.MainWindow.staticMetaObject">
-<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject(&quot;MainWindow&quot;</span> <span class="pre">inherits</span> <span class="pre">&quot;QMainWindow&quot;:</span> <span class="pre">)</span></em><a class="headerlink" href="#pages.Result.Controller_result.MainWindow.staticMetaObject" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+<section id="pages-result-controller-result-module">
+<h2>pages.Result.Controller_result module<a class="headerlink" href="#pages-result-controller-result-module" title="Link to this heading"></a></h2>
 </section>
 <section id="module-pages.Result.Dialog_change_view">
 <span id="pages-result-dialog-change-view-module"></span><h2>pages.Result.Dialog_change_view module<a class="headerlink" href="#module-pages.Result.Dialog_change_view" title="Link to this heading"></a></h2>
@@ -278,6 +263,19 @@ end_date (str): Конечная дата для фильтрации по да�
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="pages.Result.Model_result.ResultModel.delete_all_data">
+<span class="sig-name descname"><span class="pre">delete_all_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pages/Result/Model_result.html#ResultModel.delete_all_data"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Result.Model_result.ResultModel.delete_all_data" title="Link to this definition"></a></dt>
+<dd><p>Очистка таблицы „tests“ и обновляет модель результатами.</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">return<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pages.Result.Model_result.ResultModel.filter_data">
 <span class="sig-name descname"><span class="pre">filter_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">combo_box</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QComboBox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table_view</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QTableView</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">language</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Russian'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pages/Result/Model_result.html#ResultModel.filter_data"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Result.Model_result.ResultModel.filter_data" title="Link to this definition"></a></dt>
 <dd><blockquote>
@@ -300,8 +298,35 @@ table_view (QTableView): Представление таблицы, которо
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pages.Result.Model_result.ResultModel.insert_data">
-<span class="sig-name descname"><span class="pre">insert_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_result</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">machine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version_os</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Result/Model_result.html#ResultModel.insert_data"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Result.Model_result.ResultModel.insert_data" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">insert_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_param</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">machine</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version_os</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/pages/Result/Model_result.html#ResultModel.insert_data"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Result.Model_result.ResultModel.insert_data" title="Link to this definition"></a></dt>
+<dd><p>Вставляет новую запись в таблицу „tests“.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>test_name</strong> – Название теста.</p></li>
+<li><p><strong>start_test</strong> – Дата и время начала теста.</p></li>
+<li><p><strong>test_param</strong> – Параметры теста.</p></li>
+<li><p><strong>test_result</strong> – Результат теста.</p></li>
+<li><p><strong>machine</strong> – Выч. Система на которой проводился тест.</p></li>
+<li><p><strong>version_os</strong> – Версия операционной системы.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>True, если вставка прошла успешно, False в противном случае.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Result.Model_result.ResultModel.select_all_data">
+<span class="sig-name descname"><span class="pre">select_all_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pages/Result/Model_result.html#ResultModel.select_all_data"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Result.Model_result.ResultModel.select_all_data" title="Link to this definition"></a></dt>
+<dd><p>Выборка всех данных из таблицы „tests“ и обновляет модель результатами.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pages.Result.Model_result.ResultModel.staticMetaObject">

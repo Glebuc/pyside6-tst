@@ -54,7 +54,6 @@
 <li><a class="reference internal" href="#pages.BaseModel.BaseModel.FUNCTIONS_PARAMS"><code class="docutils literal notranslate"><span class="pre">BaseModel.FUNCTIONS_PARAMS</span></code></a></li>
 <li><a class="reference internal" href="#pages.BaseModel.BaseModel.LIST_JSON_PARAM_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.LIST_JSON_PARAM_SQL</span></code></a></li>
 <li><a class="reference internal" href="#pages.BaseModel.BaseModel.LIST_TEST_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.LIST_TEST_SQL</span></code></a></li>
-<li><a class="reference internal" href="#pages.BaseModel.BaseModel.LIST_USER_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.LIST_USER_SQL</span></code></a></li>
 <li><a class="reference internal" href="#pages.BaseModel.BaseModel.MAX_DATE_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.MAX_DATE_SQL</span></code></a></li>
 <li><a class="reference internal" href="#pages.BaseModel.BaseModel.MIN_DATE_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.MIN_DATE_SQL</span></code></a></li>
 <li><a class="reference internal" href="#pages.BaseModel.BaseModel.NOTE_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.NOTE_SQL</span></code></a></li>
@@ -63,6 +62,8 @@
 <li><a class="reference internal" href="#pages.BaseModel.BaseModel.TESTS_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.TESTS_SQL</span></code></a></li>
 <li><a class="reference internal" href="#pages.BaseModel.BaseModel.TEST_PARAMS"><code class="docutils literal notranslate"><span class="pre">BaseModel.TEST_PARAMS</span></code></a></li>
 <li><a class="reference internal" href="#pages.BaseModel.BaseModel.TRIGGER_PARAMS"><code class="docutils literal notranslate"><span class="pre">BaseModel.TRIGGER_PARAMS</span></code></a></li>
+<li><a class="reference internal" href="#pages.BaseModel.BaseModel.TRUNCATE_DATA_REPORT"><code class="docutils literal notranslate"><span class="pre">BaseModel.TRUNCATE_DATA_REPORT</span></code></a></li>
+<li><a class="reference internal" href="#pages.BaseModel.BaseModel.TRUNCATE_DATA_TEST"><code class="docutils literal notranslate"><span class="pre">BaseModel.TRUNCATE_DATA_TEST</span></code></a></li>
 <li><a class="reference internal" href="#pages.BaseModel.BaseModel.check_and_create_tables"><code class="docutils literal notranslate"><span class="pre">BaseModel.check_and_create_tables()</span></code></a></li>
 <li><a class="reference internal" href="#pages.BaseModel.BaseModel.execute_sql"><code class="docutils literal notranslate"><span class="pre">BaseModel.execute_sql()</span></code></a></li>
 <li><a class="reference internal" href="#pages.BaseModel.BaseModel.get_existing_tables"><code class="docutils literal notranslate"><span class="pre">BaseModel.get_existing_tables()</span></code></a></li>
@@ -71,7 +72,7 @@
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-pages">Module contents</a></li>
+<li><a class="reference internal" href="#module-contents">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -108,99 +109,31 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="pages.Chart.html">pages.Chart package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="pages.Chart.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Chart.html#module-pages.Chart.Chart_view">pages.Chart.Chart_view module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_view.TestChart"><code class="docutils literal notranslate"><span class="pre">TestChart</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_view.TestChart.add_series"><code class="docutils literal notranslate"><span class="pre">TestChart.add_series()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_view.TestChart.populate_chart_with_data"><code class="docutils literal notranslate"><span class="pre">TestChart.populate_chart_with_data()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_view.TestChart.reset"><code class="docutils literal notranslate"><span class="pre">TestChart.reset()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_view.TestChart.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">TestChart.staticMetaObject</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_view.TestChart.toggle_series_visibility"><code class="docutils literal notranslate"><span class="pre">TestChart.toggle_series_visibility()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_view.TestChart.zoom_in"><code class="docutils literal notranslate"><span class="pre">TestChart.zoom_in()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_view.TestChart.zoom_out"><code class="docutils literal notranslate"><span class="pre">TestChart.zoom_out()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Chart.html#module-pages.Chart.Model_chart">pages.Chart.Model_chart module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="pages.Chart.html#pages.Chart.Model_chart.ChartModel"><code class="docutils literal notranslate"><span class="pre">ChartModel</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Model_chart.ChartModel.check_database_connection"><code class="docutils literal notranslate"><span class="pre">ChartModel.check_database_connection()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Model_chart.ChartModel.get_data_for_chart"><code class="docutils literal notranslate"><span class="pre">ChartModel.get_data_for_chart()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Model_chart.ChartModel.get_test_parameters"><code class="docutils literal notranslate"><span class="pre">ChartModel.get_test_parameters()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Model_chart.ChartModel.load_test_results"><code class="docutils literal notranslate"><span class="pre">ChartModel.load_test_results()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Model_chart.ChartModel.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">ChartModel.staticMetaObject</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Chart.html#module-pages.Chart">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Chart.html#pages-chart-chart-view-module">pages.Chart.Chart_view module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Chart.html#pages-chart-model-chart-module">pages.Chart.Model_chart module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Chart.html#module-contents">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="pages.Notes.html">pages.Notes package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#module-pages.Notes.Dialog_add_note">pages.Notes.Dialog_add_note module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_add_note.DialogAddNote"><code class="docutils literal notranslate"><span class="pre">DialogAddNote</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_add_note.DialogAddNote.current_text_changed"><code class="docutils literal notranslate"><span class="pre">DialogAddNote.current_text_changed()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_add_note.DialogAddNote.get_article_text"><code class="docutils literal notranslate"><span class="pre">DialogAddNote.get_article_text()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_add_note.DialogAddNote.get_article_title"><code class="docutils literal notranslate"><span class="pre">DialogAddNote.get_article_title()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_add_note.DialogAddNote.get_selected_section"><code class="docutils literal notranslate"><span class="pre">DialogAddNote.get_selected_section()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_add_note.DialogAddNote.publish_article"><code class="docutils literal notranslate"><span class="pre">DialogAddNote.publish_article()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_add_note.DialogAddNote.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">DialogAddNote.staticMetaObject</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#module-pages.Notes.Dialog_add_topic">pages.Notes.Dialog_add_topic module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_add_topic.DialogAddTopic"><code class="docutils literal notranslate"><span class="pre">DialogAddTopic</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_add_topic.DialogAddTopic.add_section_to_database"><code class="docutils literal notranslate"><span class="pre">DialogAddTopic.add_section_to_database()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_add_topic.DialogAddTopic.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">DialogAddTopic.staticMetaObject</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#module-pages.Notes.Dialog_article_view">pages.Notes.Dialog_article_view module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_article_view.ArticleDialog"><code class="docutils literal notranslate"><span class="pre">ArticleDialog</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_article_view.ArticleDialog.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">ArticleDialog.staticMetaObject</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#module-pages.Notes.Model_notes">pages.Notes.Model_notes module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="pages.Notes.html#pages.Notes.Model_notes.NoteModel"><code class="docutils literal notranslate"><span class="pre">NoteModel</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Model_notes.NoteModel.add_note"><code class="docutils literal notranslate"><span class="pre">NoteModel.add_note()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Model_notes.NoteModel.add_section"><code class="docutils literal notranslate"><span class="pre">NoteModel.add_section()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Model_notes.NoteModel.delete_note_data"><code class="docutils literal notranslate"><span class="pre">NoteModel.delete_note_data()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Model_notes.NoteModel.delete_topic_data"><code class="docutils literal notranslate"><span class="pre">NoteModel.delete_topic_data()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Model_notes.NoteModel.get_article_data"><code class="docutils literal notranslate"><span class="pre">NoteModel.get_article_data()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Model_notes.NoteModel.get_data_from_database"><code class="docutils literal notranslate"><span class="pre">NoteModel.get_data_from_database()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Model_notes.NoteModel.get_section_id_by_name"><code class="docutils literal notranslate"><span class="pre">NoteModel.get_section_id_by_name()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Model_notes.NoteModel.get_section_names"><code class="docutils literal notranslate"><span class="pre">NoteModel.get_section_names()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Model_notes.NoteModel.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">NoteModel.staticMetaObject</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Model_notes.NoteModel.update_article_data"><code class="docutils literal notranslate"><span class="pre">NoteModel.update_article_data()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Model_notes.NoteModel.update_topic_data"><code class="docutils literal notranslate"><span class="pre">NoteModel.update_topic_data()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#module-pages.Notes">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#pages-notes-dialog-add-note-module">pages.Notes.Dialog_add_note module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#pages-notes-dialog-add-topic-module">pages.Notes.Dialog_add_topic module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#pages-notes-dialog-article-view-module">pages.Notes.Dialog_article_view module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#pages-notes-model-notes-module">pages.Notes.Model_notes module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#module-contents">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="pages.Report.html">pages.Report package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="pages.Report.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Report.html#module-pages.Report.Controller_report">pages.Report.Controller_report module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Report.html#module-pages.Report.ReportModel">pages.Report.ReportModel module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Report.html#module-pages.Report.ReportView">pages.Report.ReportView module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Report.html#module-pages.Report">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Report.html#pages-report-controller-report-module">pages.Report.Controller_report module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Report.html#pages-report-reportmodel-module">pages.Report.ReportModel module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Report.html#pages-report-reportview-module">pages.Report.ReportView module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Report.html#module-contents">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="pages.Result.html">pages.Result package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="pages.Result.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Result.html#module-pages.Result.Controller_result">pages.Result.Controller_result module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="pages.Result.html#pages.Result.Controller_result.MainWindow"><code class="docutils literal notranslate"><span class="pre">MainWindow</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.Controller_result.MainWindow.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">MainWindow.staticMetaObject</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Result.html#pages-result-controller-result-module">pages.Result.Controller_result module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pages.Result.html#module-pages.Result.Dialog_change_view">pages.Result.Dialog_change_view module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pages.Result.html#pages.Result.Dialog_change_view.ColumnSelectionDialog"><code class="docutils literal notranslate"><span class="pre">ColumnSelectionDialog</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.Dialog_change_view.ColumnSelectionDialog.get_selected_columns"><code class="docutils literal notranslate"><span class="pre">ColumnSelectionDialog.get_selected_columns()</span></code></a></li>
@@ -222,8 +155,10 @@
 <li class="toctree-l2"><a class="reference internal" href="pages.Result.html#module-pages.Result.Model_result">pages.Result.Model_result module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pages.Result.html#pages.Result.Model_result.ResultModel"><code class="docutils literal notranslate"><span class="pre">ResultModel</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.Model_result.ResultModel.apply_filter"><code class="docutils literal notranslate"><span class="pre">ResultModel.apply_filter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.Model_result.ResultModel.delete_all_data"><code class="docutils literal notranslate"><span class="pre">ResultModel.delete_all_data()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.Model_result.ResultModel.filter_data"><code class="docutils literal notranslate"><span class="pre">ResultModel.filter_data()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.Model_result.ResultModel.insert_data"><code class="docutils literal notranslate"><span class="pre">ResultModel.insert_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.Model_result.ResultModel.select_all_data"><code class="docutils literal notranslate"><span class="pre">ResultModel.select_all_data()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.Model_result.ResultModel.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">ResultModel.staticMetaObject</span></code></a></li>
 </ul>
 </li>
@@ -260,7 +195,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="pages.Setting.html">pages.Setting package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="pages.Setting.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Setting.html#module-pages.Setting.Controller_setting">pages.Setting.Controller_setting module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Setting.html#pages-setting-controller-setting-module">pages.Setting.Controller_setting module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pages.Setting.html#module-pages.Setting.Dialog_config_db">pages.Setting.Dialog_config_db module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pages.Setting.html#pages.Setting.Dialog_config_db.Ui_Dialog"><code class="docutils literal notranslate"><span class="pre">Ui_Dialog</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="pages.Setting.html#pages.Setting.Dialog_config_db.Ui_Dialog.retranslateUi"><code class="docutils literal notranslate"><span class="pre">Ui_Dialog.retranslateUi()</span></code></a></li>
@@ -309,7 +244,7 @@
 <p>Базовая модель, данная модель является родительской для всех других моделей</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pages.BaseModel.BaseModel.ALL_RESULT_SQL">
-<span class="sig-name descname"><span class="pre">ALL_RESULT_SQL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">SELECT</span> <span class="pre">\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">t.test_name</span> <span class="pre">AS</span> <span class="pre">Название,</span> <span class="pre">\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">t.test_param</span> <span class="pre">AS</span> <span class="pre">Параметры,</span> <span class="pre">\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">t.time_test</span> <span class="pre">AS</span> <span class="pre">&quot;Время</span> <span class="pre">выполнения&quot;,</span> <span class="pre">\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">t.test_result</span> <span class="pre">AS</span> <span class="pre">Результат,</span> <span class="pre">\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">t.start_test</span> <span class="pre">AS</span> <span class="pre">&quot;Дата</span> <span class="pre">выполнения&quot;,\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">t.version_os</span> <span class="pre">AS</span> <span class="pre">&quot;Версия</span> <span class="pre">ОС&quot;,\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">t.machine</span> <span class="pre">AS</span> <span class="pre">&quot;Выч.</span> <span class="pre">система&quot;\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">FROM</span> <span class="pre">tests</span> <span class="pre">AS</span> <span class="pre">t\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#pages.BaseModel.BaseModel.ALL_RESULT_SQL" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ALL_RESULT_SQL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">SELECT</span> <span class="pre">\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">t.test_name</span> <span class="pre">AS</span> <span class="pre">&quot;Название&quot;,</span> <span class="pre">\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">t.test_param</span> <span class="pre">AS</span> <span class="pre">&quot;Параметры&quot;,</span> <span class="pre">\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">t.time_test</span> <span class="pre">AS</span> <span class="pre">&quot;Время</span> <span class="pre">выполнения&quot;,</span> <span class="pre">\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">t.test_result</span> <span class="pre">AS</span> <span class="pre">Результат,</span> <span class="pre">\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">t.start_test</span> <span class="pre">AS</span> <span class="pre">&quot;Дата</span> <span class="pre">выполнения&quot;,\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">t.version_os</span> <span class="pre">AS</span> <span class="pre">&quot;Версия</span> <span class="pre">ОС&quot;,\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">t.machine</span> <span class="pre">AS</span> <span class="pre">&quot;Выч.система&quot;\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">FROM</span> <span class="pre">tests</span> <span class="pre">AS</span> <span class="pre">t\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#pages.BaseModel.BaseModel.ALL_RESULT_SQL" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -325,11 +260,6 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pages.BaseModel.BaseModel.LIST_TEST_SQL">
 <span class="sig-name descname"><span class="pre">LIST_TEST_SQL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">SELECT</span> <span class="pre">test_name</span> <span class="pre">FROM</span> <span class="pre">tests</span> <span class="pre">GROUP</span> <span class="pre">BY</span> <span class="pre">test_name;\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#pages.BaseModel.BaseModel.LIST_TEST_SQL" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="pages.BaseModel.BaseModel.LIST_USER_SQL">
-<span class="sig-name descname"><span class="pre">LIST_USER_SQL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">SELECT</span> <span class="pre">user_name</span> <span class="pre">FROM</span> <span class="pre">users</span> <span class="pre">GROUP</span> <span class="pre">BY</span> <span class="pre">user_name;\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#pages.BaseModel.BaseModel.LIST_USER_SQL" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -349,7 +279,7 @@
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pages.BaseModel.BaseModel.REPORT_SQL">
-<span class="sig-name descname"><span class="pre">REPORT_SQL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">CREATE</span> <span class="pre">TABLE</span> <span class="pre">IF</span> <span class="pre">NOT</span> <span class="pre">EXISTS</span> <span class="pre">report</span> <span class="pre">(\n</span>&#160;&#160;&#160; <span class="pre">\tid_report</span> <span class="pre">serial4</span> <span class="pre">NOT</span> <span class="pre">NULL,\n</span>&#160;&#160;&#160; <span class="pre">\tuser_id_fk</span> <span class="pre">int4</span> <span class="pre">NULL,\n</span>&#160;&#160;&#160; <span class="pre">\tforming_report</span> <span class="pre">timestamp</span> <span class="pre">NOT</span> <span class="pre">NULL,\n</span>&#160;&#160;&#160; <span class="pre">\ttitle_report</span> <span class="pre">varchar</span> <span class="pre">NOT</span> <span class="pre">NULL,\n</span>&#160;&#160;&#160; <span class="pre">\tCONSTRAINT</span> <span class="pre">report_pk</span> <span class="pre">PRIMARY</span> <span class="pre">KEY</span> <span class="pre">(id_report),\n</span>&#160;&#160;&#160; <span class="pre">\tCONSTRAINT</span> <span class="pre">report_fk</span> <span class="pre">FOREIGN</span> <span class="pre">KEY</span> <span class="pre">(user_id_fk)</span> <span class="pre">REFERENCES</span> <span class="pre">users(user_id)\n</span>&#160;&#160;&#160; <span class="pre">);\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#pages.BaseModel.BaseModel.REPORT_SQL" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">REPORT_SQL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">CREATE</span> <span class="pre">TABLE</span> <span class="pre">IF</span> <span class="pre">NOT</span> <span class="pre">EXISTS</span> <span class="pre">report</span> <span class="pre">(\n</span>&#160;&#160;&#160; <span class="pre">\tid_report</span> <span class="pre">serial4</span> <span class="pre">NOT</span> <span class="pre">NULL,\n</span>&#160;&#160;&#160; <span class="pre">\tforming_report</span> <span class="pre">timestamp</span> <span class="pre">NOT</span> <span class="pre">NULL,\n</span>&#160;&#160;&#160; <span class="pre">\ttitle_report</span> <span class="pre">varchar</span> <span class="pre">NOT</span> <span class="pre">NULL,\n</span>&#160;&#160;&#160; <span class="pre">\treport</span> <span class="pre">bytea</span> <span class="pre">NOT</span> <span class="pre">NULL,\n</span>&#160;&#160;&#160; <span class="pre">\tCONSTRAINT</span> <span class="pre">report_pk</span> <span class="pre">PRIMARY</span> <span class="pre">KEY</span> <span class="pre">(id_report)\n</span>&#160;&#160;&#160; <span class="pre">);\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#pages.BaseModel.BaseModel.REPORT_SQL" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -370,6 +300,16 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pages.BaseModel.BaseModel.TRIGGER_PARAMS">
 <span class="sig-name descname"><span class="pre">TRIGGER_PARAMS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;\n</span>&#160;&#160;&#160; <span class="pre">DO\n</span>&#160;&#160;&#160; <span class="pre">$$\n</span>&#160;&#160;&#160; <span class="pre">BEGIN\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">IF</span> <span class="pre">NOT</span> <span class="pre">EXISTS</span> <span class="pre">(\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">SELECT</span> <span class="pre">1</span> <span class="pre">FROM</span> <span class="pre">pg_trigger\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">WHERE</span> <span class="pre">tgname</span> <span class="pre">=</span> <span class="pre">'add_new_params_trigger'</span> <span class="pre">\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">AND</span> <span class="pre">tgrelid</span> <span class="pre">=</span> <span class="pre">'tests'::regclass\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">)</span> <span class="pre">THEN\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">CREATE</span> <span class="pre">TRIGGER</span> <span class="pre">add_new_params_trigger\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">AFTER</span> <span class="pre">INSERT</span> <span class="pre">ON</span> <span class="pre">tests\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">FOR</span> <span class="pre">EACH</span> <span class="pre">ROW</span> <span class="pre">EXECUTE</span> <span class="pre">PROCEDURE</span> <span class="pre">add_new_params();\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">END</span> <span class="pre">IF;\n</span>&#160;&#160;&#160; <span class="pre">END;\n</span>&#160;&#160;&#160; <span class="pre">$$\n</span>&#160;&#160;&#160; <span class="pre">&quot;</span></em><a class="headerlink" href="#pages.BaseModel.BaseModel.TRIGGER_PARAMS" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pages.BaseModel.BaseModel.TRUNCATE_DATA_REPORT">
+<span class="sig-name descname"><span class="pre">TRUNCATE_DATA_REPORT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">TRUNCATE</span> <span class="pre">TABLE</span> <span class="pre">report;\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#pages.BaseModel.BaseModel.TRUNCATE_DATA_REPORT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pages.BaseModel.BaseModel.TRUNCATE_DATA_TEST">
+<span class="sig-name descname"><span class="pre">TRUNCATE_DATA_TEST</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">TRUNCATE</span> <span class="pre">TABLE</span> <span class="pre">tests;\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#pages.BaseModel.BaseModel.TRUNCATE_DATA_TEST" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -425,8 +365,8 @@ params (tuple or dict, optional): Параметры запроса. По умо
 </dd></dl>
 
 </section>
-<section id="module-pages">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pages" title="Link to this heading"></a></h2>
+<section id="module-contents">
+<h2>Module contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
 </section>
 </section>
 

@@ -565,3 +565,21 @@ background-image: url(:/icons/images/icons/cil-chart-pie.png);
 #list_test {
 	color:#ffffff;
 }
+QTreeWidget {
+        background-color: #ffffff; /* Цвет фона всего дерева */
+        color: #333; /* Цвет текста */
+        border: 1px solid #ccc; /* Граница */
+        font-family: Arial;
+        font-size: 16px;
+        color: #000000;
+}
+QTreeWidget::item {
+    background-color: #fff; /* Цвет фона элемента */
+    color: #333; /* Цвет текста элемента */
+}
+
+QTreeWidget::item:selected {
+    background-color: #0078d7; /* Цвет выделенного элемента */
+    color: #fff; /* Цвет текста выделенного элемента */
+}
+

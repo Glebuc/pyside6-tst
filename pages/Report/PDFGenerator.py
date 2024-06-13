@@ -16,7 +16,7 @@ class PDFGenerator:
         self.styles.add(ParagraphStyle(name='TitleStyle', fontName='DejaVuSans', fontSize=24, leading=28, spaceAfter=20))
         self.styles.add(ParagraphStyle(name='SubTitleStyle', fontName='DejaVuSans', fontSize=12, leading=22, spaceAfter=15))
         self.styles.add(ParagraphStyle(name='ContentStyle', fontName='DejaVuSans', fontSize=14, leading=12, spaceAfter=5))
-        self.styles.add(ParagraphStyle(name='TestOutput', fontName='DejaVuSans', fontSize=6, leading=5, spaceAfter=5))
+        self.styles.add(ParagraphStyle(name='TestOutput', fontName='DejaVuSans', fontSize=7, leading=5, spaceAfter=5))
         self.test_titles = []  # Список для хранения названий тестов
 
     def create_title_page(self, title, subtitle):

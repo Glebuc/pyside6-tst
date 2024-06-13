@@ -8,7 +8,7 @@
     <x>0</x>
     <y>0</y>
     <width>940</width>
-    <height>560</height>
+    <height>594</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -847,51 +847,6 @@ background-image: url(:/icons/images/icons/cil-chart-pie.png);
                  <number>0</number>
                 </property>
                 <item>
-                 <widget class="QPushButton" name="btn_report">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>45</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Segoe UI</family>
-                    <pointsize>10</pointsize>
-                    <italic>false</italic>
-                    <bold>false</bold>
-                   </font>
-                  </property>
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="toolTip">
-                   <string>Отчеты</string>
-                  </property>
-                  <property name="layoutDirection">
-                   <enum>Qt::LayoutDirection::LeftToRight</enum>
-                  </property>
-                  <property name="text">
-                   <string>Отчеты</string>
-                  </property>
-                  <property name="iconSize">
-                   <size>
-                    <width>20</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                  <property name="shortcut">
-                   <string>Ctrl+Q</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
                  <widget class="QPushButton" name="btn_bar">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -1271,6 +1226,12 @@ background-image: none;
              </property>
              <item>
               <widget class="QFrame" name="extraCenter">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="frameShape">
                 <enum>QFrame::Shape::NoFrame</enum>
                </property>
@@ -1573,50 +1534,8 @@ background-image: none;
                       <number>0</number>
                      </property>
                      <property name="currentIndex">
-                      <number>0</number>
+                      <number>2</number>
                      </property>
-                     <widget class="QWidget" name="report_page">
-                      <layout class="QVBoxLayout" name="verticalLayout_11">
-                       <item>
-                        <widget class="QLabel" name="label">
-                         <property name="text">
-                          <string>Список отчетов</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QListView" name="listView"/>
-                       </item>
-                       <item>
-                        <widget class="QPushButton" name="open_report_btn">
-                         <property name="cursor">
-                          <cursorShape>PointingHandCursor</cursorShape>
-                         </property>
-                         <property name="text">
-                          <string>Показать отчет...</string>
-                         </property>
-                         <property name="icon">
-                          <iconset resource="resources.qrc">
-                           <normaloff>:/icons/images/icons/cil-notes.png</normaloff>:/icons/images/icons/cil-notes.png</iconset>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QPushButton" name="save_report_btn">
-                         <property name="cursor">
-                          <cursorShape>PointingHandCursor</cursorShape>
-                         </property>
-                         <property name="text">
-                          <string>Сохранить отчет...</string>
-                         </property>
-                         <property name="icon">
-                          <iconset resource="resources.qrc">
-                           <normaloff>:/icons/images/icons/cil-save.png</normaloff>:/icons/images/icons/cil-save.png</iconset>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
-                     </widget>
                      <widget class="QWidget" name="chart_page">
                       <property name="styleSheet">
                        <string notr="true"/>
@@ -2064,7 +1983,7 @@ background-image: none;
                              <cursorShape>PointingHandCursor</cursorShape>
                             </property>
                             <property name="text">
-                             <string>Сохранить в CSV..</string>
+                             <string>Экспорт данных...</string>
                             </property>
                             <property name="icon">
                              <iconset resource="resources.qrc">
@@ -2190,7 +2109,7 @@ background-image: none;
                             <x>0</x>
                             <y>0</y>
                             <width>858</width>
-                            <height>414</height>
+                            <height>448</height>
                            </rect>
                           </property>
                           <layout class="QVBoxLayout" name="verticalLayout_16">

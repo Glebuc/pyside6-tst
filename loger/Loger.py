@@ -36,7 +36,7 @@ class Logger:
               Создает файл для логирования, настраивает логгер и добавляет обработчики для записи в файл и на консоль.
         """
         self.config_dir = os.path.join(os.path.expanduser("~"), ".aramid-tst-graph")
-        self.filename = f"log-{datetime.now().strftime('%Y-%m-%d')}.txt"
+        self.filename = f"log-{datetime.now().strftime('%Y-%m-%d-%H-%M')}.log"
         self.log_filepath = os.path.join(self.config_dir, self.filename)
         os.makedirs(self.config_dir, exist_ok=True)
 

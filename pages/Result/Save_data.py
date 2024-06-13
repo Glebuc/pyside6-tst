@@ -13,7 +13,7 @@ def save_data_to_csv(table_view: QTableView):
         :argument table_view: QTableView, содержащая данные для сохранения.
         :type table_view: QTableView
     """
-    model = table_view.model
+    model = table_view.model()
 
     if not isinstance(model, QSqlQueryModel):
         log.log_error("Модель для QTableView не является QSqlQueryModel.")

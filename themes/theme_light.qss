@@ -605,9 +605,13 @@ QListView {
 }
 
 QTreeWidget {
-        background-color: #f0f0f0; /* Цвет фона всего дерева */
+        background-color: #ffffff; /* Цвет фона всего дерева */
         color: #333; /* Цвет текста */
         border: 1px solid #ccc; /* Граница */
+        font-family: Arial;
+        font-size: 16px;
+        color: #000000;
+}
     }
 
     QTreeWidget::item {
@@ -619,6 +623,3 @@ QTreeWidget {
         background-color: #0078d7; /* Цвет выделенного элемента */
         color: #fff; /* Цвет текста выделенного элемента */
     }
-
-    QTreeWidget::branch {
-        background-color: #000; /* Цвет фона для индикатора развертывания (треугольника) */

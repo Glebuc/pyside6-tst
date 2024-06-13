@@ -2,6 +2,8 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QDialog, Q
 from PySide6.QtSql import QSqlQueryModel, QSqlQuery
 from PySide6.QtCore import Qt, QDate
 from PySide6.QtWidgets import QMessageBox
+
+from .Model_result import ResultModel
 from .ui_dialog_extension_search import Ui_Dialog as ExtensionSearch
 from pages.BaseModel import BaseModel
 
@@ -11,14 +13,15 @@ class DialogExtensionSearch(QDialog, ExtensionSearch):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
-        model = BaseModel('tests')
-        users = model.execute_sql(model.LIST_USER_SQL)
+        model = ResultModel('tests')
+        machine = model.execute_sql(model.LIST_MACHINE_SQL)
+        versions_os = model.execute_sql(model.LIST_OS_VERSION_SQL)
         tests = model.execute_sql(model.LIST_TEST_SQL)
         min_date = model.execute_sql(model.MIN_DATE_SQL)
         max_date = model.execute_sql(model.MAX_DATE_SQL)
         self.setWindowTitle("Расширенный поиск")
         self.test_comboBox.addItems(tests)
-        self.user_comboBox.addItems(users)
+        self.machine_comboBox.addItems(machine)
         self.before_dateEdit.setDate(max_date[0].date())
         self.from_dateEdit.setDate(min_date[0].date())
         self.accept_btn.clicked.connect(self.accept)
@@ -66,10 +69,11 @@ class DialogExtensionSearch(QDialog, ExtensionSearch):
                 - end_date (str): Конечная дата фильтрации в формате строки ISODate (гггг-мм-дд).
         """
         test_data = self.test_comboBox.currentText()
-        user_data = self.user_comboBox.currentText()
+        machine_data = self.machine_comboBox.currentText()
+        version_os_data = self.version_os_comboBox.currentText()
         param_test = self.parametrs_tests.currentText()
         start_date = self.from_dateEdit.date().toString(Qt.ISODate)
         end_date = self.before_dateEdit.date().toString(Qt.ISODate)
-        return test_data, user_data, param_test, start_date, end_date
+        return test_data, machine_data, version_os_data, param_test, start_date, end_date
 
 

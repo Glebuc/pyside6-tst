@@ -1,12 +1,12 @@
 
-from Mainwindow import SetupUI
+
 from ui_modules import Settings
 from PySide6.QtWidgets import QPushButton, QGraphicsDropShadowEffect, QSizeGrip
 from PySide6.QtCore import QFile, QTextStream, QPropertyAnimation, QEasingCurve, QParallelAnimationGroup
 
 
 
-class UIFunctions(SetupUI):
+class UIFunctions():
 
     def toggleMenu(self, enable: bool) -> None:
         """

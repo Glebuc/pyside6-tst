@@ -1,4 +1,5 @@
 # from . resources_rc import *
+import datetime
 import json
 import sys
 import os
@@ -39,7 +40,6 @@ from pages import (BaseModel,
                    Dialog_add_topic,
                    Dialog_add_note,
                    Model_notes,
-                   Controller_setting,
                    Dialog_article_view,
                    Dialog_edit_note,
                    Dialog_edit_topic,
@@ -84,8 +84,9 @@ class MainWindow(QMainWindow):
         setting = AppSettings.get_instance()
         self.init_translation()
         self.init_theme()
-        test_chart = TestChart("HPCG")
+        test_chart = TestChart("HPL")
         test_chart.populate_chart_with_data(num_series=3)
+        widgets.treeWidget.setStyleSheet("QTreeView { font-family: Arial; font-size: 16px; }")
 
 
         #Обработчики кнопок масштабирования графика
@@ -118,7 +119,6 @@ class MainWindow(QMainWindow):
 
 
 
-        widgets.btn_report.clicked.connect(self.button_click)
         widgets.btn_bar.clicked.connect(self.button_click)
         widgets.btn_result.clicked.connect(self.button_click)
         widgets.btn_note.clicked.connect(self.button_click)
@@ -139,13 +139,11 @@ class MainWindow(QMainWindow):
         widgets.comboBox_language.currentTextChanged.connect(self.change_translation)
         widgets.btn_save_settings.clicked.connect(self.save_settings)
         widgets.treeWidget.itemDoubleClicked.connect(self.get_item_and_parent_text)
-        widgets.stackedWidget.setCurrentWidget(widgets.report_page)
         widgets.edit_note_btn.clicked.connect(self.chose_dialog_for_edit)
         widgets.delete_note_btn.clicked.connect(self.delete_notes_or_topic)
         widgets.test_params_btn.clicked.connect(self.dialog_test_params)
         widgets.import_data_btn.clicked.connect(self.parse_json_data)
         widgets.save_chart_btn.clicked.connect(self.open_dialog_for_save_chart)
-        widgets.save_report_btn.clicked.connect(self.open_dialog_for_save_report)
 
         font = QFont()
         font.setPointSize(20)
@@ -249,7 +247,6 @@ class MainWindow(QMainWindow):
             json_data = self.read_json_file(file)
             test_results = self.parse_json(json_data)
             if test_results:
-                self.insert_test_results(test_results)
                 self.prompt_generate_report(file, test_results)
 
     def open_dialog_for_import_data(self) -> List[str]:
@@ -326,7 +323,8 @@ class MainWindow(QMainWindow):
 
         choice = message_box.exec()
         if choice == QMessageBox.Yes:
-            save_path, _ = QFileDialog.getSaveFileName(self, "Сохранить отчет как", "", "PDF Files (*.pdf)")
+            default_name_report = f"Отчет_тестирования_{datetime.datetime.now().strftime('%Y-%m-%d-%H-%M')}"
+            save_path, _ = QFileDialog.getSaveFileName(self, "Сохранить отчет как", default_name_report, "PDF Files (*.pdf)")
             if save_path:
                 pdf_generator = PDFGenerator.PDFGenerator(save_path)
                 pdf_generator.generate("Отчёт о тестировании", f"Тесты запущены на {test_results[0]['cluster_name']}",
@@ -465,7 +463,7 @@ class MainWindow(QMainWindow):
     def get_item_and_parent_text(self, item, column):
         """
             Получает текст элемента и его родительского элемента в дереве элементов,
-            а затем отображает соответствующую статью в диалоговом окне.
+            а затем отображает соответствующую статью в главном окне.
 
             :argument:
                 item (QTreeWidgetItem): Элемент, для которого нужно получить текст.
@@ -473,7 +471,6 @@ class MainWindow(QMainWindow):
             :returns:
                 None: Если элемент не имеет родительского элемента.
                 None: Если не удалось получить данные о статье из базы данных.
-
         """
         item_text = item.text(column)
         parent_item = item.parent()
@@ -482,8 +479,9 @@ class MainWindow(QMainWindow):
             # Получаем данные о статье из базы данных
             article_data = self.note_model.get_article_data(item_text)
             if article_data:
-                article_dialog = Dialog_article_view.ArticleDialog(article_data["title"], article_data["content"])
-                article_dialog.exec()
+                self.dialog_view_note = Dialog_article_view.ArticleDialog(article_data["title"], article_data["content"])
+                self.dialog_view_note.show()
+                self.dialog_view_note.closeEvent = self.handle_dialog_close
         else:
             return None
 
@@ -516,8 +514,8 @@ class MainWindow(QMainWindow):
             dict_setting["language"] = "English"
         else:
             dict_setting["language"] = language_text
-
         self.app.app_settings.set_setting_application(dict_setting)
+        QMessageBox.information(self, "Настройки", 'Настройки успешно обновлены')
 
     def get_text_from_combo_chart(self) -> str:
         """
@@ -655,20 +653,26 @@ class MainWindow(QMainWindow):
 
     def open_dialog_add_item_topic(self) -> None:
         """
-           Открывает диалоговое окно для добавления статьи в Заметках .
+        Открывает основное окно для добавления статьи в Заметках.
 
-            :return:
-                None
+        :return:
+            None
         """
-        dialog = Dialog_add_note.DialogAddNote(self.get_text_from_language_box())
-        if not dialog.isVisible():
-            self.log.log_info("Открыто диалоговое окно для добавления статьи")
-            if dialog.exec() == QDialog.Accepted:
-                self.ui.treeWidget.clear()
-                self.populate_tree_widget()
-        else:
-            self.log.log_error("Ошибка открытия диалогового окна для добавления статьи")
+        self.dialog_add_note = Dialog_add_note.DialogAddNote(self.get_text_from_language_box())
+        self.dialog_add_note.show()
 
+        self.dialog_add_note.closeEvent = self.handle_dialog_close
+
+    def handle_dialog_close(self, event):
+        """
+        Обработчик закрытия окна для добавления статьи.
+
+        :param event: Событие закрытия окна.
+        """
+        self.log.log_info("Окно для добавления статьи закрыто")
+        self.ui.treeWidget.clear()
+        self.populate_tree_widget()
+        event.accept()
 
     def open_dialog_config_db(self) -> None:
         """

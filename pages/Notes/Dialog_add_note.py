@@ -1,11 +1,10 @@
-from PySide6.QtWidgets import QApplication, QDialog, QVBoxLayout, QLabel, QComboBox, QTextEdit, QPushButton,\
-    QLineEdit, QMessageBox, QTabWidget
-
+from PySide6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QLabel, QComboBox, QTextEdit, QPushButton, \
+    QLineEdit, QMessageBox, QTabWidget, QWidget
 
 from .Model_notes import NoteModel
 
 
-class DialogAddNote(QDialog):
+class DialogAddNote(QMainWindow):
     def __init__(self, language=""):
         super().__init__()
 
@@ -58,7 +57,10 @@ class DialogAddNote(QDialog):
         self.resize(500, 500)
 
         self.note_model = NoteModel("sections")
-        layout = QVBoxLayout(self)
+
+        central_widget = QWidget()
+        self.setCentralWidget(central_widget)
+        layout = QVBoxLayout(central_widget)
 
         # Создание и добавление метки выбора раздела
         select_label = QLabel(self.labels[self.language]["select_label_text"], self)
@@ -132,8 +134,6 @@ class DialogAddNote(QDialog):
         if title:
             return title
 
-
-
     def publish_article(self) -> None:
         """
         Публикует статью в выбранном разделе.
@@ -149,12 +149,7 @@ class DialogAddNote(QDialog):
 
         if section and title and text:
             if self.note_model.add_note(title, text, section):
-                self.accept()
-                QMessageBox.information(
-                    self,
-                    self.labels[self.language]["info_title"],
-                    self.labels[self.language]["info_message"]
-                )
+                self.statusBar().showMessage(self.labels[self.language]["info_message"], 5000)
             else:
                 QMessageBox.warning(
                     self,
@@ -167,4 +162,3 @@ class DialogAddNote(QDialog):
                 self.labels[self.language]["warning_title"],
                 self.labels[self.language]["warning_fill_fields"]
             )
-

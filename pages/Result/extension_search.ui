@@ -130,7 +130,7 @@ QDateEdit QCalendarWidget QHeaderView {
           </property>
           <property name="minimumDateTime">
            <datetime>
-            <hour>12</hour>
+            <hour>9</hour>
             <minute>0</minute>
             <second>0</second>
             <year>2023</year>
@@ -168,7 +168,7 @@ QDateEdit QCalendarWidget QHeaderView {
           </property>
           <property name="minimumDateTime">
            <datetime>
-            <hour>12</hour>
+            <hour>9</hour>
             <minute>0</minute>
             <second>0</second>
             <year>2023</year>
@@ -255,7 +255,7 @@ QDateEdit QCalendarWidget QHeaderView {
          </widget>
         </item>
         <item row="3" column="0" colspan="6">
-         <widget class="QComboBox" name="user_comboBox">
+         <widget class="QComboBox" name="version_os_comboBox">
           <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
           </property>
@@ -280,7 +280,7 @@ QDateEdit QCalendarWidget QHeaderView {
          </widget>
         </item>
         <item row="5" column="0" colspan="6">
-         <widget class="QComboBox" name="comboBox">
+         <widget class="QComboBox" name="machine_comboBox">
           <item>
            <property name="text">
             <string>Все машины</string>

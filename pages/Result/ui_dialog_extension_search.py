@@ -108,7 +108,7 @@ class Ui_Dialog(object):
         font.setPointSize(11)
         self.before_dateEdit.setFont(font)
         self.before_dateEdit.setCursor(QCursor(Qt.IBeamCursor))
-        self.before_dateEdit.setMinimumDateTime(QDateTime(QDate(2023, 9, 13), QTime(12, 0, 0)))
+        self.before_dateEdit.setMinimumDateTime(QDateTime(QDate(2023, 9, 13), QTime(9, 0, 0)))
         self.before_dateEdit.setMinimumDate(QDate(2023, 9, 13))
         self.before_dateEdit.setCalendarPopup(True)
 
@@ -120,7 +120,7 @@ class Ui_Dialog(object):
         self.from_dateEdit.setSizePolicy(sizePolicy)
         self.from_dateEdit.setFont(font)
         self.from_dateEdit.setCursor(QCursor(Qt.IBeamCursor))
-        self.from_dateEdit.setMinimumDateTime(QDateTime(QDate(2023, 9, 13), QTime(12, 0, 0)))
+        self.from_dateEdit.setMinimumDateTime(QDateTime(QDate(2023, 9, 13), QTime(9, 0, 0)))
         self.from_dateEdit.setMinimumDate(QDate(2023, 9, 13))
         self.from_dateEdit.setCalendarPopup(True)
 
@@ -162,12 +162,12 @@ class Ui_Dialog(object):
 
         self.gridLayout.addWidget(self.label_4, 10, 0, 1, 6)
 
-        self.user_comboBox = QComboBox(self.frame)
-        self.user_comboBox.addItem("")
-        self.user_comboBox.setObjectName(u"user_comboBox")
-        self.user_comboBox.setCursor(QCursor(Qt.PointingHandCursor))
+        self.version_os_comboBox = QComboBox(self.frame)
+        self.version_os_comboBox.addItem("")
+        self.version_os_comboBox.setObjectName(u"version_os_comboBox")
+        self.version_os_comboBox.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.gridLayout.addWidget(self.user_comboBox, 3, 0, 1, 6)
+        self.gridLayout.addWidget(self.version_os_comboBox, 3, 0, 1, 6)
 
         self.label_6 = QLabel(self.frame)
         self.label_6.setObjectName(u"label_6")
@@ -179,11 +179,11 @@ class Ui_Dialog(object):
 
         self.gridLayout.addWidget(self.label_6, 11, 3, 1, 1)
 
-        self.comboBox = QComboBox(self.frame)
-        self.comboBox.addItem("")
-        self.comboBox.setObjectName(u"comboBox")
+        self.machine_comboBox = QComboBox(self.frame)
+        self.machine_comboBox.addItem("")
+        self.machine_comboBox.setObjectName(u"machine_comboBox")
 
-        self.gridLayout.addWidget(self.comboBox, 5, 0, 1, 6)
+        self.gridLayout.addWidget(self.machine_comboBox, 5, 0, 1, 6)
 
         self.label = QLabel(self.frame)
         self.label.setObjectName(u"label")
@@ -243,10 +243,10 @@ class Ui_Dialog(object):
         self.test_comboBox.setItemText(0, QCoreApplication.translate("Dialog", u"\u0412\u0441\u0435 \u0442\u0435\u0441\u0442\u044b", None))
 
         self.label_4.setText(QCoreApplication.translate("Dialog", u"\u0414\u0430\u0442\u0430 \u0432\u044b\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u044f", None))
-        self.user_comboBox.setItemText(0, QCoreApplication.translate("Dialog", u"\u0412\u0441\u0435 \u0432\u0435\u0440\u0441\u0438\u0438", None))
+        self.version_os_comboBox.setItemText(0, QCoreApplication.translate("Dialog", u"\u0412\u0441\u0435 \u0432\u0435\u0440\u0441\u0438\u0438", None))
 
         self.label_6.setText(QCoreApplication.translate("Dialog", u"\u0434\u043e", None))
-        self.comboBox.setItemText(0, QCoreApplication.translate("Dialog", u"\u0412\u0441\u0435 \u043c\u0430\u0448\u0438\u043d\u044b", None))
+        self.machine_comboBox.setItemText(0, QCoreApplication.translate("Dialog", u"\u0412\u0441\u0435 \u043c\u0430\u0448\u0438\u043d\u044b", None))
 
         self.label.setText(QCoreApplication.translate("Dialog", u"\u041c\u0430\u0448\u0438\u043d\u0430", None))
         self.label_2.setText(QCoreApplication.translate("Dialog", u"\u0412\u0435\u0440\u0441\u0438\u044f \u041e\u0421\"\u0410\u0440\u0430\u043c\u0438\u0434\"", None))

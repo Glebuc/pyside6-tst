@@ -1,5 +1,6 @@
 from PySide6.QtSql import QSqlDatabase, QSqlQuery, QSqlTableModel, QSqlQueryModel
 from typing import Optional, Dict, Tuple, Union, List
+import json
 
 from loger import Logger
 
@@ -11,17 +12,8 @@ setting.get_setting("AppSettings/language")
 
 
 class BaseModel(QSqlQueryModel):
-    """Базовая модель, данная модель является родительской для всех других моделей"""
-    # USERS_SQL = """
-    #     CREATE TABLE IF NOT EXISTS users (
-    # 	user_id serial4 NOT NULL,
-    # 	user_name varchar NOT NULL,
-    # 	fio_user varchar NULL,
-    # 	email_user varchar NULL,
-    # 	password_user varchar NULL,
-    # 	CONSTRAINT users_pk PRIMARY KEY (user_id)
-    # );
-    #     """
+    """Базовая модель, данная модель является родительской для всех других моделей.
+     И занимается инициализированием окружения для БД"""
     TESTS_SQL = """
         CREATE TABLE IF NOT EXISTS tests (
         test_note text NULL,
@@ -99,15 +91,6 @@ class BaseModel(QSqlQueryModel):
     $$
     """
 
-    LIST_TEST_SQL = """
-        SELECT test_name FROM tests GROUP BY test_name;
-    """
-    MAX_DATE_SQL = """
-        SELECT MAX(start_test) FROM tests;
-    """
-    MIN_DATE_SQL = """
-        SELECT MIN(start_test) FROM tests;
-    """
     if setting.get_setting("AppSettings/language") == "Russian":
         ALL_RESULT_SQL = """
                 SELECT 
@@ -149,6 +132,7 @@ class BaseModel(QSqlQueryModel):
         super().__init__()
         self.log = Logger.get_instance()
         self.check_and_create_tables()
+        self.load_tests_from_json_file("Test_info.json")
         self.setQuery(self.ALL_RESULT_SQL)
         if self.lastError().isValid():
             self.log.log_error("Ошибка выполнения запроса:"+ self.lastError().text())
@@ -165,7 +149,7 @@ class BaseModel(QSqlQueryModel):
             return False
 
         # Создание таблиц при необходимости
-        tables_to_create = {
+        init_db = {
             'tests': self.TESTS_SQL,
             'report': self.REPORT_SQL,
             'sections': self.SECTION_SQL,
@@ -176,7 +160,7 @@ class BaseModel(QSqlQueryModel):
         }
 
         query = QSqlQuery()
-        for table_name, sql_query in tables_to_create.items():
+        for table_name, sql_query in init_db.items():
             if table_name not in existing_tables:
                 if not query.exec(sql_query):
                     self.log.log_error("Ошибка выполнения запроса:"+ query.lastError().text())
@@ -207,6 +191,75 @@ class BaseModel(QSqlQueryModel):
         else:
             self.log.log_error("Ошибка выполнения запроса:"+ query.lastError().text())
             return None
+
+    def load_tests_from_json_file(self, file_path: str):
+        """
+        Загружает данные из JSON-файла и записывает их в таблицы базы данных, если они еще не добавлены.
+
+        :param file_path: Путь к JSON-файлу, содержащему информацию о HPC-тестах.
+        """
+        try:
+            with open(file_path, 'r', encoding='utf-8') as file:
+                json_data = json.load(file)
+            self.init_notes(json_data)
+        except Exception as e:
+            self.log.log_error(f"Ошибка при загрузке JSON-файла: {str(e)}")
+
+    def init_notes(self, json_data: Dict):
+        """
+               Загружает данные из JSON и записывает их в таблицы базы данных, если они еще не добавлены.
+
+               :param json_data: Данные JSON, содержащие информацию о HPC-тестах.
+               """
+        query = QSqlQuery()
+
+        # Проверка существующих разделов
+        existing_sections = set()
+        if query.exec("SELECT name FROM sections"):
+            while query.next():
+                existing_sections.add(query.value(0))
+        else:
+            self.log.log_error("Ошибка выполнения запроса: " + query.lastError().text())
+            return
+
+        # Добавление раздела "HPC-тесты"
+        if "HPC-тесты" not in existing_sections:
+            query.prepare("INSERT INTO sections (name) VALUES (:name)")
+            query.bindValue(":name", "HPC-тесты")
+            if not query.exec():
+                self.log.log_error("Ошибка выполнения запроса: " + query.lastError().text())
+                return
+
+        # Получение ID раздела "HPC-тесты"
+        query.prepare("SELECT id FROM sections WHERE name = :name")
+        query.bindValue(":name", "HPC-тесты")
+        if not query.exec() or not query.next():
+            self.log.log_error("Ошибка выполнения запроса: " + query.lastError().text())
+            return
+        section_id = query.value(0)
+
+        # Проверка существующих заметок
+        existing_notes = set()
+        query.prepare("SELECT title FROM notes WHERE section_id = :section_id")
+        query.bindValue(":section_id", section_id)
+        if query.exec():
+            while query.next():
+                existing_notes.add(query.value(0))
+        else:
+            self.log.log_error("Ошибка выполнения запроса: " + query.lastError().text())
+            return
+
+        # Вставка новых заметок
+        for title, content in json_data.get("HPC-тесты", {}).items():
+            if title not in existing_notes:
+                query.prepare("INSERT INTO notes (title, content, section_id) VALUES (:title, :content, :section_id)")
+                query.bindValue(":title", title)
+                query.bindValue(":content", content)
+                query.bindValue(":section_id", section_id)
+                if not query.exec():
+                    self.log.log_error("Ошибка выполнения запроса: " + query.lastError().text())
+                    return
+
 
     def execute_sql(self, sql_query: str, params: Optional[Union[Tuple, Dict]] = None) -> List:
         """

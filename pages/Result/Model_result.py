@@ -6,11 +6,35 @@ from ..BaseModel import BaseModel
 
 class ResultModel(BaseModel):
     """Модель для страницы результатов и манипулирования табличными значением"""
+
+    LIST_TEST_SQL = """
+          SELECT test_name FROM tests GROUP BY test_name;
+      """
+    LIST_MACHINE_SQL = """
+              SELECT machine FROM tests GROUP BY machine;
+          """
+    LIST_OS_VERSION_SQL = """
+                  SELECT version_os FROM tests GROUP BY version_os;
+              """
+    MAX_DATE_SQL = """
+          SELECT MAX(start_test) FROM tests;
+      """
+    MIN_DATE_SQL = """
+          SELECT MIN(start_test) FROM tests;
+      """
+
+
     def __init__(self, table_name):
         super().__init__(table_name)
 
         self.displayed_columns = []
         self.visible_columns = []
+
+    def select_all_test_parametrs(self):
+        """
+        Запрос к БД для получения всех параметров из таблицы test_params
+        """
+        self.setQuery("""""")
 
     def select_all_data(self) -> None:
         """
@@ -152,7 +176,6 @@ class ResultModel(BaseModel):
                                """)
             query.bindValue(":selected_option", selected_option)
             query.exec()
-            print(query.lastQuery())
             self.setQuery(query)
         table_view.setModel(self)
 

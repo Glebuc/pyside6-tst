@@ -17,17 +17,17 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QGridLayout,
-    QHBoxLayout, QHeaderView, QLabel, QListView,
-    QMainWindow, QPushButton, QScrollArea, QSizePolicy,
-    QSpacerItem, QStackedWidget, QTableView, QTreeWidget,
-    QTreeWidgetItem, QVBoxLayout, QWidget)
+    QHBoxLayout, QHeaderView, QLabel, QMainWindow,
+    QPushButton, QScrollArea, QSizePolicy, QSpacerItem,
+    QStackedWidget, QTableView, QTreeWidget, QTreeWidgetItem,
+    QVBoxLayout, QWidget)
 from .resources_rc import *
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(940, 560)
+        MainWindow.resize(940, 594)
         MainWindow.setMinimumSize(QSize(940, 560))
         MainWindow.setContextMenuPolicy(Qt.ContextMenuPolicy.DefaultContextMenu)
         self.styleSheet = QWidget(MainWindow)
@@ -707,18 +707,6 @@ class Ui_MainWindow(object):
         self.verticalLayout_8.setSpacing(0)
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
         self.verticalLayout_8.setContentsMargins(0, 0, 0, 0)
-        self.btn_report = QPushButton(self.topMenu)
-        self.btn_report.setObjectName(u"btn_report")
-        sizePolicy.setHeightForWidth(self.btn_report.sizePolicy().hasHeightForWidth())
-        self.btn_report.setSizePolicy(sizePolicy)
-        self.btn_report.setMinimumSize(QSize(0, 45))
-        self.btn_report.setFont(font)
-        self.btn_report.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_report.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
-        self.btn_report.setIconSize(QSize(20, 20))
-
-        self.verticalLayout_8.addWidget(self.btn_report)
-
         self.btn_bar = QPushButton(self.topMenu)
         self.btn_bar.setObjectName(u"btn_bar")
         sizePolicy.setHeightForWidth(self.btn_bar.sizePolicy().hasHeightForWidth())
@@ -856,15 +844,17 @@ class Ui_MainWindow(object):
         self.verticalLayout_12.setContentsMargins(0, 0, 0, 0)
         self.extraCenter = QFrame(self.extraContent)
         self.extraCenter.setObjectName(u"extraCenter")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.extraCenter.sizePolicy().hasHeightForWidth())
+        self.extraCenter.setSizePolicy(sizePolicy1)
         self.extraCenter.setFrameShape(QFrame.Shape.NoFrame)
         self.extraCenter.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_10 = QVBoxLayout(self.extraCenter)
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
         self.label_theme = QLabel(self.extraCenter)
         self.label_theme.setObjectName(u"label_theme")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.label_theme.sizePolicy().hasHeightForWidth())
         self.label_theme.setSizePolicy(sizePolicy1)
 
@@ -999,39 +989,6 @@ class Ui_MainWindow(object):
         self.stackedWidget = QStackedWidget(self.pagesContainer)
         self.stackedWidget.setObjectName(u"stackedWidget")
         self.stackedWidget.setLineWidth(0)
-        self.report_page = QWidget()
-        self.report_page.setObjectName(u"report_page")
-        self.verticalLayout_11 = QVBoxLayout(self.report_page)
-        self.verticalLayout_11.setObjectName(u"verticalLayout_11")
-        self.label = QLabel(self.report_page)
-        self.label.setObjectName(u"label")
-
-        self.verticalLayout_11.addWidget(self.label)
-
-        self.listView = QListView(self.report_page)
-        self.listView.setObjectName(u"listView")
-
-        self.verticalLayout_11.addWidget(self.listView)
-
-        self.open_report_btn = QPushButton(self.report_page)
-        self.open_report_btn.setObjectName(u"open_report_btn")
-        self.open_report_btn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon3 = QIcon()
-        icon3.addFile(u":/icons/images/icons/cil-notes.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.open_report_btn.setIcon(icon3)
-
-        self.verticalLayout_11.addWidget(self.open_report_btn)
-
-        self.save_report_btn = QPushButton(self.report_page)
-        self.save_report_btn.setObjectName(u"save_report_btn")
-        self.save_report_btn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon4 = QIcon()
-        icon4.addFile(u":/icons/images/icons/cil-save.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.save_report_btn.setIcon(icon4)
-
-        self.verticalLayout_11.addWidget(self.save_report_btn)
-
-        self.stackedWidget.addWidget(self.report_page)
         self.chart_page = QWidget()
         self.chart_page.setObjectName(u"chart_page")
         self.chart_page.setStyleSheet(u"")
@@ -1187,9 +1144,9 @@ class Ui_MainWindow(object):
         self.btn_extension_search = QPushButton(self.frame)
         self.btn_extension_search.setObjectName(u"btn_extension_search")
         self.btn_extension_search.setCursor(QCursor(Qt.PointingHandCursor))
-        icon5 = QIcon()
-        icon5.addFile(u":/icons/images/icons/cil-magnifying-glass.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_extension_search.setIcon(icon5)
+        icon3 = QIcon()
+        icon3.addFile(u":/icons/images/icons/cil-magnifying-glass.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_extension_search.setIcon(icon3)
 
         self.horizontalLayout_7.addWidget(self.btn_extension_search)
 
@@ -1215,9 +1172,9 @@ class Ui_MainWindow(object):
         self.import_data_btn = QPushButton(self.frame_2)
         self.import_data_btn.setObjectName(u"import_data_btn")
         self.import_data_btn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon6 = QIcon()
-        icon6.addFile(u":/icons/images/icons/cil-cloud-upload.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.import_data_btn.setIcon(icon6)
+        icon4 = QIcon()
+        icon4.addFile(u":/icons/images/icons/cil-cloud-upload.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.import_data_btn.setIcon(icon4)
 
         self.horizontalLayout_8.addWidget(self.import_data_btn)
 
@@ -1228,16 +1185,18 @@ class Ui_MainWindow(object):
         self.btn_change_view = QPushButton(self.frame_2)
         self.btn_change_view.setObjectName(u"btn_change_view")
         self.btn_change_view.setCursor(QCursor(Qt.PointingHandCursor))
-        icon7 = QIcon()
-        icon7.addFile(u":/icons/images/icons/cil-equalizer.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_change_view.setIcon(icon7)
+        icon5 = QIcon()
+        icon5.addFile(u":/icons/images/icons/cil-equalizer.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_change_view.setIcon(icon5)
 
         self.horizontalLayout_8.addWidget(self.btn_change_view)
 
         self.btn_save_view = QPushButton(self.frame_2)
         self.btn_save_view.setObjectName(u"btn_save_view")
         self.btn_save_view.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_save_view.setIcon(icon4)
+        icon6 = QIcon()
+        icon6.addFile(u":/icons/images/icons/cil-save.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_save_view.setIcon(icon6)
 
         self.horizontalLayout_8.addWidget(self.btn_save_view)
 
@@ -1262,9 +1221,9 @@ class Ui_MainWindow(object):
         self.test_params_btn = QPushButton(self.frame_4)
         self.test_params_btn.setObjectName(u"test_params_btn")
         self.test_params_btn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon8 = QIcon()
-        icon8.addFile(u":/icons/images/icons/cil-clipboard.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.test_params_btn.setIcon(icon8)
+        icon7 = QIcon()
+        icon7.addFile(u":/icons/images/icons/cil-clipboard.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.test_params_btn.setIcon(icon7)
 
         self.horizontalLayout.addWidget(self.test_params_btn)
 
@@ -1275,16 +1234,16 @@ class Ui_MainWindow(object):
         self.add_topic_note_btn = QPushButton(self.frame_4)
         self.add_topic_note_btn.setObjectName(u"add_topic_note_btn")
         self.add_topic_note_btn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon9 = QIcon()
-        icon9.addFile(u":/icons/images/icons/cil-plus.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.add_topic_note_btn.setIcon(icon9)
+        icon8 = QIcon()
+        icon8.addFile(u":/icons/images/icons/cil-plus.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.add_topic_note_btn.setIcon(icon8)
 
         self.horizontalLayout.addWidget(self.add_topic_note_btn)
 
         self.add_item_note_btn = QPushButton(self.frame_4)
         self.add_item_note_btn.setObjectName(u"add_item_note_btn")
         self.add_item_note_btn.setCursor(QCursor(Qt.PointingHandCursor))
-        self.add_item_note_btn.setIcon(icon9)
+        self.add_item_note_btn.setIcon(icon8)
 
         self.horizontalLayout.addWidget(self.add_item_note_btn)
 
@@ -1298,7 +1257,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 92, 67))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 858, 448))
         self.verticalLayout_16 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_16.setObjectName(u"verticalLayout_16")
         self.treeWidget = QTreeWidget(self.scrollAreaWidgetContents)
@@ -1335,9 +1294,9 @@ class Ui_MainWindow(object):
         self.edit_note_btn.setObjectName(u"edit_note_btn")
         self.edit_note_btn.setEnabled(True)
         self.edit_note_btn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon10 = QIcon()
-        icon10.addFile(u":/icons/images/icons/cil-text.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.edit_note_btn.setIcon(icon10)
+        icon9 = QIcon()
+        icon9.addFile(u":/icons/images/icons/cil-text.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.edit_note_btn.setIcon(icon9)
 
         self.horizontalLayout_2.addWidget(self.edit_note_btn)
 
@@ -1345,9 +1304,9 @@ class Ui_MainWindow(object):
         self.delete_note_btn.setObjectName(u"delete_note_btn")
         self.delete_note_btn.setEnabled(True)
         self.delete_note_btn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon11 = QIcon()
-        icon11.addFile(u":/icons/images/icons/cil-x-circle.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.delete_note_btn.setIcon(icon11)
+        icon10 = QIcon()
+        icon10.addFile(u":/icons/images/icons/cil-x-circle.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.delete_note_btn.setIcon(icon10)
 
         self.horizontalLayout_2.addWidget(self.delete_note_btn)
 
@@ -1418,7 +1377,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.comboBox_theme.setCurrentIndex(1)
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1429,13 +1388,6 @@ class Ui_MainWindow(object):
         self.toggleButton.setText(QCoreApplication.translate("MainWindow", u"\u041c\u0435\u043d\u044e", None))
 #if QT_CONFIG(shortcut)
         self.toggleButton.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Space", None))
-#endif // QT_CONFIG(shortcut)
-#if QT_CONFIG(tooltip)
-        self.btn_report.setToolTip(QCoreApplication.translate("MainWindow", u"\u041e\u0442\u0447\u0435\u0442\u044b", None))
-#endif // QT_CONFIG(tooltip)
-        self.btn_report.setText(QCoreApplication.translate("MainWindow", u"\u041e\u0442\u0447\u0435\u0442\u044b", None))
-#if QT_CONFIG(shortcut)
-        self.btn_report.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Q", None))
 #endif // QT_CONFIG(shortcut)
 #if QT_CONFIG(tooltip)
         self.btn_bar.setToolTip(QCoreApplication.translate("MainWindow", u"\u0413\u0440\u0430\u0444\u0438\u043a\u0438", None))
@@ -1484,9 +1436,6 @@ class Ui_MainWindow(object):
         self.btn_hot_keys.setText(QCoreApplication.translate("MainWindow", u"\u0413\u043e\u0440\u044f\u0447\u0438\u0435 \u043a\u043b\u0430\u0432\u0438\u0448\u0438 \u0432 \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u0435", None))
         self.btn_save_settings.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c \u043d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438", None))
         self.label_version_application.setText(QCoreApplication.translate("MainWindow", u"\u0412\u0435\u0440\u0441\u0438\u044f \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u044f Aramid TsT Graph v0.0.1", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043f\u0438\u0441\u043e\u043a \u043e\u0442\u0447\u0435\u0442\u043e\u0432", None))
-        self.open_report_btn.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043a\u0430\u0437\u0430\u0442\u044c \u043e\u0442\u0447\u0435\u0442...", None))
-        self.save_report_btn.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c \u043e\u0442\u0447\u0435\u0442...", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"\u0422\u0435\u0441\u0442:", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b \u0442\u0435\u0441\u0442\u0430:", None))
 #if QT_CONFIG(tooltip)
@@ -1528,7 +1477,7 @@ class Ui_MainWindow(object):
         self.btn_change_view.setToolTip("")
 #endif // QT_CONFIG(tooltip)
         self.btn_change_view.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0430 \u043e\u0442\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u044f", None))
-        self.btn_save_view.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c \u0432 CSV..", None))
+        self.btn_save_view.setText(QCoreApplication.translate("MainWindow", u"\u042d\u043a\u0441\u043f\u043e\u0440\u0442 \u0434\u0430\u043d\u043d\u044b\u0445...", None))
         self.test_params_btn.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043f\u0440\u0430\u0432\u043e\u0447\u043d\u0438\u043a \u043f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u043e\u0432", None))
         self.add_topic_note_btn.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0440\u0430\u0437\u0434\u0435\u043b...", None))
         self.add_item_note_btn.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0441\u0442\u0430\u0442\u044c\u044e...", None))

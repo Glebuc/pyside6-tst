@@ -703,8 +703,9 @@ class MainWindow(QMainWindow):
     def open_dialog_extension_search(self):
         dialog = DialogsResult.DialogExtensionSearch(self)
         if dialog.exec() == QDialog.Accepted:
-            test_data, user_data, param_test, start_date, end_date = dialog.get_filter_parameters()
-            self.model_result.apply_filter(self.tableView, test_data, user_data, param_test, start_date, end_date)
+            test_data, machine_data, version_os_data, param_test, start_date, end_date = dialog.get_filter_parameters()
+            self.model_result.apply_filter(self.tableView, test_data, machine_data, version_os_data, param_test,
+                                           start_date, end_date)
 
 
 

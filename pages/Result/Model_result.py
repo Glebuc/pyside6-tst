@@ -1,5 +1,6 @@
 from PySide6.QtSql import QSqlDatabase, QSqlQuery, QSqlTableModel, QSqlQueryModel
 from PySide6.QtWidgets import QTableView, QComboBox, QMessageBox
+from PySide6.QtCore import Qt, QDateTime, QDate, QTime
 
 from ..BaseModel import BaseModel
 
@@ -29,6 +30,17 @@ class ResultModel(BaseModel):
 
         self.displayed_columns = []
         self.visible_columns = []
+
+    def data(self, index, role=Qt.DisplayRole):
+        if role == Qt.DisplayRole:
+            value = super(ResultModel, self).data(index, role)
+            if isinstance(value, QDateTime):
+                return value.toString("dd.MM.yyyy HH:mm")
+            elif isinstance(value, QDate):
+                return value.toString("dd.MM.yyyy")
+            elif isinstance(value, QTime):
+                return value.toString("HH:mm")
+        return super(ResultModel, self).data(index, role)
 
     def select_all_test_parametrs(self):
         """
@@ -85,28 +97,30 @@ class ResultModel(BaseModel):
 
         return True
 
-    def apply_filter(self, table_view: QTableView,  test_data: str, user_data: str,
-                     param_test: str, start_date: str, end_date:str) -> None:
+    def apply_filter(self, table_view: QTableView, test_data: str, machine_data: str, version_os_data: str,
+                     param_test: str, start_date: str, end_date: str) -> None:
         """
             Применяет фильтр к данным и обновляет модель представления таблицы.
 
             :arguments:
                 table_view (QTableView): Представление таблицы, к которому будет применен фильтр.
                 test_data (str): Выбранные тесты для фильтрации.
-                user_data (str): Выбранные пользователи для фильтрации.
+                machine_data (str): Выбранные машины для фильтрации.
+                version_os_data (str): Выбранные версии ОС для фильтрации.
                 param_test (str): Выбранные параметры тестов для фильтрации.
                 start_date (str): Начальная дата для фильтрации по дате теста.
                 end_date (str): Конечная дата для фильтрации по дате теста.
 
             :returns:
                 None
-
-            """
+        """
         filters = []
         if test_data != "Все тесты" and test_data != "All tests":
             filters.append(f"test_name = '{test_data}'")
-        if user_data != "Все пользователи" and user_data != "All users":
-            filters.append(f"user_name = '{user_data}'")
+        if machine_data != "Все машины" and machine_data != "All machines":
+            filters.append(f"machine = '{machine_data}'")
+        if version_os_data != "Все версии" and version_os_data != "All OS versions":
+            filters.append(f"version_os = '{version_os_data}'")
         if param_test:
             filters.append(f"test_param = '{param_test}'")
         if start_date and end_date:
@@ -115,20 +129,23 @@ class ResultModel(BaseModel):
         if where_clause:
             where_clause = "WHERE " + where_clause
         query = f""" SELECT t.test_name,
-                            t.test_param,
-                            t.time_test,
-                            t.test_result,
-                            t.start_test
-                       FROM tests as t
-                        {where_clause}"""
+                               t.test_param,
+                               t.time_test,
+                               t.test_result,
+                               t.start_test
+                          FROM tests as t
+                           {where_clause}"""
         self.setQuery(query)
+        query_str = QSqlQuery(query)
         if self.rowCount() == 0:
             # Если строк нет, выводим предупреждение
             QMessageBox.warning(None, "Предупреждение", "Нет данных, удовлетворяющих условиям запроса.")
+            self.last_query = query_str.lastQuery()
+            print(self.last_query)
             self.setQuery(self.ALL_RESULT_SQL)
         else:
             # Если нет ни одного условия, выводим предупреждение
-            QMessageBox.information(None, "Данные были изменены", "Данные в таблице  отфильтрованы")
+            QMessageBox.information(None, "Данные были изменены", "Данные в таблице отфильтрованы")
         table_view.setModel(self)
 
 

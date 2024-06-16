@@ -63,7 +63,8 @@ class DialogExtensionSearch(QDialog, ExtensionSearch):
         :returns:
             tuple: :
                 - test_data (str): Выбранное значение из combobox с тестами.
-                - user_data (str): Выбранное значение из combobox с пользователями.
+                - machine_data (str): Выбранное значение из combobox с машинами.
+                - version_os_data (str): Выбранное значение из combobox с версиями ОС.
                 - param_test (str): Выбранное значение из combobox с параметрами тестов.
                 - start_date (str): Начальная дата фильтрации в формате строки ISODate (гггг-мм-дд).
                 - end_date (str): Конечная дата фильтрации в формате строки ISODate (гггг-мм-дд).

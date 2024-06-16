@@ -36,7 +36,10 @@ class CustomTableView(QTableView):
             data = model.data(model_index, Qt.DisplayRole)
 
             if isinstance(data, QDateTime):
-                data = data.toString(Qt.ISODate)  # Или другой нужный вам формат
+                data = data.toString("dd.MM.yyyy HH:mm")
+
+            # if isinstance(data, QDateTime):
+            #     data = data.toString(Qt.ISODate)  # Или другой нужный вам формат
 
                 # Конвертация данных в строку, если это необходимо
             elif not isinstance(data, str):

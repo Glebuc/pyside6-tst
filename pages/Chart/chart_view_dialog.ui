@@ -31,7 +31,7 @@
       <enum>QTabWidget::TabPosition::West</enum>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
@@ -170,124 +170,6 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab">
-      <attribute name="title">
-       <string>Круговая диаграмма</string>
-      </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
-       <item>
-        <widget class="QFrame" name="frame_2">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::Shape::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Shadow::Raised</enum>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_5">
-          <item>
-           <widget class="QLabel" name="label_4">
-            <property name="text">
-             <string>Выберите тест:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="comboBox">
-            <item>
-             <property name="text">
-              <string>HPL</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>HPCG</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_5">
-            <property name="text">
-             <string>Дата:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="comboBox_2">
-            <item>
-             <property name="text">
-              <string>За последние 2 недели</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>За последний месяц</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>За квартал</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>За полугодие</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>За год</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_6">
-            <property name="text">
-             <string>Вычислительная система:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="comboBox_6">
-            <item>
-             <property name="text">
-              <string>Все</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <spacer name="verticalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Orientation::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton_3">
-         <property name="text">
-          <string>Отобразить график</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
      <widget class="QWidget" name="tab_2">
       <attribute name="title">
        <string>Столбчатая диаграмма</string>
@@ -355,6 +237,11 @@
             <item>
              <property name="text">
               <string>За год</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>За все время</string>
              </property>
             </item>
            </widget>

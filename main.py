@@ -3,7 +3,7 @@ import datetime
 import json
 import sys
 import os
-
+import random
 
 from PySide6.QtWidgets import (QDialog,
                                QFormLayout,
@@ -26,7 +26,8 @@ from typing import List
 
 from loger import Logger
 from Application import Application
-from pages.Chart.Chart_view import TestChart
+from pages.Chart import DialogsChart
+from pages.Chart.Chart_view import LineChart, BarChart
 from ui_modules import *
 from pages import (BaseModel,
                    Model_result,
@@ -84,15 +85,18 @@ class MainWindow(QMainWindow):
         setting = AppSettings.get_instance()
         self.init_translation()
         self.init_theme()
-        test_chart = TestChart("HPL")
-        test_chart.populate_chart_with_data(num_series=3)
+
+
+        # Создаем виджет для отображения столбчатой диаграммы
+        test_chart = BarChart()
+
         widgets.treeWidget.setStyleSheet("QTreeView { font-family: Arial; font-size: 16px; }")
 
 
         #Обработчики кнопок масштабирования графика
-        widgets.zoom_in_chart_btn.clicked.connect(test_chart.zoom_in)
-        widgets.zoom_out_chart_btn.clicked.connect(test_chart.zoom_out)
-        widgets.reset_chart_btn.clicked.connect(test_chart.reset)
+        # widgets.zoom_in_chart_btn.clicked.connect(test_chart.zoom_in)
+        # widgets.zoom_out_chart_btn.clicked.connect(test_chart.zoom_out)
+        # widgets.reset_chart_btn.clicked.connect(test_chart.reset)
 
         widgets.graphicsView.setDragMode(QGraphicsView.ScrollHandDrag)
         widgets.graphicsView.setChart(test_chart)
@@ -144,6 +148,7 @@ class MainWindow(QMainWindow):
         widgets.test_params_btn.clicked.connect(self.dialog_test_params)
         widgets.import_data_btn.clicked.connect(self.parse_json_data)
         widgets.save_chart_btn.clicked.connect(self.open_dialog_for_save_chart)
+        widgets.change_view_chart_btn.clicked.connect(self.dialog_chart)
 
         font = QFont()
         font.setPointSize(20)
@@ -420,6 +425,11 @@ class MainWindow(QMainWindow):
                         self.populate_tree_widget()
                 else:
                     print('Вы выбрали "Нет".')
+
+    def dialog_chart(self):
+        dialog = DialogsChart.DialogChart()
+        dialog.exec()
+
 
     def dialog_test_params(self) -> None:
         """

@@ -28,6 +28,30 @@ pages.Notes.Dialog\_article\_view module
    :undoc-members:
    :show-inheritance:
 
+pages.Notes.Dialog\_edit\_note module
+-------------------------------------
+
+.. automodule:: pages.Notes.Dialog_edit_note
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pages.Notes.Dialog\_edit\_topic module
+--------------------------------------
+
+.. automodule:: pages.Notes.Dialog_edit_topic
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pages.Notes.Dialog\_test\_params module
+---------------------------------------
+
+.. automodule:: pages.Notes.Dialog_test_params
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 pages.Notes.Model\_notes module
 -------------------------------
 

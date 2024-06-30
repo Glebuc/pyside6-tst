@@ -53,9 +53,6 @@
 <li><a class="reference internal" href="#pages.BaseModel.BaseModel.ALL_RESULT_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.ALL_RESULT_SQL</span></code></a></li>
 <li><a class="reference internal" href="#pages.BaseModel.BaseModel.FUNCTIONS_PARAMS"><code class="docutils literal notranslate"><span class="pre">BaseModel.FUNCTIONS_PARAMS</span></code></a></li>
 <li><a class="reference internal" href="#pages.BaseModel.BaseModel.LIST_JSON_PARAM_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.LIST_JSON_PARAM_SQL</span></code></a></li>
-<li><a class="reference internal" href="#pages.BaseModel.BaseModel.LIST_TEST_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.LIST_TEST_SQL</span></code></a></li>
-<li><a class="reference internal" href="#pages.BaseModel.BaseModel.MAX_DATE_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.MAX_DATE_SQL</span></code></a></li>
-<li><a class="reference internal" href="#pages.BaseModel.BaseModel.MIN_DATE_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.MIN_DATE_SQL</span></code></a></li>
 <li><a class="reference internal" href="#pages.BaseModel.BaseModel.NOTE_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.NOTE_SQL</span></code></a></li>
 <li><a class="reference internal" href="#pages.BaseModel.BaseModel.REPORT_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.REPORT_SQL</span></code></a></li>
 <li><a class="reference internal" href="#pages.BaseModel.BaseModel.SECTION_SQL"><code class="docutils literal notranslate"><span class="pre">BaseModel.SECTION_SQL</span></code></a></li>
@@ -67,12 +64,14 @@
 <li><a class="reference internal" href="#pages.BaseModel.BaseModel.check_and_create_tables"><code class="docutils literal notranslate"><span class="pre">BaseModel.check_and_create_tables()</span></code></a></li>
 <li><a class="reference internal" href="#pages.BaseModel.BaseModel.execute_sql"><code class="docutils literal notranslate"><span class="pre">BaseModel.execute_sql()</span></code></a></li>
 <li><a class="reference internal" href="#pages.BaseModel.BaseModel.get_existing_tables"><code class="docutils literal notranslate"><span class="pre">BaseModel.get_existing_tables()</span></code></a></li>
+<li><a class="reference internal" href="#pages.BaseModel.BaseModel.init_notes"><code class="docutils literal notranslate"><span class="pre">BaseModel.init_notes()</span></code></a></li>
+<li><a class="reference internal" href="#pages.BaseModel.BaseModel.load_tests_from_json_file"><code class="docutils literal notranslate"><span class="pre">BaseModel.load_tests_from_json_file()</span></code></a></li>
 <li><a class="reference internal" href="#pages.BaseModel.BaseModel.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">BaseModel.staticMetaObject</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li><a class="reference internal" href="#module-pages">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -109,31 +108,162 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="pages.Chart.html">pages.Chart package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="pages.Chart.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Chart.html#pages-chart-chart-view-module">pages.Chart.Chart_view module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Chart.html#pages-chart-model-chart-module">pages.Chart.Model_chart module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Chart.html#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Chart.html#module-pages.Chart.Chart_scena">pages.Chart.Chart_scena module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_scena.HoverPoint"><code class="docutils literal notranslate"><span class="pre">HoverPoint</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_scena.HoverPoint.set_hover_text"><code class="docutils literal notranslate"><span class="pre">HoverPoint.set_hover_text()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_scena.HoverPoint.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">HoverPoint.staticMetaObject</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_scena.MainWindow"><code class="docutils literal notranslate"><span class="pre">MainWindow</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_scena.MainWindow.mouseMoveEvent"><code class="docutils literal notranslate"><span class="pre">MainWindow.mouseMoveEvent()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_scena.MainWindow.mousePressEvent"><code class="docutils literal notranslate"><span class="pre">MainWindow.mousePressEvent()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_scena.MainWindow.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">MainWindow.staticMetaObject</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Chart.html#module-pages.Chart.Chart_view">pages.Chart.Chart_view module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_view.BarChart"><code class="docutils literal notranslate"><span class="pre">BarChart</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_view.BarChart.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">BarChart.staticMetaObject</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_view.LineChart"><code class="docutils literal notranslate"><span class="pre">LineChart</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_view.LineChart.add_series"><code class="docutils literal notranslate"><span class="pre">LineChart.add_series()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_view.LineChart.populate_chart_with_data"><code class="docutils literal notranslate"><span class="pre">LineChart.populate_chart_with_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_view.LineChart.reset"><code class="docutils literal notranslate"><span class="pre">LineChart.reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_view.LineChart.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">LineChart.staticMetaObject</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_view.LineChart.toggle_series_visibility"><code class="docutils literal notranslate"><span class="pre">LineChart.toggle_series_visibility()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_view.LineChart.zoom_in"><code class="docutils literal notranslate"><span class="pre">LineChart.zoom_in()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Chart_view.LineChart.zoom_out"><code class="docutils literal notranslate"><span class="pre">LineChart.zoom_out()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Chart.html#module-pages.Chart.DialogsChart">pages.Chart.DialogsChart module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pages.Chart.html#pages.Chart.DialogsChart.DialogChart"><code class="docutils literal notranslate"><span class="pre">DialogChart</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.DialogsChart.DialogChart.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">DialogChart.staticMetaObject</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Chart.html#module-pages.Chart.Model_chart">pages.Chart.Model_chart module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pages.Chart.html#pages.Chart.Model_chart.ChartModel"><code class="docutils literal notranslate"><span class="pre">ChartModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Model_chart.ChartModel.check_database_connection"><code class="docutils literal notranslate"><span class="pre">ChartModel.check_database_connection()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Model_chart.ChartModel.get_data_for_chart"><code class="docutils literal notranslate"><span class="pre">ChartModel.get_data_for_chart()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Model_chart.ChartModel.get_test_parameters"><code class="docutils literal notranslate"><span class="pre">ChartModel.get_test_parameters()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Model_chart.ChartModel.load_test_results"><code class="docutils literal notranslate"><span class="pre">ChartModel.load_test_results()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.Model_chart.ChartModel.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">ChartModel.staticMetaObject</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Chart.html#module-pages.Chart.ui_dialog_chart">pages.Chart.ui_dialog_chart module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pages.Chart.html#pages.Chart.ui_dialog_chart.Ui_Dialog"><code class="docutils literal notranslate"><span class="pre">Ui_Dialog</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.ui_dialog_chart.Ui_Dialog.retranslateUi"><code class="docutils literal notranslate"><span class="pre">Ui_Dialog.retranslateUi()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Chart.html#pages.Chart.ui_dialog_chart.Ui_Dialog.setupUi"><code class="docutils literal notranslate"><span class="pre">Ui_Dialog.setupUi()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Chart.html#module-pages.Chart">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="pages.Notes.html">pages.Notes package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#pages-notes-dialog-add-note-module">pages.Notes.Dialog_add_note module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#pages-notes-dialog-add-topic-module">pages.Notes.Dialog_add_topic module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#pages-notes-dialog-article-view-module">pages.Notes.Dialog_article_view module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#pages-notes-model-notes-module">pages.Notes.Model_notes module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#module-pages.Notes.Dialog_add_note">pages.Notes.Dialog_add_note module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_add_note.DialogAddNote"><code class="docutils literal notranslate"><span class="pre">DialogAddNote</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_add_note.DialogAddNote.current_text_changed"><code class="docutils literal notranslate"><span class="pre">DialogAddNote.current_text_changed()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_add_note.DialogAddNote.get_article_text"><code class="docutils literal notranslate"><span class="pre">DialogAddNote.get_article_text()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_add_note.DialogAddNote.get_article_title"><code class="docutils literal notranslate"><span class="pre">DialogAddNote.get_article_title()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_add_note.DialogAddNote.get_selected_section"><code class="docutils literal notranslate"><span class="pre">DialogAddNote.get_selected_section()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_add_note.DialogAddNote.publish_article"><code class="docutils literal notranslate"><span class="pre">DialogAddNote.publish_article()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_add_note.DialogAddNote.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">DialogAddNote.staticMetaObject</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#module-pages.Notes.Dialog_add_topic">pages.Notes.Dialog_add_topic module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_add_topic.DialogAddTopic"><code class="docutils literal notranslate"><span class="pre">DialogAddTopic</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_add_topic.DialogAddTopic.add_section_to_database"><code class="docutils literal notranslate"><span class="pre">DialogAddTopic.add_section_to_database()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_add_topic.DialogAddTopic.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">DialogAddTopic.staticMetaObject</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#module-pages.Notes.Dialog_article_view">pages.Notes.Dialog_article_view module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_article_view.ArticleDialog"><code class="docutils literal notranslate"><span class="pre">ArticleDialog</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_article_view.ArticleDialog.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">ArticleDialog.staticMetaObject</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#module-pages.Notes.Dialog_edit_note">pages.Notes.Dialog_edit_note module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_edit_note.EditNoteDialog"><code class="docutils literal notranslate"><span class="pre">EditNoteDialog</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_edit_note.EditNoteDialog.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">EditNoteDialog.staticMetaObject</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_edit_note.EditNoteDialog.update_article"><code class="docutils literal notranslate"><span class="pre">EditNoteDialog.update_article()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#module-pages.Notes.Dialog_edit_topic">pages.Notes.Dialog_edit_topic module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_edit_topic.EditTopicDialog"><code class="docutils literal notranslate"><span class="pre">EditTopicDialog</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_edit_topic.EditTopicDialog.save_article"><code class="docutils literal notranslate"><span class="pre">EditTopicDialog.save_article()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_edit_topic.EditTopicDialog.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">EditTopicDialog.staticMetaObject</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#module-pages.Notes.Dialog_test_params">pages.Notes.Dialog_test_params module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_test_params.ReadOnlyDelegate"><code class="docutils literal notranslate"><span class="pre">ReadOnlyDelegate</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_test_params.ReadOnlyDelegate.createEditor"><code class="docutils literal notranslate"><span class="pre">ReadOnlyDelegate.createEditor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_test_params.ReadOnlyDelegate.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">ReadOnlyDelegate.staticMetaObject</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_test_params.TestParamsDialog"><code class="docutils literal notranslate"><span class="pre">TestParamsDialog</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_test_params.TestParamsDialog.save_changes"><code class="docutils literal notranslate"><span class="pre">TestParamsDialog.save_changes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Dialog_test_params.TestParamsDialog.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">TestParamsDialog.staticMetaObject</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#module-pages.Notes.Model_notes">pages.Notes.Model_notes module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pages.Notes.html#pages.Notes.Model_notes.NoteModel"><code class="docutils literal notranslate"><span class="pre">NoteModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Model_notes.NoteModel.add_note"><code class="docutils literal notranslate"><span class="pre">NoteModel.add_note()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Model_notes.NoteModel.add_section"><code class="docutils literal notranslate"><span class="pre">NoteModel.add_section()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Model_notes.NoteModel.delete_note_data"><code class="docutils literal notranslate"><span class="pre">NoteModel.delete_note_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Model_notes.NoteModel.delete_topic_data"><code class="docutils literal notranslate"><span class="pre">NoteModel.delete_topic_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Model_notes.NoteModel.get_article_data"><code class="docutils literal notranslate"><span class="pre">NoteModel.get_article_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Model_notes.NoteModel.get_data_from_database"><code class="docutils literal notranslate"><span class="pre">NoteModel.get_data_from_database()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Model_notes.NoteModel.get_section_id_by_name"><code class="docutils literal notranslate"><span class="pre">NoteModel.get_section_id_by_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Model_notes.NoteModel.get_section_names"><code class="docutils literal notranslate"><span class="pre">NoteModel.get_section_names()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Model_notes.NoteModel.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">NoteModel.staticMetaObject</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Model_notes.NoteModel.update_article_data"><code class="docutils literal notranslate"><span class="pre">NoteModel.update_article_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Notes.html#pages.Notes.Model_notes.NoteModel.update_topic_data"><code class="docutils literal notranslate"><span class="pre">NoteModel.update_topic_data()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Notes.html#module-pages.Notes">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="pages.Report.html">pages.Report package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="pages.Report.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Report.html#pages-report-controller-report-module">pages.Report.Controller_report module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Report.html#pages-report-reportmodel-module">pages.Report.ReportModel module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Report.html#pages-report-reportview-module">pages.Report.ReportView module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Report.html#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Report.html#module-pages.Report.PDFGenerator">pages.Report.PDFGenerator module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pages.Report.html#pages.Report.PDFGenerator.PDFGenerator"><code class="docutils literal notranslate"><span class="pre">PDFGenerator</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pages.Report.html#pages.Report.PDFGenerator.PDFGenerator.create_test_result_page"><code class="docutils literal notranslate"><span class="pre">PDFGenerator.create_test_result_page()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Report.html#pages.Report.PDFGenerator.PDFGenerator.create_title_page"><code class="docutils literal notranslate"><span class="pre">PDFGenerator.create_title_page()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Report.html#pages.Report.PDFGenerator.PDFGenerator.create_toc"><code class="docutils literal notranslate"><span class="pre">PDFGenerator.create_toc()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Report.html#pages.Report.PDFGenerator.PDFGenerator.generate"><code class="docutils literal notranslate"><span class="pre">PDFGenerator.generate()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Report.html#pages-report-settings-report-module">pages.Report.Settings_report module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Report.html#module-pages.Report">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="pages.Result.html">pages.Result package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="pages.Result.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Result.html#pages-result-controller-result-module">pages.Result.Controller_result module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pages.Result.html#module-pages.Result.Dialog_change_view">pages.Result.Dialog_change_view module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pages.Result.html#pages.Result.Dialog_change_view.ColumnSelectionDialog"><code class="docutils literal notranslate"><span class="pre">ColumnSelectionDialog</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.Dialog_change_view.ColumnSelectionDialog.get_selected_columns"><code class="docutils literal notranslate"><span class="pre">ColumnSelectionDialog.get_selected_columns()</span></code></a></li>
@@ -154,12 +284,26 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="pages.Result.html#module-pages.Result.Model_result">pages.Result.Model_result module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pages.Result.html#pages.Result.Model_result.ResultModel"><code class="docutils literal notranslate"><span class="pre">ResultModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.Model_result.ResultModel.LIST_MACHINE_SQL"><code class="docutils literal notranslate"><span class="pre">ResultModel.LIST_MACHINE_SQL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.Model_result.ResultModel.LIST_OS_VERSION_SQL"><code class="docutils literal notranslate"><span class="pre">ResultModel.LIST_OS_VERSION_SQL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.Model_result.ResultModel.LIST_TEST_SQL"><code class="docutils literal notranslate"><span class="pre">ResultModel.LIST_TEST_SQL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.Model_result.ResultModel.MAX_DATE_SQL"><code class="docutils literal notranslate"><span class="pre">ResultModel.MAX_DATE_SQL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.Model_result.ResultModel.MIN_DATE_SQL"><code class="docutils literal notranslate"><span class="pre">ResultModel.MIN_DATE_SQL</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.Model_result.ResultModel.apply_filter"><code class="docutils literal notranslate"><span class="pre">ResultModel.apply_filter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.Model_result.ResultModel.data"><code class="docutils literal notranslate"><span class="pre">ResultModel.data()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.Model_result.ResultModel.delete_all_data"><code class="docutils literal notranslate"><span class="pre">ResultModel.delete_all_data()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.Model_result.ResultModel.filter_data"><code class="docutils literal notranslate"><span class="pre">ResultModel.filter_data()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.Model_result.ResultModel.insert_data"><code class="docutils literal notranslate"><span class="pre">ResultModel.insert_data()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.Model_result.ResultModel.select_all_data"><code class="docutils literal notranslate"><span class="pre">ResultModel.select_all_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.Model_result.ResultModel.select_all_test_parametrs"><code class="docutils literal notranslate"><span class="pre">ResultModel.select_all_test_parametrs()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.Model_result.ResultModel.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">ResultModel.staticMetaObject</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pages.Result.html#module-pages.Result.Parser_json">pages.Result.Parser_json module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pages.Result.html#pages.Result.Parser_json.JSONParser"><code class="docutils literal notranslate"><span class="pre">JSONParser</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.Parser_json.JSONParser.parse"><code class="docutils literal notranslate"><span class="pre">JSONParser.parse()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -169,15 +313,15 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="pages.Result.html#module-pages.Result.View_result">pages.Result.View_result module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="pages.Result.html#pages.Result.View_result.CheckBoxDelegate"><code class="docutils literal notranslate"><span class="pre">CheckBoxDelegate</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.View_result.CheckBoxDelegate.editorEvent"><code class="docutils literal notranslate"><span class="pre">CheckBoxDelegate.editorEvent()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.View_result.CheckBoxDelegate.getCheckBoxRect"><code class="docutils literal notranslate"><span class="pre">CheckBoxDelegate.getCheckBoxRect()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.View_result.CheckBoxDelegate.paint"><code class="docutils literal notranslate"><span class="pre">CheckBoxDelegate.paint()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.View_result.CheckBoxDelegate.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">CheckBoxDelegate.staticMetaObject</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pages.Result.html#pages.Result.View_result.CustomTableView"><code class="docutils literal notranslate"><span class="pre">CustomTableView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.View_result.CustomTableView.display_full_content_dialog"><code class="docutils literal notranslate"><span class="pre">CustomTableView.display_full_content_dialog()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.View_result.CustomTableView.set_model"><code class="docutils literal notranslate"><span class="pre">CustomTableView.set_model()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.View_result.CustomTableView.show_full_content"><code class="docutils literal notranslate"><span class="pre">CustomTableView.show_full_content()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.View_result.CustomTableView.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">CustomTableView.staticMetaObject</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="pages.Result.html#pages.Result.View_result.CustomTableView"><code class="docutils literal notranslate"><span class="pre">CustomTableView</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.View_result.CustomTableView.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">CustomTableView.staticMetaObject</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pages.Result.html#pages.Result.View_result.PreviewWindow"><code class="docutils literal notranslate"><span class="pre">PreviewWindow</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pages.Result.html#pages.Result.View_result.PreviewWindow.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">PreviewWindow.staticMetaObject</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -195,7 +339,6 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="pages.Setting.html">pages.Setting package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="pages.Setting.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages.Setting.html#pages-setting-controller-setting-module">pages.Setting.Controller_setting module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pages.Setting.html#module-pages.Setting.Dialog_config_db">pages.Setting.Dialog_config_db module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pages.Setting.html#pages.Setting.Dialog_config_db.Ui_Dialog"><code class="docutils literal notranslate"><span class="pre">Ui_Dialog</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="pages.Setting.html#pages.Setting.Dialog_config_db.Ui_Dialog.retranslateUi"><code class="docutils literal notranslate"><span class="pre">Ui_Dialog.retranslateUi()</span></code></a></li>
@@ -241,7 +384,8 @@
 <dt class="sig sig-object py" id="pages.BaseModel.BaseModel">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pages.BaseModel.</span></span><span class="sig-name descname"><span class="pre">BaseModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/BaseModel.html#BaseModel"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.BaseModel.BaseModel" title="Link to this definition"></a></dt>
 <dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">QSqlQueryModel</span></code></p>
-<p>Базовая модель, данная модель является родительской для всех других моделей</p>
+<p>Базовая модель, данная модель является родительской для всех других моделей.
+И занимается инициализированием окружения для БД</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pages.BaseModel.BaseModel.ALL_RESULT_SQL">
 <span class="sig-name descname"><span class="pre">ALL_RESULT_SQL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">SELECT</span> <span class="pre">\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">t.test_name</span> <span class="pre">AS</span> <span class="pre">&quot;Название&quot;,</span> <span class="pre">\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">t.test_param</span> <span class="pre">AS</span> <span class="pre">&quot;Параметры&quot;,</span> <span class="pre">\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">t.time_test</span> <span class="pre">AS</span> <span class="pre">&quot;Время</span> <span class="pre">выполнения&quot;,</span> <span class="pre">\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">t.test_result</span> <span class="pre">AS</span> <span class="pre">Результат,</span> <span class="pre">\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">t.start_test</span> <span class="pre">AS</span> <span class="pre">&quot;Дата</span> <span class="pre">выполнения&quot;,\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">t.version_os</span> <span class="pre">AS</span> <span class="pre">&quot;Версия</span> <span class="pre">ОС&quot;,\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">t.machine</span> <span class="pre">AS</span> <span class="pre">&quot;Выч.система&quot;\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">FROM</span> <span class="pre">tests</span> <span class="pre">AS</span> <span class="pre">t\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#pages.BaseModel.BaseModel.ALL_RESULT_SQL" title="Link to this definition"></a></dt>
@@ -255,21 +399,6 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pages.BaseModel.BaseModel.LIST_JSON_PARAM_SQL">
 <span class="sig-name descname"><span class="pre">LIST_JSON_PARAM_SQL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">SELECT</span> <span class="pre">jsonb_object_keys(test_param)</span> <span class="pre">as</span> <span class="pre">keys\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">FROM</span> <span class="pre">tests</span> <span class="pre">group</span> <span class="pre">by</span> <span class="pre">keys;\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#pages.BaseModel.BaseModel.LIST_JSON_PARAM_SQL" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="pages.BaseModel.BaseModel.LIST_TEST_SQL">
-<span class="sig-name descname"><span class="pre">LIST_TEST_SQL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">SELECT</span> <span class="pre">test_name</span> <span class="pre">FROM</span> <span class="pre">tests</span> <span class="pre">GROUP</span> <span class="pre">BY</span> <span class="pre">test_name;\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#pages.BaseModel.BaseModel.LIST_TEST_SQL" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="pages.BaseModel.BaseModel.MAX_DATE_SQL">
-<span class="sig-name descname"><span class="pre">MAX_DATE_SQL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">SELECT</span> <span class="pre">MAX(start_test)</span> <span class="pre">FROM</span> <span class="pre">tests;\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#pages.BaseModel.BaseModel.MAX_DATE_SQL" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="pages.BaseModel.BaseModel.MIN_DATE_SQL">
-<span class="sig-name descname"><span class="pre">MIN_DATE_SQL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">SELECT</span> <span class="pre">MIN(start_test)</span> <span class="pre">FROM</span> <span class="pre">tests;\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#pages.BaseModel.BaseModel.MIN_DATE_SQL" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -357,6 +486,28 @@ params (tuple or dict, optional): Параметры запроса. По умо
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.BaseModel.BaseModel.init_notes">
+<span class="sig-name descname"><span class="pre">init_notes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/BaseModel.html#BaseModel.init_notes"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.BaseModel.BaseModel.init_notes" title="Link to this definition"></a></dt>
+<dd><p>Загружает данные из JSON и записывает их в таблицы базы данных, если они еще не добавлены.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>json_data</strong> – Данные JSON, содержащие информацию о HPC-тестах.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.BaseModel.BaseModel.load_tests_from_json_file">
+<span class="sig-name descname"><span class="pre">load_tests_from_json_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/BaseModel.html#BaseModel.load_tests_from_json_file"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.BaseModel.BaseModel.load_tests_from_json_file" title="Link to this definition"></a></dt>
+<dd><p>Загружает данные из JSON-файла и записывает их в таблицы базы данных, если они еще не добавлены.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_path</strong> – Путь к JSON-файлу, содержащему информацию о HPC-тестах.</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pages.BaseModel.BaseModel.staticMetaObject">
 <span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject(&quot;BaseModel&quot;</span> <span class="pre">inherits</span> <span class="pre">&quot;QSqlQueryModel&quot;:</span> <span class="pre">)</span></em><a class="headerlink" href="#pages.BaseModel.BaseModel.staticMetaObject" title="Link to this definition"></a></dt>
@@ -365,8 +516,8 @@ params (tuple or dict, optional): Параметры запроса. По умо
 </dd></dl>
 
 </section>
-<section id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
+<section id="module-pages">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pages" title="Link to this heading"></a></h2>
 </section>
 </section>
 
@@ -378,7 +529,7 @@ params (tuple or dict, optional): Параметры запроса. По умо
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Авторские права 2024, Deryugin Gleb. </p>
+    <p>&#169; Авторские права 2024, 0829 ITMF. </p>
   </div>
 
   Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием

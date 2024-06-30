@@ -25,7 +25,7 @@ class MainWindow(QMainWindow):
         chart = QChart()
         chart.setTitle("График с точками")
 
-        # Создаем и добавляем график на сцену
+
         series = HoverPoint()
         series.setName("Точки")
         series.setMarkerSize(10)  # Размер маркера точек

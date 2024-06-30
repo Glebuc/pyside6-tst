@@ -103,6 +103,14 @@ class DialogAddNote(QMainWindow):
         self.text_edit.textChanged.connect(self.current_text_changed)
 
     def current_text_changed(self):
+        """
+           Обработчик события изменения текста в текстовом редакторе.
+
+           Извлекает текст из текстового редактора `self.text_edit` и устанавливает его в виджет `self.view_text_edit`,
+           который отображает текст в формате Markdown.
+
+           :return: None
+        """
         text = self.text_edit.toPlainText()
         self.view_text_edit.setMarkdown(text)
 

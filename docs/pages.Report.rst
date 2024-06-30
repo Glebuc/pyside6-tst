@@ -4,26 +4,18 @@ pages.Report package
 Submodules
 ----------
 
-pages.Report.Controller\_report module
---------------------------------------
+pages.Report.PDFGenerator module
+--------------------------------
 
-.. automodule:: pages.Report.Controller_report
+.. automodule:: pages.Report.PDFGenerator
    :members:
    :undoc-members:
    :show-inheritance:
 
-pages.Report.ReportModel module
--------------------------------
+pages.Report.Settings\_report module
+------------------------------------
 
-.. automodule:: pages.Report.ReportModel
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-pages.Report.ReportView module
-------------------------------
-
-.. automodule:: pages.Report.ReportView
+.. automodule:: pages.Report.Settings_report
    :members:
    :undoc-members:
    :show-inheritance:

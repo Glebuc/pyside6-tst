@@ -47,9 +47,64 @@
               <div class="local-toc"><ul>
 <li><a class="reference internal" href="#">pages.Chart package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#pages-chart-chart-view-module">pages.Chart.Chart_view module</a></li>
-<li><a class="reference internal" href="#pages-chart-model-chart-module">pages.Chart.Model_chart module</a></li>
-<li><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li><a class="reference internal" href="#module-pages.Chart.Chart_scena">pages.Chart.Chart_scena module</a><ul>
+<li><a class="reference internal" href="#pages.Chart.Chart_scena.HoverPoint"><code class="docutils literal notranslate"><span class="pre">HoverPoint</span></code></a><ul>
+<li><a class="reference internal" href="#pages.Chart.Chart_scena.HoverPoint.set_hover_text"><code class="docutils literal notranslate"><span class="pre">HoverPoint.set_hover_text()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Chart.Chart_scena.HoverPoint.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">HoverPoint.staticMetaObject</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pages.Chart.Chart_scena.MainWindow"><code class="docutils literal notranslate"><span class="pre">MainWindow</span></code></a><ul>
+<li><a class="reference internal" href="#pages.Chart.Chart_scena.MainWindow.mouseMoveEvent"><code class="docutils literal notranslate"><span class="pre">MainWindow.mouseMoveEvent()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Chart.Chart_scena.MainWindow.mousePressEvent"><code class="docutils literal notranslate"><span class="pre">MainWindow.mousePressEvent()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Chart.Chart_scena.MainWindow.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">MainWindow.staticMetaObject</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-pages.Chart.Chart_view">pages.Chart.Chart_view module</a><ul>
+<li><a class="reference internal" href="#pages.Chart.Chart_view.BarChart"><code class="docutils literal notranslate"><span class="pre">BarChart</span></code></a><ul>
+<li><a class="reference internal" href="#pages.Chart.Chart_view.BarChart.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">BarChart.staticMetaObject</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pages.Chart.Chart_view.LineChart"><code class="docutils literal notranslate"><span class="pre">LineChart</span></code></a><ul>
+<li><a class="reference internal" href="#pages.Chart.Chart_view.LineChart.add_series"><code class="docutils literal notranslate"><span class="pre">LineChart.add_series()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Chart.Chart_view.LineChart.populate_chart_with_data"><code class="docutils literal notranslate"><span class="pre">LineChart.populate_chart_with_data()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Chart.Chart_view.LineChart.reset"><code class="docutils literal notranslate"><span class="pre">LineChart.reset()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Chart.Chart_view.LineChart.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">LineChart.staticMetaObject</span></code></a></li>
+<li><a class="reference internal" href="#pages.Chart.Chart_view.LineChart.toggle_series_visibility"><code class="docutils literal notranslate"><span class="pre">LineChart.toggle_series_visibility()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Chart.Chart_view.LineChart.zoom_in"><code class="docutils literal notranslate"><span class="pre">LineChart.zoom_in()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Chart.Chart_view.LineChart.zoom_out"><code class="docutils literal notranslate"><span class="pre">LineChart.zoom_out()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-pages.Chart.DialogsChart">pages.Chart.DialogsChart module</a><ul>
+<li><a class="reference internal" href="#pages.Chart.DialogsChart.DialogChart"><code class="docutils literal notranslate"><span class="pre">DialogChart</span></code></a><ul>
+<li><a class="reference internal" href="#pages.Chart.DialogsChart.DialogChart.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">DialogChart.staticMetaObject</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-pages.Chart.Model_chart">pages.Chart.Model_chart module</a><ul>
+<li><a class="reference internal" href="#pages.Chart.Model_chart.ChartModel"><code class="docutils literal notranslate"><span class="pre">ChartModel</span></code></a><ul>
+<li><a class="reference internal" href="#pages.Chart.Model_chart.ChartModel.check_database_connection"><code class="docutils literal notranslate"><span class="pre">ChartModel.check_database_connection()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Chart.Model_chart.ChartModel.get_data_for_chart"><code class="docutils literal notranslate"><span class="pre">ChartModel.get_data_for_chart()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Chart.Model_chart.ChartModel.get_test_parameters"><code class="docutils literal notranslate"><span class="pre">ChartModel.get_test_parameters()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Chart.Model_chart.ChartModel.load_test_results"><code class="docutils literal notranslate"><span class="pre">ChartModel.load_test_results()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Chart.Model_chart.ChartModel.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">ChartModel.staticMetaObject</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-pages.Chart.ui_dialog_chart">pages.Chart.ui_dialog_chart module</a><ul>
+<li><a class="reference internal" href="#pages.Chart.ui_dialog_chart.Ui_Dialog"><code class="docutils literal notranslate"><span class="pre">Ui_Dialog</span></code></a><ul>
+<li><a class="reference internal" href="#pages.Chart.ui_dialog_chart.Ui_Dialog.retranslateUi"><code class="docutils literal notranslate"><span class="pre">Ui_Dialog.retranslateUi()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Chart.ui_dialog_chart.Ui_Dialog.setupUi"><code class="docutils literal notranslate"><span class="pre">Ui_Dialog.setupUi()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-pages.Chart">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -83,14 +138,205 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
 </section>
-<section id="pages-chart-chart-view-module">
-<h2>pages.Chart.Chart_view module<a class="headerlink" href="#pages-chart-chart-view-module" title="Link to this heading"></a></h2>
+<section id="module-pages.Chart.Chart_scena">
+<span id="pages-chart-chart-scena-module"></span><h2>pages.Chart.Chart_scena module<a class="headerlink" href="#module-pages.Chart.Chart_scena" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pages.Chart.Chart_scena.HoverPoint">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pages.Chart.Chart_scena.</span></span><span class="sig-name descname"><span class="pre">HoverPoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Chart/Chart_scena.html#HoverPoint"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Chart.Chart_scena.HoverPoint" title="Link to this definition"></a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">QScatterSeries</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Chart.Chart_scena.HoverPoint.set_hover_text">
+<span class="sig-name descname"><span class="pre">set_hover_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Chart/Chart_scena.html#HoverPoint.set_hover_text"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Chart.Chart_scena.HoverPoint.set_hover_text" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pages.Chart.Chart_scena.HoverPoint.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject(&quot;HoverPoint&quot;</span> <span class="pre">inherits</span> <span class="pre">&quot;QScatterSeries&quot;:</span> <span class="pre">)</span></em><a class="headerlink" href="#pages.Chart.Chart_scena.HoverPoint.staticMetaObject" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pages.Chart.Chart_scena.MainWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pages.Chart.Chart_scena.</span></span><span class="sig-name descname"><span class="pre">MainWindow</span></span><a class="reference internal" href="_modules/pages/Chart/Chart_scena.html#MainWindow"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Chart.Chart_scena.MainWindow" title="Link to this definition"></a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">QMainWindow</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Chart.Chart_scena.MainWindow.mouseMoveEvent">
+<span class="sig-name descname"><span class="pre">mouseMoveEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PySide6.QtGui.QMouseEvent</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pages/Chart/Chart_scena.html#MainWindow.mouseMoveEvent"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Chart.Chart_scena.MainWindow.mouseMoveEvent" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Chart.Chart_scena.MainWindow.mousePressEvent">
+<span class="sig-name descname"><span class="pre">mousePressEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PySide6.QtGui.QMouseEvent</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pages/Chart/Chart_scena.html#MainWindow.mousePressEvent"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Chart.Chart_scena.MainWindow.mousePressEvent" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pages.Chart.Chart_scena.MainWindow.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject(&quot;MainWindow&quot;</span> <span class="pre">inherits</span> <span class="pre">&quot;QMainWindow&quot;:</span> <span class="pre">)</span></em><a class="headerlink" href="#pages.Chart.Chart_scena.MainWindow.staticMetaObject" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="pages-chart-model-chart-module">
-<h2>pages.Chart.Model_chart module<a class="headerlink" href="#pages-chart-model-chart-module" title="Link to this heading"></a></h2>
+<section id="module-pages.Chart.Chart_view">
+<span id="pages-chart-chart-view-module"></span><h2>pages.Chart.Chart_view module<a class="headerlink" href="#module-pages.Chart.Chart_view" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pages.Chart.Chart_view.BarChart">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pages.Chart.Chart_view.</span></span><span class="sig-name descname"><span class="pre">BarChart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Chart/Chart_view.html#BarChart"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Chart.Chart_view.BarChart" title="Link to this definition"></a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">QChart</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pages.Chart.Chart_view.BarChart.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject(&quot;BarChart&quot;</span> <span class="pre">inherits</span> <span class="pre">&quot;QChart&quot;:</span> <span class="pre">)</span></em><a class="headerlink" href="#pages.Chart.Chart_view.BarChart.staticMetaObject" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pages.Chart.Chart_view.LineChart">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pages.Chart.Chart_view.</span></span><span class="sig-name descname"><span class="pre">LineChart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Chart/Chart_view.html#LineChart"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Chart.Chart_view.LineChart" title="Link to this definition"></a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">QChart</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Chart.Chart_view.LineChart.add_series">
+<span class="sig-name descname"><span class="pre">add_series</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Chart/Chart_view.html#LineChart.add_series"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Chart.Chart_view.LineChart.add_series" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Chart.Chart_view.LineChart.populate_chart_with_data">
+<span class="sig-name descname"><span class="pre">populate_chart_with_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Chart/Chart_view.html#LineChart.populate_chart_with_data"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Chart.Chart_view.LineChart.populate_chart_with_data" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Chart.Chart_view.LineChart.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Chart/Chart_view.html#LineChart.reset"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Chart.Chart_view.LineChart.reset" title="Link to this definition"></a></dt>
+<dd><p>Сбрасывает вид в его начальное состояние.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pages.Chart.Chart_view.LineChart.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject(&quot;LineChart&quot;</span> <span class="pre">inherits</span> <span class="pre">&quot;QChart&quot;:</span> <span class="pre">)</span></em><a class="headerlink" href="#pages.Chart.Chart_view.LineChart.staticMetaObject" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Chart.Chart_view.LineChart.toggle_series_visibility">
+<span class="sig-name descname"><span class="pre">toggle_series_visibility</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Chart/Chart_view.html#LineChart.toggle_series_visibility"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Chart.Chart_view.LineChart.toggle_series_visibility" title="Link to this definition"></a></dt>
+<dd><p>Переключает видимость серии данных с указанным именем.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> – Имя серии данных.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Chart.Chart_view.LineChart.zoom_in">
+<span class="sig-name descname"><span class="pre">zoom_in</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Chart/Chart_view.html#LineChart.zoom_in"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Chart.Chart_view.LineChart.zoom_in" title="Link to this definition"></a></dt>
+<dd><p>Увеличивает масштаб видимости на 1.1 раза.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Chart.Chart_view.LineChart.zoom_out">
+<span class="sig-name descname"><span class="pre">zoom_out</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Chart/Chart_view.html#LineChart.zoom_out"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Chart.Chart_view.LineChart.zoom_out" title="Link to this definition"></a></dt>
+<dd><p>Уменьшает масштаб видимости на 0.9 раза.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
+<section id="module-pages.Chart.DialogsChart">
+<span id="pages-chart-dialogschart-module"></span><h2>pages.Chart.DialogsChart module<a class="headerlink" href="#module-pages.Chart.DialogsChart" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pages.Chart.DialogsChart.DialogChart">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pages.Chart.DialogsChart.</span></span><span class="sig-name descname"><span class="pre">DialogChart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Chart/DialogsChart.html#DialogChart"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Chart.DialogsChart.DialogChart" title="Link to this definition"></a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">QDialog</span></code>, <a class="reference internal" href="#pages.Chart.ui_dialog_chart.Ui_Dialog" title="pages.Chart.ui_dialog_chart.Ui_Dialog"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ui_Dialog</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pages.Chart.DialogsChart.DialogChart.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject(&quot;DialogChart&quot;</span> <span class="pre">inherits</span> <span class="pre">&quot;QDialog&quot;:</span> <span class="pre">)</span></em><a class="headerlink" href="#pages.Chart.DialogsChart.DialogChart.staticMetaObject" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pages.Chart.Model_chart">
+<span id="pages-chart-model-chart-module"></span><h2>pages.Chart.Model_chart module<a class="headerlink" href="#module-pages.Chart.Model_chart" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pages.Chart.Model_chart.ChartModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pages.Chart.Model_chart.</span></span><span class="sig-name descname"><span class="pre">ChartModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Chart/Model_chart.html#ChartModel"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Chart.Model_chart.ChartModel" title="Link to this definition"></a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="pages.html#pages.BaseModel.BaseModel" title="pages.BaseModel.BaseModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></a></p>
+<p>Модель для страницы графиков и манипулирования табличными значением</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Chart.Model_chart.ChartModel.check_database_connection">
+<span class="sig-name descname"><span class="pre">check_database_connection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/pages/Chart/Model_chart.html#ChartModel.check_database_connection"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Chart.Model_chart.ChartModel.check_database_connection" title="Link to this definition"></a></dt>
+<dd><p>Проверяет наличие соединения с базой данных</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Chart.Model_chart.ChartModel.get_data_for_chart">
+<span class="sig-name descname"><span class="pre">get_data_for_chart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_param</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Chart/Model_chart.html#ChartModel.get_data_for_chart"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Chart.Model_chart.ChartModel.get_data_for_chart" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Chart.Model_chart.ChartModel.get_test_parameters">
+<span class="sig-name descname"><span class="pre">get_test_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pages/Chart/Model_chart.html#ChartModel.get_test_parameters"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Chart.Model_chart.ChartModel.get_test_parameters" title="Link to this definition"></a></dt>
+<dd><p>Получает параметры теста по его имени</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>test_name</strong> – Имя теста для получения параметров</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>QSqlQuery с результатами запроса</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Chart.Model_chart.ChartModel.load_test_results">
+<span class="sig-name descname"><span class="pre">load_test_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Chart/Model_chart.html#ChartModel.load_test_results"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Chart.Model_chart.ChartModel.load_test_results" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pages.Chart.Model_chart.ChartModel.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject(&quot;ChartModel&quot;</span> <span class="pre">inherits</span> <span class="pre">&quot;BaseModel&quot;:</span> <span class="pre">)</span></em><a class="headerlink" href="#pages.Chart.Model_chart.ChartModel.staticMetaObject" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pages.Chart.ui_dialog_chart">
+<span id="pages-chart-ui-dialog-chart-module"></span><h2>pages.Chart.ui_dialog_chart module<a class="headerlink" href="#module-pages.Chart.ui_dialog_chart" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pages.Chart.ui_dialog_chart.Ui_Dialog">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pages.Chart.ui_dialog_chart.</span></span><span class="sig-name descname"><span class="pre">Ui_Dialog</span></span><a class="reference internal" href="_modules/pages/Chart/ui_dialog_chart.html#Ui_Dialog"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Chart.ui_dialog_chart.Ui_Dialog" title="Link to this definition"></a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Chart.ui_dialog_chart.Ui_Dialog.retranslateUi">
+<span class="sig-name descname"><span class="pre">retranslateUi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Dialog</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Chart/ui_dialog_chart.html#Ui_Dialog.retranslateUi"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Chart.ui_dialog_chart.Ui_Dialog.retranslateUi" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Chart.ui_dialog_chart.Ui_Dialog.setupUi">
+<span class="sig-name descname"><span class="pre">setupUi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Dialog</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Chart/ui_dialog_chart.html#Ui_Dialog.setupUi"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Chart.ui_dialog_chart.Ui_Dialog.setupUi" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pages.Chart">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pages.Chart" title="Link to this heading"></a></h2>
 </section>
 </section>
 
@@ -102,7 +348,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Авторские права 2024, Deryugin Gleb. </p>
+    <p>&#169; Авторские права 2024, 0829 ITMF. </p>
   </div>
 
   Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием

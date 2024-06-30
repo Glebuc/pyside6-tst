@@ -69,16 +69,16 @@
            <div itemprop="articleBody">
              
   <h1>Исходный код pages.Notes.Dialog_article_view</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">PySide6.QtWidgets</span> <span class="kn">import</span> <span class="n">QDialog</span><span class="p">,</span> <span class="n">QVBoxLayout</span><span class="p">,</span> <span class="n">QTextBrowser</span>
+<span></span><span class="kn">from</span> <span class="nn">PySide6.QtWidgets</span> <span class="kn">import</span> <span class="n">QMainWindow</span><span class="p">,</span> <span class="n">QVBoxLayout</span><span class="p">,</span> <span class="n">QTextBrowser</span><span class="p">,</span> <span class="n">QWidget</span>
 <span class="kn">from</span> <span class="nn">PySide6.QtGui</span> <span class="kn">import</span> <span class="n">QFont</span>
 
 <div class="viewcode-block" id="ArticleDialog">
 <a class="viewcode-back" href="../../../pages.Notes.html#pages.Notes.Dialog_article_view.ArticleDialog">[документация]</a>
-<span class="k">class</span> <span class="nc">ArticleDialog</span><span class="p">(</span><span class="n">QDialog</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Диалоговое окно для отображения статей&quot;&quot;&quot;</span>
+<span class="k">class</span> <span class="nc">ArticleDialog</span><span class="p">(</span><span class="n">QMainWindow</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Главное окно для отображения статей&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">content</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Инициализация диалогового окна для редактирования статьи.</span>
+<span class="sd">            Инициализация главного окна для редактирования статьи.</span>
 
 <span class="sd">            :arguments:</span>
 <span class="sd">                title (str): Заголовок статьи.</span>
@@ -87,15 +87,19 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setMinimumSize</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
-        <span class="n">layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">()</span>
+
+        <span class="n">central_widget</span> <span class="o">=</span> <span class="n">QWidget</span><span class="p">()</span>
+        <span class="n">layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">(</span><span class="n">central_widget</span><span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">text_browser</span> <span class="o">=</span> <span class="n">QTextBrowser</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">text_browser</span><span class="o">.</span><span class="n">setMarkdown</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+
         <span class="n">font</span> <span class="o">=</span> <span class="n">QFont</span><span class="p">()</span>
         <span class="n">font</span><span class="o">.</span><span class="n">setPointSize</span><span class="p">(</span><span class="mi">14</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">text_browser</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
+
         <span class="n">layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">text_browser</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setCentralWidget</span><span class="p">(</span><span class="n">central_widget</span><span class="p">)</span></div>
 
 </pre></div>
 

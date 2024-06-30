@@ -69,62 +69,12 @@
            <div itemprop="articleBody">
              
   <h1>Исходный код pages.Result.View_result</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">PySide6.QtWidgets</span> <span class="kn">import</span> <span class="n">QTableView</span><span class="p">,</span> <span class="n">QMessageBox</span>
-<span class="kn">from</span> <span class="nn">PySide6.QtWidgets</span> <span class="kn">import</span> <span class="n">QHeaderView</span>
-<span class="kn">from</span> <span class="nn">PySide6.QtCore</span> <span class="kn">import</span> <span class="n">Qt</span><span class="p">,</span> <span class="n">QRect</span><span class="p">,</span> <span class="n">QEvent</span><span class="p">,</span> <span class="n">QPoint</span>
-<span class="kn">from</span> <span class="nn">PySide6.QtWidgets</span> <span class="kn">import</span> <span class="n">QStyledItemDelegate</span><span class="p">,</span> <span class="n">QStyleOptionButton</span><span class="p">,</span> <span class="n">QStyle</span><span class="p">,</span> <span class="n">QTableView</span><span class="p">,</span> <span class="n">QHeaderView</span><span class="p">,</span> <span class="n">QApplication</span>
+<span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="kn">from</span> <span class="nn">PySide6.QtCore</span> <span class="kn">import</span> <span class="n">Qt</span><span class="p">,</span> <span class="n">QDateTime</span><span class="p">,</span> <span class="n">QDate</span><span class="p">,</span> <span class="n">QTime</span>
+<span class="kn">from</span> <span class="nn">PySide6.QtWidgets</span> <span class="kn">import</span> <span class="n">QDialog</span><span class="p">,</span> <span class="n">QVBoxLayout</span><span class="p">,</span> <span class="n">QMainWindow</span><span class="p">,</span> <span class="n">QWidget</span><span class="p">,</span> <span class="n">QTextEdit</span><span class="p">,</span> <span class="n">QApplication</span><span class="p">,</span> <span class="n">QTableView</span><span class="p">,</span> <span class="n">QHeaderView</span><span class="p">,</span> <span class="n">QApplication</span><span class="p">,</span> <span class="n">QMessageBox</span>
 
 <span class="kn">from</span> <span class="nn">pages.Result</span> <span class="kn">import</span> <span class="n">Model_result</span>
-
-<div class="viewcode-block" id="CheckBoxDelegate">
-<a class="viewcode-back" href="../../../pages.Result.html#pages.Result.View_result.CheckBoxDelegate">[документация]</a>
-<span class="k">class</span> <span class="nc">CheckBoxDelegate</span><span class="p">(</span><span class="n">QStyledItemDelegate</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">CheckBoxDelegate</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
-
-<div class="viewcode-block" id="CheckBoxDelegate.paint">
-<a class="viewcode-back" href="../../../pages.Result.html#pages.Result.View_result.CheckBoxDelegate.paint">[документация]</a>
-    <span class="k">def</span> <span class="nf">paint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">painter</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">index</span><span class="o">.</span><span class="n">column</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">checked</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">model</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">Qt</span><span class="o">.</span><span class="n">DisplayRole</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">checked</span><span class="p">:</span>
-                <span class="n">check_state</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">Checked</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">check_state</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">Unchecked</span>
-
-            <span class="n">check_box_style_option</span> <span class="o">=</span> <span class="n">QStyleOptionButton</span><span class="p">()</span>
-            <span class="n">check_box_style_option</span><span class="o">.</span><span class="n">state</span> <span class="o">|=</span> <span class="n">QStyle</span><span class="o">.</span><span class="n">State_Enabled</span>
-            <span class="k">if</span> <span class="n">check_state</span> <span class="o">==</span> <span class="n">Qt</span><span class="o">.</span><span class="n">Checked</span><span class="p">:</span>
-                <span class="n">check_box_style_option</span><span class="o">.</span><span class="n">state</span> <span class="o">|=</span> <span class="n">QStyle</span><span class="o">.</span><span class="n">State_On</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">check_box_style_option</span><span class="o">.</span><span class="n">state</span> <span class="o">|=</span> <span class="n">QStyle</span><span class="o">.</span><span class="n">State_Off</span>
-            <span class="n">check_box_style_option</span><span class="o">.</span><span class="n">rect</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getCheckBoxRect</span><span class="p">(</span><span class="n">option</span><span class="p">)</span>
-
-            <span class="n">QApplication</span><span class="o">.</span><span class="n">style</span><span class="p">()</span><span class="o">.</span><span class="n">drawControl</span><span class="p">(</span><span class="n">QStyle</span><span class="o">.</span><span class="n">CE_CheckBox</span><span class="p">,</span> <span class="n">check_box_style_option</span><span class="p">,</span> <span class="n">painter</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="nb">super</span><span class="p">(</span><span class="n">CheckBoxDelegate</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">paint</span><span class="p">(</span><span class="n">painter</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="CheckBoxDelegate.editorEvent">
-<a class="viewcode-back" href="../../../pages.Result.html#pages.Result.View_result.CheckBoxDelegate.editorEvent">[документация]</a>
-    <span class="k">def</span> <span class="nf">editorEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">index</span><span class="o">.</span><span class="n">column</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span><span class="p">()</span> <span class="ow">in</span> <span class="p">(</span><span class="n">QEvent</span><span class="o">.</span><span class="n">MouseButtonRelease</span><span class="p">,</span> <span class="n">QEvent</span><span class="o">.</span><span class="n">MouseButtonDblClick</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="p">()</span> <span class="o">==</span> <span class="n">Qt</span><span class="o">.</span><span class="n">LeftButton</span><span class="p">:</span>
-                <span class="n">new_value</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">model</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">Qt</span><span class="o">.</span><span class="n">DisplayRole</span><span class="p">)</span>
-                <span class="n">model</span><span class="o">.</span><span class="n">setData</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">new_value</span><span class="p">,</span> <span class="n">Qt</span><span class="o">.</span><span class="n">EditRole</span><span class="p">)</span>
-                <span class="k">return</span> <span class="kc">True</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">CheckBoxDelegate</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">editorEvent</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="CheckBoxDelegate.getCheckBoxRect">
-<a class="viewcode-back" href="../../../pages.Result.html#pages.Result.View_result.CheckBoxDelegate.getCheckBoxRect">[документация]</a>
-    <span class="k">def</span> <span class="nf">getCheckBoxRect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">option</span><span class="p">):</span>
-        <span class="n">check_box_style_option</span> <span class="o">=</span> <span class="n">QStyleOptionButton</span><span class="p">()</span>
-        <span class="n">check_box_rect</span> <span class="o">=</span> <span class="n">QApplication</span><span class="o">.</span><span class="n">style</span><span class="p">()</span><span class="o">.</span><span class="n">subElementRect</span><span class="p">(</span><span class="n">QStyle</span><span class="o">.</span><span class="n">SE_CheckBoxIndicator</span><span class="p">,</span> <span class="n">check_box_style_option</span><span class="p">)</span>
-        <span class="n">check_box_point</span> <span class="o">=</span> <span class="n">option</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">center</span><span class="p">()</span> <span class="o">-</span> <span class="n">QPoint</span><span class="p">(</span><span class="n">check_box_rect</span><span class="o">.</span><span class="n">width</span><span class="p">()</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">check_box_rect</span><span class="o">.</span><span class="n">height</span><span class="p">()</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">QRect</span><span class="p">(</span><span class="n">check_box_point</span><span class="p">,</span> <span class="n">check_box_rect</span><span class="o">.</span><span class="n">size</span><span class="p">())</span></div>
-</div>
-
 
 
 <div class="viewcode-block" id="CustomTableView">
@@ -137,15 +87,99 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">setSelectionMode</span><span class="p">(</span><span class="n">QTableView</span><span class="o">.</span><span class="n">SingleSelection</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">verticalHeader</span><span class="p">()</span><span class="o">.</span><span class="n">setVisible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">Model_result</span><span class="o">.</span><span class="n">ResultModel</span><span class="p">(</span><span class="s1">&#39;tests&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setModel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_result</span> <span class="o">=</span> <span class="n">Model_result</span><span class="o">.</span><span class="n">ResultModel</span><span class="p">(</span><span class="s1">&#39;tests&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setModel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_result</span><span class="p">)</span>
 
         <span class="n">header</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">horizontalHeader</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">columnCount</span><span class="p">()):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_result</span><span class="o">.</span><span class="n">columnCount</span><span class="p">()):</span>
             <span class="n">header</span><span class="o">.</span><span class="n">setSectionResizeMode</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">QHeaderView</span><span class="o">.</span><span class="n">Stretch</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">setItemDelegateForColumn</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">CheckBoxDelegate</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">doubleClicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">show_full_content</span><span class="p">)</span>
 
+<div class="viewcode-block" id="CustomTableView.set_model">
+<a class="viewcode-back" href="../../../pages.Result.html#pages.Result.View_result.CustomTableView.set_model">[документация]</a>
+    <span class="k">def</span> <span class="nf">set_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">               Устанавливает модель данных для таблицы.</span>
+
+<span class="sd">               :param model: Модель данных для установки.</span>
+<span class="sd">               :type model: QAbstractItemModel</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setModel</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="CustomTableView.show_full_content">
+<a class="viewcode-back" href="../../../pages.Result.html#pages.Result.View_result.CustomTableView.show_full_content">[документация]</a>
+    <span class="k">def</span> <span class="nf">show_full_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">               Отображает полное содержимое ячейки таблицы при двойном щелчке.</span>
+
+<span class="sd">               :param index: Индекс ячейки, на которую был сделан двойной щелчок.</span>
+<span class="sd">               :type index: QModelIndex</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">()</span>  <span class="c1"># Получаем текущую модель данных из QTableView</span>
+
+        <span class="k">if</span> <span class="n">index</span><span class="o">.</span><span class="n">isValid</span><span class="p">()</span> <span class="ow">and</span> <span class="n">model</span><span class="p">:</span>
+            <span class="n">row</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">row</span><span class="p">()</span>
+            <span class="n">column</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">column</span><span class="p">()</span>
+            <span class="n">model_index</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">model_index</span><span class="p">,</span> <span class="n">Qt</span><span class="o">.</span><span class="n">DisplayRole</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">QDateTime</span><span class="p">):</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">toString</span><span class="p">(</span><span class="s2">&quot;dd.MM.yyyy HH:mm&quot;</span><span class="p">)</span>
+
+            <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">display_full_content_dialog</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CustomTableView.display_full_content_dialog">
+<a class="viewcode-back" href="../../../pages.Result.html#pages.Result.View_result.CustomTableView.display_full_content_dialog">[документация]</a>
+    <span class="k">def</span> <span class="nf">display_full_content_dialog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">               Отображает диалоговое окно предпросмотра данных с заданным содержимым.</span>
+
+<span class="sd">               :param content: Содержимое данных для отображения в диалоговом окне.</span>
+<span class="sd">               :type content: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">dialog</span> <span class="o">=</span> <span class="n">PreviewWindow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+        <span class="n">dialog</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="PreviewWindow">
+<a class="viewcode-back" href="../../../pages.Result.html#pages.Result.View_result.PreviewWindow">[документация]</a>
+<span class="k">class</span> <span class="nc">PreviewWindow</span><span class="p">(</span><span class="n">QMainWindow</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Класс для предпросмотра текстовых данных в диалоговом окне.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">                Инициализация диалогового окна предпросмотра.</span>
+
+<span class="sd">                :param parent: Родительское окно (по умолчанию None).</span>
+<span class="sd">                :param content: Содержимое данных для отображения в окне.</span>
+<span class="sd">                :type content: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">PreviewWindow</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;Предпросмотр данных&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+
+        <span class="n">layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">()</span>
+        <span class="n">central_widget</span> <span class="o">=</span> <span class="n">QWidget</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">central_widget</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setCentralWidget</span><span class="p">(</span><span class="n">central_widget</span><span class="p">)</span>
+
+        <span class="n">text_edit</span> <span class="o">=</span> <span class="n">QTextEdit</span><span class="p">()</span>
+        <span class="n">text_edit</span><span class="o">.</span><span class="n">setReadOnly</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">formatted_content</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">n&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">text_edit</span><span class="o">.</span><span class="n">setPlainText</span><span class="p">(</span><span class="n">formatted_content</span><span class="p">)</span>
+
+        <span class="n">text_edit</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s2">&quot;QTextEdit { color: black; }&quot;</span><span class="p">)</span>
+
+        <span class="n">layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">text_edit</span><span class="p">)</span></div>
 
 </pre></div>
 

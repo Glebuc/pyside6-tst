@@ -6,6 +6,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase import pdfmetrics
 import re
 
+
 class PDFGenerator:
     def __init__(self, filename):
         self.filename = filename
@@ -14,18 +15,34 @@ class PDFGenerator:
         self.styles = getSampleStyleSheet()
         pdfmetrics.registerFont(TTFont('DejaVuSans', 'DejaVuSans.ttf'))
         self.styles.add(ParagraphStyle(name='TitleStyle', fontName='DejaVuSans', fontSize=24, leading=28, spaceAfter=20))
-        self.styles.add(ParagraphStyle(name='SubTitleStyle', fontName='DejaVuSans', fontSize=12, leading=22, spaceAfter=15))
-        self.styles.add(ParagraphStyle(name='ContentStyle', fontName='DejaVuSans', fontSize=14, leading=12, spaceAfter=5))
-        self.styles.add(ParagraphStyle(name='TestOutput', fontName='DejaVuSans', fontSize=7, leading=5, spaceAfter=5))
-        self.test_titles = []  # Список для хранения названий тестов
+        self.styles.add(ParagraphStyle(name='SubTitleStyle', fontName='DejaVuSans', fontSize=18, leading=22, spaceAfter=15))
+        self.styles.add(ParagraphStyle(name='ContentStyle', fontName='DejaVuSans', fontSize=14, leading=18, spaceAfter=10))
+        self.styles.add(ParagraphStyle(name='TestOutput', fontName='DejaVuSans', fontSize=10, leading=12, spaceAfter=5))
+        self.test_titles = []
 
     def create_title_page(self, title, subtitle):
+        """
+               Создает страницу заголовка с указанным заголовком и подзаголовком.
+
+               :param title: str
+                   Заголовок страницы.
+
+               :param subtitle: str
+                   Подзаголовок страницы.
+
+               :return: None
+        """
         self.elements.append(Paragraph(title, self.styles['TitleStyle']))
         self.elements.append(Paragraph(subtitle, self.styles['SubTitleStyle']))
-        self.elements.append(Spacer(1, 0.5 * inch))
+        self.elements.append(Spacer(1, 2 * inch))
         self.elements.append(PageBreak())
 
     def create_toc(self):
+        """
+                Создает страницу содержания (TOC) на основе заголовков тестов.
+
+                :return: None
+        """
         self.elements.append(Paragraph("Содержание отчета", self.styles['TitleStyle']))
         toc_data = []
         for i, title in enumerate(self.test_titles):
@@ -39,6 +56,17 @@ class PDFGenerator:
         self.elements.append(PageBreak())
 
     def create_test_result_page(self, test, index):
+        """
+               Создает страницу с результатами конкретного теста.
+
+               :param test: dict
+                   Словарь с информацией о тесте.
+
+               :param index: int
+                   Индекс теста в общем списке тестов.
+
+               :return: None
+        """
         self.elements.append(Spacer(1, 1 * inch))
         test_name = test.get('test_name', 'Unknown Test')
         self.elements.append(Paragraph(f'<a name="{index}"/>Название теста: {test_name}', self.styles['ContentStyle']))
@@ -53,9 +81,23 @@ class PDFGenerator:
         self.elements.append(PageBreak())
 
     def generate(self, title, subtitle, test_results):
+        """
+               Генерирует PDF-отчет с заданным заголовком, подзаголовком и результатами тестов.
+
+               :param title: str
+                   Заголовок отчета.
+
+               :param subtitle: str
+                   Подзаголовок отчета.
+
+               :param test_results: list
+                   Список словарей с информацией о результатах тестов.
+
+               :return: None
+        """
         self.create_title_page(title, subtitle)
-        self.test_titles = [test['test_name'] for test in test_results]  # Собрать названия тестов
-        self.create_toc()  # Создать содержание
+        self.test_titles = [test['test_name'] for test in test_results]
+        self.create_toc()
         for index, test in enumerate(test_results):
             self.create_test_result_page(test, index)
         self.document.build(self.elements)

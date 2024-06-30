@@ -26,29 +26,13 @@ from typing import List
 
 from loger import Logger
 from Application import Application
-from pages.Chart import DialogsChart
-from pages.Chart.Chart_view import LineChart, BarChart
-from ui_modules import *
-from pages import (BaseModel,
-                   Model_result,
-                   Save_data,
-                   View_result,
-                   Dialog_change_view,
-                   DialogsSetting,
-                   DialogsResult,
-                   Chart_view,
-                   Model_chart,
-                   Dialog_add_topic,
-                   Dialog_add_note,
-                   Model_notes,
-                   Dialog_article_view,
-                   Dialog_edit_note,
-                   Dialog_edit_topic,
-                   Dialog_test_params,
-                   Parser_json,
-                   PDFGenerator)
-from SettingApp import AppSettings
+from pages import CustomTableView, ResultModel, NoteModel, ChartModel, LineChart, save_data_to_csv, \
+    ColumnSelectionDialog, ArticleDialog, DialogAddTopic, DialogAddNote, DialogConfigDB, DialogKey, EditNoteDialog, \
+    EditTopicDialog, TestParamsDialog, DialogChart, PDFGenerator, JSONParser, DialogExtensionSearch
 
+
+from ui_modules import *
+from SettingApp import AppSettings
 from utils import get_translate_path, get_themes_path
 from ui_modules import Ui_MainWindow
 
@@ -73,13 +57,16 @@ class MainWindow(QMainWindow):
         title = "Aramid TsT Graph"
         self.setWindowTitle(title)
 
+
         # self.controller_setting = Controller_setting.ControllerSettings()
 
-        self.tableView = View_result.CustomTableView()
+        self.tableView = CustomTableView()
         widgets.verticalLayout_20.replaceWidget(widgets.resultView, self.tableView)
-        self.model_result = Model_result.ResultModel('tests')
-        self.model_chart = Model_chart.ChartModel('tests')
-        self.note_model = Model_notes.NoteModel('sections')
+        self.model_result = ResultModel('tests')
+        self.model_chart = ChartModel('tests')
+        self.note_model = NoteModel('sections')
+
+        self.update_combo_box_test()
 
         widgets.btn_change_view.clicked.connect(self.open_column_selection_dialog)
         setting = AppSettings.get_instance()
@@ -88,7 +75,7 @@ class MainWindow(QMainWindow):
 
 
         # Создаем виджет для отображения столбчатой диаграммы
-        test_chart = BarChart()
+        test_chart = LineChart("HPL")
 
         widgets.treeWidget.setStyleSheet("QTreeView { font-family: Arial; font-size: 16px; }")
 
@@ -102,9 +89,7 @@ class MainWindow(QMainWindow):
         widgets.graphicsView.setChart(test_chart)
 
 
-        for i in self.model_result.execute_sql(self.model_result.LIST_TEST_SQL):
-            widgets.list_test_result.addItem(i)
-            widgets.list_test_chart.addItem(i)
+
 
         test_name =  widgets.list_test_chart.currentText()
 
@@ -115,7 +100,7 @@ class MainWindow(QMainWindow):
 
         widgets.list_test_chart.activated.connect(self.set_param_test_for_chart)
 
-        widgets.btn_save_view.clicked.connect(lambda: Save_data.save_data_to_csv(self.tableView))
+        widgets.btn_save_view.clicked.connect(lambda: save_data_to_csv(self.tableView))
         widgets.toggleButton.clicked.connect(lambda: UIFunctions.toggleMenu(self, True))
 
 
@@ -159,13 +144,29 @@ class MainWindow(QMainWindow):
         record = self.model_result.record()
         column_names = [record.fieldName(i) for i in range(record.count())]
 
-        self.column_selection_dialog = Dialog_change_view.ColumnSelectionDialog(column_names)
+        self.column_selection_dialog = ColumnSelectionDialog(column_names)
 
         # словарь для хранения состояний флажков
         self.checkbox_dict = {}
         self.populate_tree_widget()
 
+    def update_combo_box_test(self):
+        """
+            Обновляет элементы в выпадающих списках результатов тестов и графиков тестов.
+
+            :returns: None
+        """
+        for i in self.model_result.execute_sql(self.model_result.LIST_TEST_SQL):
+            widgets.list_test_result.addItem(i)
+            widgets.list_test_chart.addItem(i)
+
     def get_text_from_language_box(self) -> str:
+        """
+           Получает текущий выбранный текст из выпадающего списка языков.
+
+           :returns: str
+               Возвращает строку с текущим выбранным текстом из comboBox_language.
+        """
         return self.ui.comboBox_language.currentText()
 
     def set_combo_value(self, comboBox, possible_values: List) -> None:
@@ -252,6 +253,7 @@ class MainWindow(QMainWindow):
             json_data = self.read_json_file(file)
             test_results = self.parse_json(json_data)
             if test_results:
+                self.insert_test_results(test_results)
                 self.prompt_generate_report(file, test_results)
 
     def open_dialog_for_import_data(self) -> List[str]:
@@ -280,7 +282,7 @@ class MainWindow(QMainWindow):
         :param json_data: JSON-данные в виде строки.
         :return: Список результатов тестов.
         """
-        parser = Parser_json.JSONParser(json_data)
+        parser = JSONParser(json_data)
         return parser.parse()
 
     def insert_test_results(self, test_results: List[dict]) -> None:
@@ -301,6 +303,7 @@ class MainWindow(QMainWindow):
 
             success = self.model_result.insert_data(test_name, start_test, test_param_str, test_result, machine,
                                                     version_os)
+            self.update_combo_box_test()
             self.model_result.select_all_data()
             self.tableView.setModel(self.model_result)
             if not success:
@@ -331,7 +334,7 @@ class MainWindow(QMainWindow):
             default_name_report = f"Отчет_тестирования_{datetime.datetime.now().strftime('%Y-%m-%d-%H-%M')}"
             save_path, _ = QFileDialog.getSaveFileName(self, "Сохранить отчет как", default_name_report, "PDF Files (*.pdf)")
             if save_path:
-                pdf_generator = PDFGenerator.PDFGenerator(save_path)
+                pdf_generator = PDFGenerator(save_path)
                 pdf_generator.generate("Отчёт о тестировании", f"Тесты запущены на {test_results[0]['cluster_name']}",
                                        test_results)
                 print(f"PDF создан: {save_path}")
@@ -427,16 +430,17 @@ class MainWindow(QMainWindow):
                     print('Вы выбрали "Нет".')
 
     def dialog_chart(self):
-        dialog = DialogsChart.DialogChart()
+        dialog = DialogChart()
         dialog.exec()
 
 
     def dialog_test_params(self) -> None:
         """
+        Открывает диалоговое окно для просмотра и редактирования параметров теста.
 
-        :return:
+        :returns: None
         """
-        dialog = Dialog_test_params.TestParamsDialog(self.get_text_from_language_box())
+        dialog = TestParamsDialog(self.get_text_from_language_box())
         dialog.exec()
         if not dialog.isVisible():
             self.log.log_info("Открыто диалоговое окно для просмотра и редактирования параметров")
@@ -451,7 +455,7 @@ class MainWindow(QMainWindow):
                 title (str): Заголовок статьи.
 
         """
-        dialog = Dialog_edit_topic.EditTopicDialog(title, self.get_text_from_language_box())
+        dialog = EditTopicDialog(title, self.get_text_from_language_box())
         if not dialog.isVisible():
             self.log.log_info("Открыто диалоговое окно для редактирования раздела")
             if dialog.exec() == QDialog.Accepted:
@@ -461,7 +465,20 @@ class MainWindow(QMainWindow):
             self.log.log_error("Ошибка открытия диалогового окна для редактирования раздела")
 
     def dialog_edit_content_article(self, title, content):
-        dialog = Dialog_edit_note.EditNoteDialog(title, content, self.get_text_from_language_box())
+        """
+           Открывает диалоговое окно для редактирования содержимого статьи и обновляет представление при подтверждении изменений.
+
+           :param title: Заголовок статьи для редактирования.
+           :type title: str
+           :param content: Текущее содержимое статьи для редактирования.
+           :type content: str
+
+           :returns: None
+
+           :raises:
+               Логирует информацию и ошибки при открытии диалогового окна и подтверждении изменений.
+        """
+        dialog = EditNoteDialog(title, content, self.get_text_from_language_box())
         if not dialog.isVisible():
             self.log.log_info("Открыто диалоговое окно для редактирования статьи")
             if dialog.exec() == QDialog.Accepted:
@@ -489,7 +506,7 @@ class MainWindow(QMainWindow):
             # Получаем данные о статье из базы данных
             article_data = self.note_model.get_article_data(item_text)
             if article_data:
-                self.dialog_view_note = Dialog_article_view.ArticleDialog(article_data["title"], article_data["content"])
+                self.dialog_view_note = ArticleDialog(article_data["title"], article_data["content"])
                 self.dialog_view_note.show()
                 self.dialog_view_note.closeEvent = self.handle_dialog_close
         else:
@@ -652,7 +669,7 @@ class MainWindow(QMainWindow):
             :return:
                 None
         """
-        dialog = Dialog_add_topic.DialogAddTopic(self.get_text_from_language_box())
+        dialog = DialogAddTopic(self.get_text_from_language_box())
         if not dialog.isVisible():
             self.log.log_info("Открыто диалоговое окно для добавления раздела")
             if dialog.exec() == QDialog.Accepted:
@@ -668,7 +685,7 @@ class MainWindow(QMainWindow):
         :return:
             None
         """
-        self.dialog_add_note = Dialog_add_note.DialogAddNote(self.get_text_from_language_box())
+        self.dialog_add_note = DialogAddNote(self.get_text_from_language_box())
         self.dialog_add_note.show()
 
         self.dialog_add_note.closeEvent = self.handle_dialog_close
@@ -691,7 +708,7 @@ class MainWindow(QMainWindow):
             :return:
                 None
         """
-        dialog = DialogsSetting.DialogConfigDB(self)
+        dialog = DialogConfigDB(self)
         if not dialog.isVisible():
             self.log.log_info("Открыто диалоговое окно с кофигом БД")
         if dialog.exec() == QDialog.Accepted:
@@ -705,17 +722,17 @@ class MainWindow(QMainWindow):
             :return:
                     None
         """
-        dialog = DialogsSetting.DialogKey(self)
+        dialog = DialogKey(self)
         if not dialog.isVisible():
             self.log.log_info("Открыто диалоговое окно с горячими клавишами")
         dialog.exec()
 
     def open_dialog_extension_search(self):
-        dialog = DialogsResult.DialogExtensionSearch(self)
+        dialog = DialogExtensionSearch(self)
         if dialog.exec() == QDialog.Accepted:
             test_data, machine_data, version_os_data, param_test, start_date, end_date = dialog.get_filter_parameters()
-            self.model_result.apply_filter(self.tableView, test_data, machine_data, version_os_data, param_test,
-                                           start_date, end_date)
+            self.model_result.apply_filter(self.tableView, test_data, machine_data, version_os_data, param_test, start_date, end_date)
+
 
 
 

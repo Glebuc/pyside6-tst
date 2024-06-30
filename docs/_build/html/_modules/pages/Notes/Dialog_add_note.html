@@ -69,16 +69,15 @@
            <div itemprop="articleBody">
              
   <h1>Исходный код pages.Notes.Dialog_add_note</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">PySide6.QtWidgets</span> <span class="kn">import</span> <span class="n">QApplication</span><span class="p">,</span> <span class="n">QDialog</span><span class="p">,</span> <span class="n">QVBoxLayout</span><span class="p">,</span> <span class="n">QLabel</span><span class="p">,</span> <span class="n">QComboBox</span><span class="p">,</span> <span class="n">QTextEdit</span><span class="p">,</span> <span class="n">QPushButton</span><span class="p">,</span>\
-    <span class="n">QLineEdit</span><span class="p">,</span> <span class="n">QMessageBox</span><span class="p">,</span> <span class="n">QTabWidget</span>
-
+<span></span><span class="kn">from</span> <span class="nn">PySide6.QtWidgets</span> <span class="kn">import</span> <span class="n">QApplication</span><span class="p">,</span> <span class="n">QMainWindow</span><span class="p">,</span> <span class="n">QVBoxLayout</span><span class="p">,</span> <span class="n">QLabel</span><span class="p">,</span> <span class="n">QComboBox</span><span class="p">,</span> <span class="n">QTextEdit</span><span class="p">,</span> <span class="n">QPushButton</span><span class="p">,</span> \
+    <span class="n">QLineEdit</span><span class="p">,</span> <span class="n">QMessageBox</span><span class="p">,</span> <span class="n">QTabWidget</span><span class="p">,</span> <span class="n">QWidget</span>
 
 <span class="kn">from</span> <span class="nn">.Model_notes</span> <span class="kn">import</span> <span class="n">NoteModel</span>
 
 
 <div class="viewcode-block" id="DialogAddNote">
 <a class="viewcode-back" href="../../../pages.Notes.html#pages.Notes.Dialog_add_note.DialogAddNote">[документация]</a>
-<span class="k">class</span> <span class="nc">DialogAddNote</span><span class="p">(</span><span class="n">QDialog</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">DialogAddNote</span><span class="p">(</span><span class="n">QMainWindow</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
@@ -131,7 +130,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">note_model</span> <span class="o">=</span> <span class="n">NoteModel</span><span class="p">(</span><span class="s2">&quot;sections&quot;</span><span class="p">)</span>
-        <span class="n">layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="n">central_widget</span> <span class="o">=</span> <span class="n">QWidget</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setCentralWidget</span><span class="p">(</span><span class="n">central_widget</span><span class="p">)</span>
+        <span class="n">layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">(</span><span class="n">central_widget</span><span class="p">)</span>
 
         <span class="c1"># Создание и добавление метки выбора раздела</span>
         <span class="n">select_label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">language</span><span class="p">][</span><span class="s2">&quot;select_label_text&quot;</span><span class="p">],</span> <span class="bp">self</span><span class="p">)</span>
@@ -176,6 +178,14 @@
 <div class="viewcode-block" id="DialogAddNote.current_text_changed">
 <a class="viewcode-back" href="../../../pages.Notes.html#pages.Notes.Dialog_add_note.DialogAddNote.current_text_changed">[документация]</a>
     <span class="k">def</span> <span class="nf">current_text_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">           Обработчик события изменения текста в текстовом редакторе.</span>
+
+<span class="sd">           Извлекает текст из текстового редактора `self.text_edit` и устанавливает его в виджет `self.view_text_edit`,</span>
+<span class="sd">           который отображает текст в формате Markdown.</span>
+
+<span class="sd">           :return: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">text_edit</span><span class="o">.</span><span class="n">toPlainText</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">view_text_edit</span><span class="o">.</span><span class="n">setMarkdown</span><span class="p">(</span><span class="n">text</span><span class="p">)</span></div>
 
@@ -217,8 +227,6 @@
             <span class="k">return</span> <span class="n">title</span></div>
 
 
-
-
 <div class="viewcode-block" id="DialogAddNote.publish_article">
 <a class="viewcode-back" href="../../../pages.Notes.html#pages.Notes.Dialog_add_note.DialogAddNote.publish_article">[документация]</a>
     <span class="k">def</span> <span class="nf">publish_article</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -236,12 +244,7 @@
 
         <span class="k">if</span> <span class="n">section</span> <span class="ow">and</span> <span class="n">title</span> <span class="ow">and</span> <span class="n">text</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">note_model</span><span class="o">.</span><span class="n">add_note</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">section</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
-                <span class="n">QMessageBox</span><span class="o">.</span><span class="n">information</span><span class="p">(</span>
-                    <span class="bp">self</span><span class="p">,</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">language</span><span class="p">][</span><span class="s2">&quot;info_title&quot;</span><span class="p">],</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">language</span><span class="p">][</span><span class="s2">&quot;info_message&quot;</span><span class="p">]</span>
-                <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">statusBar</span><span class="p">()</span><span class="o">.</span><span class="n">showMessage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">language</span><span class="p">][</span><span class="s2">&quot;info_message&quot;</span><span class="p">],</span> <span class="mi">5000</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">QMessageBox</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
                     <span class="bp">self</span><span class="p">,</span>
@@ -255,7 +258,6 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">language</span><span class="p">][</span><span class="s2">&quot;warning_fill_fields&quot;</span><span class="p">]</span>
             <span class="p">)</span></div>
 </div>
-
 
 </pre></div>
 

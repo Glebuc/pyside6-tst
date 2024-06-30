@@ -24,9 +24,21 @@ class CustomTableView(QTableView):
         self.doubleClicked.connect(self.show_full_content)
 
     def set_model(self, model):
+        """
+               Устанавливает модель данных для таблицы.
+
+               :param model: Модель данных для установки.
+               :type model: QAbstractItemModel
+        """
         self.setModel()
 
     def show_full_content(self, index):
+        """
+               Отображает полное содержимое ячейки таблицы при двойном щелчке.
+
+               :param index: Индекс ячейки, на которую был сделан двойной щелчок.
+               :type index: QModelIndex
+        """
         model = self.model()  # Получаем текущую модель данных из QTableView
 
         if index.isValid() and model:
@@ -38,22 +50,34 @@ class CustomTableView(QTableView):
             if isinstance(data, QDateTime):
                 data = data.toString("dd.MM.yyyy HH:mm")
 
-            # if isinstance(data, QDateTime):
-            #     data = data.toString(Qt.ISODate)  # Или другой нужный вам формат
-
-                # Конвертация данных в строку, если это необходимо
             elif not isinstance(data, str):
                 data = str(data)
 
             self.display_full_content_dialog(data)
 
     def display_full_content_dialog(self, content):
+        """
+               Отображает диалоговое окно предпросмотра данных с заданным содержимым.
+
+               :param content: Содержимое данных для отображения в диалоговом окне.
+               :type content: str
+        """
         dialog = PreviewWindow(self, content)
         dialog.show()
 
 
 class PreviewWindow(QMainWindow):
+    """
+        Класс для предпросмотра текстовых данных в диалоговом окне.
+    """
     def __init__(self, parent=None, content=''):
+        """
+                Инициализация диалогового окна предпросмотра.
+
+                :param parent: Родительское окно (по умолчанию None).
+                :param content: Содержимое данных для отображения в окне.
+                :type content: str
+        """
         super(PreviewWindow, self).__init__(parent)
         self.setWindowTitle("Предпросмотр данных")
         self.resize(600, 400)
@@ -65,7 +89,8 @@ class PreviewWindow(QMainWindow):
 
         text_edit = QTextEdit()
         text_edit.setReadOnly(True)
-        text_edit.setPlainText(content)
+        formatted_content = content.replace('\\n', '\n')
+        text_edit.setPlainText(formatted_content)
 
         text_edit.setStyleSheet("QTextEdit { color: black; }")
 

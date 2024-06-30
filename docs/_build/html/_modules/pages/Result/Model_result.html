@@ -71,6 +71,7 @@
   <h1>Исходный код pages.Result.Model_result</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">PySide6.QtSql</span> <span class="kn">import</span> <span class="n">QSqlDatabase</span><span class="p">,</span> <span class="n">QSqlQuery</span><span class="p">,</span> <span class="n">QSqlTableModel</span><span class="p">,</span> <span class="n">QSqlQueryModel</span>
 <span class="kn">from</span> <span class="nn">PySide6.QtWidgets</span> <span class="kn">import</span> <span class="n">QTableView</span><span class="p">,</span> <span class="n">QComboBox</span><span class="p">,</span> <span class="n">QMessageBox</span>
+<span class="kn">from</span> <span class="nn">PySide6.QtCore</span> <span class="kn">import</span> <span class="n">Qt</span><span class="p">,</span> <span class="n">QDateTime</span><span class="p">,</span> <span class="n">QDate</span><span class="p">,</span> <span class="n">QTime</span>
 
 <span class="kn">from</span> <span class="nn">..BaseModel</span> <span class="kn">import</span> <span class="n">BaseModel</span>
 
@@ -79,11 +80,77 @@
 <a class="viewcode-back" href="../../../pages.Result.html#pages.Result.Model_result.ResultModel">[документация]</a>
 <span class="k">class</span> <span class="nc">ResultModel</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Модель для страницы результатов и манипулирования табличными значением&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">table_name</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">displayed_columns</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">visible_columns</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">LIST_TEST_SQL</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">          SELECT test_name FROM tests GROUP BY test_name;</span>
+<span class="s2">      &quot;&quot;&quot;</span>
+    <span class="n">LIST_MACHINE_SQL</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">              SELECT machine FROM tests GROUP BY machine;</span>
+<span class="s2">          &quot;&quot;&quot;</span>
+    <span class="n">LIST_OS_VERSION_SQL</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                  SELECT version_os FROM tests GROUP BY version_os;</span>
+<span class="s2">              &quot;&quot;&quot;</span>
+    <span class="n">MAX_DATE_SQL</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">          SELECT MAX(start_test) FROM tests;</span>
+<span class="s2">      &quot;&quot;&quot;</span>
+    <span class="n">MIN_DATE_SQL</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">          SELECT MIN(start_test) FROM tests;</span>
+<span class="s2">      &quot;&quot;&quot;</span>
+
+    <span class="n">_instance</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_instance</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">_instance</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">ResultModel</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">_instance</span><span class="o">.</span><span class="n">_initialized</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_instance</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_initialized</span><span class="p">:</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">table_name</span><span class="p">)</span>  <span class="c1"># Вызов __init__ базового класса</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">displayed_columns</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">visible_columns</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_initialized</span> <span class="o">=</span> <span class="kc">True</span>
+
+<div class="viewcode-block" id="ResultModel.data">
+<a class="viewcode-back" href="../../../pages.Result.html#pages.Result.Model_result.ResultModel.data">[документация]</a>
+    <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="n">Qt</span><span class="o">.</span><span class="n">DisplayRole</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">          Возвращает данные, отображаемые в ячейке, соответствующие указанному индексу и роли.</span>
+
+<span class="sd">          :param index: QModelIndex</span>
+<span class="sd">              Индекс элемента в модели данных.</span>
+
+<span class="sd">          :param role: int</span>
+<span class="sd">              Роль данных в модели (по умолчанию Qt.DisplayRole).</span>
+
+<span class="sd">          :return: QVariant</span>
+<span class="sd">              Возвращает отформатированное представление данных в соответствии с ролью:</span>
+<span class="sd">              - Если role == Qt.DisplayRole:</span>
+<span class="sd">                  - QDateTime преобразуется в строку формата &quot;dd.MM.yyyy HH:mm&quot;.</span>
+<span class="sd">                  - QDate преобразуется в строку формата &quot;dd.MM.yyyy&quot;.</span>
+<span class="sd">                  - QTime преобразуется в строку формата &quot;HH:mm&quot;.</span>
+<span class="sd">              - В остальных случаях возвращает данные, полученные от базового класса.</span>
+<span class="sd">          &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">role</span> <span class="o">==</span> <span class="n">Qt</span><span class="o">.</span><span class="n">DisplayRole</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">ResultModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">role</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">QDateTime</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">value</span><span class="o">.</span><span class="n">toString</span><span class="p">(</span><span class="s2">&quot;dd.MM.yyyy HH:mm&quot;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">QDate</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">value</span><span class="o">.</span><span class="n">toString</span><span class="p">(</span><span class="s2">&quot;dd.MM.yyyy&quot;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">QTime</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">value</span><span class="o">.</span><span class="n">toString</span><span class="p">(</span><span class="s2">&quot;HH:mm&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">ResultModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">role</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ResultModel.select_all_test_parametrs">
+<a class="viewcode-back" href="../../../pages.Result.html#pages.Result.Model_result.ResultModel.select_all_test_parametrs">[документация]</a>
+    <span class="k">def</span> <span class="nf">select_all_test_parametrs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Запрос к БД для получения всех параметров из таблицы test_params</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setQuery</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;&quot;&quot;&quot;</span><span class="p">)</span></div>
+
 
 <div class="viewcode-block" id="ResultModel.select_all_data">
 <a class="viewcode-back" href="../../../pages.Result.html#pages.Result.Model_result.ResultModel.select_all_data">[документация]</a>
@@ -134,7 +201,6 @@
         <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:test_result&quot;</span><span class="p">,</span> <span class="n">test_result</span><span class="p">)</span>
         <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:machine&quot;</span><span class="p">,</span> <span class="n">machine</span><span class="p">)</span>
         <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:version_os&quot;</span><span class="p">,</span> <span class="n">version_os</span><span class="p">)</span>
-
         <span class="k">if</span> <span class="ow">not</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">lastQuery</span><span class="p">())</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ошибка при вставке данных: </span><span class="si">{</span><span class="n">query</span><span class="o">.</span><span class="n">lastError</span><span class="p">()</span><span class="o">.</span><span class="n">text</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -145,50 +211,63 @@
 
 <div class="viewcode-block" id="ResultModel.apply_filter">
 <a class="viewcode-back" href="../../../pages.Result.html#pages.Result.Model_result.ResultModel.apply_filter">[документация]</a>
-    <span class="k">def</span> <span class="nf">apply_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_view</span><span class="p">:</span> <span class="n">QTableView</span><span class="p">,</span>  <span class="n">test_data</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">user_data</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-                     <span class="n">param_test</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">start_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">apply_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_view</span><span class="p">:</span> <span class="n">QTableView</span><span class="p">,</span> <span class="n">test_data</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">machine_data</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">version_os_data</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                     <span class="n">param_test</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">start_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Применяет фильтр к данным и обновляет модель представления таблицы.</span>
+<span class="sd">        Применяет фильтр к данным и обновляет модель представления таблицы.</span>
 
-<span class="sd">            :arguments:</span>
-<span class="sd">                table_view (QTableView): Представление таблицы, к которому будет применен фильтр.</span>
-<span class="sd">                test_data (str): Выбранные тесты для фильтрации.</span>
-<span class="sd">                user_data (str): Выбранные пользователи для фильтрации.</span>
-<span class="sd">                param_test (str): Выбранные параметры тестов для фильтрации.</span>
-<span class="sd">                start_date (str): Начальная дата для фильтрации по дате теста.</span>
-<span class="sd">                end_date (str): Конечная дата для фильтрации по дате теста.</span>
+<span class="sd">        :arguments:</span>
+<span class="sd">            table_view (QTableView): Представление таблицы, к которому будет применен фильтр.</span>
+<span class="sd">            test_data (str): Выбранные тесты для фильтрации.</span>
+<span class="sd">            machine_data (str): Выбранные машины для фильтрации.</span>
+<span class="sd">            version_os_data (str): Выбранные версии ОС для фильтрации.</span>
+<span class="sd">            param_test (str): Выбранные параметры тестов для фильтрации.</span>
+<span class="sd">            start_date (str): Начальная дата для фильтрации по дате теста.</span>
+<span class="sd">            end_date (str): Конечная дата для фильтрации по дате теста.</span>
 
-<span class="sd">            :returns:</span>
-<span class="sd">                None</span>
-
-<span class="sd">            &quot;&quot;&quot;</span>
+<span class="sd">        :returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">filters</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">if</span> <span class="n">test_data</span> <span class="o">!=</span> <span class="s2">&quot;Все тесты&quot;</span> <span class="ow">and</span> <span class="n">test_data</span> <span class="o">!=</span> <span class="s2">&quot;All tests&quot;</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="n">test_data</span> <span class="ow">and</span> <span class="n">test_data</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;Все тесты&quot;</span><span class="p">,</span> <span class="s2">&quot;All tests&quot;</span><span class="p">]:</span>
             <span class="n">filters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;test_name = &#39;</span><span class="si">{</span><span class="n">test_data</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">user_data</span> <span class="o">!=</span> <span class="s2">&quot;Все пользователи&quot;</span> <span class="ow">and</span> <span class="n">user_data</span> <span class="o">!=</span> <span class="s2">&quot;All users&quot;</span><span class="p">:</span>
-            <span class="n">filters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;user_name = &#39;</span><span class="si">{</span><span class="n">user_data</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">machine_data</span> <span class="ow">and</span> <span class="n">machine_data</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;Все машины&quot;</span><span class="p">,</span> <span class="s2">&quot;All machines&quot;</span><span class="p">]:</span>
+            <span class="n">filters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;machine = &#39;</span><span class="si">{</span><span class="n">machine_data</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">version_os_data</span> <span class="ow">and</span> <span class="n">version_os_data</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;Все версии&quot;</span><span class="p">,</span> <span class="s2">&quot;All OS versions&quot;</span><span class="p">]:</span>
+            <span class="n">filters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;version_os = &#39;</span><span class="si">{</span><span class="n">version_os_data</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">param_test</span><span class="p">:</span>
             <span class="n">filters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;test_param = &#39;</span><span class="si">{</span><span class="n">param_test</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">start_date</span> <span class="ow">and</span> <span class="n">end_date</span><span class="p">:</span>
             <span class="n">filters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;start_test BETWEEN &#39;</span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s2">&#39; AND &#39;</span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+
         <span class="n">where_clause</span> <span class="o">=</span> <span class="s2">&quot; AND &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">filters</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">where_clause</span><span class="p">:</span>
             <span class="n">where_clause</span> <span class="o">=</span> <span class="s2">&quot;WHERE &quot;</span> <span class="o">+</span> <span class="n">where_clause</span>
-        <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot; SELECT t.test_name,</span>
-<span class="s2">                            t.test_param,</span>
-<span class="s2">                            t.time_test,</span>
-<span class="s2">                            t.test_result,</span>
-<span class="s2">                            t.start_test</span>
-<span class="s2">                       FROM tests as t</span>
-<span class="s2">                        </span><span class="si">{</span><span class="n">where_clause</span><span class="si">}</span><span class="s2">&quot;&quot;&quot;</span>
+
+        <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">           SELECT  t.test_name AS Название, </span>
+<span class="s2">                            t.test_param AS Параметры, </span>
+<span class="s2">                            t.time_test AS &quot;Время выполнения&quot;, </span>
+<span class="s2">                            t.test_result AS Результат, </span>
+<span class="s2">                            t.start_test AS &quot;Дата выполнения&quot;,</span>
+<span class="s2">                            t.version_os AS &quot;Версия ОС&quot;,</span>
+<span class="s2">                            t.machine AS &quot;Выч. система&quot;</span>
+<span class="s2">           FROM tests AS t</span>
+<span class="s2">           </span><span class="si">{</span><span class="n">where_clause</span><span class="si">}</span>
+<span class="s2">           &quot;&quot;&quot;</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">setQuery</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="n">query_str</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rowCount</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="c1"># Если строк нет, выводим предупреждение</span>
             <span class="n">QMessageBox</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;Предупреждение&quot;</span><span class="p">,</span> <span class="s2">&quot;Нет данных, удовлетворяющих условиям запроса.&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">last_query</span> <span class="o">=</span> <span class="n">query_str</span><span class="o">.</span><span class="n">lastQuery</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">last_query</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">setQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ALL_RESULT_SQL</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># Если нет ни одного условия, выводим предупреждение</span>
-            <span class="n">QMessageBox</span><span class="o">.</span><span class="n">information</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;Данные были изменены&quot;</span><span class="p">,</span> <span class="s2">&quot;Данные в таблице  отфильтрованы&quot;</span><span class="p">)</span>
+            <span class="n">QMessageBox</span><span class="o">.</span><span class="n">information</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;Данные были изменены&quot;</span><span class="p">,</span> <span class="s2">&quot;Данные в таблице отфильтрованы&quot;</span><span class="p">)</span>
+
         <span class="n">table_view</span><span class="o">.</span><span class="n">setModel</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
 
@@ -206,7 +285,6 @@
 <span class="sd">                None</span>
 <span class="sd">            &quot;&quot;&quot;</span>
         <span class="n">selected_option</span> <span class="o">=</span> <span class="n">combo_box</span><span class="o">.</span><span class="n">currentText</span><span class="p">()</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">selected_option</span><span class="p">)</span>
         <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">selected_option</span> <span class="o">==</span> <span class="s2">&quot;Все тесты&quot;</span> <span class="ow">or</span> <span class="n">selected_option</span> <span class="o">==</span> <span class="s2">&quot;All tests&quot;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">setQuery</span><span class="p">(</span><span class="n">QSqlQuery</span><span class="p">(</span><span class="n">BaseModel</span><span class="o">.</span><span class="n">ALL_RESULT_SQL</span><span class="p">))</span>
@@ -239,7 +317,6 @@
 <span class="s2">                               &quot;&quot;&quot;</span><span class="p">)</span>
             <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:selected_option&quot;</span><span class="p">,</span> <span class="n">selected_option</span><span class="p">)</span>
             <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">lastQuery</span><span class="p">())</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">setQuery</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
         <span class="n">table_view</span><span class="o">.</span><span class="n">setModel</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 </div>

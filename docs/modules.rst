@@ -5,11 +5,11 @@
    :maxdepth: 4
 
    Application
-   Mainwindow
    SettingApp
    loger
    main
    pages
+   parsers
    setup
    ui_modules
    utils

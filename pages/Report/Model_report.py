@@ -62,6 +62,14 @@ class ReportModel(BaseModel):
         return True
 
     def select_all_report(self) -> List:
+        """
+               Выполняет SQL-запрос для выбора всех отчетов из базы данных и возвращает их в виде списка словарей.
+
+               :return: List[dict]
+                   Список словарей с информацией об отчетах. Каждый словарь содержит ключи:
+                   - "title": str, заголовок отчета
+                   - "date": str, дата формирования отчета в формате "yyyy-MM-dd"
+        """
         query = QSqlQuery("SELECT title_report, forming_report FROM sections")
         reports = []
         while query.next():
@@ -73,5 +81,10 @@ class ReportModel(BaseModel):
         return reports
 
     def delete_all_report(self):
+        """
+               Выполняет SQL-запрос для удаления всех отчетов из базы данных.
+
+               :return: None
+        """
         query = QSqlQuery()
         query.prepare(self.TRUNCATE_DATA_REPORT)

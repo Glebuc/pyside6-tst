@@ -71,15 +71,59 @@
   <h1>Исходный код pages.Chart.Chart_view</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">PySide6.QtCore</span> <span class="kn">import</span> <span class="n">Qt</span><span class="p">,</span> <span class="n">QDateTime</span>
 <span class="kn">from</span> <span class="nn">PySide6.QtWidgets</span> <span class="kn">import</span> <span class="n">QApplication</span><span class="p">,</span> <span class="n">QMainWindow</span><span class="p">,</span> <span class="n">QVBoxLayout</span><span class="p">,</span> <span class="n">QWidget</span><span class="p">,</span> <span class="n">QGraphicsView</span>
-<span class="kn">from</span> <span class="nn">PySide6.QtCharts</span> <span class="kn">import</span> <span class="n">QChart</span><span class="p">,</span> <span class="n">QLineSeries</span><span class="p">,</span> <span class="n">QValueAxis</span><span class="p">,</span> <span class="n">QDateTimeAxis</span>
+<span class="kn">from</span> <span class="nn">PySide6.QtCharts</span> <span class="kn">import</span> <span class="n">QChart</span><span class="p">,</span> <span class="n">QLineSeries</span><span class="p">,</span> <span class="n">QScatterSeries</span><span class="p">,</span> <span class="n">QValueAxis</span><span class="p">,</span> <span class="n">QDateTimeAxis</span><span class="p">,</span> <span class="n">QBarCategoryAxis</span><span class="p">,</span> <span class="n">QBarSet</span><span class="p">,</span> <span class="n">QBarSeries</span>
 <span class="kn">from</span> <span class="nn">PySide6.QtGui</span> <span class="kn">import</span> <span class="n">QPainter</span>
-<span class="kn">import</span> <span class="nn">random</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<div class="viewcode-block" id="BarChart">
+<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.BarChart">[документация]</a>
+<span class="k">class</span> <span class="nc">BarChart</span><span class="p">(</span><span class="n">QChart</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Создаем ось Y</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axis_y</span> <span class="o">=</span> <span class="n">QValueAxis</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">addAxis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axis_y</span><span class="p">,</span> <span class="n">Qt</span><span class="o">.</span><span class="n">AlignLeft</span><span class="p">)</span>  <span class="c1"># Добавляем ось Y слева</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axis_y</span><span class="o">.</span><span class="n">setTitleText</span><span class="p">(</span><span class="s2">&quot;Значение&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Создаем ось X</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axis_x</span> <span class="o">=</span> <span class="n">QBarCategoryAxis</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">addAxis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axis_x</span><span class="p">,</span> <span class="n">Qt</span><span class="o">.</span><span class="n">AlignBottom</span><span class="p">)</span>  <span class="c1"># Добавляем ось X снизу</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axis_x</span><span class="o">.</span><span class="n">setTitleText</span><span class="p">(</span><span class="s2">&quot;Вычислительные системы&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Устанавливаем заголовок графика</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setTitle</span><span class="p">(</span><span class="s2">&quot;Максимальные результаты на различных ВВС теста &#39;HPL&#39;&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Создаем серию столбцов</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bar_series</span> <span class="o">=</span> <span class="n">QBarSeries</span><span class="p">()</span>
+
+        <span class="c1"># Добавляем столбцы в серию</span>
+        <span class="n">categories</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Aramid Test Cluster 1&quot;</span><span class="p">,</span> <span class="s2">&quot;Aramid Test Cluster 2&quot;</span><span class="p">,</span> <span class="s2">&quot;Aramid Test Cluster 3&quot;</span><span class="p">]</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">101</span><span class="p">,</span> <span class="mi">192</span><span class="p">,</span> <span class="mi">77</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">category</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+            <span class="n">bar_set</span> <span class="o">=</span> <span class="n">QBarSet</span><span class="p">(</span><span class="n">category</span><span class="p">)</span>  <span class="c1"># Создаем QBarSet с указанием категории</span>
+            <span class="n">bar_set</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bar_series</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bar_set</span><span class="p">)</span>
+
+        <span class="c1"># Добавляем серию столбцов на график</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">addSeries</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bar_series</span><span class="p">)</span>
+
+        <span class="c1"># Привязываем оси к серии</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bar_series</span><span class="o">.</span><span class="n">attachAxis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axis_x</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bar_series</span><span class="o">.</span><span class="n">attachAxis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axis_y</span><span class="p">)</span>
+
+        <span class="c1"># Устанавливаем диапазоны осей</span>
+        <span class="n">min_value</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">values</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span> <span class="k">if</span> <span class="n">values</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="n">max_value</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="k">if</span> <span class="n">values</span> <span class="k">else</span> <span class="mi">10</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axis_y</span><span class="o">.</span><span class="n">setRange</span><span class="p">(</span><span class="n">min_value</span> <span class="o">*</span> <span class="mf">1.1</span><span class="p">,</span> <span class="n">max_value</span> <span class="o">*</span> <span class="mf">1.1</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="TestChart">
-<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.TestChart">[документация]</a>
-<span class="k">class</span> <span class="nc">TestChart</span><span class="p">(</span><span class="n">QChart</span><span class="p">):</span>
+
+<div class="viewcode-block" id="LineChart">
+<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.LineChart">[документация]</a>
+<span class="k">class</span> <span class="nc">LineChart</span><span class="p">(</span><span class="n">QChart</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">test_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -101,25 +145,38 @@
 
         <span class="c1"># Словарь для хранения серий по их именам</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">series_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">populate_chart_with_data</span><span class="p">()</span>
 
-<div class="viewcode-block" id="TestChart.add_series">
-<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.TestChart.add_series">[документация]</a>
+<div class="viewcode-block" id="LineChart.add_series">
+<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.LineChart.add_series">[документация]</a>
     <span class="k">def</span> <span class="nf">add_series</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-        <span class="n">series</span> <span class="o">=</span> <span class="n">QLineSeries</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">line_series</span> <span class="o">=</span> <span class="n">QLineSeries</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">scatter_series</span> <span class="o">=</span> <span class="n">QScatterSeries</span><span class="p">()</span>
+        <span class="n">scatter_series</span><span class="o">.</span><span class="n">setMarkerSize</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># Размер точек</span>
+
         <span class="k">for</span> <span class="n">date</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-            <span class="n">series</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">toMSecsSinceEpoch</span><span class="p">(),</span> <span class="n">value</span><span class="p">)</span>
+            <span class="n">line_series</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">toMSecsSinceEpoch</span><span class="p">(),</span> <span class="n">value</span><span class="p">)</span>
+            <span class="n">scatter_series</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">toMSecsSinceEpoch</span><span class="p">(),</span> <span class="n">value</span><span class="p">)</span>
 
         <span class="c1"># Добавление серии данных на график</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">addSeries</span><span class="p">(</span><span class="n">series</span><span class="p">)</span>
-        <span class="n">series</span><span class="o">.</span><span class="n">attachAxis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axis_x</span><span class="p">)</span>
-        <span class="n">series</span><span class="o">.</span><span class="n">attachAxis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axis_y</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">addSeries</span><span class="p">(</span><span class="n">line_series</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">addSeries</span><span class="p">(</span><span class="n">scatter_series</span><span class="p">)</span>
+        <span class="n">line_series</span><span class="o">.</span><span class="n">attachAxis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axis_x</span><span class="p">)</span>
+        <span class="n">line_series</span><span class="o">.</span><span class="n">attachAxis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axis_y</span><span class="p">)</span>
+        <span class="n">scatter_series</span><span class="o">.</span><span class="n">attachAxis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axis_x</span><span class="p">)</span>
+        <span class="n">scatter_series</span><span class="o">.</span><span class="n">attachAxis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axis_y</span><span class="p">)</span>
 
-        <span class="c1"># Сохранение серии в словарь</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">series_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">series</span></div>
+        <span class="c1"># Удаление маркерной серии из легенды</span>
+        <span class="n">markers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span><span class="o">.</span><span class="n">markers</span><span class="p">(</span><span class="n">scatter_series</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">marker</span> <span class="ow">in</span> <span class="n">markers</span><span class="p">:</span>
+            <span class="n">marker</span><span class="o">.</span><span class="n">setVisible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># Сохранение серий в словарь</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">series_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">line_series</span><span class="p">,</span> <span class="n">scatter_series</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="TestChart.toggle_series_visibility">
-<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.TestChart.toggle_series_visibility">[документация]</a>
+<div class="viewcode-block" id="LineChart.toggle_series_visibility">
+<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.LineChart.toggle_series_visibility">[документация]</a>
     <span class="k">def</span> <span class="nf">toggle_series_visibility</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Переключает видимость серии данных с указанным именем.</span>
@@ -127,29 +184,39 @@
 <span class="sd">        :param name: Имя серии данных.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">series_dict</span><span class="p">:</span>
-            <span class="n">series</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">series_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
-            <span class="n">series</span><span class="o">.</span><span class="n">setVisible</span><span class="p">(</span><span class="ow">not</span> <span class="n">series</span><span class="o">.</span><span class="n">isVisible</span><span class="p">())</span></div>
+            <span class="n">line_series</span><span class="p">,</span> <span class="n">scatter_series</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">series_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+            <span class="n">line_series</span><span class="o">.</span><span class="n">setVisible</span><span class="p">(</span><span class="ow">not</span> <span class="n">line_series</span><span class="o">.</span><span class="n">isVisible</span><span class="p">())</span>
+            <span class="n">scatter_series</span><span class="o">.</span><span class="n">setVisible</span><span class="p">(</span><span class="ow">not</span> <span class="n">scatter_series</span><span class="o">.</span><span class="n">isVisible</span><span class="p">())</span></div>
 
 
-<div class="viewcode-block" id="TestChart.populate_chart_with_data">
-<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.TestChart.populate_chart_with_data">[документация]</a>
-    <span class="k">def</span> <span class="nf">populate_chart_with_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_series</span><span class="o">=</span><span class="mi">15</span><span class="p">):</span>
+<div class="viewcode-block" id="LineChart.populate_chart_with_data">
+<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.LineChart.populate_chart_with_data">[документация]</a>
+    <span class="k">def</span> <span class="nf">populate_chart_with_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">current_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
-        <span class="n">start_date</span> <span class="o">=</span> <span class="n">current_date</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">day</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">start_date</span> <span class="o">=</span> <span class="n">current_date</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+        <span class="n">date_intervals</span> <span class="o">=</span> <span class="p">[</span><span class="n">start_date</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">i</span> <span class="o">*</span> <span class="mi">7</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">13</span><span class="p">)]</span>  <span class="c1"># 13 точек, по одной каждую неделю</span>
 
-        <span class="c1"># Генерация данных для каждой серии</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_series</span><span class="p">):</span>
+        <span class="n">base_values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
+        <span class="n">series_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Aramid Test Cluster 1&quot;</span><span class="p">,</span> <span class="s2">&quot;Aramid Test Cluster 2&quot;</span><span class="p">,</span> <span class="s2">&quot;Aramid Test Cluster 3&quot;</span><span class="p">]</span>
+        <span class="n">deviation_percent</span> <span class="o">=</span> <span class="mf">0.01</span>  <span class="c1"># 3% deviation</span>
+
+        <span class="k">for</span> <span class="n">series_index</span><span class="p">,</span> <span class="n">base_value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">base_values</span><span class="p">):</span>
             <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">for</span> <span class="n">day</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">((</span><span class="n">current_date</span> <span class="o">-</span> <span class="n">start_date</span><span class="p">)</span><span class="o">.</span><span class="n">days</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-                <span class="n">date</span> <span class="o">=</span> <span class="n">start_date</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">day</span><span class="p">)</span>
-                <span class="n">value</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">date</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">date_intervals</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>  <span class="c1"># Introduce a 20% dip at the 7th point</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">base_value</span> <span class="o">*</span> <span class="mf">0.8</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">base_value</span> <span class="o">+</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">base_value</span> <span class="o">*</span> <span class="n">deviation_percent</span>
                 <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">QDateTime</span><span class="p">(</span><span class="n">date</span><span class="p">),</span> <span class="n">value</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_series</span><span class="p">(</span><span class="n">series_names</span><span class="p">[</span><span class="n">series_index</span><span class="p">],</span> <span class="n">data</span><span class="p">)</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">add_series</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Series </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
+        <span class="c1"># Обновление диапазонов осей после добавления данных</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axis_x</span><span class="o">.</span><span class="n">setRange</span><span class="p">(</span><span class="n">date_intervals</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">date_intervals</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axis_y</span><span class="o">.</span><span class="n">setRange</span><span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mi">230</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="TestChart.zoom_in">
-<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.TestChart.zoom_in">[документация]</a>
+<div class="viewcode-block" id="LineChart.zoom_in">
+<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.LineChart.zoom_in">[документация]</a>
     <span class="k">def</span> <span class="nf">zoom_in</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Увеличивает масштаб видимости на 1.1 раза.</span>
@@ -160,8 +227,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">zoom</span><span class="p">(</span><span class="mf">1.1</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="TestChart.zoom_out">
-<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.TestChart.zoom_out">[документация]</a>
+<div class="viewcode-block" id="LineChart.zoom_out">
+<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.LineChart.zoom_out">[документация]</a>
     <span class="k">def</span> <span class="nf">zoom_out</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Уменьшает масштаб видимости на 0.9 раза.</span>
@@ -172,8 +239,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">zoom</span><span class="p">(</span><span class="mf">0.9</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="TestChart.reset">
-<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.TestChart.reset">[документация]</a>
+<div class="viewcode-block" id="LineChart.reset">
+<a class="viewcode-back" href="../../../pages.Chart.html#pages.Chart.Chart_view.LineChart.reset">[документация]</a>
     <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Сбрасывает вид в его начальное состояние.</span>

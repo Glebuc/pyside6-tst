@@ -13,8 +13,8 @@ sys.path.insert(0, os.path.abspath('..'))
 
 
 project = 'Aramid-TsT-Graph'
-copyright = '2024, Deryugin Gleb'
-author = 'Deryugin Gleb'
+copyright = '2024, 0829 ITMF'
+author = '0829 ITMF'
 release = '0.0.1'
 
 # -- General configuration ---------------------------------------------------

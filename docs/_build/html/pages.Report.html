@@ -47,10 +47,18 @@
               <div class="local-toc"><ul>
 <li><a class="reference internal" href="#">pages.Report package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#pages-report-controller-report-module">pages.Report.Controller_report module</a></li>
-<li><a class="reference internal" href="#pages-report-reportmodel-module">pages.Report.ReportModel module</a></li>
-<li><a class="reference internal" href="#pages-report-reportview-module">pages.Report.ReportView module</a></li>
-<li><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li><a class="reference internal" href="#module-pages.Report.PDFGenerator">pages.Report.PDFGenerator module</a><ul>
+<li><a class="reference internal" href="#pages.Report.PDFGenerator.PDFGenerator"><code class="docutils literal notranslate"><span class="pre">PDFGenerator</span></code></a><ul>
+<li><a class="reference internal" href="#pages.Report.PDFGenerator.PDFGenerator.create_test_result_page"><code class="docutils literal notranslate"><span class="pre">PDFGenerator.create_test_result_page()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Report.PDFGenerator.PDFGenerator.create_title_page"><code class="docutils literal notranslate"><span class="pre">PDFGenerator.create_title_page()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Report.PDFGenerator.PDFGenerator.create_toc"><code class="docutils literal notranslate"><span class="pre">PDFGenerator.create_toc()</span></code></a></li>
+<li><a class="reference internal" href="#pages.Report.PDFGenerator.PDFGenerator.generate"><code class="docutils literal notranslate"><span class="pre">PDFGenerator.generate()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pages-report-settings-report-module">pages.Report.Settings_report module</a></li>
+<li><a class="reference internal" href="#module-pages.Report">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -84,17 +92,90 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
 </section>
-<section id="pages-report-controller-report-module">
-<h2>pages.Report.Controller_report module<a class="headerlink" href="#pages-report-controller-report-module" title="Link to this heading"></a></h2>
+<section id="module-pages.Report.PDFGenerator">
+<span id="pages-report-pdfgenerator-module"></span><h2>pages.Report.PDFGenerator module<a class="headerlink" href="#module-pages.Report.PDFGenerator" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pages.Report.PDFGenerator.PDFGenerator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pages.Report.PDFGenerator.</span></span><span class="sig-name descname"><span class="pre">PDFGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Report/PDFGenerator.html#PDFGenerator"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Report.PDFGenerator.PDFGenerator" title="Link to this definition"></a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Report.PDFGenerator.PDFGenerator.create_test_result_page">
+<span class="sig-name descname"><span class="pre">create_test_result_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Report/PDFGenerator.html#PDFGenerator.create_test_result_page"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Report.PDFGenerator.PDFGenerator.create_test_result_page" title="Link to this definition"></a></dt>
+<dd><p>Создает страницу с результатами конкретного теста.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>test</strong> – dict
+Словарь с информацией о тесте.</p></li>
+<li><p><strong>index</strong> – int
+Индекс теста в общем списке тестов.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Report.PDFGenerator.PDFGenerator.create_title_page">
+<span class="sig-name descname"><span class="pre">create_title_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subtitle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Report/PDFGenerator.html#PDFGenerator.create_title_page"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Report.PDFGenerator.PDFGenerator.create_title_page" title="Link to this definition"></a></dt>
+<dd><p>Создает страницу заголовка с указанным заголовком и подзаголовком.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>title</strong> – str
+Заголовок страницы.</p></li>
+<li><p><strong>subtitle</strong> – str
+Подзаголовок страницы.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Report.PDFGenerator.PDFGenerator.create_toc">
+<span class="sig-name descname"><span class="pre">create_toc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Report/PDFGenerator.html#PDFGenerator.create_toc"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Report.PDFGenerator.PDFGenerator.create_toc" title="Link to this definition"></a></dt>
+<dd><p>Создает страницу содержания (TOC) на основе заголовков тестов.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pages.Report.PDFGenerator.PDFGenerator.generate">
+<span class="sig-name descname"><span class="pre">generate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subtitle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_results</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages/Report/PDFGenerator.html#PDFGenerator.generate"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#pages.Report.PDFGenerator.PDFGenerator.generate" title="Link to this definition"></a></dt>
+<dd><p>Генерирует PDF-отчет с заданным заголовком, подзаголовком и результатами тестов.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>title</strong> – str
+Заголовок отчета.</p></li>
+<li><p><strong>subtitle</strong> – str
+Подзаголовок отчета.</p></li>
+<li><p><strong>test_results</strong> – list
+Список словарей с информацией о результатах тестов.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="pages-report-reportmodel-module">
-<h2>pages.Report.ReportModel module<a class="headerlink" href="#pages-report-reportmodel-module" title="Link to this heading"></a></h2>
+<section id="pages-report-settings-report-module">
+<h2>pages.Report.Settings_report module<a class="headerlink" href="#pages-report-settings-report-module" title="Link to this heading"></a></h2>
 </section>
-<section id="pages-report-reportview-module">
-<h2>pages.Report.ReportView module<a class="headerlink" href="#pages-report-reportview-module" title="Link to this heading"></a></h2>
-</section>
-<section id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
+<section id="module-pages.Report">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pages.Report" title="Link to this heading"></a></h2>
 </section>
 </section>
 
@@ -106,7 +187,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Авторские права 2024, Deryugin Gleb. </p>
+    <p>&#169; Авторские права 2024, 0829 ITMF. </p>
   </div>
 
   Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием

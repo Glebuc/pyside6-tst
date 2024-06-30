@@ -1,9 +1,9 @@
-.. Aramid-TsT-Graph documentation master file, created by
-   sphinx-quickstart on Fri May  3 01:49:51 2024.
+.. Aramid-TsT Graph documentation master file, created by
+   sphinx-quickstart on Mon Jul  1 01:05:12 2024.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Aramid-TsT-Graph's documentation!
+Welcome to Aramid-TsT Graph's documentation!
 ============================================
 
 .. toctree::

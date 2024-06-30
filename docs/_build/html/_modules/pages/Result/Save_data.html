@@ -86,7 +86,7 @@
 <span class="sd">        :argument table_view: QTableView, содержащая данные для сохранения.</span>
 <span class="sd">        :type table_view: QTableView</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">table_view</span><span class="o">.</span><span class="n">model</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">table_view</span><span class="o">.</span><span class="n">model</span><span class="p">()</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">QSqlQueryModel</span><span class="p">):</span>
         <span class="n">log</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Модель для QTableView не является QSqlQueryModel.&quot;</span><span class="p">)</span>

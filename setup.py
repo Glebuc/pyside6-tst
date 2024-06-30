@@ -1,19 +1,21 @@
 import sys
-import os
 from cx_Freeze import setup, Executable
 
 
-# TARGET
-target = Executable(
-    script="main.py",
-    base="Win32GUI"
-)
+build_exe_options = {
+    "packages": ["os", "sys", "PySide6"],
+    "includes": ["loger", "Application", "pages", "ui_modules", "SettingApp", "utils"],
+    "include_files": [],
+}
+
+base = None
+if sys.platform == "win32":
+    base = "Win32GUI"
 
 setup(
-    name="Aramid TsT Graph",
-    version="1.0",
-    description="Application for view data functional testing in operating system Aramid",
-    author="Deryugin Gleb",
-    executables=[target]
-
+    name="Arami-TsT Graph",
+    version="0.1",
+    description="Your application description",
+    options={"build_exe": build_exe_options},
+    executables=[Executable("main.py", base=base, icon="./images/icons/aramid.svg")],
 )

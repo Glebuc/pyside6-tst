@@ -69,6 +69,7 @@ class LineChart(QChart):
 
         # Словарь для хранения серий по их именам
         self.series_dict = {}
+        self.populate_chart_with_data()
 
     def add_series(self, name, data):
         line_series = QLineSeries(name=name)
@@ -113,7 +114,7 @@ class LineChart(QChart):
 
         base_values = [100, 150, 200]
         series_names = ["Aramid Test Cluster 1", "Aramid Test Cluster 2", "Aramid Test Cluster 3"]
-        deviation_percent = 0.03  # 3% deviation
+        deviation_percent = 0.01  # 3% deviation
 
         for series_index, base_value in enumerate(base_values):
             data = []

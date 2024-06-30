@@ -71,6 +71,7 @@
   <h1>Исходный код pages.BaseModel</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">PySide6.QtSql</span> <span class="kn">import</span> <span class="n">QSqlDatabase</span><span class="p">,</span> <span class="n">QSqlQuery</span><span class="p">,</span> <span class="n">QSqlTableModel</span><span class="p">,</span> <span class="n">QSqlQueryModel</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">List</span>
+<span class="kn">import</span> <span class="nn">json</span>
 
 <span class="kn">from</span> <span class="nn">loger</span> <span class="kn">import</span> <span class="n">Logger</span>
 
@@ -84,17 +85,8 @@
 <div class="viewcode-block" id="BaseModel">
 <a class="viewcode-back" href="../../pages.html#pages.BaseModel.BaseModel">[документация]</a>
 <span class="k">class</span> <span class="nc">BaseModel</span><span class="p">(</span><span class="n">QSqlQueryModel</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Базовая модель, данная модель является родительской для всех других моделей&quot;&quot;&quot;</span>
-    <span class="c1"># USERS_SQL = &quot;&quot;&quot;</span>
-    <span class="c1">#     CREATE TABLE IF NOT EXISTS users (</span>
-    <span class="c1"># 	user_id serial4 NOT NULL,</span>
-    <span class="c1"># 	user_name varchar NOT NULL,</span>
-    <span class="c1"># 	fio_user varchar NULL,</span>
-    <span class="c1"># 	email_user varchar NULL,</span>
-    <span class="c1"># 	password_user varchar NULL,</span>
-    <span class="c1"># 	CONSTRAINT users_pk PRIMARY KEY (user_id)</span>
-    <span class="c1"># );</span>
-    <span class="c1">#     &quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Базовая модель, данная модель является родительской для всех других моделей.</span>
+<span class="sd">     И занимается инициализированием окружения для БД&quot;&quot;&quot;</span>
     <span class="n">TESTS_SQL</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">        CREATE TABLE IF NOT EXISTS tests (</span>
 <span class="s2">        test_note text NULL,</span>
@@ -172,15 +164,6 @@
 <span class="s2">    $$</span>
 <span class="s2">    &quot;&quot;&quot;</span>
 
-    <span class="n">LIST_TEST_SQL</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">        SELECT test_name FROM tests GROUP BY test_name;</span>
-<span class="s2">    &quot;&quot;&quot;</span>
-    <span class="n">MAX_DATE_SQL</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">        SELECT MAX(start_test) FROM tests;</span>
-<span class="s2">    &quot;&quot;&quot;</span>
-    <span class="n">MIN_DATE_SQL</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">        SELECT MIN(start_test) FROM tests;</span>
-<span class="s2">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">setting</span><span class="o">.</span><span class="n">get_setting</span><span class="p">(</span><span class="s2">&quot;AppSettings/language&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Russian&quot;</span><span class="p">:</span>
         <span class="n">ALL_RESULT_SQL</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">                SELECT </span>
@@ -222,6 +205,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">log</span> <span class="o">=</span> <span class="n">Logger</span><span class="o">.</span><span class="n">get_instance</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">check_and_create_tables</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">load_tests_from_json_file</span><span class="p">(</span><span class="s2">&quot;Test_info.json&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ALL_RESULT_SQL</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lastError</span><span class="p">()</span><span class="o">.</span><span class="n">isValid</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Ошибка выполнения запроса:&quot;</span><span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">lastError</span><span class="p">()</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
@@ -240,7 +224,7 @@
             <span class="k">return</span> <span class="kc">False</span>
 
         <span class="c1"># Создание таблиц при необходимости</span>
-        <span class="n">tables_to_create</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">init_db</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;tests&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">TESTS_SQL</span><span class="p">,</span>
             <span class="s1">&#39;report&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">REPORT_SQL</span><span class="p">,</span>
             <span class="s1">&#39;sections&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">SECTION_SQL</span><span class="p">,</span>
@@ -251,7 +235,7 @@
         <span class="p">}</span>
 
         <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">sql_query</span> <span class="ow">in</span> <span class="n">tables_to_create</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">sql_query</span> <span class="ow">in</span> <span class="n">init_db</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">table_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">existing_tables</span><span class="p">:</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">(</span><span class="n">sql_query</span><span class="p">):</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Ошибка выполнения запроса:&quot;</span><span class="o">+</span> <span class="n">query</span><span class="o">.</span><span class="n">lastError</span><span class="p">()</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
@@ -285,6 +269,81 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Ошибка выполнения запроса:&quot;</span><span class="o">+</span> <span class="n">query</span><span class="o">.</span><span class="n">lastError</span><span class="p">()</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
             <span class="k">return</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="BaseModel.load_tests_from_json_file">
+<a class="viewcode-back" href="../../pages.html#pages.BaseModel.BaseModel.load_tests_from_json_file">[документация]</a>
+    <span class="k">def</span> <span class="nf">load_tests_from_json_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Загружает данные из JSON-файла и записывает их в таблицы базы данных, если они еще не добавлены.</span>
+
+<span class="sd">        :param file_path: Путь к JSON-файлу, содержащему информацию о HPC-тестах.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+                <span class="n">json_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">init_notes</span><span class="p">(</span><span class="n">json_data</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ошибка при загрузке JSON-файла: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BaseModel.init_notes">
+<a class="viewcode-back" href="../../pages.html#pages.BaseModel.BaseModel.init_notes">[документация]</a>
+    <span class="k">def</span> <span class="nf">init_notes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">json_data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">               Загружает данные из JSON и записывает их в таблицы базы данных, если они еще не добавлены.</span>
+
+<span class="sd">               :param json_data: Данные JSON, содержащие информацию о HPC-тестах.</span>
+<span class="sd">               &quot;&quot;&quot;</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">()</span>
+
+        <span class="c1"># Проверка существующих разделов</span>
+        <span class="n">existing_sections</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">(</span><span class="s2">&quot;SELECT name FROM sections&quot;</span><span class="p">):</span>
+            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+                <span class="n">existing_sections</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Ошибка выполнения запроса: &quot;</span> <span class="o">+</span> <span class="n">query</span><span class="o">.</span><span class="n">lastError</span><span class="p">()</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+            <span class="k">return</span>
+
+        <span class="c1"># Добавление раздела &quot;HPC-тесты&quot;</span>
+        <span class="k">if</span> <span class="s2">&quot;HPC-тесты&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">existing_sections</span><span class="p">:</span>
+            <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;INSERT INTO sections (name) VALUES (:name)&quot;</span><span class="p">)</span>
+            <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:name&quot;</span><span class="p">,</span> <span class="s2">&quot;HPC-тесты&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Ошибка выполнения запроса: &quot;</span> <span class="o">+</span> <span class="n">query</span><span class="o">.</span><span class="n">lastError</span><span class="p">()</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+                <span class="k">return</span>
+
+        <span class="c1"># Получение ID раздела &quot;HPC-тесты&quot;</span>
+        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT id FROM sections WHERE name = :name&quot;</span><span class="p">)</span>
+        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:name&quot;</span><span class="p">,</span> <span class="s2">&quot;HPC-тесты&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Ошибка выполнения запроса: &quot;</span> <span class="o">+</span> <span class="n">query</span><span class="o">.</span><span class="n">lastError</span><span class="p">()</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+            <span class="k">return</span>
+        <span class="n">section_id</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># Проверка существующих заметок</span>
+        <span class="n">existing_notes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT title FROM notes WHERE section_id = :section_id&quot;</span><span class="p">)</span>
+        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:section_id&quot;</span><span class="p">,</span> <span class="n">section_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+                <span class="n">existing_notes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Ошибка выполнения запроса: &quot;</span> <span class="o">+</span> <span class="n">query</span><span class="o">.</span><span class="n">lastError</span><span class="p">()</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+            <span class="k">return</span>
+
+        <span class="c1"># Вставка новых заметок</span>
+        <span class="k">for</span> <span class="n">title</span><span class="p">,</span> <span class="n">content</span> <span class="ow">in</span> <span class="n">json_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;HPC-тесты&quot;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">title</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">existing_notes</span><span class="p">:</span>
+                <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;INSERT INTO notes (title, content, section_id) VALUES (:title, :content, :section_id)&quot;</span><span class="p">)</span>
+                <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:title&quot;</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span>
+                <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:content&quot;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+                <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:section_id&quot;</span><span class="p">,</span> <span class="n">section_id</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Ошибка выполнения запроса: &quot;</span> <span class="o">+</span> <span class="n">query</span><span class="o">.</span><span class="n">lastError</span><span class="p">()</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+                    <span class="k">return</span></div>
+
 
 
 <div class="viewcode-block" id="BaseModel.execute_sql">

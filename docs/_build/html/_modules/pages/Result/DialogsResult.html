@@ -73,6 +73,8 @@
 <span class="kn">from</span> <span class="nn">PySide6.QtSql</span> <span class="kn">import</span> <span class="n">QSqlQueryModel</span><span class="p">,</span> <span class="n">QSqlQuery</span>
 <span class="kn">from</span> <span class="nn">PySide6.QtCore</span> <span class="kn">import</span> <span class="n">Qt</span><span class="p">,</span> <span class="n">QDate</span>
 <span class="kn">from</span> <span class="nn">PySide6.QtWidgets</span> <span class="kn">import</span> <span class="n">QMessageBox</span>
+
+<span class="kn">from</span> <span class="nn">.Model_result</span> <span class="kn">import</span> <span class="n">ResultModel</span>
 <span class="kn">from</span> <span class="nn">.ui_dialog_extension_search</span> <span class="kn">import</span> <span class="n">Ui_Dialog</span> <span class="k">as</span> <span class="n">ExtensionSearch</span>
 <span class="kn">from</span> <span class="nn">pages.BaseModel</span> <span class="kn">import</span> <span class="n">BaseModel</span>
 
@@ -84,14 +86,18 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="n">model</span> <span class="o">=</span> <span class="n">BaseModel</span><span class="p">(</span><span class="s1">&#39;tests&#39;</span><span class="p">)</span>
-        <span class="n">users</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">execute_sql</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">LIST_USER_SQL</span><span class="p">)</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">ResultModel</span><span class="p">(</span><span class="s1">&#39;tests&#39;</span><span class="p">)</span>
+        <span class="n">machine</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">execute_sql</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">LIST_MACHINE_SQL</span><span class="p">)</span>
+        <span class="n">versions_os</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">execute_sql</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">LIST_OS_VERSION_SQL</span><span class="p">)</span>
         <span class="n">tests</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">execute_sql</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">LIST_TEST_SQL</span><span class="p">)</span>
         <span class="n">min_date</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">execute_sql</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">MIN_DATE_SQL</span><span class="p">)</span>
         <span class="n">max_date</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">execute_sql</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">MAX_DATE_SQL</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">min_date</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">max_date</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;Расширенный поиск&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">test_comboBox</span><span class="o">.</span><span class="n">addItems</span><span class="p">(</span><span class="n">tests</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">user_comboBox</span><span class="o">.</span><span class="n">addItems</span><span class="p">(</span><span class="n">users</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">machine_comboBox</span><span class="o">.</span><span class="n">addItems</span><span class="p">(</span><span class="n">machine</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">version_os_comboBox</span><span class="o">.</span><span class="n">addItems</span><span class="p">(</span><span class="n">versions_os</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">before_dateEdit</span><span class="o">.</span><span class="n">setDate</span><span class="p">(</span><span class="n">max_date</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">date</span><span class="p">())</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">from_dateEdit</span><span class="o">.</span><span class="n">setDate</span><span class="p">(</span><span class="n">min_date</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">date</span><span class="p">())</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">accept_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">accept</span><span class="p">)</span>
@@ -138,17 +144,19 @@
 <span class="sd">        :returns:</span>
 <span class="sd">            tuple: :</span>
 <span class="sd">                - test_data (str): Выбранное значение из combobox с тестами.</span>
-<span class="sd">                - user_data (str): Выбранное значение из combobox с пользователями.</span>
+<span class="sd">                - machine_data (str): Выбранное значение из combobox с машинами.</span>
+<span class="sd">                - version_os_data (str): Выбранное значение из combobox с версиями ОС.</span>
 <span class="sd">                - param_test (str): Выбранное значение из combobox с параметрами тестов.</span>
 <span class="sd">                - start_date (str): Начальная дата фильтрации в формате строки ISODate (гггг-мм-дд).</span>
 <span class="sd">                - end_date (str): Конечная дата фильтрации в формате строки ISODate (гггг-мм-дд).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">test_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_comboBox</span><span class="o">.</span><span class="n">currentText</span><span class="p">()</span>
-        <span class="n">user_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_comboBox</span><span class="o">.</span><span class="n">currentText</span><span class="p">()</span>
+        <span class="n">machine_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">machine_comboBox</span><span class="o">.</span><span class="n">currentText</span><span class="p">()</span>
+        <span class="n">version_os_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">version_os_comboBox</span><span class="o">.</span><span class="n">currentText</span><span class="p">()</span>
         <span class="n">param_test</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parametrs_tests</span><span class="o">.</span><span class="n">currentText</span><span class="p">()</span>
         <span class="n">start_date</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_dateEdit</span><span class="o">.</span><span class="n">date</span><span class="p">()</span><span class="o">.</span><span class="n">toString</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">ISODate</span><span class="p">)</span>
         <span class="n">end_date</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">before_dateEdit</span><span class="o">.</span><span class="n">date</span><span class="p">()</span><span class="o">.</span><span class="n">toString</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">ISODate</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">test_data</span><span class="p">,</span> <span class="n">user_data</span><span class="p">,</span> <span class="n">param_test</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span></div>
+        <span class="k">return</span> <span class="n">test_data</span><span class="p">,</span> <span class="n">machine_data</span><span class="p">,</span> <span class="n">version_os_data</span><span class="p">,</span> <span class="n">param_test</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span></div>
 </div>
 
 
